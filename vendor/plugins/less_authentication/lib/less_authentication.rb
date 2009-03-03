@@ -131,7 +131,7 @@ class ActionController::Base
     if user && user.remember_token?
       user.remember_me
       self.user = user
-      cookies[:auth_token] = { :value => self.user.remember_token , :expires => self.user.remember_token_expires_at, :domain => ".#{$domain}"  }
+      cookies[:auth_token] = { :value => self.user.remember_token , :expires => self.user.remember_token_expires_at  }
       flash[:notice] = "Logged in successfully"
     end
     true

@@ -1,0 +1,58 @@
+
+
+
+<center>
+<%= form_tag %>
+
+	<div id="login_form">
+		<%= link_to "Need an account?", signup_url %>
+
+    <label>Login:<%= text_field_tag 'login', '', :class=>"focus_first" %></label>
+    <label>Password:<%= password_field_tag 'password' %></label>
+    <% if session[:show_accept] %>
+    	<label>Accept Terms of Service <%= check_box_tag :accepts_terms, "1", params[:accepts_terms], :class=>""%> </label>
+    <% end %>
+    <label>Remember Me <%= check_box_tag 'remember_me',1,false, :class=>"" %></label> 
+    	<br/>
+
+    <div>
+    <%= submit_tag("Login", :id=>'submitter', :class=>"") %>
+    </div>
+  </div>
+
+
+  <div class="center_fix">
+
+    <span>I <span id="forgot_text">forgot</span> my <a href="javascript:void(0)" id="forgot_password_clicker">password or username</a></span>
+
+
+
+    <div id="forgot_form" class="help_form" style="display:none;">
+      <%= link_to "Need an account?", signup_url %>
+      <p>Enter email address and your password will be sent to you. </p>
+      <div id="forgot_password"><label for="email">Enter Email Address</label><%= text_field_tag 'email'%></div>
+
+      <%= submit_tag("Submit", :id=>'forgetter', :class=>"") %>
+    </div>
+  </div>
+
+
+</form>
+
+</center>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+jQuery(function(){
+tog("#forgot_password_clicker", "#login_form");
+tog("#forgot_password_clicker", "#forgot_form", forgot_text);
+
+});
+function forgot_text(){
+	if (jQuery("#forgot_text").html() == "forgot")
+		jQuery("#forgot_text").html("remember");
+	else
+		jQuery("#forgot_text").html("forgot");
+	
+}
+//]]>
+</script>

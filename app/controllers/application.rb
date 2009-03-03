@@ -8,8 +8,14 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'd0e54eef2637b2991a09c05f064723eb'
   
-  # See ActionController::Base for details 
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password"). 
-  # filter_parameter_logging :password
+  
+  less_authentication
+  filter_parameter_logging "password"
+  before_filter :check_user, :login_from_cookie, :login_required, :set_vars
+  after_filter :store_location
+  
+  protected
+  def set_vars
+    @p = @u.person unless @u.blank?
+  end
 end
