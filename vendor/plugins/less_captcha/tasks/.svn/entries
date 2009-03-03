@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="1"
+   name=""
+   committed-date="2007-11-27T02:05:59.834115Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_captcha/trunk/tasks"
+   last-author="steve"
+   kind="dir"
+   uuid="526a4170-df3f-0410-8a9f-f8aeb15cb60b"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_captcha"
+   revision="3"/>
+<entry
+   committed-rev="1"
+   name="less_captcha_tasks.rake"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2007-11-27T02:05:59.834115Z"
+   checksum="1bd60307fc7e18f32ad9ae6d0b84a88e"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+</wc-entries>

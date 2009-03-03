@@ -1,0 +1,160 @@
+<div id="content_full">
+
+  <div class="left thickbox_half">
+  <% @title = "My Account" %>
+
+  <h1 ><%= @title %></h1>
+  <div id="general_info">
+
+<% less_form_for @person do |p| %>
+
+<%= p.text_field :first_name %>
+<%= p.text_field :last_name %>
+<%= p.text_field :email %>
+<%#= p.front 'Time Zone' %>
+<%#= time_zone_select 'person', :time_zone, TZInfo::Timezone.us_zones, :model => TZInfo::Timezone %>
+<%#= p.back  %>
+
+<%#= p.front :get_notification_via_email %>
+<%#= p.check_box :get_notification_via_email, :class=>'auto' %>
+<%#= p.back :get_notification_via_email %>
+
+<%# unless @p.aim.blank? %>
+  <%#= p.front :get_notification_via_aim %>
+  <%#= p.check_box( :get_notification_via_aim, :class=>'auto') %>
+  <%#= p.back :get_notification_via_aim %>
+<%# end %>
+
+<div class="border_top row">
+  <%= submit_tag 'Save', :class=>"button"%> <%#= link_to 'Cancel', edit_person_url(@person) %>
+  <div class="clear"></div>
+  <input type="hidden" name="switch" value="name" />
+</div>
+<% end %>
+</div>
+
+
+
+<h1 style="margin-top: 40px;">Upload Icon:</h1>
+<div id="upload_icon">
+<% less_form_for @person, :url=>person_path(@person), :html=>{:method=>:put, :multipart=>true, :class=>"box no_top"} do |p| %>
+  <%= p.front 'Upload your Icon' %>
+  <%= file_column_field( "person", "icon", :size => 15)%>
+  <% unless @person.icon.blank?%>
+  <div id="person_icon_picture" class="left"><%= icon @person, :small %> <%= link_to_remote 'delete icon', :url=>delete_icon_person_path(@person), :method=>:delete, :confirm=>DELETE_CONFIRM  %></div>
+  <% end %>
+  <%= p.back :icon %>
+
+  <div class="border_top row">
+    <%= submit_tag 'Upload', :class=>"button"%> 
+    <div class="clear"></div>
+  </div>
+
+  <input type="hidden" name="switch" value="image" />
+<% end %>
+</div>
+
+
+<h1 style="margin-top: 40px;">Delete My Account:</h1>
+<div id="delete_account">
+  <form>
+    <%= link_to_remote 'Delete my user account and all my data.', :url=>person_path(@person), :method=>:delete, :confirm=>DELETE_CONFIRM  %>
+  </form>
+</div>
+
+
+</div>
+
+
+
+
+
+  <!--div class="right thickbox_half">
+
+    <h1>AIM Integration</h1>
+    <div>
+      <%# less_form_for @p do |f|%>
+      <div>
+        <%# f.text_field :aim, :value=>@p.aim %>
+      </div>
+      <input type="hidden" value="aim" name="switch" />
+      <%# if @p.aim.blank?%>
+      <div class="border_top row">  
+        <%# submit_tag "Save", :class=>'button' %>
+        <div class="clear"></div>
+      </div>  
+      <%# else
+        unless @p.aim_authenticated
+      %>
+      <div class="alert">
+        <p>
+        Using AIM, add "lesstimespent" to your buddy list. </p>
+        <p>
+        Then send the IM message "reg <%# @p.aim_auth_code %>".</p>
+      </div>
+      <%# end %>
+      <div class="border_top row">
+        <%#= submit_tag "Give me a new authorization code", :class=>'button' %>
+        <div class="clear"></div>
+      </div>
+      <%#  end
+    end %>
+  </div>
+
+
+
+<h1 style="margin-top: 40px;">GCal Integration</h1>
+<div style="padding: 0 0 10px 0;">As with all passwords in our system, your google password is encrypted while stored.</div>
+<div>
+<%# less_form_for @person do |p| %>
+
+<%# p.text_field :gcalendar_user_name %>
+<%# p.password_field :gcalendar_password %>
+
+<div class="border_top row">
+  <%# submit_tag 'Save', :class=>"button"%> <%#= link_to 'Cancel', edit_person_url(@person) %>
+  <div class="clear"></div>
+</div>
+
+<input type="hidden" name="switch" value="gcalendar" />
+<%# end %>
+</div-->
+
+
+
+
+<h1 style="margin-top: 40px;"><%= "Change Password" %></h1>
+<div id="change_passwords">
+  <% less_form_for @person, :url=>person_path(@person) do |p| %>
+
+  <%= p.front 'Current Password' %>
+  <input type="password" name="verify_password" id="verify_password" />
+  <%= error_messages_on(:user, :password) %>
+  <%= p.back %>
+
+  <%= p.front 'New Password' %>
+  <input type="password" name="new_password" id="new_password" />
+  <%= error_messages_on(:user, :new_password) %>
+  <%= p.back %>
+
+  <%= p.front 'Confirm Password' %>
+  <input type="password" name="confirm_password" id="confirm_password" />
+  <%= p.back %>
+
+<div class="border_top row">
+  <%= submit_tag 'Save', :class=>"button"%> <%#= link_to 'Cancel', edit_person_url(@person) %>
+    <div class="clear"></div>
+    <input type="hidden" name="switch" value="password" />
+    <% end %>
+  </div>
+</div>
+
+
+
+</div>
+
+
+<div class="clear"></div>
+</div>
+
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="2"
+   name=""
+   committed-date="2007-10-23T17:46:52.974184Z"
+   url="http://lessjsroutes.googlecode.com/svn/trunk/less_js_routes/tasks"
+   last-author="stevenbristol"
+   kind="dir"
+   uuid="03e99d28-2c3d-0410-b300-efbb8ee99ea6"
+   repos="http://lessjsroutes.googlecode.com/svn"
+   revision="13"/>
+<entry
+   committed-rev="2"
+   name="less_js_routes_tasks.rake"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="92cfd4b235393115efef14b103e65658"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+</wc-entries>

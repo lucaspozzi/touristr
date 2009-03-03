@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="13"
+   name=""
+   committed-date="2009-01-11T23:06:13.973144Z"
+   url="http://lessjsroutes.googlecode.com/svn/trunk/less_js_routes"
+   last-author="stevenbristol"
+   kind="dir"
+   uuid="03e99d28-2c3d-0410-b300-efbb8ee99ea6"
+   repos="http://lessjsroutes.googlecode.com/svn"
+   revision="13"/>
+<entry
+   name="test"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="Rakefile"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="62be444a74ccde6065f559a52b99baa7"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+<entry
+   name="tasks"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="init.rb"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="a6a9fb9aa5962880c87db9a5c93a7b7c"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="install.rb"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="cbe738c10eba4ae2da8c6859c9723e44"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+<entry
+   committed-rev="2"
+   name="MIT-LICENSE"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="ba826ae68593d063b726b4e66dcb1e8f"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+<entry
+   committed-rev="2"
+   name="uninstall.rb"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="2a5fc883fe7f8dfe22ced24643d59ad4"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+<entry
+   committed-rev="13"
+   name="README"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2009-01-11T23:06:13.973144Z"
+   checksum="5b115384035de5574a224baa57860bac"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+</wc-entries>

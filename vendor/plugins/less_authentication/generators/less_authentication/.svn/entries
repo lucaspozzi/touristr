@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="56"
+   name=""
+   committed-date="2008-04-16T16:43:16.128446Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_authentication/trunk/generators/less_authentication"
+   last-author="steve"
+   kind="dir"
+   uuid="2c06f591-ea2f-0410-98bf-d9cd6e54681c"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_authentication"
+   revision="56"/>
+<entry
+   committed-rev="1"
+   name="USAGE"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2007-05-08T00:39:49.959509Z"
+   checksum="71fc170f45761395bf14eeaac76fb454"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="55"
+   name="less_authentication_generator.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-04-15T21:14:51.794117Z"
+   checksum="1dbf64dce4c20401e73f25393bd8fe58"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   name="templates"
+   kind="dir"/>
+</wc-entries>

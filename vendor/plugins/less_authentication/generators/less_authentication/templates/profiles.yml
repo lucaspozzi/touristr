@@ -1,0 +1,40 @@
+
+first:
+  user: first
+  email: first@example.com
+  first_name: first
+  last_name: last
+  created_at: <%= Time.now.last_month.to_s :db %>
+  updated_at: <%= Time.now.last_month.to_s :db %>
+  icon: blah.jpg
+second:
+  user: second
+  email: second@example.com
+  first_name: second
+  created_at: <%= Time.now.last_month.to_s :db %>
+  updated_at: <%= Time.now.last_month.to_s :db %>  
+three:
+  user: three
+  email: third@example.com
+  created_at: <%= Time.now.last_month.to_s :db %>
+  updated_at: <%= Time.now.last_month.to_s :db %>  
+owner:
+  user: owner
+  email: owner@example.com
+  created_at: <%= Time.now.last_month.to_s :db %>
+  updated_at: <%= Time.now.last_month.to_s :db %>
+admin:
+  user: admin
+  email: 11@example.com
+  created_at: <%= Time.now.last_month.to_s :db %>
+  updated_at: <%= Time.now.last_month.to_s :db %>
+member:
+  user: member
+  email: 12@example.com
+  created_at: <%= Time.now.last_week.to_s :db %>
+  updated_at: <%= Time.now.last_week.to_s :db %>
+invited_member:
+  email: 13_invited@example.com
+  created_at: <%= Time.now.last_week.to_s :db %>
+  updated_at: <%= Time.now.last_week.to_s :db %>
+  

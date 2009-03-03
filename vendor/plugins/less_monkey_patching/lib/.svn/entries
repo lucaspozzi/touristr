@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="65"
+   name=""
+   committed-date="2008-10-01T13:37:39.432886Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching/trunk/lib"
+   last-author="steve"
+   kind="dir"
+   uuid="e3d17593-ea2f-0410-a88e-fc37a8d31959"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching"
+   revision="65"/>
+<entry
+   committed-rev="55"
+   name="date.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-04-03T14:09:11.094948Z"
+   checksum="3a23bcbbe83c9b748bbd301fef895c54"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="56"
+   name="array.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-04-04T01:23:07.441955Z"
+   checksum="a9241e1c3b44e8180078b6378d4012eb"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="1"
+   name="big_decimal.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-05-08T00:45:29.835539Z"
+   checksum="a9c0544b28afb64383454c56b9b1ba44"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="61"
+   name="nil.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-05-14T15:48:18.197164Z"
+   checksum="96fcc789ba11b59678c442fb70208d75"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="1"
+   name="text_helper.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-05-08T00:45:29.835539Z"
+   checksum="090e86ee1ae3900bcc13767e70121b77"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="29"
+   name="less_dates.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-09-20T16:29:07.839011Z"
+   checksum="e4fbe303625abc403ea0c11ae526771d"
+   last-author="minciue"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="57"
+   name="action_view_helpers_text_helper.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-04-11T13:42:53.306263Z"
+   checksum="16ec0fb976fb5ec1e2d5b746b16f54f3"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="55"
+   name="time.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-04-03T14:09:11.094948Z"
+   checksum="eb0d8badd0a98fcdff4d8c5907bc0c97"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="48"
+   name="active_mailer_base.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-02-15T03:58:19.065105Z"
+   checksum="fcd1280b44ba3853ea79e5a1d796b669"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="64"
+   name="numeric.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-06-27T15:48:32.270496Z"
+   checksum="d69878da6357af1610b833e33eccb5a1"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="65"
+   name="active_record_base.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-10-01T13:37:39.432886Z"
+   checksum="34b7fa0df80d9f04af011c9cb7626030"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="47"
+   name="active_record_errors.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-02-12T19:11:01.189377Z"
+   checksum="bb967db76a5a067a6377ed97c78bc2cc"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="22"
+   name="float.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-08-12T16:26:39.857325Z"
+   checksum="d41d8cd98f00b204e9800998ecf8427e"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="1"
+   name="less_monkey_patching.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-05-08T00:45:29.835539Z"
+   checksum="d41d8cd98f00b204e9800998ecf8427e"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="52"
+   name="string.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-03-11T15:25:04.573644Z"
+   checksum="aab3d0a809dc951535908462c3a7cb47"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="61"
+   name="object.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-05-14T15:48:18.197164Z"
+   checksum="e6809854850aae37d053158c605e50a8"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="43"
+   name="active_record_helper.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-01-24T03:40:58.855980Z"
+   checksum="9efeb98061aa58e2be0fe59028fa10d2"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="2"
+   name="action_view_helpers_url_helper.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-05-09T00:14:53.054299Z"
+   checksum="97b5baa7f811ddab7a61adb5b3404790"
+   last-author="mikegarriss"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+</wc-entries>

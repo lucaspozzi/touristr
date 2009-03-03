@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="65"
+   name=""
+   committed-date="2008-10-01T13:37:39.432886Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching/trunk"
+   last-author="steve"
+   kind="dir"
+   uuid="e3d17593-ea2f-0410-a88e-fc37a8d31959"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching"
+   revision="65"/>
+<entry
+   name="tests"
+   kind="dir"/>
+<entry
+   committed-rev="54"
+   name="LICENSE"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-03-16T22:54:38.674229Z"
+   checksum="9c8130324edcbbe140f0033131ad3b79"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="57"
+   name="init.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-04-11T13:42:53.306263Z"
+   checksum="91eb1f9e72f10901e43514be9408bec9"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   name="lib"
+   kind="dir"/>
+</wc-entries>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%= @title ||= "More Honey -- It's a sweet site" %></title>
+  <%= javascript_include_tag :defaults, 'jquery', 'less_routes', 'pngfix' %>
+  <%= stylesheet_link_tag 'application' %>
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <%= render :partial => "shared/header" %>
+    
+    <div id="main">
+      <%= yield :top %>
+      
+      <div class="left half">
+      
+      <%= display_standard_flashes %>
+      <%= yield %>
+      </div>
+      <div class="right half">
+
+      </div> 
+    </div>  
+    <div class="clear"></div>     
+  </div>  
+    <%= render :partial => "shared/footer" %>
+</div>
+
+
+</body>
+</html>

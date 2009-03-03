@@ -1,0 +1,42 @@
+LessCaptcha
+===========
+
+To use less captcha simply put 'validates_captcha' in the model and use the 'captcha_field' helper in your view
+
+
+
+signup.rhtml
+
+
+<label><%= captcha_field(:user)  unless RAILS_ENV == 'test'%></label>
+
+
+
+
+accounts_controller#signup
+
+def signup
+  redirect_back_or_default('/') and return if @u
+
+  @user = User.new and return unless request.post?
+
+
+  u = User.new
+  u.login = params[:user][:login]
+  u.password = params[:user][:password]
+  u.password_confirmation = params[:user][:password_confirmation]
+  u.email = params[:user][:email]
+  u.captcha = params[:user][:captcha] unless ENV['RAILS_ENV'] == 'test'
+  u.captcha_answer = params[:user][:captcha_answer] unless ENV['RAILS_ENV'] == 'test'
+@u = u
+if u.save
+
+
+
+
+
+
+user.rb
+
+
+validates_captcha unless ENV['RAILS_ENV'] == 'test'

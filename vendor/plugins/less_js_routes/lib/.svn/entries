@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="12"
+   name=""
+   committed-date="2008-03-17T06:09:36.715844Z"
+   url="http://lessjsroutes.googlecode.com/svn/trunk/less_js_routes/lib"
+   last-author="stevenbristol"
+   kind="dir"
+   uuid="03e99d28-2c3d-0410-b300-efbb8ee99ea6"
+   repos="http://lessjsroutes.googlecode.com/svn"
+   revision="13"/>
+<entry
+   name="less"
+   kind="dir"/>
+<entry
+   committed-rev="2"
+   name="less.rb"
+   text-time="2009-03-03T18:34:23.000000Z"
+   committed-date="2007-10-23T17:46:52.974184Z"
+   checksum="29ff6068d777818c9070d0b39db5009c"
+   last-author="stevenbristol"
+   kind="file"
+   prop-time="2009-03-03T18:34:23.000000Z"/>
+</wc-entries>

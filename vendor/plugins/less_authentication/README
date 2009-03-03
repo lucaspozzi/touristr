@@ -1,0 +1,57 @@
+= less_authentication
+
+This plugin adds simple authentication based on code written by steven bristol
+
+== Quick Start
+
+1. 
+ # Update your database schema
+ ./script/generate less_authentication create_less_authentication
+ rake db:migrate
+
+2. 
+ # Add this code to your config/routes.rb
+ map.resources :people, :member=>{:delete_icon=>:delete} 
+ map.login   "/login",   :controller=>'accounts', :action => 'login'
+ map.logout  "/logout",  :controller=>'accounts', :action => 'logout'
+ map.signup  "/signup",  :controller=>'accounts', :action => 'signup'
+ map.home '/', :controller=>'YOUR_HOME_CONTROLLER', :action => 'index'
+
+3. 
+# Modify the code in:
+	app/views/accounts/login.rhtml
+  app/views/accounts/signup.rhtml
+  app/views/account_mailer/signup.rhtml
+  app/views/account_mailer/forgot_password.rhtml
+  app/models/account_mailer.rb
+  config/initilizers/globals.rb
+  
+  look at lines 54 & 121 in accounts_controller.rb $domain
+  and line 134 in less_authentication.rb
+
+
+4.
+ # Add this to your application controller
+class ApplicationController < ActionController::Base
+   less_authentication
+   filter_parameter_logging "password"
+   before_filter :check_user, :login_from_cookie, :login_required, :set_vars
+   after_filter :store_location
+   
+   def set_vars
+     $domain = ".#{request.domain}"
+     ActionController::Base.session_options[:session_domain] = $domain
+     @p = @u.person unless @u.blank?
+   end
+ end
+
+
+5.
+ # Add this to any controller you want change authentication on
+ class AccountsController < ApplcationController
+	skip_before_filter :login_required, :except => :logout
+	skip_after_filter :store_location
+ end
+
+
+  

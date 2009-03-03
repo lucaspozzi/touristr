@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="25"
+   name=""
+   committed-date="2008-01-30T16:29:17.686651Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_authentication/trunk/lib"
+   last-author="steve"
+   kind="dir"
+   uuid="2c06f591-ea2f-0410-98bf-d9cd6e54681c"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_authentication"
+   revision="56"/>
+<entry
+   committed-rev="2"
+   name="sql_session_store.rb"
+   text-time="2009-03-03T18:34:37.000000Z"
+   committed-date="2007-05-08T19:46:11.845411Z"
+   checksum="b5f8de2637b018055be53a4e5d4e5f0f"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="20"
+   name="less_authentication_test_helper.rb"
+   text-time="2009-03-03T18:34:37.000000Z"
+   committed-date="2007-11-27T02:38:02.343190Z"
+   checksum="72758878b341566bb9108784866b103c"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="7"
+   name="less_authentication_helper.rb"
+   text-time="2009-03-03T18:34:37.000000Z"
+   committed-date="2007-06-07T13:56:21.423482Z"
+   checksum="42d4fe338be3c6affa2d5fb4780364e2"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="25"
+   name="less_authentication.rb"
+   text-time="2009-03-03T18:34:37.000000Z"
+   committed-date="2008-01-30T16:29:17.686651Z"
+   checksum="e9a3b0b8a84be6c361feaba389f0818e"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="2"
+   name="mysql_session.rb"
+   text-time="2009-03-03T18:34:37.000000Z"
+   committed-date="2007-05-08T19:46:11.845411Z"
+   checksum="9194e9edea9ce6a66b6d789b808d654a"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+</wc-entries>

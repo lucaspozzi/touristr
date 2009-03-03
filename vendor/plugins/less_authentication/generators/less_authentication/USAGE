@@ -1,0 +1,9 @@
+Description:
+    Generate a migration file for the less_authentication schema.  This generator
+    comes from the less_authentication plugin.
+
+Example:
+    ./script/generate less_authentication add_less_authentication
+
+    This will create:
+        db/migrations/XXX_add_less_authentication.rb

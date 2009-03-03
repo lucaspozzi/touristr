@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="62"
+   name=""
+   committed-date="2008-06-27T15:47:43.309220Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching/trunk/tests"
+   last-author="steve"
+   kind="dir"
+   uuid="e3d17593-ea2f-0410-a88e-fc37a8d31959"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_monkey_patching"
+   revision="65"/>
+<entry
+   committed-rev="34"
+   name="helper.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-10-12T20:55:50.652172Z"
+   checksum="bccceb610ff067333ea0272f751f2042"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="62"
+   name="numeric_test.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-06-27T15:47:43.309220Z"
+   checksum="5ca4efacc7ddbddbd8d22efbc9d84762"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="60"
+   name="object_test.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2008-05-14T14:36:09.248851Z"
+   checksum="fe67256ffc37aadc61a7a371fa40e945"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+<entry
+   committed-rev="37"
+   name="string_test.rb"
+   text-time="2009-03-03T18:34:30.000000Z"
+   committed-date="2007-11-26T18:28:22.951512Z"
+   checksum="af2998ba3aa633488719b2088595b309"
+   last-author="chris"
+   kind="file"
+   prop-time="2009-03-03T18:34:30.000000Z"/>
+</wc-entries>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name=""
+   committed-date="2008-03-17T01:31:37.075704Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_captcha/trunk"
+   last-author="steve"
+   kind="dir"
+   uuid="526a4170-df3f-0410-8a9f-f8aeb15cb60b"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_captcha"
+   revision="3"/>
+<entry
+   name="test"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="LICENSE"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2008-03-17T01:31:37.075704Z"
+   checksum="9c8130324edcbbe140f0033131ad3b79"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+<entry
+   committed-rev="1"
+   name="Rakefile"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2007-11-27T02:05:59.834115Z"
+   checksum="97c21cf6d3a2673969359d3125588fab"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+<entry
+   name="tasks"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="init.rb"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2007-11-27T02:05:59.834115Z"
+   checksum="441ad45925da7ce25136191fcdf36d73"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   committed-rev="1"
+   name="install.rb"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2007-11-27T02:05:59.834115Z"
+   checksum="cbe738c10eba4ae2da8c6859c9723e44"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+<entry
+   committed-rev="2"
+   name="README"
+   text-time="2009-03-03T18:34:46.000000Z"
+   committed-date="2008-02-06T01:00:27.233691Z"
+   checksum="1d56a4fc8be117848b67366f4a64374b"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:46.000000Z"/>
+</wc-entries>

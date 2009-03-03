@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="56"
+   name=""
+   committed-date="2008-04-16T16:43:16.128446Z"
+   url="svn+ssh://batman.lesseverything.com/svn/less_authentication/trunk/generators/less_authentication/templates"
+   last-author="steve"
+   kind="dir"
+   uuid="2c06f591-ea2f-0410-98bf-d9cd6e54681c"
+   repos="svn+ssh://batman.lesseverything.com/svn/less_authentication"
+   revision="56"/>
+<entry
+   committed-rev="47"
+   name="accounts_controller_test.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T16:27:34.832065Z"
+   checksum="42cd8496472e4f48dd7e024364754f47"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="47"
+   name="accounts_controller.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T16:27:34.832065Z"
+   checksum="9700b72dcc942a5891fca89e597dba76"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="49"
+   name="profiles_controller_test.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T16:31:09.210142Z"
+   checksum="73ac00378496c6868c31fa95717445c0"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="46"
+   name="account_mailer.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:59:26.835558Z"
+   checksum="9d0ef63bee94ca43a84caf76a5a7491a"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="39"
+   name="profiles_controller.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:09:12.183763Z"
+   checksum="4d8fc5e82922ecfa051f2709dce479e9"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="52"
+   name="application.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:59:52.195832Z"
+   checksum="0bc7e347b08cf5c0fdaf65a5ee26aac5"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="47"
+   name="profile_edit.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T16:27:34.832065Z"
+   checksum="7fe8f05549b8895e3dbd6607fc53133f"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="41"
+   name="migration.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:15:08.354623Z"
+   checksum="135709838222a6aca7490fed5c0c0180"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="29"
+   name="login.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-02-06T22:29:00.817412Z"
+   checksum="70cde0516527042719ca23487dd6170c"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="45"
+   name="requires.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:46:27.488398Z"
+   checksum="e448d3ebfb07ace9d0d09a1d0e685fe6"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:37.000000Z"/>
+<entry
+   committed-rev="45"
+   name="profile_test.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:46:27.488398Z"
+   checksum="7e6e1e4c92c1577bfc3f42c39aaa80e3"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="47"
+   name="profile.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T16:27:34.832065Z"
+   checksum="26634dec98aca42793f165fc96b81d9f"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="51"
+   name="pngfix.js"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:55:52.043776Z"
+   checksum="286f0b99aa38173dd3312359fcdae3d1"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="56"
+   name="application.js"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-04-16T16:43:16.128446Z"
+   checksum="8c74c545461126bd7fb2ac9239f0f6be"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="45"
+   name="user_test.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:46:27.488398Z"
+   checksum="6c5f83be418c38dd9586fe99e6e1edb8"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="1"
+   name="accounts_helper.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2007-05-08T00:39:49.959509Z"
+   checksum="9f7194f5e5090d4c659cbfa24a308b42"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="46"
+   name="user.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:59:26.835558Z"
+   checksum="15476622a48074085f55188e83a66295"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="52"
+   name="loadingAnimation.gif"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:59:52.195832Z"
+   checksum="c33734a1bf58bec328ffa27872e96ae1"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="51"
+   name="_footer.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:55:52.043776Z"
+   checksum="e7108e27f13b05330c296fa67101a653"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="45"
+   name="profiles.yml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:46:27.488398Z"
+   checksum="5bcc0cab250187856c3097755ef7545c"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="46"
+   name="signup_mailer.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:59:26.835558Z"
+   checksum="ed75b271063318414c0ed253fedc3189"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:38.000000Z"/>
+<entry
+   committed-rev="42"
+   name="profiles_helper.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:19:35.256561Z"
+   checksum="183dc1308d8537e167fa0936b71ef6c7"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="50"
+   name="rake.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T17:54:46.170906Z"
+   checksum="ab897063ff291b6ec9884177be2f0496"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="46"
+   name="globals.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:59:26.835558Z"
+   checksum="bac344fa3127343880c06dc0780064a3"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="30"
+   name="profile_show.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-02-11T16:29:50.452420Z"
+   checksum="d41d8cd98f00b204e9800998ecf8427e"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="45"
+   name="account_mailer_test.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:46:27.488398Z"
+   checksum="390706b12b33e981edbc0d5178f8d804"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="52"
+   name="plain.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:59:52.195832Z"
+   checksum="b16a01ec07df375b2b71e44903117cea"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="51"
+   name="application.css"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:55:52.043776Z"
+   checksum="cfb2ebd49b5ad9168439e2b70e001aa3"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="29"
+   name="signup.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-02-06T22:29:00.817412Z"
+   checksum="c7d9294adfa2f0c67cccfe9e10350bf6"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="44"
+   name="users.yml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:29:45.513293Z"
+   checksum="1e96be56ea9f936a8435422583e01cc0"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="22"
+   name="less_form_builder.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2007-12-10T15:52:44.437329Z"
+   checksum="033a930c9641145ae38054d2d77619c2"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="22"
+   name="application_helper.rb"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2007-12-10T15:52:44.437329Z"
+   checksum="f2f7f8d4dcb924d99f4e2bb442d3fe45"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="51"
+   name="_header.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T18:55:52.043776Z"
+   checksum="10412a38ed192f4a00e35d792a5fb7b3"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+<entry
+   committed-rev="46"
+   name="forgot_mailer.rhtml"
+   text-time="2009-03-03T18:34:39.000000Z"
+   committed-date="2008-03-08T15:59:26.835558Z"
+   checksum="f7666d6ff058ddb68f5065aea1db98e1"
+   last-author="steve"
+   kind="file"
+   prop-time="2009-03-03T18:34:39.000000Z"/>
+</wc-entries>
