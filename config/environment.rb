@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem 'uuidtools'
   config.gem 'chronic'
   config.gem 'RedCloth'
+#  config.gem 'geonames', :version=>'0.2.2'
 
 
   # Only load the plugins named here, in the order given. By default, all plugins 
