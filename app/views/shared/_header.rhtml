@@ -1,6 +1,8 @@
 
 <div id="top">
     nav
+    <%= link_to 'en', request.path.add_param( :locale=>'en') %>
+    <%= link_to 'fr', request.path.add_param( :locale=>'fr') %>
   <div class="clear"></div>
 </div>
 <div id="logo_area">

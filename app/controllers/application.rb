@@ -12,10 +12,19 @@ class ApplicationController < ActionController::Base
   less_authentication
   filter_parameter_logging "password"
   before_filter :check_user, :login_from_cookie, :login_required, :set_vars
-  after_filter :store_location
+  after_filter :store_location, :store_current_trip
   
   protected
   def set_vars
-    @p = @u.person unless @u.blank?
+    session[:locale] = params[:locale] if params[:locale]
+    I18n.locale = session[:locale] || I18n.default_locale
+    return true if @u.blank?
+    @p = @u.person
+    @t = @p.trips.current
+  end
+  
+  def store_current_trip
+    return true unless @p
+    @p.set_current_trip @t
   end
 end

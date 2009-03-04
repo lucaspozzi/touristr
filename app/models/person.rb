@@ -14,6 +14,8 @@
 
 class Person < ActiveRecord::Base
   belongs_to :user
+  has_many :trip_memberships
+  has_many :trips, :through=>:trip_memberships
   
   
   
@@ -25,4 +27,7 @@ class Person < ActiveRecord::Base
     return '' if self.first_name.nil? && self.last_name.nil?
     ((self.first_name || '') + ' ' + (self.last_name || '')).strip
   end
+  
+  
+  
 end

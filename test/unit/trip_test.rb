@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class TripTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+  should_have_many :trip_memberships
+  should_have_many :people
 end

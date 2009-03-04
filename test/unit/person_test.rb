@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PersonTest < Test::Unit::TestCase
 
   should_belong_to :user
+  should_have_many :trip_memberships
+  should_have_many :trips
 
 
 
