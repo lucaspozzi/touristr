@@ -12,6 +12,7 @@ class ActionController::Base
   def user
     @u if logged_in?
   end
+  alias_method :current_user, :user
   
   # Store the given user in the session.
   def user=(u)
@@ -19,6 +20,7 @@ class ActionController::Base
     session[:user] = u.id unless u.new_record?
     @u = u
   end
+  alias_method :current_user=, :user=
   
   # Check if the user is authorized.
   #

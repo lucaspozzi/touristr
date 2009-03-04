@@ -50,16 +50,17 @@ class Destination < ActiveRecord::Base
   # end
   # 
   def self.search(searchString)    
-    #      sql = <<-EOS
-    #          SELECT * FROM destinations
-    #          WHERE (name="#{searchString}" OR alternate_names LIKE "%#{searchString}%")
-    #          ORDER BY population DESC, name, country_name LIMIT 100
-    #      EOS
-    #      @destinations = find_by_sql(sql)
-    #      if @destinations.size == 0 then        
-    @destinations = make_destinations_from_xml(Gateway.search_geonames(searchString))
-    #      end
-    return @destinations
+    # #      sql = <<-EOS
+    # #          SELECT * FROM destinations
+    # #          WHERE (name="#{searchString}" OR alternate_names LIKE "%#{searchString}%")
+    # #          ORDER BY population DESC, name, country_name LIMIT 100
+    # #      EOS
+    # #      @destinations = find_by_sql(sql)
+    # #      if @destinations.size == 0 then        
+    # @destinations = make_destinations_from_xml(Gateway.search_geonames(searchString))
+    # #      end
+    # return @destinations
+    %w(a b c d e)
   end
   # 
   # def alternate_name
