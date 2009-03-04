@@ -35,26 +35,6 @@
 
 
 
-<h1 style="margin-top: 40px;">Upload Icon:</h1>
-<div id="upload_icon">
-<% less_form_for @person, :url=>person_path(@person), :html=>{:method=>:put, :multipart=>true, :class=>"box no_top"} do |p| %>
-  <%= p.front 'Upload your Icon' %>
-  <%= file_column_field( "person", "icon", :size => 15)%>
-  <% unless @person.icon.blank?%>
-  <div id="person_icon_picture" class="left"><%= icon @person, :small %> <%= link_to_remote 'delete icon', :url=>delete_icon_person_path(@person), :method=>:delete, :confirm=>DELETE_CONFIRM  %></div>
-  <% end %>
-  <%= p.back :icon %>
-
-  <div class="border_top row">
-    <%= submit_tag 'Upload', :class=>"button"%> 
-    <div class="clear"></div>
-  </div>
-
-  <input type="hidden" name="switch" value="image" />
-<% end %>
-</div>
-
-
 <h1 style="margin-top: 40px;">Delete My Account:</h1>
 <div id="delete_account">
   <form>

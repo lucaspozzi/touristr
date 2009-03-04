@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="549"
+   name=""
+   committed-date="2008-12-10T16:42:57.906140Z"
+   url="https://touristr.svn.beanstalkapp.com/tripplanr/trunk/tripplanr/vendor/plugins/acts_as_commentable/lib"
+   last-author="conor"
+   kind="dir"
+   uuid="024d0497-a1a5-46a5-843d-525b37a12fa9"
+   repos="https://touristr.svn.beanstalkapp.com/tripplanr"
+   revision="859"/>
+<entry
+   committed-rev="549"
+   name="comment.rb"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="a96f7eb32562581e0fc3eaa546c6372d"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+<entry
+   committed-rev="549"
+   name="acts_as_commentable.rb"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="91d6dad1657aa97d3e59848f227f1f7a"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+</wc-entries>

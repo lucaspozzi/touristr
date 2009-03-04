@@ -6,40 +6,40 @@ class PersonTest < Test::Unit::TestCase
 
 
 
-
-
-  # 
-  # 
-  # should "create a new user from find" do
-  #   email = 'new_address@blah.com'
-  #   assert_nil Person.find_by_email(email)
-  #   assert p = Person.find_or_create_by_params(:email=>email)
-  #   assert !p.new_record?
-  #   assert_equal email, p.reload.email
-  # end
-  # 
-  # 
-  # should "return an existing user from find" do
-  #   email = people(:first).email
-  #   assert Person.find_by_email(email)
-  #   assert p = Person.find_or_create_by_params(:email=>email)
-  #   assert !p.new_record?
-  #   assert_equal people(:first), p.reload
-  # end
-  # 
-
-  # 
-  # # a person should never be destroyed, so this should never be called, but
-  # # we do have an after_destroy hook, just incase the business rules change we don't have
-  # # to rember to do that.
-  # # So this test is really just for code coverage.
-  # should "destroy person" do
-  #   assert_difference 'Person.count', -1 do
-  #     people(:first).destroy
-  #   end
-  # end
-  # 
-  # 
+  
+  
+  
+  
+  should "create a new user from find" do
+    email = 'new_address@blah.com'
+    assert_nil Person.find_by_email(email)
+    assert p = Person.find_or_create_by_email(email)
+    assert !p.new_record?
+    assert_equal email, p.reload.email
+  end
+  
+  
+  should "return an existing user from find" do
+    email = people(:first).email
+    assert Person.find_by_email(email)
+    assert p = Person.find_or_create_by_email(email)
+    assert !p.new_record?
+    assert_equal people(:first), p.reload
+  end
+  
+  
+  
+  # a person should never be destroyed, so this should never be called, but
+  # we do have an after_destroy hook, just incase the business rules change we don't have
+  # to rember to do that.
+  # So this test is really just for code coverage.
+  should "destroy person" do
+    assert_difference 'Person.count', -1 do
+      people(:first).destroy
+    end
+  end
+  
+  
   # 
   # 
   # should "match aim & aim_address" do

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  
+  map.resources :destinations, :collection=>{:search=>:get}
+  
+  
   map.resources :people, :member=>{:delete_icon=>:delete} 
   map.login   "/login",   :controller=>'accounts', :action => 'login'
   map.logout  "/logout",  :controller=>'accounts', :action => 'logout'

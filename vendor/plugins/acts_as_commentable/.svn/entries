@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="549"
+   name=""
+   committed-date="2008-12-10T16:42:57.906140Z"
+   url="https://touristr.svn.beanstalkapp.com/tripplanr/trunk/tripplanr/vendor/plugins/acts_as_commentable"
+   last-author="conor"
+   kind="dir"
+   uuid="024d0497-a1a5-46a5-843d-525b37a12fa9"
+   repos="https://touristr.svn.beanstalkapp.com/tripplanr"
+   revision="859"/>
+<entry
+   name="test"
+   kind="dir"/>
+<entry
+   name="tasks"
+   kind="dir"/>
+<entry
+   committed-rev="549"
+   name="init.rb"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="8d98cc8df3e22b97ddc4b9c97b440afe"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+<entry
+   name="lib"
+   kind="dir"/>
+<entry
+   committed-rev="549"
+   name="CHANGELOG"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="22eae247b0a61cacd186e723ab398e1c"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+<entry
+   committed-rev="549"
+   name="install.rb"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="cbe738c10eba4ae2da8c6859c9723e44"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+<entry
+   committed-rev="549"
+   name="MIT-LICENSE"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="3ea1b94d199b85cbc4970271ba0ae1c7"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+<entry
+   committed-rev="549"
+   name="README"
+   text-time="2009-03-03T17:10:47.000000Z"
+   committed-date="2008-12-10T16:42:57.906140Z"
+   checksum="b67b4c906fc9c8c88cd3d2a34820dac3"
+   last-author="conor"
+   kind="file"
+   prop-time="2009-03-03T17:10:47.000000Z"/>
+</wc-entries>

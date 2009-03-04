@@ -74,26 +74,26 @@ class PeopleControllerTest <  ActionController::TestCase
 
 
 
-
-
-  should "upload avatar" do
-    put :update, {:id=>people(:first).id, :icon=>fixture_file_upload('../../public/images/rails.png', 'image/png'), :switch=>'image'}, {:user=>users(:first).id}
-    assert_response 302
-  end
-
-
-
-
-
-  should "delete avatar" do
-    assert people(:first).icon.ends_with?('blah.jpg')
-    assert_difference 'people(:first).icon', '' do
-      delete :delete_icon, {:id=>people(:first).id}, {:user=>users(:first).id}
-      assert_response 200
-      assert_match 'new Effect.Puff("person_icon_picture",{});', @response.body
-    end
-    assert_equal '', people(:first).reload.attributes['icon']
-  end
+  # 
+  # 
+  # should "upload avatar" do
+  #   put :update, {:id=>people(:first).id, :icon=>fixture_file_upload('../../public/images/rails.png', 'image/png'), :switch=>'image'}, {:user=>users(:first).id}
+  #   assert_response 302
+  # end
+  # 
+  # 
+  # 
+  # 
+  # 
+  # should "delete avatar" do
+  #   assert people(:first).icon.ends_with?('blah.jpg')
+  #   assert_difference 'people(:first).icon', '' do
+  #     delete :delete_icon, {:id=>people(:first).id}, {:user=>users(:first).id}
+  #     assert_response 200
+  #     assert_match 'new Effect.Puff("person_icon_picture",{});', @response.body
+  #   end
+  #   assert_equal '', people(:first).reload.attributes['icon']
+  # end
 
 
 
