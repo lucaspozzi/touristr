@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: attractions
+#
+#  id                   :integer(4)    not null, primary key
+#  destination_id       :integer(4)    
+#  name                 :string(255)   
+#  created_at           :datetime      
+#  updated_at           :datetime      
+#  description          :text          
+#  lat                  :decimal(15, 1 
+#  lng                  :decimal(15, 1 
+#  picture_file_name    :string(255)   
+#  picture_content_type :string(255)   
+#  picture_file_size    :integer(4)    
+#  picture_updated_at   :datetime      
+#  picture_caption      :string(255)   
+#  picture_author       :string(255)   
+#  picture_url          :string(255)   
+#  cropped              :boolean(1)    
+#  author_id            :integer(4)    
+#  attraction_locale    :string(255)   default(en-US)
+#  view_count           :integer(4)    default(0)
+#  comment_count        :integer(4)    default(0)
+#  vote_delta_count     :integer(4)    default(0)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

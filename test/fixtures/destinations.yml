@@ -1,3 +1,32 @@
+# == Schema Information
+#
+# Table name: destinations
+#
+#  id                :integer(4)    not null, primary key
+#  name              :string(255)   
+#  ascii_name        :string(255)   
+#  alternate_names   :string(255)   
+#  lng               :decimal(15, 1 
+#  lat               :decimal(15, 1 
+#  feature_class     :string(1)     
+#  feature_code      :string(10)    
+#  region_name       :string(40)    
+#  country_code      :string(2)     
+#  cc2               :string(60)    
+#  admin1_code       :string(20)    
+#  admin2_code       :string(80)    
+#  admin3_code       :string(20)    
+#  admin4_code       :string(20)    
+#  population        :integer(4)    
+#  elevation         :integer(4)    
+#  gtopo30           :integer(4)    
+#  timezone          :string(255)   
+#  modification_date :date          
+#  created_at        :datetime      
+#  updated_at        :datetime      
+#  country_name      :string(255)   
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

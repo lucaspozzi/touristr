@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: destination_contents
+#
+#  id               :integer(4)    not null, primary key
+#  destination_id   :integer(4)    
+#  introduction     :text          
+#  overview         :text          
+#  attractions      :text          
+#  created_at       :datetime      
+#  updated_at       :datetime      
+#  video_embed_code :text          
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:

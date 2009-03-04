@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090303191231) do
+ActiveRecord::Schema.define(:version => 20090304211137) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -123,6 +123,27 @@ ActiveRecord::Schema.define(:version => 20090303191231) do
   end
 
   add_index "sessions", ["sessid"], :name => "sessions_sessid_index"
+
+  create_table "trip_memberships", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "trip_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trips", :force => true do |t|
+    t.date     "starts_on"
+    t.date     "ends_on"
+    t.integer  "number_of_days",     :default => 0,     :null => false
+    t.integer  "number_of_adults",   :default => 1,     :null => false
+    t.integer  "number_of_children", :default => 0,     :null => false
+    t.boolean  "last_viewed",        :default => false, :null => false
+    t.boolean  "public",             :default => true,  :null => false
+    t.string   "public_url"
+    t.string   "private_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"

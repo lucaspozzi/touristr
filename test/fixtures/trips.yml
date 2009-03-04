@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: trips
+#
+#  id                 :integer(4)    not null, primary key
+#  starts_on          :date          
+#  ends_on            :date          
+#  number_of_days     :integer(4)    default(0), not null
+#  number_of_adults   :integer(4)    default(1), not null
+#  number_of_children :integer(4)    default(0), not null
+#  last_viewed        :boolean(1)    not null
+#  public             :boolean(1)    default(true), not null
+#  public_url         :string(255)   
+#  private_url        :string(255)   
+#  created_at         :datetime      
+#  updated_at         :datetime      
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 # one:
