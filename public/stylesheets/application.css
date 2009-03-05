@@ -71,7 +71,7 @@ ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; l
 ul#userControls li { display: inline; padding: 0 3% 0 0; }
 
 div#logo { float: left; }
-div#logo h1 { margin: 1.5em 0 0; padding: 1em 0 0em; background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 9em; }
+div#logo h1 { margin: 1.5em 0 0; padding: 1em 0 0em; background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 9em; height: 1.1em; }
 div#logo h1 a { display: block; height: 3em; position: relative; top: -1em;}
 div#logo p#tagline { color: #333; visibility: hidden; }
 
@@ -108,15 +108,33 @@ ul#tripControl li#tripTodos a:hover, ul#tripControl li#tripTodos a.current { bac
 Destination Navigation Menu
 -----------------------------------------------------------------------------------------------------*/
 
-ul#destinationNavigation { list-style: none; text-align: right; }
-ul#destinationNavigation li { display: inline; }
+ul#destinationNavigation { list-style: none; text-align: right; clear: both; margin: 0 0 4em 0; }
+ul#destinationNavigation li { display: inline; font-size: 1.1em; position: relative; top: 2em; }
+ul#destinationNavigation li a:link, ul#destinationNavigation li a:visited { padding: 3.5em 1.4em 0; }
+ul#destinationNavigation li a:hover, ul#destinationNavigation li a:active { color: #1f76bd; }
+
+ul#destinationNavigation li#destinationSwitcher { float: left; font-size: 3em; top: 0; }
+
+ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px;}
+ul li#flights a:link, ul li#flights a:visited { background: white url(../images/destinationNavigation/flights.png) no-repeat center top; }
+ul li#hotels a:link, ul li#hotels a:visited { background: white url(../images/destinationNavigation/hotels.png) no-repeat center top; }
+ul li#attractions a:link, ul li#attractions a:visited { background: white url(../images/destinationNavigation/attractions.png) no-repeat center top; }
+ul li#activities a:link, ul li#activities a:visited { background: white url(../images/destinationNavigation/activities.png) no-repeat center top; }
+ul li#carRentals a:link, ul li#carRentals a:visited { background: white url(../images/destinationNavigation/carRental.png) no-repeat center top; }
+
+/* hover on links */
+
+ul li#overview a:hover, ul li#overview a:active { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px;}
+ul li#flights a:hover, ul li#flights a:active { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px;}
+ul li#hotels a:hover, ul li#hotels a:active { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px;}
+ul li#attractions a:hover, ul li#attractions a:active { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
+ul li#activities a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
+ul li#carRentals a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
 
 
 
-
-
-#message				{padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
-#waiter 				{z-index:100000; position:absolute; display: none;  top: 91px; right: 245px; }
+#message {padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
+#waiter { z-index:100000; position:absolute; display: none;  top: 91px; right: 245px; }
 /* Ajax loading */
 
 div#waiter p { color: #1f76bd; font-size: 1.8em; }
