@@ -29,6 +29,10 @@
 
 
 class Destination < ActiveRecord::Base
+  
+  COUNTRY = "PCLI"
+  ADMIN_LEVEL1 = "ADM1"
+  ADMIN_LEVEL2 = "ADM2"
 
   # friendly_param :name
   # track_hits
@@ -49,6 +53,27 @@ class Destination < ActiveRecord::Base
   #   comments_ordered_by_submitted[0..4]
   # end
   # 
+  
+  def parent
+    case feature_code
+    when ADMIN_LEVEL1: return Destination.find(:first, :conditions => "country_code='#{country_code}' and feature_code='#{COUNTRY}'")
+    when ADMIN_LEVEL2: return Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_code='#{ADMIN_LEVEL1}'")
+    else
+      # a city may be directly under ADM1 (e.g. galway) 
+      p = Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_code='#{ADMIN_LEVEL2}'")
+      return p unless p.nil?
+      Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_code='#{ADMIN_LEVEL1}'")
+    end
+  end
+  
+  def children(max)
+    case feature_code
+    when COUNTRY: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and feature_class='P'", :order => "population DESC")
+    when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_class='P'", :order => "population DESC")
+    when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}'  and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_class='P'", :order => "population DESC")
+    end
+  end
+  
   def self.search(searchString)    
     # #      sql = <<-EOS
     # #          SELECT * FROM destinations

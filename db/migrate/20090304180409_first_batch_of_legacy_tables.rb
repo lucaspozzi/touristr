@@ -55,39 +55,7 @@ SQL
 SQL
 
 
-  execute <<-SQL
-    CREATE TABLE IF NOT EXISTS `destinations` (
-      `id` int(11) NOT NULL auto_increment,
-      `name` varchar(255) default NULL,
-      `ascii_name` varchar(255) default NULL,
-      `alternate_names` varchar(255) default NULL,
-      `lng` decimal(15,10) default NULL,
-      `lat` decimal(15,10) default NULL,
-      `feature_class` varchar(1) default NULL,
-      `feature_code` varchar(10) default NULL,
-      `region_name` varchar(40) default NULL,
-      `country_code` varchar(2) default NULL,
-      `cc2` varchar(60) default NULL,
-      `admin1_code` varchar(20) default NULL,
-      `admin2_code` varchar(80) default NULL,
-      `admin3_code` varchar(20) default NULL,
-      `admin4_code` varchar(20) default NULL,
-      `population` int(11) default NULL,
-      `elevation` int(11) default NULL,
-      `gtopo30` int(11) default NULL,
-      `timezone` varchar(255) default NULL,
-      `modification_date` date default NULL,
-      `created_at` datetime default NULL,
-      `updated_at` datetime default NULL,
-      `country_name` varchar(255) default NULL,
-      PRIMARY KEY  (`id`),
-      KEY `index_destinations_on_country_code` (`country_code`),
-      KEY `index_destinations_on_admin1_code` (`admin1_code`),
-      KEY `index_destinations_on_feature_class` (`feature_class`),
-      KEY `index_destinations_on_name` (`name`),
-      KEY `index_destinations_on_alternate_names` (`alternate_names`)
-    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6695953 ;
-SQL
+
 
   execute <<-SQL
     CREATE TABLE IF NOT EXISTS `destination_contents` (

@@ -1,3 +1,110 @@
+/*
+Touristr CSS
+
+Author: Conor Wade
+Copyright: © 2008 Tourist Republic
+Date: 4rd March 2008
+------------------------------------------------------------------------------------------*/
+
+/*
+Reset
+------------------------------------------------------------------------------------------*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+body { background: #fff; }
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th, td { text-align: left; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+a img { border: none; }
+input,textarea { margin: 0; }
+a { outline: none; } /* Removes Firefox imposed outline */
+
+/*
+General Styles
+-------------------------------------------------------------------------------------------*/
+
+body { background: #fff; font: 500 65%/1.5 "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, sans-serif; min-width: 960px; }
+
+/*
+Typography
+-------------------------------------------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6 { font-weight: 300; }
+
+h1 { font-size: 3.6em; }
+h2 { font-size: 3em; }
+h3 { font-size: 2.4em; }
+h4 { font-size: 1.8em; }
+h5 { font-size: 1.4em; }
+h6 { font-size: 1.2em; }
+
+p, ul, ol, dl { font-size: 1.2em; color: #666; }
+
+/* Links */
+
+a:link, a:visited { color: #1f76bd; text-decoration: none; }
+a:hover, a:active { color: #cc00cc; }
+
+/* Forms */
+fieldset {  }
+legend {  }
+label {  }
+input { padding: 0.1em 1em; }
+input[type="submit"] { border: none; color: #fff; background: #1f76bd; padding: 0.2em 0; }
+input.formDescription { color: #bbb; }
+
+/* Clear Div */
+.clearBoth { clear: both; }
+.clearRight { clear: right; }
+.clearLeft { clear: left; }
+
+/*
+Planning Template
+-------------------------------------------------------------------------------------------*/
+
+div#wrapper { width: 94%; margin: 0 auto; }
+
+/* Header */
+
+ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; left: 0; width: 100%; min-width: 960px; text-align: right; padding: 0.4em 0; font-size: 1.4em; }
+ul#userControls li { display: inline; padding: 0 3% 0 0; }
+
+div#logo { float: left; }
+div#logo h1 { margin: 1.5em 0 0; padding: 1em 0 0.7em; background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 9em; }
+div#logo h1 a { display: block;	}
+div#logo p#tagline { color: #333; visibility: hidden; }
+
+div#destinationSearchForm { float: right; margin: 8.5em 0; width: 50%; }
+div#destinationSearchForm input { font-size: 1.2em; margin: 0 0 0 5%; -moz-border-radius: 10px; -webkit-appearance:searchfield; width: 55%; }
+div#destinationSearchForm input[type="submit"] { -webkit-appearance:none; -webkit-border-radius: 10px; width: 25%; }
+
+/* Trip Control */
+
+ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 1.3em; padding: 1.1em 0.3em 1em; font-weight: 300; }
+ul#tripControl li { display: inline; margin: 0 1.3em 0; letter-spacing: 0.08em; }
+ul#tripControl li a { position: relative; top: 0.6em; }
+ul#tripControl li a:link, ul#tripControl li a:visited { color: #a9a9a9; }
+ul#tripControl li a:hover, ul#tripControl li a:active, ul#tripControl li a.current { color: #1f76bd; }
+ul#tripControl li#tripName { position: none; float: left; font-size: 1.6em; }
+ul#tripControl li#tripName a { top: 0; color: #1f76bd; }
+ul#tripControl li#tripName a:hover, ul#tripControl li#tripName a:active { color: #cc00cc; }
+
+/*Trip Control Icons Inactive*/
+ul#tripControl li#tripPeople a { background: transparent url(../images/tripControl/people.png) no-repeat left top; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripItinerary a { background: transparent url(../images/tripControl/itinerary.png) no-repeat left top; padding: 1em 0 1em 3.5em; }
+ul#tripControl li#tripComments a { background: transparent url(../images/tripControl/comments.png) no-repeat left 0.3em; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripBudget a { background: transparent url(../images/tripControl/budget.png) no-repeat left 0.3em; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripTodos a { background: transparent url(../images/tripControl/todos.png) no-repeat left 0.3em; padding: 1em 0 1em 3em; }
+
+/* Trip Control Icons Active */
+ul#tripControl li#tripPeople a:hover, ul#tripControl li#tripPeople a.current { background: transparent url(../images/tripControl/people.png) no-repeat left -50px; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripItinerary a:hover, ul#tripControl li#tripItinerary a.current { background: transparent url(../images/tripControl/itinerary.png) no-repeat left -49px; padding: 1em 0 1em 3.5em; }
+ul#tripControl li#tripComments a:hover, ul#tripControl li#tripComments a.current { background: transparent url(../images/tripControl/comments.png) no-repeat left -38px; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripBudget a:hover, ul#tripControl li#tripBudget a.current { background: transparent url(../images/tripControl/budget.png) no-repeat left -37px; padding: 1em 0 1em 3em; }
+ul#tripControl li#tripTodos a:hover, ul#tripControl li#tripTodos a.current { background: transparent url(../images/tripControl/todos.png) no-repeat left -36px; padding: 1em 0 1em 3em; }
+
+
 
 
 

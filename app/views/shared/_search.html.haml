@@ -3,14 +3,6 @@
   #destinationSearchForm
     %p
       %label{:for=>"destinationSearch"}
-        = t "Where do you want to go?"
-      %input#destinationSearch{:type=>'input'}
+        t "Where do you want to go?"
+      %input.destinationSearch{:type=>'input'}
       %input{:type=>'submit', :value=>t("Plan")}
-  
-
-:javascript
-  $(function(){
-  $('#destinationSearch').autocomplete('/destinations/search', {});
-  })
- 
-
