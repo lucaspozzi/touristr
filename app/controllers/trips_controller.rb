@@ -9,7 +9,7 @@ class TripsController < ApplicationController
   protected
   def setup_trip
     if params[:id]
-      @t = @trip = @p.trips.find params[:id]
+      @t = @trip = @p.trips.find(params[:id])
     else
       @t = @trip = @p.trips.current
     end

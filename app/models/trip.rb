@@ -20,5 +20,5 @@ class Trip < ActiveRecord::Base
   has_many :trip_memberships
   has_many :people, :through=>:trip_memberships
   
-  named_scope :current, {:conditions=>{:last_viewed=>true}}
+  named_scope :current, {:conditions=>{:last_viewed=>true}, :limit => 1}
 end

@@ -18,9 +18,22 @@ class ApplicationController < ActionController::Base
   def set_vars
     session[:locale] = params[:locale] if params[:locale]
     I18n.locale = session[:locale] || I18n.default_locale
-    return true if @u.blank?
-    @p = @u.person
-    @t = @p.trips.current
+    if !@u.blank?
+      RAILS_DEFAULT_LOGGER.debug("User is logged_in")
+      @p = @u.person
+      @t = @p.trips.current
+    elsif !cookies[:person].nil?
+      RAILS_DEFAULT_LOGGER.debug("Returning user")
+      @p = Person.find(cookies[:person])
+      @t = @p.trips.current
+    else
+      puts("Non returning user -> creating cookie")
+      @p = Person.create
+      @t = @p.trips.create
+      cookies[:person] = {:value => @p.id}
+      puts(cookies[:person].inspect)
+    end
+    
   end
   
   def store_current_trip
