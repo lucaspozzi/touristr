@@ -9,7 +9,7 @@
 #  number_of_adults   :integer(4)    default(1), not null
 #  number_of_children :integer(4)    default(0), not null
 #  public             :boolean(1)    not null
-#  private_url        :string(255)   
+#  private_identifier :string(255)   
 #  created_at         :datetime      
 #  updated_at         :datetime      
 #  name               :string(255)   
@@ -19,7 +19,7 @@ class Trip < ActiveRecord::Base
   has_many :trip_memberships
   has_many :people, :through=>:trip_memberships
   
-  validates_uniqueness_of :private_url
+  validates_uniqueness_of :private_identifier
   
   before_create :set_defaults
   
@@ -28,11 +28,19 @@ class Trip < ActiveRecord::Base
   
   
   def set_defaults
-    self.private_url = UUID.random_create if private_url.blank?
+    self.private_identifier = UUID.random_create.to_s if private_identifier.blank?
   end
   
   def to_param
     "#{id}-#{name.downcase.gsub(' ', '-')}"
+  end
+  
+  def private_url
+    if Rails.env.production?
+      "http://touristr.com/trips/private/#{private_identifier}"
+    else
+      "http://localhost:3000/trips/private/#{private_identifier}"
+    end
   end
     
     
