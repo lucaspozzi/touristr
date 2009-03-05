@@ -71,8 +71,8 @@ ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; l
 ul#userControls li { display: inline; padding: 0 3% 0 0; }
 
 div#logo { float: left; }
-div#logo h1 { margin: 1.5em 0 0; padding: 1em 0 0.7em; background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 9em; }
-div#logo h1 a { display: block;	}
+div#logo h1 { margin: 1.5em 0 0; padding: 1em 0 0em; background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 9em; }
+div#logo h1 a { display: block; height: 3em; position: relative; top: -1em;}
 div#logo p#tagline { color: #333; visibility: hidden; }
 
 div#destinationSearchForm { float: right; margin: 8.5em 0; width: 50%; }
@@ -104,14 +104,23 @@ ul#tripControl li#tripComments a:hover, ul#tripControl li#tripComments a.current
 ul#tripControl li#tripBudget a:hover, ul#tripControl li#tripBudget a.current { background: transparent url(../images/tripControl/budget.png) no-repeat left -37px; padding: 1em 0 1em 3em; }
 ul#tripControl li#tripTodos a:hover, ul#tripControl li#tripTodos a.current { background: transparent url(../images/tripControl/todos.png) no-repeat left -36px; padding: 1em 0 1em 3em; }
 
+/*
+Destination Navigation Menu
+-----------------------------------------------------------------------------------------------------*/
 
+ul#destinationNavigation { list-style: none; text-align: right; }
+ul#destinationNavigation li { display: inline; }
 
 
 
 
 
 #message				{padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
-#waiter 				{z-index:100000; position:fixed; background:white; display: none; height:13px; width:208px; border:0px; top: 50%; left: 50%; margin: -6px 0 0 -104px;}
+#waiter 				{z-index:100000; position:absolute; display: none;  top: 91px; right: 245px; }
+/* Ajax loading */
+
+div#waiter p { color: #1f76bd; font-size: 1.8em; }
+div#waiter p img { position: relative; top: 0.25em; left: 0.2em; }
 
 
 

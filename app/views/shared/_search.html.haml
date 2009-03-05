@@ -2,7 +2,12 @@
 %form{:action=>search_destinations_path, :method=>:get}
   #destinationSearchForm
     %p
-      %label{:for=>"destinationSearch"}
-        t "Where do you want to go?"
+      %label{:for=>"destinationSearch"}= t "Where do you want to go?"
       %input.destinationSearch{:type=>'input'}
       %input{:type=>'submit', :value=>t("Plan")}
+      
+- content_for :javascripts do
+  :javascript
+    $(function(){
+    $('.destinationSearch').autocomplete('/destinations/search', {});
+    });
