@@ -16,3 +16,6 @@
 #
 # two:
 #   column: value
+first:
+  person: first
+  trip: first

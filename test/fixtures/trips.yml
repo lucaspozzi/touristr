@@ -8,12 +8,12 @@
 #  number_of_days     :integer(4)    default(0), not null
 #  number_of_adults   :integer(4)    default(1), not null
 #  number_of_children :integer(4)    default(0), not null
-#  last_viewed        :boolean(1)    not null
 #  public             :boolean(1)    default(true), not null
 #  public_url         :string(255)   
 #  private_url        :string(255)   
 #  created_at         :datetime      
 #  updated_at         :datetime      
+#  name               :string(255)   
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
@@ -23,3 +23,17 @@
 #
 # two:
 #   column: value
+
+
+first:
+  starts_on          : <%= Date.today + 2.days %>
+  ends_on            : <%= Date.today + 10.days %>
+  number_of_days     : 8
+  number_of_adults   : 1
+  number_of_children : 0
+  public             : false
+  public_url         : 
+  private_url        : lasdkjfalskfjasldfjkasldfk
+  created_at         : <%= Time.now %>
+  updated_at         : <%= Time.now %>
+  name               : 'Paris'
