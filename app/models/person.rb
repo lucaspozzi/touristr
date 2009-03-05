@@ -15,7 +15,7 @@
 
 class Person < ActiveRecord::Base
   belongs_to :user
-  has_many :trip_memberships
+  has_many :trip_memberships, :dependent=>:destroy
   has_many :trips, :through=>:trip_memberships
   belongs_to :current_trip, :class_name => "Trip", :foreign_key => "current_trip_id"
   
@@ -26,10 +26,11 @@ class Person < ActiveRecord::Base
   
   
   after_create :setup_trip
+  after_destroy :cleanup
   
   
   def setup_trip
-    self.current_trip = trips.create
+    update_attribute :current_trip_id, trips.create( :name=>'My Trip').id
   end
   
   def full_name
@@ -38,11 +39,14 @@ class Person < ActiveRecord::Base
   end
   
   def set_current_trip t
-    puts(t.inspect)
+    return true if t.in?(trips)
+    update_attribute :current_trip, t
+  end
+  
+  def cleanup
     trips.each do |trip|
-      trip.update_attribute("last_viewed", trip == t)
+      trip.destroy if trip.memberships.count == 1
     end
-#    session[:current_trip_id] = t.id
   end
   
 end

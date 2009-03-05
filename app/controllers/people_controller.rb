@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
 
-
+skip_after_filter :store_current_trip, :only=>[:destroy]
 before_filter :setup, :except=>[:index]
 
 
