@@ -1,0 +1,21 @@
+!!!
+%html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
+  %head
+    %title= title ||= "Touristr"
+    = stylesheet_link_tag 'application'
+  %body
+    #wrapper
+      = render :partial => "shared/header"
+      
+      = render :partial => "shared/trip_control"
+      
+      = render :partial => "shared/destination_nav"
+      
+      = yield :top
+
+      = display_standard_flashes
+
+      = yield
+      = render :partial => "shared/footer"
+    
+    = javascript_include_tag :defaults
