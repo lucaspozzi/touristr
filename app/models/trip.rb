@@ -8,8 +8,7 @@
 #  number_of_days     :integer(4)    default(0), not null
 #  number_of_adults   :integer(4)    default(1), not null
 #  number_of_children :integer(4)    default(0), not null
-#  public             :boolean(1)    default(true), not null
-#  public_url         :string(255)   
+#  public             :boolean(1)    not null
 #  private_url        :string(255)   
 #  created_at         :datetime      
 #  updated_at         :datetime      
@@ -32,4 +31,9 @@ class Trip < ActiveRecord::Base
     self.private_url = UUID.random_create if private_url.blank?
   end
   
+  def to_param
+    "#{id}-#{name.downcase.gsub(' ', '-')}"
+  end
+    
+    
 end
