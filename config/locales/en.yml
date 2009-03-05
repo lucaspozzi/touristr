@@ -4,3 +4,9 @@
 en:
   hello: "Hello world"
   "Where do you want to go?": Where do you want to go?
+  adult:
+    one: "1 Adult"
+    other: "{{count}} Adults"  
+  children:
+    one: "1 Child"
+    other: "{{count}} Children"

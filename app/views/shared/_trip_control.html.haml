@@ -1,8 +1,8 @@
 %ul#tripControl
   %li#tripName
-    = link_to "Trip Name", "#"
+    = link_to h(@t.name), trip_path(@t)
   %li#tripPeople
-    = link_to "2 Adults 3 Children", "#"
+    = link_to "#{t(:adult, :count=>@t.number_of_adults)} #{t(:children, :count=>@t.number_of_children)}", edit_trip_path(@t)
   %li#tripItinerary
     = link_to "Itinerary", "#"
   %li#tripComments

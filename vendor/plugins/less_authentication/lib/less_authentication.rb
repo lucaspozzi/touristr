@@ -123,7 +123,6 @@ class ActionController::Base
 
 
 
-
   # When called with before_filter :login_from_cookie will check for an :auth_token
   # cookie and log the user back in if apropriate
   def login_from_cookie
