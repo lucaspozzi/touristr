@@ -26,6 +26,7 @@ class AccountsController < ApplicationController
       params[:password] ||= params[:user][:password] if params[:user]
       self.user = User.authenticate(params[:login], params[:password])
       if @u
+        expire_person_cookie
         redirect_back_or_default home_path
         remember_me if params[:remember_me] == "1"
         flash[:notice] = "Hello #{@u.full_name}"
@@ -75,7 +76,7 @@ class AccountsController < ApplicationController
     @u = u
     if u.save
       self.user = u
-    
+      expire_person_cookie
       
       remember_me if params[:remember_me] == "1"
       flash[:notice] = "Thanks for signing up!"
@@ -106,6 +107,11 @@ protected
       :expires => self.user.remember_token_expires_at
     }
   end
+  
+  def expire_person_cookie
+    cookies[:_touristr_person] = {:expires => Time.now, :value=>''}
+  end
+  
 end
 
 

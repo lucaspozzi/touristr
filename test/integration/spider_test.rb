@@ -20,6 +20,7 @@
      get "/login"
      assert_response :success
      post "/login", :login => users(:first).login, :password => 'test'
+     puts @response.body
      assert_response :redirect
      assert session[:user]
      assert_redirected_to home_path

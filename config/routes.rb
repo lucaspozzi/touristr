@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   
   map.resources :destinations, :collection=>{:search=>:get}
+  map.resources :trips
   
   
   map.resources :people, :member=>{:delete_icon=>:delete} 

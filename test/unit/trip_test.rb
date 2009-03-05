@@ -1,8 +1,14 @@
 require 'test_helper'
 
 class TripTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  should_have_many :trip_memberships
+  should_have_many :people
+  should_validate_uniqueness_of :private_url
+  
+  
+  should "have a private url after creations" do
+    trip = Trip.create
+    assert !trip.new_record?
+    assert !trip.private_url.blank?
   end
 end

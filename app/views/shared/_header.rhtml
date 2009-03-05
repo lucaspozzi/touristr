@@ -1,0 +1,11 @@
+
+<div id="top">
+    <%= link_to 'en', request.path.add_param( :locale=>'en') %>
+    <%= link_to 'fr', request.path.add_param( :locale=>'fr') %>
+    <%= link_to h(@t.name), trip_path(@t) %>
+  <div class="clear"></div>
+</div>
+<div id="logo_area">
+  logo
+  <div class="clear"></div>
+</div>
