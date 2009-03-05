@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20090305215600) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country_name"
   end
 
   add_index "destinations", ["admin1_code"], :name => "index_destinations_on_admin1_code"

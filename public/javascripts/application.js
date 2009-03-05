@@ -72,11 +72,6 @@ jq(function(){
 })
 //startup
 
-
-$(function(){
-$('.destinationSearch').autocomplete('/destinations/search', {});
-})
-
 // Conor's Mad house of unobtrusiveness!!!
 
 $(document).ready(function() {
