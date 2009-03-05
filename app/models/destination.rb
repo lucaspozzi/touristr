@@ -33,6 +33,7 @@ class Destination < ActiveRecord::Base
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
   MAX_DESTINATION_SEARCH = 15
+  CITY = "PPL"
   
   # friendly_param :name
   # track_hits
@@ -55,6 +56,10 @@ class Destination < ActiveRecord::Base
   # end
   # 
   
+  def city?
+    return feature_code == CITY
+  end
+  
   def parent
     case feature_code
     when ADMIN_LEVEL1: return Destination.find(:first, :conditions => "country_code='#{country_code}' and feature_code='#{COUNTRY}'")
@@ -72,21 +77,12 @@ class Destination < ActiveRecord::Base
     when COUNTRY: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and feature_class='P'", :order => "population DESC")
     when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_class='P'", :order => "population DESC")
     when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}'  and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_class='P'", :order => "population DESC")
+    else RAILS_DEFAULT_LOGGER.error("Something else... #{feature_code}")
     end
   end
   
   def self.search(searchString)    
-    # #      sql = <<-EOS
-    # #          SELECT * FROM destinations
-    # #          WHERE (name="#{searchString}" OR alternate_names LIKE "%#{searchString}%")
-    # #          ORDER BY population DESC, name, country_name LIMIT 100
-    # #      EOS
-    # #      @destinations = find_by_sql(sql)
-    # #      if @destinations.size == 0 then        
     @destinations = make_destinations_from_xml(search_geonames(searchString))
-    # #      end
-    # return @destinations
-    %w(a b c d e)
   end
   # 
   # def alternate_name
@@ -181,7 +177,7 @@ class Destination < ActiveRecord::Base
 
    def self.search_geonames(search)  
      begin      
-       url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH}&featureClass=P&style=FULL"
+       url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH}&feature_code='P'&style=FULL"
        Net::HTTP.start('ws.geonames.org', 80) do |http|
          resp = http.get(url_string, 'Accept' => 'text/xml')
          puts(resp.body)
