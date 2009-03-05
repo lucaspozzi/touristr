@@ -18,6 +18,7 @@ class String
   def add_param args = {}
     self.strip + (self.include?('?') ? '&' : '?') + args.map { |k,v| "#{k}=#{URI.escape(v.to_s)}" }.join('&')
   end
+  alias_method :add_params, :add_param
   
   def truncate len = 30
     return self if size <= len
