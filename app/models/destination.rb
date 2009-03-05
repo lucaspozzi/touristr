@@ -24,6 +24,7 @@
 #  modification_date :date          
 #  created_at        :datetime      
 #  updated_at        :datetime      
+#  country_name      :string(255)   
 #
 
 

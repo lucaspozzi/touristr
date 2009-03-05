@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PersonTest < Test::Unit::TestCase
 
   should_belong_to :user
+  should_belong_to :current_trip
   should_have_many :trip_memberships
   should_have_many :trips
 
@@ -12,7 +13,7 @@ class PersonTest < Test::Unit::TestCase
   
   should "have a current trip" do
     person = Person.create
-    assert(person.trips.current.first)
+    assert(person.current_trip)
   end
     
     should "create a new user from find" do

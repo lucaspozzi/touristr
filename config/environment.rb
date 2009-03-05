@@ -32,6 +32,8 @@ Rails::Initializer.run do |config|
   config.gem 'uuidtools'
   config.gem 'chronic'
   config.gem 'RedCloth'
+  config.gem 'mocha'
+  config.gem 'nakajima-fixjour', :lib=>'fixjour'
 #  config.gem 'geonames', :version=>'0.2.2'
 
 

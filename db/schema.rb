@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090304211137) do
+ActiveRecord::Schema.define(:version => 20090305142609) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20090304211137) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country_name"
   end
 
   add_index "destinations", ["admin1_code"], :name => "index_destinations_on_admin1_code"
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20090304211137) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "current_trip_id"
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id"
@@ -133,15 +135,15 @@ ActiveRecord::Schema.define(:version => 20090304211137) do
   create_table "trips", :force => true do |t|
     t.date     "starts_on"
     t.date     "ends_on"
-    t.integer  "number_of_days",     :default => 0,     :null => false
-    t.integer  "number_of_adults",   :default => 1,     :null => false
-    t.integer  "number_of_children", :default => 0,     :null => false
-    t.boolean  "last_viewed",        :default => false, :null => false
-    t.boolean  "public",             :default => true,  :null => false
+    t.integer  "number_of_days",     :default => 0,    :null => false
+    t.integer  "number_of_adults",   :default => 1,    :null => false
+    t.integer  "number_of_children", :default => 0,    :null => false
+    t.boolean  "public",             :default => true, :null => false
     t.string   "public_url"
     t.string   "private_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "users", :force => true do |t|
