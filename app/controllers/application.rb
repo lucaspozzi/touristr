@@ -14,30 +14,28 @@ class ApplicationController < ActionController::Base
   before_filter :check_user, :login_from_cookie, :login_required, :set_vars
   after_filter :store_location, :store_current_trip
 
+  layout lambda { |controller| controller.request.xhr? ? nil : 'application' }
+
   protected
 
   def set_vars
     session[:locale] = params[:locale] if params[:locale]
     I18n.locale = session[:locale] || I18n.default_locale
     if @u
-      RAILS_DEFAULT_LOGGER.debug("User is logged_in".red)
       @p = @u.person
     elsif !cookies[:_touristr_person].nil?
-      RAILS_DEFAULT_LOGGER.debug("Returning user".red)
-      logger.debug(cookies[:_touristr_person].inspect.red)
       @p = Person.find(cookies[:_touristr_person])
     else
-      logger.debug("Non returning user -> creating cookie".red)
       @p = Person.create
       cookies[:_touristr_person] = {:value => @p.id.to_s, :expires => 10.years.from_now}
-      logger.debug(cookies[:_touristr_person].inspect.red)
     end
     @t = @p.current_trip
-
+    logger.debug @t.inspect.red
+    true
   end
 
   def store_current_trip
-    return true unless @p
+    return true unless @p && @t
     @p.set_current_trip @t
   end
 end

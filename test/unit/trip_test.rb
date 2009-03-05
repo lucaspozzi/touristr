@@ -3,7 +3,7 @@ require 'test_helper'
 class TripTest < ActiveSupport::TestCase
   should_have_many :trip_memberships
   should_have_many :people
-  should_validate_uniqueness_of :private_url
+  should_validate_uniqueness_of :private_identifier
   
   
   should "have a private url after creations" do

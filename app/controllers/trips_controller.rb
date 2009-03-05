@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :setup, :except=>[:show]
+  before_filter :setup, :except=>[:show, :private]
   before_filter :setup_show, :only=>[:show]
   skip_before_filter :login_required
   
@@ -8,6 +8,15 @@ class TripsController < ApplicationController
   
   def edit
     
+  end
+  
+  def private
+    @trip = Trip.find_by_private_identifier params[:id]
+    raise ActiveRecord::RecordNotFound unless @trip
+    @t = @trip if @trip.in?(@p.trips)
+    respond_to do |wants|
+      wants.html { render :action=>:show }
+    end
   end
   
   protected

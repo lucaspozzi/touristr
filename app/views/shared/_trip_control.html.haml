@@ -1,3 +1,6 @@
+
+- return '' unless @t
+
 %ul#tripControl
   %li#tripName
     = link_to h(@t.name), trip_path(@t)

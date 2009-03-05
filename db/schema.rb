@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090305192007) do
+ActiveRecord::Schema.define(:version => 20090305215600) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(:version => 20090305192007) do
     t.integer  "number_of_adults",   :default => 1,     :null => false
     t.integer  "number_of_children", :default => 0,     :null => false
     t.boolean  "public",             :default => false, :null => false
-    t.string   "private_url"
+    t.string   "private_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
