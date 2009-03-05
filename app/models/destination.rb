@@ -24,7 +24,6 @@
 #  modification_date :date          
 #  created_at        :datetime      
 #  updated_at        :datetime      
-#  country_name      :string(255)   
 #
 
 
@@ -33,9 +32,11 @@ class Destination < ActiveRecord::Base
   COUNTRY = "PCLI"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
-
+  MAX_DESTINATION_SEARCH = 15
+  
   # friendly_param :name
   # track_hits
+  include REXML
 
 #  has_one :region_code
   belongs_to :country, :foreign_key=>:country_code
@@ -82,7 +83,7 @@ class Destination < ActiveRecord::Base
     # #      EOS
     # #      @destinations = find_by_sql(sql)
     # #      if @destinations.size == 0 then        
-    # @destinations = make_destinations_from_xml(Gateway.search_geonames(searchString))
+    @destinations = make_destinations_from_xml(search_geonames(searchString))
     # #      end
     # return @destinations
     %w(a b c d e)
@@ -173,39 +174,75 @@ class Destination < ActiveRecord::Base
   # 
   # private
   # 
-  # def self.make_destinations_from_xml(doc)
-  #   xml_geonames = doc.get_elements('geonames/geoname')
-  #   destinations = Array.new
-  #   xml_geonames.each { |xml_geoname|
-  #     destinations << self.make_destination_from_xml(xml_geoname)
-  #   }     
-  #   logger.debug(destinations.inspect)
-  #   return destinations  
-  # end
-  # 
-  # def self.make_destination_from_xml(xml_geoname)
-  #   #seems to be nil sometimes
-  #   timezone = xml_geoname.elements['timezone'].text unless xml_geoname.elements['timezone'].nil?
-  #   d = Destination.new(
-  #   :id => xml_geoname.elements['geonameId'].text,
-  #   :name => xml_geoname.elements['name'].text,
-  #   :ascii_name => xml_geoname.elements['name'].text,
-  #   :alternate_names => xml_geoname.elements['alternateNames'].text,        
-  #   :lat => xml_geoname.elements['lat'].text,
-  #   :lng => xml_geoname.elements['lng'].text,
-  #   :feature_class => xml_geoname.elements['fcl'].text,
-  #   :feature_code => xml_geoname.elements['fcode'].text,
-  #   :region_name => xml_geoname.elements['adminName1'].text,        
-  #   :country_code => xml_geoname.elements['countryCode'].text,
-  #   :country_name => xml_geoname.elements['countryName'].text,        
-  #   :admin1_code => xml_geoname.elements['adminCode1'].text,
-  #   :admin2_code => xml_geoname.elements['adminCode2'].text,
-  #   :population => xml_geoname.elements['population'].text,
-  #   :elevation => xml_geoname.elements['elevation'].text,
-  #   :timezone => timezone)     
-  #   d.id = xml_geoname.elements['geonameId'].text
-  #   return d      
-  # end
+
+   def self.get_destinations_from_geonames(search)
+     return make_destinations_from_xml(search_geonames(search))
+   end
+
+   def self.search_geonames(search)  
+     begin      
+       url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH}&featureClass=P&style=FULL"
+       Net::HTTP.start('ws.geonames.org', 80) do |http|
+         resp = http.get(url_string, 'Accept' => 'text/xml')
+         puts(resp.body)
+         return (resp.body)    
+       end     
+     rescue StandardError => e
+       RAILS_DEFAULT_LOGGER.error "Failed to get back results from geoname: #{e.message}"
+       return ""
+     end          
+   end
+
+   def self.make_destinations_from_xml(doc)
+     h = Hpricot(doc)
+     xml_dest = h.at("//geonames")
+     dests = xml_dest.search("//geoname")
+     destinations = Array.new
+     dests.each do |dest|
+       destinations << make_destination_from_xml(dest)
+     end
+     destinations
+   end
+
+   def self.make_destination_from_xml(hp_xml_geoname)
+     #seems to be nil sometimes
+     timezone = hp_xml_geoname.at("//timezone").inner_html.to_s unless hp_xml_geoname.at("//timezone").nil?     
+     
+     d = Destination.new(
+     :id => (hp_xml_geoname.at("geonameid").inner_html.to_s),
+     :name => (hp_xml_geoname.at("name").inner_html.to_s),
+     :ascii_name => (hp_xml_geoname.at("name").inner_html.to_s),
+     :alternate_names => (hp_xml_geoname.at("alternatenames").inner_html.to_s),      
+     :lat => hp_xml_geoname.at("lat").inner_html.to_s,
+     :lng => hp_xml_geoname.at("lng").inner_html.to_s,
+     :feature_class => hp_xml_geoname.at("fcl").inner_html.to_s,
+     :feature_code => hp_xml_geoname.at("fcode").inner_html.to_s,
+     :region_name => hp_xml_geoname.at("adminname1").inner_html.to_s,        
+     :country_code => hp_xml_geoname.at("countrycode").inner_html.to_s,
+     :admin1_code => hp_xml_geoname.at("admincode1").inner_html.to_s,
+     :admin2_code => hp_xml_geoname.at("admincode2").inner_html.to_s,
+     :population => hp_xml_geoname.at("population").inner_html.to_s,
+     :elevation => hp_xml_geoname.at("elevation").inner_html.to_s,
+     :timezone => timezone.to_s)     
+     d.id = hp_xml_geoname.at("geonameid").inner_html
+     return d      
+   end
+
+  # def self.search_geonames(search)  
+  #   begin      
+  #     url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH.to_s}&featureClass=P&style=FULL"
+  #     RAILS_DEFAULT_LOGGER.debug url_string
+  #     Net::HTTP.start('ws.geonames.org', 80) do |http|
+  #       resp = http.get(url_string, 'Accept' => 'text/xml')
+  #       RAILS_DEFAULT_LOGGER.debug "response from geonames: #{resp.code.to_s}"
+  #       RAILS_DEFAULT_LOGGER.debug "response from geonames: #{resp.body.to_s}"        
+  #       return Document.new(resp.body)    
+  #     end     
+  #   rescue StandardError
+  #     RAILS_DEFAULT_LOGGER.error "Failed to get back results from geoname"
+  #     return Document.new
+  #   end          
+  # end 
 
 end
 
