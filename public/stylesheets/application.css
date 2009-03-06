@@ -115,7 +115,7 @@ ul#destinationNavigation li { display: inline; font-size: 14px; position: relati
 ul#destinationNavigation li a:link, ul#destinationNavigation li a:visited { padding: 50px 2% 0; }
 ul#destinationNavigation li a:hover, ul#destinationNavigation li a:active { color: #1f76bd; }
 
-ul#destinationNavigation li#destinationSwitcher { float: left; font-size: 28px; top: 0; }
+ul#destinationNavigation li#destinationSwitcher { float: left; top: 0; }
 ul#destinationNavigation li#destinationSwitcher a { padding: 0; }
 
 ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px;}
@@ -134,8 +134,6 @@ ul li#attractions a:hover, ul li#attractions a:active { background: white url(..
 ul li#activities a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
 ul li#carRentals a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
 
-
-
 /*
 Ajax Messages
 -------------------------------------------------------------------------------------------*/
@@ -147,6 +145,11 @@ Ajax Messages
 div#waiter p { color: #1f76bd; font-size: 18px; }
 div#waiter p img { position: relative; }
 
+/*
+Translation Needed
+-------------------------------------------------------------------------------------------*/
 
+span.translation_missing { background: #ffa49d; }
+.static_content { background: #93ff91; }
 
 
