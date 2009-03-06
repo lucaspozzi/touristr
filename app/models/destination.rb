@@ -219,7 +219,7 @@ class Destination < ActiveRecord::Base
      :admin2_code => hp_xml_geoname.at("admincode2").inner_html.to_s,
      :population => hp_xml_geoname.at("population").inner_html.to_s,
      :elevation => hp_xml_geoname.at("elevation").inner_html.to_s,
-     :timezone => timezone.to_s)     
+     :time_zone => timezone.to_s)     
      d.id = hp_xml_geoname.at("geonameid").inner_html
      return d      
    end
