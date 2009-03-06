@@ -7,7 +7,7 @@ class DestinationsController < ApplicationController
     @destinations = Destination.search(params[:q])
     RAILS_DEFAULT_LOGGER.debug("DestinationController#search: @destinations=#{@destinations}")
     respond_to do |wants|
-      wants.html { render :text=>@destinations.map{|d| "<a href='#{destination_path d}'>#{d.name}, #{d.country_code}</d>\n"} }
+      wants.html { render :text=>@destinations.map{|d| "<a href='#{destination_path d}'>#{d.name}, #{d.country_code}</a>\n"} }
       wants.json { render :json=>@destinations.to_json }
     end
   end
@@ -22,9 +22,5 @@ class DestinationsController < ApplicationController
       end
       render :text => link
     end
-  end
-  
-  
-  
-  
+  end  
 end

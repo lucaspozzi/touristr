@@ -9,5 +9,8 @@
 - content_for :javascripts do
   :javascript
     $(function(){
-    $('.destinationSearch').autocomplete('/destinations/search', {});
-    });
+    $('.destinationSearch').autocomplete('/destinations/search', {}).result(function(event, item) { 
+      puts(item);
+      location.href = $(item)[0].attr('href');
+        })    
+        });

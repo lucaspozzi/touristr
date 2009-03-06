@@ -34,7 +34,7 @@ class Destination < ActiveRecord::Base
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
   MAX_DESTINATION_SEARCH = 15
-  CITY = "PPL"
+  CITY_PREFIX = "PP"
   
   # friendly_param :name
   # track_hits
@@ -58,7 +58,7 @@ class Destination < ActiveRecord::Base
   # 
   
   def city?
-    return feature_code == CITY
+    return feature_code.start_with?(CITY_PREFIX)
   end
   
   def parent
@@ -220,7 +220,7 @@ class Destination < ActiveRecord::Base
      :admin2_code => hp_xml_geoname.at("admincode2").inner_html.to_s,
      :population => hp_xml_geoname.at("population").inner_html.to_s,
      :elevation => hp_xml_geoname.at("elevation").inner_html.to_s,
-     :timezone => timezone.to_s)     
+     :time_zone => timezone.to_s)     
      d.id = hp_xml_geoname.at("geonameid").inner_html
      return d      
    end
