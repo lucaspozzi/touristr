@@ -26,15 +26,24 @@ class LessFormBuilder < ActionView::Helpers::FormBuilder
   end
   
   
-  def text_area method, options = {}
+  def check_box method, options = {}, checked_value = "1", unchecked_value = "0"
     label = get_label method, options
     front(label) + super + back(method)
   end
   
   
+  def text_area method, options = {}
+    label = get_label method, options
+    front(label) + super + back(method)
+  end
+  
+  def date_field method, options = {}
+    text_field method, options.merge({:class=>'chooseDate'})
+  end
+  
   
   def front label = '', options = {}
-    "<div class='row clear'><label>#{label.to_s.titleize}:</label> "
+    "<div class='row clear'><label for="">#{label.to_s.titleize}:</label> "
   end
   
   def back method = '', options = {}

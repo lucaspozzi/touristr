@@ -27,7 +27,7 @@
 
 class Country < ActiveRecord::Base
   
-  has_many :destinations, :foreign_key=>:country_code
+  has_many :destinations, :foreign_key=>:country_code, :primary_key => :iso
   
 end
 

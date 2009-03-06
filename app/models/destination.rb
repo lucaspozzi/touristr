@@ -40,7 +40,7 @@ class Destination < ActiveRecord::Base
   include REXML
 
 #  has_one :region_code
-  belongs_to :country, :foreign_key=>:country_code
+  has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
   has_many :attractions
 #  has_many :trips, :through => "Trip::Leg"
