@@ -51,7 +51,7 @@ fieldset {  }
 legend {  }
 label {  }
 input {  }
-input[type="submit"] { border: none; color: #fff; background: #1f76bd; }
+input[type="submit"], input.button {  }
 input.formDescription { color: #bbb; }
 
 /* Clear Div */
@@ -65,9 +65,80 @@ Planning Template
 
 div#wrapper { width: 94%; margin: 0 auto; min-width: 960px; }
 
+/* Header */
+
+ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; left: 0; width: 96%; min-width: 960px; text-align: right; padding: 4px 2% 8px; font-size: 14px; }
+ul#userControls li { display: inline; padding: 0 3% 0 0; }
+
+div#logo { margin: 50px 0; float: left; }
+div#logo h1 {  background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 350px; }
+div#logo h1 a { display: block; padding: 0 0 30px; }
+div#logo p#tagline { color: #333; visibility: hidden; }
+
+div#destinationSearchForm { float: right; margin: 80px 0 0; text-align: right; }
+
+div#destinationSearchForm input { padding: 0 5px; font-size: 16px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #ddd; /*width: 50%;*/ }
+div#destinationSearchForm input.button { font-size: 14px; /*width: 30%;*/ border-color: #1f76bd; background: #1f76bd; color: #fff; padding: 0 30px; margin: 0 0 0 10px; }
+div#destinationSearchForm input[type="input"] { -webkit-appearance: searchfield; }
+
+/* Trip Control */
+
+ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; }
+ul#tripControl li { display: inline; margin: 0 23px 0; letter-spacing: 1px; }
+ul#tripControl li a { position: relative; top: 7px; }
+ul#tripControl li a:link, ul#tripControl li a:visited { color: #a9a9a9; }
+ul#tripControl li a:hover, ul#tripControl li a:active, ul#tripControl li a.current { color: #1f76bd; }
+ul#tripControl li#tripName { position: none; float: left; font-size: 20px; }
+ul#tripControl li#tripName a { top: 0; color: #1f76bd; }
+ul#tripControl li#tripName a:hover, ul#tripControl li#tripName a:active { color: #cc00cc; }
+
+/*Trip Control Icons Inactive*/
+ul#tripControl li#tripPeople a { background: transparent url(../images/tripControl/people.png) no-repeat left top; padding: 10px 0 10px 27px; }
+ul#tripControl li#tripItinerary a { background: transparent url(../images/tripControl/itinerary.png) no-repeat left top; padding: 10px 0 10px 48px; }
+ul#tripControl li#tripComments a { background: transparent url(../images/tripControl/comments.png) no-repeat left 1px; padding: 10px 0 10px 40px; }
+ul#tripControl li#tripBudget a { background: transparent url(../images/tripControl/budget.png) no-repeat left 2px; padding: 10px 0 10px 33px; }
+ul#tripControl li#tripTodos a { background: transparent url(../images/tripControl/todos.png) no-repeat left 3px; padding: 10px 0 10px 36px; }
+
+/* Trip Control Icons Active */
+ul#tripControl li#tripPeople a:hover, ul#tripControl li#tripPeople a.current { background: transparent url(../images/tripControl/people.png) no-repeat left -50px; padding: 10px 0 10px 27px; }
+ul#tripControl li#tripItinerary a:hover, ul#tripControl li#tripItinerary a.current { background: transparent url(../images/tripControl/itinerary.png) no-repeat left -49px; padding: 10px 0 10px 48px; }
+ul#tripControl li#tripComments a:hover, ul#tripControl li#tripComments a.current { background: transparent url(../images/tripControl/comments.png) no-repeat left -41px; padding: 10px 0 10px 40px; }
+ul#tripControl li#tripBudget a:hover, ul#tripControl li#tripBudget a.current { background: transparent url(../images/tripControl/budget.png) no-repeat left -39px; padding: 10px 0 10px 33px; }
+ul#tripControl li#tripTodos a:hover, ul#tripControl li#tripTodos a.current { background: transparent url(../images/tripControl/todos.png) no-repeat left -37px; padding: 10px 0 10px 36px; }
+
+/*
+Destination Navigation Menu
+-----------------------------------------------------------------------------------------------------*/
+
+ul#destinationNavigation { list-style: none; text-align: right; clear: both; margin: 0 0 3% 0; }
+ul#destinationNavigation li { display: inline; font-size: 14px; position: relative; top: 20px; }
+ul#destinationNavigation li a:link, ul#destinationNavigation li a:visited { padding: 50px 2% 0; }
+ul#destinationNavigation li a:hover, ul#destinationNavigation li a:active { color: #1f76bd; }
+
+ul#destinationNavigation li#destinationSwitcher { float: left; font-size: 28px; top: 0; }
+ul#destinationNavigation li#destinationSwitcher a { padding: 0; }
+
+ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px;}
+ul li#flights a:link, ul li#flights a:visited { background: white url(../images/destinationNavigation/flights.png) no-repeat center top; }
+ul li#hotels a:link, ul li#hotels a:visited { background: white url(../images/destinationNavigation/hotels.png) no-repeat center top; }
+ul li#attractions a:link, ul li#attractions a:visited { background: white url(../images/destinationNavigation/attractions.png) no-repeat center top; }
+ul li#activities a:link, ul li#activities a:visited { background: white url(../images/destinationNavigation/activities.png) no-repeat center top; }
+ul li#carRentals a:link, ul li#carRentals a:visited { background: white url(../images/destinationNavigation/carRental.png) no-repeat center top; }
+
+/* hover on links */
+
+ul li#overview a:hover, ul li#overview a:active { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px;}
+ul li#flights a:hover, ul li#flights a:active { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px;}
+ul li#hotels a:hover, ul li#hotels a:active { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px;}
+ul li#attractions a:hover, ul li#attractions a:active { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
+ul li#activities a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
+ul li#carRentals a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
 
 
 
+/*
+Ajax Messages
+-------------------------------------------------------------------------------------------*/
 
 #message {padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
 #waiter { z-index:100000; position:absolute; display: none;  top: 91px; right: 245px; }

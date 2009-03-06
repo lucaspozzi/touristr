@@ -3,8 +3,8 @@
   #destinationSearchForm
     %p
       %label{:for=>"destinationSearch"}= t "Where do you want to go?"
-      %input.destinationSearch{:type=>'input'}
-      %input{:type=>'submit', :value=>t("Plan")}
+      %input.destinationSearch{:type=>'input', :size => 30}
+      %input{:type=>'submit', :value=> "Plan", :class => 'button'}
       
 - content_for :javascripts do
   :javascript
