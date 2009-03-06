@@ -20,10 +20,11 @@
 #  population        :integer(4)    
 #  elevation         :integer(4)    
 #  gtopo30           :integer(4)    
-#  timezone          :string(255)   
+#  time_zone         :string(255)   
 #  modification_date :date          
 #  created_at        :datetime      
 #  updated_at        :datetime      
+#  country_name      :string(255)   
 #
 
 
