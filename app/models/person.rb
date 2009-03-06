@@ -39,7 +39,7 @@ class Person < ActiveRecord::Base
   end
   
   def set_current_trip t
-    return true if t.in?(trips)
+    return true if t.nil? || !t.in?(trips)
     update_attribute :current_trip, t
   end
   

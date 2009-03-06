@@ -37,5 +37,6 @@ class ApplicationController < ActionController::Base
   def store_current_trip
     return true unless @p && @t
     @p.set_current_trip @t
+    true
   end
 end

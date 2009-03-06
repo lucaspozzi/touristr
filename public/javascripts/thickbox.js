@@ -287,7 +287,9 @@ function tb_showIframe(){
 }
   function TB_Removing(){}
   function TB_Removed(){}
-  function TB_shown(){}
+  function TB_shown(){
+    reinit_events();
+  }
 function TB_remove() {return tb_remove()}
 function tb_remove() {
   

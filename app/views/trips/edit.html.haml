@@ -1,13 +1,13 @@
 
 
-= less_remote_form_for :trip, :url=>trip_path(@t), :method=>"put" do |form|
+- less_remote_form_for :trip, :url=>trip_path(@t), :method=>"put" do |form|
   = form.text_field :name
-  = form.text_field :starts_on
-  = form.text_field :ends_on
+  = form.date_field :starts_on
+  = form.date_field :ends_on
   = form.text_field :number_of_adults
   = form.text_field :number_of_children
-  = form.check_box :public, :onclick=>"if ($(this).checked()){puts('y');$('#public_url_div).show();} else {puts('n');$('#public_url_div').hide();}"
-  #public_url_div
+  = form.check_box :public, :onchange=>"if ($(this).checked()){$('#public_url_div').show();} else {$('#public_url_div').hide();}"
+  #public_url_div{:style=>"#{'display: none;' unless @t.public?}"}
     Public Url:
     = link_to h(trip_url(@t)), trip_url(@t)
   %div

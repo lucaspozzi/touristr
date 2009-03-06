@@ -81,7 +81,9 @@ jQuery.fn.check_width = function(){
 
 
 
-
+function reinit_events(){
+  $('input.chooseDate').datePicker({clickInput:true});
+}
 
 
 
@@ -91,6 +93,7 @@ jQuery.fn.check_width = function(){
 //startup
 jq(function(){
 	jQuery("#waiter").ajaxStart(function(){jq(this).show();}).ajaxStop(function(){jq(this).hide();}).ajaxError(function(){jq(this).hide();});
+	reinit_events();
 })
 //startup
 

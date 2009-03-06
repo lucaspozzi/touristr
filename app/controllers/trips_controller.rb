@@ -7,7 +7,7 @@ class TripsController < ApplicationController
   end
 
   def edit
-
+    render
   end
 
   def private
