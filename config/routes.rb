@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  
+  map.resources :trip_items
+
+  map.resources :hotels
   map.resources :destinations, :collection=>{:search=>:get}
   map.resources :trips
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
