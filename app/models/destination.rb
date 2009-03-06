@@ -33,7 +33,7 @@ class Destination < ActiveRecord::Base
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
   MAX_DESTINATION_SEARCH = 15
-  CITY = "PPL"
+  CITY_PREFIX = "PP"
   
   # friendly_param :name
   # track_hits
@@ -57,7 +57,7 @@ class Destination < ActiveRecord::Base
   # 
   
   def city?
-    return feature_code == CITY
+    return feature_code.start_with?(CITY_PREFIX)
   end
   
   def parent

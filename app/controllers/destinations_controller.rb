@@ -22,9 +22,5 @@ class DestinationsController < ApplicationController
       end
       render :text => link
     end
-  end
-  
-  
-  
-  
+  end  
 end
