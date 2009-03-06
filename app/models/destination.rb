@@ -26,6 +26,7 @@
 #  updated_at        :datetime      
 #  country_name      :string(255)   
 #  click_counter     :integer(4)    default(0), not null
+#  score             :integer(4)    default(0), not null
 #
 
 
@@ -48,8 +49,12 @@ class Destination < ActiveRecord::Base
 
 
   define_index do
-    
+    indexes name, alternate_names, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
+    indexes score, :sortable=>true
   end
+  
+  
+  before_save :set_score
 
   
   def city?
@@ -77,64 +82,84 @@ class Destination < ActiveRecord::Base
     end
   end
   
-  def self.search(searchString)    
-    @destinations = make_destinations_from_xml(search_geonames(searchString))
+  def self.s query, params = {}
+    self.search query, params.merge({:order=>:score})
   end
-
-   def self.get_destinations_from_geonames(search)
-     return make_destinations_from_xml(search_geonames(search))
-   end
-
-=begin
-  TODO change the search to:
-  1. remove the maxrows so 
-  2. we can do sorting and filtering
-=end
-   def self.search_geonames(search)  
-     begin      
-       url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH}&feature_code='P'&style=FULL"
-       Net::HTTP.start('ws.geonames.org', 80) do |http|
-         resp = http.get(url_string, 'Accept' => 'text/xml')
-         puts(resp.body)
-         return (resp.body)    
-       end
-     rescue StandardError => e
-       logger.error "Failed to get back results from geoname. Query: #{url_string}, error: #{e.message}"
-       return ""
-     end          
-   end
-
-   def self.make_destinations_from_xml(doc)
-     h = Hpricot(doc)
-     xml_dest = h.at("//geonames")
-     dests = xml_dest.search("//geoname")
-     destinations = Array.new
-     dests.each do |dest|
-       destinations << make_destination_from_xml(dest)
-     end
-     destinations
-   end
-
-   def self.make_destination_from_xml(hp_xml_geoname)
-     #seems to be nil sometimes
-     timezone = hp_xml_geoname.at("//timezone").inner_html.to_s unless hp_xml_geoname.at("//timezone").nil?     
-     Destination.find_or_create_by_id(hp_xml_geoname.at("geonameid").inner_html.to_i) do |destination|
-       destination.name            = (hp_xml_geoname.at("name").inner_html.to_s)
-       destination.ascii_name      = (hp_xml_geoname.at("name").inner_html.to_s)
-       destination.alternate_names = (hp_xml_geoname.at("alternatenames").inner_html.to_s)      
-       destination.lat             = hp_xml_geoname.at("lat").inner_html.to_s
-       destination.lng             = hp_xml_geoname.at("lng").inner_html.to_s
-       destination.feature_class   = hp_xml_geoname.at("fcl").inner_html.to_s
-       destination.feature_code    = hp_xml_geoname.at("fcode").inner_html.to_s
-       destination.region_name     = hp_xml_geoname.at("adminname1").inner_html.to_s        
-       destination.country_code    = hp_xml_geoname.at("countrycode").inner_html.to_s
-       destination.admin1_code     = hp_xml_geoname.at("admincode1").inner_html.to_s
-       destination.admin2_code     = hp_xml_geoname.at("admincode2").inner_html.to_s
-       destination.population      = hp_xml_geoname.at("population").inner_html.to_s
-       destination.elevation       = hp_xml_geoname.at("elevation").inner_html.to_s
-       destination.time_zone       = timezone.to_s
-     end
-   end
+  
+  def increment_click_counter
+    self.click_counter +=1
+    save
+  end
+  
+  
+  def set_score
+    self.score = (((alternate_names.size + 1) * 7) *
+    (feature_class == 'P' ? 2 : 1) *
+    (feature_class.in?(%w(H R T U)) ? 1 : 5) *
+    (feature_code.in?(%w(PPLA AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO)) ? 5 : 1) *
+    (click_counter + 1)) +
+    (population / 5)
+  end
+  
+  # 
+  #   def self.search(searchString)    
+  #     @destinations = make_destinations_from_xml(search_geonames(searchString))
+  #   end
+  # 
+  #    def self.get_destinations_from_geonames(search)
+  #      return make_destinations_from_xml(search_geonames(search))
+  #    end
+  # 
+  # =begin
+  #   TODO change the search to:
+  #   1. remove the maxrows so 
+  #   2. we can do sorting and filtering
+  # =end
+  #    def self.search_geonames(search)  
+  #      begin      
+  #        url_string = "/search?name=#{URI.escape(search)}&maxRows=#{MAX_DESTINATION_SEARCH}&feature_code='P'&style=FULL"
+  #        Net::HTTP.start('ws.geonames.org', 80) do |http|
+  #          resp = http.get(url_string, 'Accept' => 'text/xml')
+  #          puts(resp.body)
+  #          return (resp.body)    
+  #        end
+  #      rescue StandardError => e
+  #        logger.error "Failed to get back results from geoname. Query: #{url_string}, error: #{e.message}"
+  #        return ""
+  #      end          
+  #    end
+  # 
+  #    def self.make_destinations_from_xml(doc)
+  #      h = Hpricot(doc)
+  #      xml_dest = h.at("//geonames")
+  #      dests = xml_dest.search("//geoname")
+  #      destinations = Array.new
+  #      dests.each do |dest|
+  #        destinations << make_destination_from_xml(dest)
+  #      end
+  #      destinations
+  #    end
+  # 
+  #    def self.make_destination_from_xml(hp_xml_geoname)
+  #      #seems to be nil sometimes
+  #      timezone = hp_xml_geoname.at("//timezone").inner_html.to_s unless hp_xml_geoname.at("//timezone").nil?     
+  #      Destination.find_or_create_by_id(hp_xml_geoname.at("geonameid").inner_html.to_i) do |destination|
+  #        destination.name            = (hp_xml_geoname.at("name").inner_html.to_s)
+  #        destination.ascii_name      = (hp_xml_geoname.at("name").inner_html.to_s)
+  #        destination.alternate_names = (hp_xml_geoname.at("alternatenames").inner_html.to_s)      
+  #        destination.lat             = hp_xml_geoname.at("lat").inner_html.to_s
+  #        destination.lng             = hp_xml_geoname.at("lng").inner_html.to_s
+  #        destination.feature_class   = hp_xml_geoname.at("fcl").inner_html.to_s
+  #        destination.feature_code    = hp_xml_geoname.at("fcode").inner_html.to_s
+  #        destination.region_name     = hp_xml_geoname.at("adminname1").inner_html.to_s        
+  #        destination.country_code    = hp_xml_geoname.at("countrycode").inner_html.to_s
+  #        destination.admin1_code     = hp_xml_geoname.at("admincode1").inner_html.to_s
+  #        destination.admin2_code     = hp_xml_geoname.at("admincode2").inner_html.to_s
+  #        destination.population      = hp_xml_geoname.at("population").inner_html.to_s
+  #        destination.elevation       = hp_xml_geoname.at("elevation").inner_html.to_s
+  #        destination.time_zone       = timezone.to_s
+  #      end
+  #    end
 
 
 end

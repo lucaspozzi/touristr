@@ -4,7 +4,7 @@ class DestinationsController < ApplicationController
   
   def search
     logger.debug("DestinationController#search: param=#{params[:q]}")
-    @destinations = Destination.search(params[:q])
+    @destinations = Destination.s(params[:q])
     logger.debug("DestinationController#search: @destinations=#{@destinations}")
     respond_to do |wants|
       wants.html { render :text=>@destinations.map{|d| "<a href='#{destination_path d}'>#{d.name}, #{d.country_code}</a>\n"} }

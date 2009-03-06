@@ -26,6 +26,7 @@
 #  updated_at        :datetime      
 #  country_name      :string(255)   
 #  click_counter     :integer(4)    default(0), not null
+#  score             :integer(4)    default(0), not null
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
