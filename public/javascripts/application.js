@@ -27,6 +27,9 @@ function togger(j, callback, speed){
 
 
 
+jQuery.fn.checked = function(){
+  return this.attr('checked');
+}
 
 
 
@@ -39,13 +42,13 @@ function togger(j, callback, speed){
 
 //message
 function async_message(m, d){message(m, d);}
-function msg(m, d){message(m, d);}
 function messages(m, d){message(m, d);}
+function msg(m, d){message(m, d);}
 function message(message, duration){
     if (duration == undefined){ duration = 3000;}
     if (jq.browser.msie) { jq("#message").css({position: 'absolute'}); }
-    jq("#message").text(message).fadeIn(1000);
-    setTimeout('jq("#message").fadeOut(2000)',duration);
+    jq("#message").text(message).show().check_width().center();
+    setTimeout('jq("#message").hide().css("width", "");',duration);
     return false;
 }
 //message
@@ -54,6 +57,25 @@ function message(message, duration){
 function debug(m){if (typeof console != 'undefined'){console.log(m);}}
 function puts(m){debug(m);}
 
+
+jQuery.fn.center = function(){
+  return this.each(function(){
+    var win = jq(window).width();
+    var width = jQuery(this).width();
+    jq(this).css({width: width +'px', left: (win/2 - width/2) + 'px'});
+  })
+}
+
+
+jQuery.fn.check_width = function(){
+  return this.each(function(){
+    var win = jq(window).width();
+    var width = jQuery(this).width();
+    var height = jQuery(this).height();
+    if (width/2 > height || width*2 >= win){ return; }
+    jq(this).css({width: width*2 +'px'});
+  })
+}
 
 
 
