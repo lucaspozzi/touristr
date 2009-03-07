@@ -1,4 +1,36 @@
-%h2
-  San Francisco
-  %span.destinationCountry
-    , USA
+%p#destinationIntroduction
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+.mainContent
+  %h3
+    = t("Description")
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  %p  
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  
+  %h3
+    = t("Things to do")
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  
+
+.secondaryContent
+  %h3
+    = t("Video Content")
+  .video
+    <object width="468" height="264"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="468" height="264"></embed></object><br /><a href="http://vimeo.com/2558470">Job Interview</a> from <a href="http://vimeo.com/benschwartz">Ben Schwartz</a> on <a href="http://vimeo.com">Vimeo</a>.
+
+  %h3
+    = t("Photo Gallery")
+  %ul.destinationPhotoGallery
+    %li
+      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+    %li
+      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+    %li
+      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+    %li
+      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+    %li
+      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}

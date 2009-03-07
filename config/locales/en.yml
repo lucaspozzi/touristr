@@ -10,3 +10,22 @@ en:
   children:
     one: "1 Child"
     other: "{{count}} Children"
+  "Plan": Plan
+  "Overview": Overview
+  "Flights": Flights
+  "Hotels": Hotels
+  "Attractions": Attractions
+  "Activities": Activities
+  "Car Rentals": Car Rentals
+  "Itinerary": Itinerary
+  "Comments": Comments
+  "Budget": Budget
+  "To-Dos": To Dos
+  "Description": Description
+  "Things to do": Things to do
+  "Video Content": Video Content
+  "Photo Gallery": Photo Gallery
+  "Login": Login
+  "Logout": Logout
+  "Sign Up": Sign Up
+  "Profile": Profile

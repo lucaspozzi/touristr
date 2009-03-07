@@ -1,5 +1,24 @@
 
 
 fr:
-  hello: Bon jour
+  hello: Bonjour
   "Where do you want to go?": Ou voulez-vous allez?
+  "Plan": Ajoutez
+  "Overview": Information
+  "Flights": Vols
+  "Hotels": Hôtels
+  "Attractions": Curiosités
+  "Activities": Activités
+  "Car Rental": Voiture
+  "Itinerary": Itineraire
+  "Comments": Commentaires
+  "Budget": Budget
+  "To-Dos": A faire
+  "Description": Description
+  "Things to do": A decouvrir
+  "Video Content": Videos
+  "Photo Gallery": Photos
+  "Login": Connexion
+  "Logout": Deconnexion
+  "Sign Up": S'enregistrer
+  "Profile": Profil

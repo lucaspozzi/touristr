@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090305215600) do
+ActiveRecord::Schema.define(:version => 20090306104945) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20090305215600) do
     t.integer  "population"
     t.integer  "elevation"
     t.integer  "gtopo30"
-    t.string   "timezone"
+    t.string   "time_zone"
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
