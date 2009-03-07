@@ -67,6 +67,13 @@ input.formDescription { color: #bbb; }
 .content { width: 74%; float: left; }
 .sidebar { width: 25%; float: right; }
 
+/* Search Results Autocomplete */
+div.ac_results { background: transparent url(../images/autocomplete/arrow.png) no-repeat 10px 1px; padding: 0 0 0; }
+div.ac_results ul { background: #000; background: rgba(0, 0, 0, 0.9); -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 5px 10px 20px; font-size: 12px; font-weight: 300; list-style: none; width: 105%; }
+div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+div.ac_results li.ac_over { background: #222; }
+
+
 /*
 Planning Template
 -------------------------------------------------------------------------------------------*/
@@ -152,6 +159,8 @@ p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 70px 0 40
 
 ul.destinationPhotoGallery { list-style: none; }
 ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
+
+
 
 
 /*
