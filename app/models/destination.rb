@@ -27,6 +27,7 @@
 #  country_name      :string(255)   
 #  click_counter     :integer(4)    default(0), not null
 #  score             :integer(4)    default(0), not null
+#  delta             :boolean(1)    not null
 #
 
 
@@ -49,8 +50,9 @@ class Destination < ActiveRecord::Base
 
 
   define_index do
-    indexes name, alternate_names, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
-    indexes score, :sortable=>true
+    indexes name, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
+    has score, :sortable=>true, :type=>:integer
+    set_property :delta=>true
   end
   
   
@@ -83,7 +85,7 @@ class Destination < ActiveRecord::Base
   end
   
   def self.s query, params = {}
-    self.search query, params.merge({:order=>:score})
+    self.search query, params.merge({:order=>'score desc'})
   end
   
   def increment_click_counter
@@ -91,6 +93,9 @@ class Destination < ActiveRecord::Base
     save
   end
   
+  
+  
+#  update destinations set `score` = (((LENGTH(alternate_names) + 1) * 7) * (CASE feature_class WHEN 'P' THEN 2 ELSE 1 END) *  (CASE feature_class WHEN 'H' THEN 1 WHEN 'R' THEN 1 WHEN 'T' THEN 1 WHEN 'U' THEN 1 ELSE 5 END) * (CASE feature_code WHEN 'P' THEN 5 WHEN 'P' THEN 5 WHEN 'L' THEN 5 WHEN 'A' THEN 5  WHEN 'A' THEN 5 WHEN 'M' THEN 5 WHEN 'U' THEN 5 WHEN 'S' THEN 5  WHEN 'P' THEN 5 WHEN 'R' THEN 5 WHEN 'K' THEN 5  WHEN 'A' THEN 5 WHEN 'N' THEN 5 WHEN 'S' THEN 5  WHEN 'A' THEN 5 WHEN 'R' THEN 5 WHEN 'C' THEN 5 WHEN 'H' THEN 5  WHEN 'A' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'R' THEN 5  WHEN 'C' THEN 5 WHEN 'H' THEN 5  WHEN 'B' THEN 5 WHEN 'D' THEN 5 WHEN 'G' THEN 5  WHEN 'C' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'L' THEN 5  WHEN 'C' THEN 5 WHEN 'T' THEN 5 WHEN 'R' THEN 5 WHEN 'S' THEN 5  WHEN 'G' THEN 5 WHEN 'D' THEN 5 WHEN 'N' THEN 5  WHEN 'H' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'S' THEN 5  WHEN 'M' THEN 5 WHEN 'U' THEN 5 WHEN 'S' THEN 5  WHEN 'O' THEN 5 WHEN 'B' THEN 5 WHEN 'S' THEN 5  WHEN 'P' THEN 5 WHEN 'Y' THEN 5 WHEN 'R' THEN 5  WHEN 'P' THEN 5 WHEN 'R' THEN 5 WHEN 'Y' THEN 5 WHEN 'S' THEN 5  WHEN 'R' THEN 5 WHEN 'L' THEN 5 WHEN 'G' THEN 5  WHEN 'R' THEN 5 WHEN 'S' THEN 5 WHEN 'R' THEN 5 WHEN 'T' THEN 5  WHEN 'S' THEN 5 WHEN 'H' THEN 5 WHEN 'R' THEN 5 WHEN 'N' THEN 5  WHEN 'S' THEN 5 WHEN 'Q' THEN 5 WHEN 'R' THEN 5  WHEN 'T' THEN 5 WHEN 'O' THEN 5 WHEN 'W' THEN 5 WHEN 'R' THEN 5  WHEN 'Z' THEN 5 WHEN 'O' THEN 5 WHEN 'O' THEN 5 ELSE 1 END) * (click_counter + 1) + (population / 5))
   
   def set_score
     self.score = (((alternate_names.size + 1) * 7) *
