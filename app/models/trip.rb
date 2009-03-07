@@ -45,4 +45,10 @@ class Trip < ActiveRecord::Base
   end
     
     
+    
+  def add obj
+    order = first(:order=>'ordered desc').ordered + 1 rescue 0
+    trip_items.create :ordered=>order, :trippy=>obj
+  end
+    
 end

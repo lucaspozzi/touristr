@@ -15,4 +15,5 @@ class TripItem < ActiveRecord::Base
   belongs_to :trippy, :polymorphic=>true
   
   named_scope :sorted, {:order=>:ordered}
+  
 end

@@ -1,10 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :trip_items
 
-  map.resources :hotels
+  map.resources :hotels do |hotel|
+    hotel.resources :trip_items
+  end
   map.resources :destinations, :collection=>{:search=>:get}
   map.resources :trips
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
+  
   
   map.resources :people, :member=>{:delete_icon=>:delete} 
   map.login   "/login",   :controller=>'accounts', :action => 'login'
