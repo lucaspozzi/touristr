@@ -19,6 +19,7 @@ class Trip < ActiveRecord::Base
   has_many :trip_memberships
   has_many :people, :through=>:trip_memberships
   has_many :trip_items, :order=>:ordered
+#  has_many :trippies, :through=>:trip_items
   
   validates_uniqueness_of :private_identifier
   
