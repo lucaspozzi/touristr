@@ -1,5 +1,3 @@
-<<<<<<< HEAD:db/schema.rb
-=======
 # This file is auto-generated from the current state of the database. Instead of editing this file, 
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
@@ -11,12 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD:db/schema.rb
-ActiveRecord::Schema.define(:version => 20090306104945) do
-=======
 ActiveRecord::Schema.define(:version => 20090306233458) do
->>>>>>> 27ccc7394d3d33ae6c93bb9d96952eaecac2fcbc:db/schema.rb
-
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
     t.string   "name"
@@ -215,4 +208,3 @@ ActiveRecord::Schema.define(:version => 20090306233458) do
   add_index "users", ["login"], :name => "index_users_on_login"
 
 end
->>>>>>> 63207095bbc2ebafe25ea4d8982100456552abd1:db/schema.rb
