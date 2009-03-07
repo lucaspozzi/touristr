@@ -7,10 +7,10 @@
   %li#tripPeople
     = link_to "#{t(:adult, :count=>@t.number_of_adults)} #{t(:children, :count=>@t.number_of_children)}", edit_trip_path(@t).add_params(:height=>500, :width=>500), :class=>'thickbox'
   %li#tripItinerary
-    = link_to "Itinerary", "#"
+    = link_to t("Itinerary"), "#"
   %li#tripComments
-    = link_to "Comments", "#"
+    = link_to t("Comments"), "#"
   %li#tripBudget
-    = link_to "Budget", "#"
+    = link_to t("Budget"), "#"
   %li#tripTodos
-    = link_to "To-Dos", "#"
+    = link_to t("To-Dos"), "#"
