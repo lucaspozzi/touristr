@@ -30,16 +30,16 @@ body { background: #fff; font: 500 12px/1.5 "Helvetica Neue", "HelveticaNeue-Lig
 Typography
 -------------------------------------------------------------------------------------------*/
 
-h1, h2, h3, h4, h5, h6 { font-weight: 300; }
+h1, h2, h3, h4, h5, h6 { font-weight: 300; color: #333; letter-spacing: 1px; margin: 30px 0 10px; }
 
-h1 { font-size:36px; }
+h1 { font-size: 36px; }
 h2 { font-size: 30px; }
-h3 { font-size: 24px; }
+h3 { font-size: 24px;  }
 h4 { font-size: 18px; }
 h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 
-p, ul, ol, dl { font-size: 12px; color: #666; }
+p, ul, ol, dl { font-size: 13px; color: #666; margin: 10px 0 20px; }
 
 /* Links */
 
@@ -59,6 +59,21 @@ input.formDescription { color: #bbb; }
 .clearRight { clear: right; }
 .clearLeft { clear: left; }
 
+/* 2 Column Layout */
+.mainContent { width: 49%; float: left; }
+.secondaryContent { width: 49%; float: right; }
+
+/* Main Sidebar Layout */
+.content { width: 74%; float: left; }
+.sidebar { width: 25%; float: right; }
+
+/* Search Results Autocomplete */
+div.ac_results { background: transparent url(../images/autocomplete/arrow.png) no-repeat 10px 1px; padding: 0 0 0; }
+div.ac_results ul { background: #000; background: rgba(0, 0, 0, 0.9); -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 5px 10px 20px; font-size: 12px; font-weight: 300; list-style: none; width: 105%; }
+div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+div.ac_results li.ac_over { background: #222; }
+
+
 /*
 Planning Template
 -------------------------------------------------------------------------------------------*/
@@ -67,11 +82,11 @@ div#wrapper { width: 94%; margin: 0 auto; min-width: 960px; }
 
 /* Header */
 
-ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; left: 0; width: 96%; min-width: 960px; text-align: right; padding: 4px 2% 8px; font-size: 14px; }
+ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; left: 0; width: 96%; min-width: 960px; text-align: right; padding: 4px 2% 8px; font-size: 14px; margin: 0; }
 ul#userControls li { display: inline; padding: 0 3% 0 0; }
 
 div#logo { margin: 50px 0; float: left; }
-div#logo h1 {  background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 350px; }
+div#logo h1 {  background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 350px; margin: 0; }
 div#logo h1 a { display: block; padding: 0 0 30px; }
 div#logo p#tagline { color: #333; visibility: hidden; }
 
@@ -83,7 +98,7 @@ div#destinationSearchForm input[type="input"] { -webkit-appearance: searchfield;
 
 /* Trip Control */
 
-ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; }
+ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; margin: 0; }
 ul#tripControl li { display: inline; margin: 0 23px 0; letter-spacing: 1px; }
 ul#tripControl li a { position: relative; top: 7px; }
 ul#tripControl li a:link, ul#tripControl li a:visited { color: #a9a9a9; }
@@ -115,7 +130,8 @@ ul#destinationNavigation li { display: inline; font-size: 14px; position: relati
 ul#destinationNavigation li a:link, ul#destinationNavigation li a:visited { padding: 50px 2% 0; }
 ul#destinationNavigation li a:hover, ul#destinationNavigation li a:active { color: #1f76bd; }
 
-ul#destinationNavigation li#destinationSwitcher { float: left; font-size: 28px; top: 0; }
+ul#destinationNavigation li#destinationSwitcher { float: left; top: 0; }
+ul#destinationNavigation li#destinationSwitcher h2 { margin: 0; }
 ul#destinationNavigation li#destinationSwitcher a { padding: 0; }
 
 ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px;}
@@ -127,12 +143,23 @@ ul li#carRentals a:link, ul li#carRentals a:visited { background: white url(../i
 
 /* hover on links */
 
-ul li#overview a:hover, ul li#overview a:active { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px;}
-ul li#flights a:hover, ul li#flights a:active { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px;}
-ul li#hotels a:hover, ul li#hotels a:active { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px;}
-ul li#attractions a:hover, ul li#attractions a:active { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
-ul li#activities a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
-ul li#carRentals a:hover, ul li#activities a:active { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
+ul li#overview a:hover, ul li#overview a:active, ul#destinationNavigation li#overview a.current { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px;}
+ul li#flights a:hover, ul li#flights a:active, ul#destinationNavigation li#flights a.current { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px;}
+ul li#hotels a:hover, ul li#hotels a:active, ul#destinationNavigation li#hotels a.current { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px;}
+ul li#attractions a:hover, ul li#attractions a:active, ul#destinationNavigation li#attractions a.current { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
+ul li#activities a:hover, ul li#activities a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
+ul li#carRentals a:hover, ul li#carRentals a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
+
+
+/*
+Overview
+-------------------------------------------------------------------------------------------*/
+
+p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 70px 0 40px 0; }
+
+ul.destinationPhotoGallery { list-style: none; }
+ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
+
 
 
 
@@ -147,6 +174,11 @@ Ajax Messages
 div#waiter p { color: #1f76bd; font-size: 18px; }
 div#waiter p img { position: relative; }
 
+/*
+Translation Needed
+-------------------------------------------------------------------------------------------*/
 
+span.translation_missing { background: #ffa49d; }
+.static_content { background: #93ff91; }
 
 

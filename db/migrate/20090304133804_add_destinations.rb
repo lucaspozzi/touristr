@@ -1,13 +1,14 @@
 class AddDestinations < ActiveRecord::Migration
 
   def self.up
-    load_data_from_file "FR.txt"
-    load_data_from_file "IE.txt"
-    load_data_from_file "VN.txt"
+   load_data_from_file "FR.txt"
+   load_data_from_file "IE.txt"
+   load_data_from_file "VN.txt"
+#    load_data_from_file "allCountries.txt"
   end
 
   def self.down
-    Destination::Destination.delete_all
+#    Destination::Destination.delete_all
   end
   
   private

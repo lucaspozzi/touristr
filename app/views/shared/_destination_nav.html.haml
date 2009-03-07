@@ -1,16 +1,18 @@
 %ul#destinationNavigation
   %li#destinationSwitcher
-    = link_to "San Francisco", "#"
+    %h2.static_content
+      San Francisco
+  // add a class current to the below menus to select current
   %li#overview
-    = link_to "Overview", "#"
+    = link_to t("Overview"), "#"
   %li#flights
-    = link_to "Flights", "#"
+    = link_to t("Flights"), "#"
   %li#hotels
     = link_to t("Hotels"), hotels_path
   %li#attractions
-    = link_to "Attractions", "#"
+    = link_to t("Attractions"), "#"
   %li#activities
-    = link_to "Activities", "#"
+    = link_to t("Activities"), "#"
   %li#carRentals
-    = link_to "Car Rentals", "#"
+    = link_to t("Car Rentals"), "#"
     
