@@ -7,7 +7,10 @@ class DestinationsController < ApplicationController
     @destinations = Destination.s(params[:q])
     logger.debug("DestinationController#search: @destinations=#{@destinations}")
     respond_to do |wants|
-      wants.html { render :text=>@destinations.map{|d| "<a href='#{destination_path d}'>#{d.name}, #{d.country.country}</a>\n"} }
+      wants.html { render :text=>@destinations.map{|d| 
+          parent_str = (d.city? && !d.parent.nil?) ? ", #{d.parent.name}" : ""
+          "<a href='#{destination_path d}'>#{d.name}#{parent_str}, #{d.country.country}</a>\n"} 
+        }
       wants.json { render :json=>@destinations.to_json }
     end
   end
