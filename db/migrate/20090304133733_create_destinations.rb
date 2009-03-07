@@ -34,6 +34,6 @@ class CreateDestinations < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :destinations
+    #drop_table :destinations
   end
 end
