@@ -1,0 +1,6 @@
+
+%ul
+  - @hotels.each do |hotel|
+    %li
+      = hotel.name
+      = "<a href=\"javascript:formatted_trip_items_ajaxx('POST', 'js', {id: #{hotel.id}})\">Add to trip</a>"

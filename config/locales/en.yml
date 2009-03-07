@@ -4,6 +4,8 @@
 en:
   hello: "Hello world"
   "Where do you want to go?": Where do you want to go?
+  Save: Save
+  Hotels: Hotels
   adult:
     one: "1 Adult"
     other: "{{count}} Adults"  

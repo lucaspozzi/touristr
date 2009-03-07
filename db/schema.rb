@@ -9,7 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD:db/schema.rb
 ActiveRecord::Schema.define(:version => 20090306104945) do
+=======
+ActiveRecord::Schema.define(:version => 20090306233458) do
+>>>>>>> 27ccc7394d3d33ae6c93bb9d96952eaecac2fcbc:db/schema.rb
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -94,6 +98,10 @@ ActiveRecord::Schema.define(:version => 20090306104945) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country_name"
+    t.integer  "click_counter",                                                   :default => 0, :null => false
+    t.integer  "score",                                                           :default => 0, :null => false
+    t.boolean  "delta",                                                                          :null => false
   end
 
   add_index "destinations", ["admin1_code"], :name => "index_destinations_on_admin1_code"
@@ -101,6 +109,45 @@ ActiveRecord::Schema.define(:version => 20090306104945) do
   add_index "destinations", ["country_code"], :name => "index_destinations_on_country_code"
   add_index "destinations", ["feature_class"], :name => "index_destinations_on_feature_class"
   add_index "destinations", ["name"], :name => "index_destinations_on_name"
+
+  create_table "hotels", :force => true do |t|
+    t.integer  "wct_id"
+    t.string   "brand"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "phone"
+    t.string   "online_bookings",   :limit => 1
+    t.string   "hotrates",          :limit => 1
+    t.string   "video",             :limit => 1
+    t.string   "brochure",          :limit => 1
+    t.string   "overview",          :limit => 1
+    t.string   "reviews",           :limit => 1
+    t.string   "map",               :limit => 1
+    t.string   "price_band",        :limit => 1
+    t.string   "star_rating",       :limit => 1
+    t.string   "star_source",       :limit => 1
+    t.string   "amenities"
+    t.string   "popularity_grade",  :limit => 1
+    t.string   "collections_grade", :limit => 1
+    t.string   "desc"
+    t.datetime "change_date"
+    t.string   "lo_rate"
+    t.string   "hi_rate"
+    t.string   "currency"
+    t.string   "sabre_id"
+    t.text     "long_desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hotels", ["latitude", "longitude"], :name => "index_hotels_on_latitude_and_longitude"
 
   create_table "people", :force => true do |t|
     t.integer  "user_id"
@@ -123,6 +170,15 @@ ActiveRecord::Schema.define(:version => 20090306104945) do
   end
 
   add_index "sessions", ["sessid"], :name => "sessions_sessid_index"
+
+  create_table "trip_items", :force => true do |t|
+    t.integer  "trip_id"
+    t.integer  "trippy_id"
+    t.integer  "order"
+    t.string   "trippy_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trip_memberships", :force => true do |t|
     t.integer  "person_id"

@@ -11,4 +11,5 @@ db/*.sqlite3
 index/*
 public/system
 public/javascripts/less_routes.js
+db/sphinx/*
       

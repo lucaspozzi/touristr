@@ -94,4 +94,5 @@ LOCALES_AVAILABLE = Dir["#{LOCALES_DIRECTORY}/*.{rb,yml}"].collect do |locale_fi
 end.uniq.sort
 
 
+Less::JsRoutes.generate!
 
