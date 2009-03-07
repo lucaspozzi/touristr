@@ -1,0 +1,5 @@
+
+%ul#trip_bar
+  - @t.trip_items.sorted.each do |trippy|
+    %li{:id=>trippy.dom_id( 'in_trip_bar')}
+      = h(trippy.name)
