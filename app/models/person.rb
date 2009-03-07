@@ -18,6 +18,7 @@ class Person < ActiveRecord::Base
   has_many :trip_memberships, :dependent=>:destroy
   has_many :trips, :through=>:trip_memberships
   belongs_to :current_trip, :class_name => "Trip", :foreign_key => "current_trip_id"
+  has_many :todos
   
   
   

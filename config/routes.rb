@@ -1,8 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :todos
+
   map.resources :trip_items
 
   map.resources :hotels do |hotel|
     hotel.resources :trip_items
+  end
+  map.resources :todos do |todo|
+    todo.resources :trip_items
   end
   map.resources :destinations, :collection=>{:search=>:get}
   map.resources :trips

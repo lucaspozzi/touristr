@@ -24,6 +24,7 @@
 #  modification_date :date          
 #  created_at        :datetime      
 #  updated_at        :datetime      
+#  country_name      :string(255)   
 #  click_counter     :integer(4)    default(0), not null
 #  score             :integer(4)    default(0), not null
 #  delta             :boolean(1)    not null
@@ -44,7 +45,7 @@ class Destination < ActiveRecord::Base
   COUNTRY = "PCLI"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
-  MAX_DESTINATION_SEARCH = 35
+  MAX_DESTINATION_SEARCH = 25
   CITY_PREFIX = "PP"
 
 

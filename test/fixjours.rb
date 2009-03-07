@@ -25,6 +25,14 @@ Fixjour do
     })
   end
   
+  define_builder(Hotel) do |klass, overrides|
+    klass.new({
+      :name=>"Hotel#{counter}"
+    })
+  end
+    
+  
+  
 end
 
 

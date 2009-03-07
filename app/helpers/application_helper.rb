@@ -54,4 +54,11 @@ module ApplicationHelper
   
   
   
+  def thickbox_link_to str, url, options = {}
+    width = options.delete(:width) || 500
+    height = options.delete(:height) || 500
+    link_to str, url.add_params(:height=>height, :width=>width), options.merge({:class=>'thickbox'})
+  end
+  
+  
 end

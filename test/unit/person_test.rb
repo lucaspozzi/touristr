@@ -6,6 +6,7 @@ class PersonTest < Test::Unit::TestCase
   should_belong_to :current_trip
   should_have_many :trip_memberships
   should_have_many :trips
+  should_have_many :todos
 
 
 
