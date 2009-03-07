@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD:db/schema.rb
-ActiveRecord::Schema.define(:version => 20090306104945) do
-=======
 ActiveRecord::Schema.define(:version => 20090306233458) do
->>>>>>> 27ccc7394d3d33ae6c93bb9d96952eaecac2fcbc:db/schema.rb
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -98,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20090306233458) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country_name"
     t.integer  "click_counter",                                                   :default => 0, :null => false
     t.integer  "score",                                                           :default => 0, :null => false
     t.boolean  "delta",                                                                          :null => false
