@@ -1,0 +1,13 @@
+- todo ||= list_item || @todo
+
+%li{:id=>todo.dom_id('in_list')}
+  %div
+    - if todo.done?
+      = link_to_remote t('Not done'), :url=>todo_path(todo).add_param('todo[done]'=>false), :method=>:put
+      - else
+        = link_to_remote t('Done'), :url=>todo_path(todo).add_param('todo[done]'=>true), :method=>:put
+    = link_to_remote t('Delete'), :url=>todo_path(todo), :method=>:delete, :confirm=>DELETE_CONFIRM
+    %div{:class=>"todo_heading#{ ' done' if todo.done?}"}
+      = h(todo.title)
+    %div{:class=>"todo_body#{ ' done' if todo.done?}"}
+      = sanitize(textilize(todo.description))
