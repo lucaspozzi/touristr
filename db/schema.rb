@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(:version => 20090307152838) do
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_content_on_destination_id"
 
+  create_table "destination_regions", :force => true do |t|
+    t.string "admin1_code"
+    t.string "name"
+    t.string "country_code"
+    t.string "region_code"
+  end
+
+  add_index "destination_regions", ["country_code"], :name => "index_destination_regions_on_country_code"
+  add_index "destination_regions", ["region_code"], :name => "index_destination_regions_on_region_code"
+
   create_table "destinations", :force => true do |t|
     t.string   "name"
     t.string   "ascii_name"
@@ -100,9 +110,11 @@ ActiveRecord::Schema.define(:version => 20090307152838) do
   end
 
   add_index "destinations", ["admin1_code"], :name => "index_destinations_on_admin1_code"
+  add_index "destinations", ["admin2_code"], :name => "index_destinations_on_admin2_code"
   add_index "destinations", ["alternate_names"], :name => "index_destinations_on_alternate_names"
   add_index "destinations", ["country_code"], :name => "index_destinations_on_country_code"
   add_index "destinations", ["feature_class"], :name => "index_destinations_on_feature_class"
+  add_index "destinations", ["feature_code"], :name => "index_destinations_on_feature_code"
   add_index "destinations", ["name"], :name => "index_destinations_on_name"
 
   create_table "hotels", :force => true do |t|
