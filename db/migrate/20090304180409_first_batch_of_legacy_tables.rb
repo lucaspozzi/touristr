@@ -74,9 +74,9 @@ SQL
   end
 
   def self.down
-#    drop_table :attractions
-#    drop_table :countries
-#    drop_table :destinations
-#    drop_table :destination_contents
+   drop_table :attractions
+   drop_table :countries
+   drop_table :destinations
+   drop_table :destination_contents
   end
 end

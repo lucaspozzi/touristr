@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20090307152838) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country_name"
     t.integer  "click_counter",                                                   :default => 0, :null => false
     t.integer  "score",                                                           :default => 0, :null => false
     t.boolean  "delta",                                                                          :null => false
