@@ -18,6 +18,7 @@
 class Trip < ActiveRecord::Base
   has_many :trip_memberships
   has_many :people, :through=>:trip_memberships
+  has_many :trip_items
   
   validates_uniqueness_of :private_identifier
   
@@ -43,5 +44,11 @@ class Trip < ActiveRecord::Base
     end
   end
     
+    
+    
+  def add obj
+    order = first(:order=>'ordered desc').ordered + 1 rescue 0
+    trip_items.create :ordered=>order, :trippy=>obj
+  end
     
 end

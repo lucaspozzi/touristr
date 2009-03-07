@@ -3,4 +3,4 @@
   - @hotels.each do |hotel|
     %li
       = hotel.name
-      = "<a href=\"javascript:formatted_trip_items_ajaxx('POST', 'js', {id: #{hotel.id}})\">Add to trip</a>"
+      = "<a href=\"javascript:formatted_hotel_trip_items_ajaxx(#{hotel.id}, 'js', 'POST', {authenticity_token: '#{form_authenticity_token}'})\">Add to trip</a>"

@@ -11,6 +11,8 @@
       
       = render :partial => "shared/destination_nav"
       
+      = render :partial => "shared/trip" unless @controller.controller_name == 'destinations'
+      
       = yield :top
 
       = display_standard_flashes

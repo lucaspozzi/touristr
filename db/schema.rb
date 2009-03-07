@@ -9,7 +9,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090306233458) do
+ActiveRecord::Schema.define(:version => 20090307152838) do
+
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
     t.string   "name"
@@ -93,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20090306233458) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country_name"
     t.integer  "click_counter",                                                   :default => 0, :null => false
     t.integer  "score",                                                           :default => 0, :null => false
     t.boolean  "delta",                                                                          :null => false
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20090306233458) do
   create_table "trip_items", :force => true do |t|
     t.integer  "trip_id"
     t.integer  "trippy_id"
-    t.integer  "order"
+    t.integer  "ordered"
     t.string   "trippy_type"
     t.datetime "created_at"
     t.datetime "updated_at"

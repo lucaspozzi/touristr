@@ -14,7 +14,4 @@ public/javascripts/less_routes.js
 db/sphinx/*
 config/development.sphinx.conf
 db/schema.rb
-<<<<<<< HEAD:.gitignore
- 
-=======
->>>>>>> 3f2102ddb4eb3640b2fcd76ebc5e04ca51badfa4:.gitignore
+nbproject

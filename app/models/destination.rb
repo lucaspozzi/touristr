@@ -44,7 +44,7 @@ class Destination < ActiveRecord::Base
   COUNTRY = "PCLI"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
-  MAX_DESTINATION_SEARCH = 15
+  MAX_DESTINATION_SEARCH = 35
   CITY_PREFIX = "PP"
 
 
@@ -84,7 +84,7 @@ class Destination < ActiveRecord::Base
   end
   
   def self.s query, params = {}
-    self.search query, params.merge({:order=>'score desc'})
+    self.search query, params.merge({:order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
   end
   
   def increment_click_counter
