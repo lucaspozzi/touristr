@@ -44,7 +44,7 @@ class Destination < ActiveRecord::Base
   COUNTRY = "PCLI"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
-  MAX_DESTINATION_SEARCH = 35
+  MAX_DESTINATION_SEARCH = 25
   CITY_PREFIX = "PP"
 
 
