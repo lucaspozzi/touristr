@@ -8,7 +8,10 @@ class DestinationsController < ApplicationController
     respond_to do |wants|
       wants.json do
         ar = []
-        @destinations.each { |d| ar << d.to_json(:only => [ :id, :name ]) }
+        @destinations.each { |d|  parent = d.city? ? ", #{d.parent}" : ""
+                                  ar << d.to_json(:only => [ :id, :name],
+                                                  :methods => :parent,
+                                                  :include => {:country => {:only => :country}})}
         render :json=>ar.join("\n")
       end
     end

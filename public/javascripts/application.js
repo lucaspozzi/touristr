@@ -89,10 +89,15 @@ function reinit_events(){
 $(function(){
   $('.destinationSearch').autocomplete('/destinations/search', {
     formatItem: function(item) {
-   		return less_json_eval(item).destination.name;
+		obj_from_json = less_json_eval(item)
+		if (obj_from_json.destination.parent) {
+			parent = ", " + obj_from_json.destination.parent.destination.name
+		} else {
+			parent = ""
+		}
+   		return obj_from_json.destination.name + parent + ", " + obj_from_json.destination.country.country;
    	}
    }).result(function(event, item) { 
-//    puts(less_json_eval(item).destination.id);
 	$(this).attr("value", less_json_eval(item).destination.name); 
     location.href = "/destinations/" + less_json_eval(item).destination.id;
    })    
