@@ -24,13 +24,13 @@
  * Licensed under the MIT License: http://www.opensource.org/licenses/mit-license.php
 */
       
-var tb_pathToImage = "/images/loading.gif";
+//var tb_pathToImage = "/images/loading.gif";
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 //on page load call tb_init
 jQuery(document).ready(function(){   
   tb_init('a.thickbox');//pass where to apply thickbox
-  imgLoader = new Image();// preload image
-  imgLoader.src = tb_pathToImage;
+//  imgLoader = new Image();// preload image
+//  imgLoader.src = tb_pathToImage;
 });
 //add thickbox to href & area elements that have a class of .thickbox
 
@@ -69,8 +69,8 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
     }
     
     if(caption===null){caption="";}
-    jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
-    jQuery('#TB_load').show();//show loader
+//    jQuery("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
+//    jQuery('#TB_load').show();//show loader
     
     var baseURL;
      if(url.indexOf("?")!==-1){ //ff there is a query string involved
@@ -187,7 +187,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
       };
       
       tb_position();
-      jQuery("#TB_load").remove();
+//      jQuery("#TB_load").remove();
       jQuery("#TB_ImageOff").click(tb_remove);
       jQuery("#TB_window").css({display:"block"}); //for safari using css instead of show
       };
@@ -243,19 +243,19 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
             jQuery('#' + params['inlineId']).append( jQuery("#TB_ajaxContent").children() ); // move elements back when you're finished
           });
           tb_position();
-          jQuery("#TB_load").remove();
+//          jQuery("#TB_load").remove();
           jQuery("#TB_window").css({display:"block"}); 
         TB_shown();
         }else if(url.indexOf('TB_iframe') != -1){
           tb_position();
           if(jQuery.browser.safari){//safari needs help because it will not fire iframe onload
-            jQuery("#TB_load").remove();
+//            jQuery("#TB_load").remove();
             jQuery("#TB_window").css({display:"block"});
           }
         }else{
           jQuery("#TB_ajaxContent").load(url += "&random=" + (new Date().getTime()),function(){//to do a post change this load method
             tb_position();
-            jQuery("#TB_load").remove();
+//            jQuery("#TB_load").remove();
             tb_init("#TB_ajaxContent a.thickbox");
             jQuery("#TB_window").css({display:"block"});
         TB_shown();
@@ -282,7 +282,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 }
 //helper functions below
 function tb_showIframe(){
-  jQuery("#TB_load").remove();
+//  jQuery("#TB_load").remove();
   jQuery("#TB_window").css({display:"block"});
 }
   function TB_Removing(){}
@@ -298,7 +298,7 @@ if (TB_Removing)
    jQuery("#TB_imageOff").unbind("click");
   jQuery("#TB_closeWindowButton").unbind("click");
   jQuery("#TB_window").fadeOut("fast",function(){jQuery('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();});
-  jQuery("#TB_load").remove();
+//  jQuery("#TB_load").remove();
   if (typeof document.body.style.maxHeight == "undefined") {//if IE 6
     jQuery("body","html").css({height: "auto", width: "auto"});
     jQuery("html").css("overflow","");

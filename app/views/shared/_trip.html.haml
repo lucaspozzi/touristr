@@ -1,4 +1,8 @@
 
+
+- return '' unless @t
+
+
 %ul#trip_bar
   - @t.trip_items.all(:include=>[:trippy]).each do |ti|
     = render :partial=>"#{ti.trippy.class.class_name.underscore.pluralize}/list_item", :object=>ti.trippy, :locals=>{:dom_id=>ti.dom_id('in_trip_bar'), :trip_item=>ti}

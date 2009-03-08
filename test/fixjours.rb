@@ -37,6 +37,13 @@ Fixjour do
       :description=>"blah\nblah\nblah"
     })
   end
+  
+  define_builder(Person) do |klass, overrides|
+    klass.new({
+      :email=>"jan@touristr#{counter}.com"
+    })
+  end
+    
     
   
   

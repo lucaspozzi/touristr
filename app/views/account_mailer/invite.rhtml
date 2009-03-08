@@ -1,0 +1,20 @@
+Hi <%= @invited_person.f %>,
+
+<%= @invitee_person.f %> has invited you to join the trip on touristr.com. All you have to do is signup here using this email address:
+
+http://touristr.com/signup 
+
+(Signup with <%= @invited_person.email %>)
+
+If you're not sure if you want to sign up or not, you can view the trip using this private address: <%= @trip.private_url %>
+
+
+<% unless @message.blank? %>
+Here's a message from <%= @invitee_person.f %>:
+
+<%= @message %>
+
+<% end %>
+
+Thanks,
+Jan Blanchard of touristr.com

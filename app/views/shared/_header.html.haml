@@ -5,7 +5,7 @@
     making travel easier
 
 %ul#userControls
-  - if @u
+  - if @u && !@u.new_record?
     %li
       = link_to t("Profile"), person_path(@p)
     %li

@@ -64,6 +64,7 @@ class Destination < ActiveRecord::Base
   
   def parent
     case feature_code
+    when COUNTRY: return self
     when ADMIN_LEVEL1: return Destination.find(:first, :conditions => "country_code='#{country_code}' and feature_code='#{COUNTRY}'")
     when ADMIN_LEVEL2: return Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_code='#{ADMIN_LEVEL1}'")
     else
@@ -84,7 +85,16 @@ class Destination < ActiveRecord::Base
   end
   
   def self.s query, params = {}
-    self.search query, params.merge({:order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
+    self.search query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
+  end
+  
+  def full_name
+    parent = self.city? ? ", #{self.parent.name}" : ""
+    "#{name}#{parent}, #{country_name}"  
+  end
+  
+  def country_name
+    country.country
   end
   
   def increment_click_counter
