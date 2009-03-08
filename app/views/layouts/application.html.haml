@@ -11,7 +11,7 @@
       
       = render :partial => "shared/destination_nav" if  @controller.controller_name == 'destinations'
       
-      = render :partial => "shared/trip" unless @controller.controller_name == 'destinations'
+      = render :partial => "shared/trip"
       
       = yield :top
 
