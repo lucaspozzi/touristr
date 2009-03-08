@@ -142,7 +142,7 @@ module Footnotes
         insert_text :before, /<\/head>/i, <<-HTML
         <!-- Footnotes Style -->
         <style type="text/css">
-          #footnotes_debug {margin: 2em 0 1em 0; text-align: center; color: #444; line-height: 16px;}
+          #footnotes_debug {margin: 2em 0 150px 0; text-align: center; color: #444; line-height: 16px;}
           #footnotes_debug a {text-decoration: none; color: #444; line-height: 18px;}
           #footnotes_debug table {text-align: center;}
           #footnotes_debug table td {padding: 0 5px;}

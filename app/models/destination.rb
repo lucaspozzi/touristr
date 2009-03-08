@@ -37,11 +37,14 @@ class Destination < ActiveRecord::Base
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
   has_many :attractions
+  has_many :trip_items, :as=>:trippy, :dependent=>:destroy
 
   acts_as_commentable
 
 
   COUNTRY = "PCLI"
+  COUNTRY_CLASS = "A"
+  CITY_CLASS = "P"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
   MAX_DESTINATION_SEARCH = 25
@@ -84,6 +87,20 @@ class Destination < ActiveRecord::Base
     end
   end
   
+  def kids max = MAX_DESTINATION_SEARCH
+    case feature_class 
+      when COUNTRY_CLASS: Destination.find(:all, :limit => max, :conditions => ["country_code = ? and feature_class != ?", country_code, COUNTRY_CLASS], :order => "score DESC")
+      when CITY_CLASS: Destination.all :limit => max, :conditions => ["country_code = ? and feature_class not in ('#{[COUNTRY_CLASS, CITY_CLASS].join("','")}')", country_code], :order => "score DESC"
+    end
+    # case feature_code
+    # when COUNTRY: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and feature_class='P'", :order => "score DESC")
+    # when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_class='P'", :order => "score DESC")
+    # when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}'  and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_class='P'", :order => "score DESC")
+    # else logger.error("Something else... #{feature_code}")
+    # end
+    
+  end
+  
   def self.s query, params = {}
     self.search query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
   end
@@ -106,14 +123,14 @@ class Destination < ActiveRecord::Base
 # delete t1 from destinations t1 inner join destinations t2 on t1.name = t2.name and t1.feature_code = t2.feature_code and t1.country_code = t2.country_code and t1.admin1_code = t2.admin1_code and t1.admin2_code = t2.admin2_code and t1.feature_class = t2.feature_class where t1.id < t2.id
   
 # set the scores:  
-#  update destinations set `score` = (((LENGTH(alternate_names) + 1) * 7) * (CASE feature_class WHEN 'P' THEN 2 ELSE 1 END) *  (CASE feature_class WHEN 'PPLA' THEN 5 WHEN 'AMUS' THEN 5 WHEN 'PRK' THEN 5 WHEN 'ANS' THEN 5 WHEN 'ARCH' THEN 5 WHEN 'ASTR' THEN 5 WHEN 'CH' THEN 5 WHEN 'BDG' THEN 5 WHEN 'CSTL' THEN 5 WHEN 'CTRS' THEN 5 WHEN 'GDN' THEN 5 WHEN 'HSTS' THEN 5 WHEN 'MUS' THEN 5 WHEN 'OBS' THEN 5 WHEN 'PYR' THEN 5 WHEN 'PRYS' THEN 5 WHEN 'RLG' THEN 5 WHEN 'RSRT' THEN 5 WHEN 'SHRN' THEN 5 WHEN 'SQR' THEN 5 WHEN 'TOWR' THEN 5 WHEN 'ZOO' THEN 5 ELSE 1 END) * (click_counter + 1) + (population / 5))
+#  update destinations set `score` = (((LENGTH(alternate_names) + 1) * 7) * (CASE feature_class WHEN 'P' THEN 2 ELSE 1 END) *  (CASE feature_class WHEN 'PPLA' THEN 5 WHEN 'AMUS' THEN 5 WHEN 'PRK' THEN 5 WHEN 'ANS' THEN 5 WHEN 'ARCH' THEN 5 WHEN 'ASTR' THEN 5 WHEN 'CH' THEN 5 WHEN 'BDG' THEN 5 WHEN 'CSTL' THEN 5 WHEN 'CTRS' THEN 5 WHEN 'GDN' THEN 5 WHEN 'HSTS' THEN 5 WHEN 'MUS' THEN 5 WHEN 'OBS' THEN 5 WHEN 'PYR' THEN 5 WHEN 'PRYS' THEN 5 WHEN 'RLG' THEN 5 WHEN 'RSRT' THEN 5 WHEN 'SHRN' THEN 5 WHEN 'SQR' THEN 5 WHEN 'TOWR' THEN 5 WHEN 'ZOO' THEN 5 ELSE 1 END) * ((click_counter + 1) / ) + (population / 5))
   
   def set_score
     self.score = (((alternate_names.size + 1) * 7) *
     (feature_class == 'P' ? 2 : 1) *
     (feature_class.in?(%w(H R T U)) ? 1 : 5) *
     (feature_code.in?(%w(PPLA AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO)) ? 5 : 1) *
-    (click_counter + 1)) +
+    ((click_counter + 1) / 5)) +
     (population / 5)
   end
   

@@ -19,10 +19,12 @@ class DestinationsController < ApplicationController
   
   def show
     @destination = Destination.find(params[:id])
+    @destination.increment_click_counter if params[:xs4f] == 'qf3r'
+    @t.add @destination
+      @destinations = @destination.kids
     if !@destination.city?
       logger.debug("Not a city...")
       link = ""
-      @destinations = @destination.children(10)
       render :action => :show_children
     end
   end

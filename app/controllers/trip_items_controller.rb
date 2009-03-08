@@ -6,6 +6,8 @@ class TripItemsController < ApplicationController
     if params[:hotel_id]
       trip_item = @t.add Hotel[params[:hotel_id]]
     elsif params[:cars_id]
+    elsif params[:destination_id]
+      trip_item = @t.add Destination params[:destination_id]
     end
     
     respond_to do |wants|

@@ -101,7 +101,7 @@ $(function(){
    	}
    }).result(function(event, item) { 
 	   $(this).attr("value", less_json_eval(item).destination.name); 
-     location.href = "/destinations/" + less_json_eval(item).destination.id;
+     location.href = "/destinations/" + less_json_eval(item).destination.id + "?xs4f=qf3r";
    })    
 });
 

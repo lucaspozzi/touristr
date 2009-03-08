@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :todos do |todo|
     todo.resources :trip_items
   end
-  map.resources :destinations, :collection=>{:search=>:get}
+  map.resources :destinations, :collection=>{:search=>:get} do |destination|
+    destination.resources :trip_item
+  end
   map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
   
