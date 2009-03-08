@@ -17,8 +17,7 @@ module ApplicationHelper
     remote_form_for name, *args, &block
   end
   
-  
-
+ 
   def display_standard_flashes(message = 'There were some problems with your submission:')
     if flash[:notice]
       flash_to_display, level = flash[:notice], 'notice'

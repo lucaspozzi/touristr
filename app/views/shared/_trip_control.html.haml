@@ -5,7 +5,7 @@
   %li#tripName
     = link_to h(@t.name), trip_path(@t)
   %li#tripPeople
-    = thickbox_link_to "#{t(:adult, :count=>@t.number_of_adults)} #{t(:children, :count=>@t.number_of_children)}", edit_trip_path(@t)
+    = thickbox_link_to "#{t(:adult, :count=>@t.number_of_adults)} #{t(:children, :count=>@t.number_of_children)}", edit_trip_path(@t), :height => 250
   %li#tripItinerary
     = link_to t("Itinerary"), "#"
   %li#tripComments
@@ -13,4 +13,4 @@
   %li#tripBudget
     = link_to t("Budget"), "#"
   %li#tripTodos
-    = thickbox_link_to t("To-Dos"), todos_path
+    = thickbox_link_to t("To-Dos"), todos_path, :height => 150

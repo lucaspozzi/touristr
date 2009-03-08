@@ -1,0 +1,11 @@
+
+= render :partial=>'form'
+
+%ul#todos_list
+  - @todos.each do |todo|
+    = render :partial=>'list_item', :object=>todo
+        
+
+        
+        
+        

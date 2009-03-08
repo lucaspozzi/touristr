@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090307182251) do
+ActiveRecord::Schema.define(:version => 20090307193849) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -72,16 +72,6 @@ ActiveRecord::Schema.define(:version => 20090307182251) do
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_content_on_destination_id"
 
-  create_table "destination_regions", :force => true do |t|
-    t.string "admin1_code"
-    t.string "name"
-    t.string "country_code"
-    t.string "region_code"
-  end
-
-  add_index "destination_regions", ["country_code"], :name => "index_destination_regions_on_country_code"
-  add_index "destination_regions", ["region_code"], :name => "index_destination_regions_on_region_code"
-
   create_table "destinations", :force => true do |t|
     t.string   "name"
     t.string   "ascii_name"
@@ -104,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20090307182251) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country_name"
     t.integer  "click_counter",                                                   :default => 0, :null => false
     t.integer  "score",                                                           :default => 0, :null => false
     t.boolean  "delta",                                                                          :null => false
@@ -185,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20090307182251) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "done",        :default => false, :null => false
   end
 
   create_table "trip_items", :force => true do |t|
