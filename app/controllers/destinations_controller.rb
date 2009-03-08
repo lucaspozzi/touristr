@@ -1,17 +1,19 @@
 class DestinationsController < ApplicationController
   skip_before_filter :login_required
   
-  
   def search
     logger.debug("DestinationController#search: param=#{params[:q]}")
     @destinations = Destination.s(params[:q])
     logger.debug("DestinationController#search: @destinations=#{@destinations}")
     respond_to do |wants|
-      wants.html { render :text=>@destinations.map{|d| 
-          parent_str = (d.city? && !d.parent.nil?) ? ", #{d.parent.name}" : ""
-          "<a href='#{destination_path d}'>#{d.name}#{parent_str}, #{d.country.country}</a>\n"} 
-        }
-      wants.json { render :json=>@destinations.to_json }
+      wants.json do
+        ar = []
+        @destinations.each { |d|  parent = d.city? ? ", #{d.parent}" : ""
+                                  ar << d.to_json(:only => [ :id, :name],
+                                                  :methods => :parent,
+                                                  :include => {:country => {:only => :country}})}
+        render :json=>ar.join("\n")
+      end
     end
   end
   
@@ -25,5 +27,5 @@ class DestinationsController < ApplicationController
       end
       render :text => link
     end
-  end  
+  end
 end

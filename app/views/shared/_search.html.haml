@@ -5,11 +5,3 @@
       %input.destinationSearch{:type=>'input', :size => 30}
       %input{:type=>'submit', :value=> t("Plan"), :class => 'button'}
       
-- content_for :javascripts do
-  :javascript
-    $(function(){
-    $('.destinationSearch').autocomplete('/destinations/search', {max: 25, scroll: false}).result(function(event, item) { 
-      puts(item);
-      location.href = $(item)[0].attr('href');
-        })    
-        });
