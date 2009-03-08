@@ -16,6 +16,7 @@ class PeopleController < ApplicationController
           if @person.new_record?
             page.alert @person.errors.to_s
           else
+            page << "TB_remove();"
             page.replace 'tripControl', :partial=>'shared/trip_control'
           end
         end
