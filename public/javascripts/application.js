@@ -101,22 +101,22 @@ jq(function(){
 
 function toDoJS(){
 	// Toggles the new To-Do form
-	$('a#addNewTodo').toggle(
-		function(e){
+	$('a#addNewToDo').click(function(e){
 			e.preventDefault();
-			$(this).text("Cancel");
-			$('div#newToDo').slideDown();
-		},
-		function(e){
-			e.preventDefault();
-			$(this).text("Add");
-			$('div#newToDo').slideUp();
-		}
-	);
+			var text = $(this).text();
+			if (text == "Add") {
+				$('div#newToDo').slideDown();
+				$(this).text("Cancel");
+			}else{
+				$('div#newToDo').slideUp();
+				$(this).text("Add");
+			};
+		});
+
 	
 	// Hides the new To-Do form on submission
 	$('div#newToDo form').submit(function(){
-		$(this).text("Add");
+		$('a#addNewToDo').text("Add");
 		$(this).parent().slideUp();
 	});
 	
