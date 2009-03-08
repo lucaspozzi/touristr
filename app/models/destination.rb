@@ -84,7 +84,7 @@ class Destination < ActiveRecord::Base
   end
   
   def self.s query, params = {}
-    self.search query, params.merge({:order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
+    self.search query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
   end
   
   def increment_click_counter
