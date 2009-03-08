@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
-  before_filter :setup, :except=>[:show, :private, :sort]
+  before_filter :setup, :except=>[:show, :private, :sorter]
   before_filter :setup_show, :only=>[:show]
-  before_filter :ensure_setup, :only=>[:update, :edit, :sort]
+  append_before_filter :ensure_setup, :only=>[:update, :edit, :sort]
   skip_before_filter :login_required
 
   def show
