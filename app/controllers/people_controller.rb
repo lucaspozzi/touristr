@@ -1,8 +1,27 @@
 class PeopleController < ApplicationController
+  skip_before_filter :login_required, :only=>[:new, :create]
+  skip_after_filter :store_current_trip, :only=>[:destroy]
+  before_filter :setup, :except=>[:index, :new, :create]
 
-skip_after_filter :store_current_trip, :only=>[:destroy]
-before_filter :setup, :except=>[:index]
 
+  def new
+    render
+  end
+  
+  def create
+    @person = @p.create_and_add_to_trip params[:person], @t
+    respond_to do |wants|
+      wants.js do
+        render :update do |page|
+          if @person.new_record
+            page.alert @person.errors.to_s
+          else
+            page.replace 'tripControl', :partial=>'shared/trip_control'
+          end
+        end
+      end
+    end
+  end
 
   def index
     redirect_to person_path(@p)

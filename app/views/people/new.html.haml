@@ -1,0 +1,13 @@
+
+%h2
+  = t("Invite someone to join your trip")
+%div
+  = t("Trip members can edit your trip. If you want to share your trip without letting them edit it, email them the public url.")
+  
+%div
+  - less_remote_form_for Person.new, :url=>people_path do |form|
+    = form.text_field :first_name
+    = form.text_field :last_name
+    = form.text_field :email
+    = form.wrap( :label=>"Message") {'<textarea name="message"></textarea>'}
+    = submit_tag t("Save")

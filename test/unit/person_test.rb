@@ -11,41 +11,69 @@ class PersonTest < Test::Unit::TestCase
 
 
 
+  context "creating new with trip" do
+    setup do
+      @user = create_user
+      @trip = @user.person.current_trip
+    end
+    
+    should "invite and add" do
+      assert_difference "@trip.number_of_adults" do
+      assert_difference "@trip.trip_memberships.count" do
+      assert_difference "Person.count" do
+        person = @user.person.create_and_add_to_trip( {:email=>'jan@touristr.com'}, @trip)
+      end
+      end
+      end
+    end
+    
+    should "not invite and add" do
+      assert_no_difference "@trip.number_of_adults" do
+      assert_no_difference "@trip.trip_memberships.count" do
+      assert_no_difference "Person.count" do
+        person = @user.person.create_and_add_to_trip( {:email=>'jan@touristr.c'}, @trip)
+      end
+      end
+      end
+    end
+  end
+
+
   
   
   should "have a current trip" do
-    person = Person.create
+    person = create_person
     assert(person.current_trip)
   end
     
-    should "create a new user from find" do
-      email = 'new_address@blah.com'
-      assert_nil Person.find_by_email(email)
-      assert p = Person.find_or_create_by_email(email)
-      assert !p.new_record?
-      assert_equal email, p.reload.email
+  should "create a new user from find" do
+    email = 'new_address@blah.com'
+    assert_nil Person.find_by_email(email)
+    assert p = Person.find_or_create_by_email(email)
+    assert !p.new_record?
+    assert_equal email, p.reload.email
+  end
+  
+  
+  should "return an existing user from find" do
+    email = people(:first).email
+    assert Person.find_by_email(email)
+    assert p = Person.find_or_create_by_email(email)
+    assert !p.new_record?
+    assert_equal people(:first), p.reload
+  end
+  
+  
+  
+  # a person should never be destroyed, so this should never be called, but
+  # we do have an after_destroy hook, just incase the business rules change we don't have
+  # to rember to do that.
+  # So this test is really just for code coverage.
+  should "destroy person" do
+    assert_difference 'Person.count', -1 do
+      people(:first).destroy
     end
-    
-    
-    should "return an existing user from find" do
-      email = people(:first).email
-      assert Person.find_by_email(email)
-      assert p = Person.find_or_create_by_email(email)
-      assert !p.new_record?
-      assert_equal people(:first), p.reload
-    end
-    
-    
-    
-    # a person should never be destroyed, so this should never be called, but
-    # we do have an after_destroy hook, just incase the business rules change we don't have
-    # to rember to do that.
-    # So this test is really just for code coverage.
-    should "destroy person" do
-      assert_difference 'Person.count', -1 do
-        people(:first).destroy
-      end
-    end
+  end
     
     
     # 

@@ -14,4 +14,8 @@ class AccountMailer < ActionMailer::Base
     @recipients     = user.person.email
     @from           = EMAIL_FROM
   end
+  
+  # def invite person, trip, 
+  #   
+  # end
 end

@@ -23,7 +23,7 @@ class Person < ActiveRecord::Base
   
   
   
-  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message=>'does not look like an email address.', :unless=>Proc.new{|p| p.user_id.blank?}
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>'does not look like an email address.'
   validates_uniqueness_of :email, :case_sensitive => false, :unless=>Proc.new{|p| p.user_id.blank?}
   
   
@@ -49,6 +49,16 @@ class Person < ActiveRecord::Base
     trips.each do |trip|
       trip.destroy if trip.memberships.count == 1
     end
+  end
+  
+  
+  def create_and_add_to_trip params, trip
+    raise 'Action not allowed' unless trip.in?(trips)
+    person = Person.create params
+    return person if person.new_record?
+    trip.people << person
+    trip.update_attribute :number_of_adults, trip.number_of_adults +=1
+    person
   end
   
 end
