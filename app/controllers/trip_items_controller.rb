@@ -11,7 +11,7 @@ class TripItemsController < ApplicationController
     respond_to do |wants|
       wants.js do
         render :update do |page|
-          page.insert_html 'bottom', 'trip_bar', render( :partial=>"#{trip_item.trippy.class.class_name.underscore.pluralize}/list_item", :object=>trip_item.trippy, :locals=>{:dom_id=>trip_item.dom_id})
+          page.insert_html 'bottom', 'trip_bar', render( :partial=>"#{trip_item.trippy.class.class_name.underscore.pluralize}/list_item", :object=>trip_item.trippy, :locals=>{:dom_id=>trip_item.dom_id, :trip_item => trip_item})
         end
       end
     end

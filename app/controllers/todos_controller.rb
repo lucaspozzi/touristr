@@ -3,7 +3,7 @@ class TodosController < ApplicationController
   
   
   def index
-    @todos = @p.todos
+    @todos = @t.trippies('Todo')
     respond_to do |wants|
       wants.html { render }
     end
