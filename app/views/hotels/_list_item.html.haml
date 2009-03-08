@@ -1,0 +1,7 @@
+- trippy ||= list_item
+- trip_item ||= nil
+- dom_id ||= trippy.dom_id('in_trip_bar')
+
+%li{:id=>dom_id}
+  = h(trippy.name)
+  = link_to_remote t('Delete'), :url=>trip_item_path(trip_item), :method=>:delete, :confirm=>DELETE_CONFIRM
