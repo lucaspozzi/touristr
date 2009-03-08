@@ -22,10 +22,8 @@ class DestinationsController < ApplicationController
     if !@destination.city?
       logger.debug("Not a city...")
       link = ""
-      @destination.children(10).each do |child_dest|
-        link << "<a href=#{destination_path child_dest.id}>#{child_dest.name}</a><br>"
-      end
-      render :text => link
+      @destinations = @destination.children(10)
+      render :action => :show_children
     end
   end
 end
