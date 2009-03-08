@@ -45,12 +45,10 @@ class Trip < ActiveRecord::Base
   end
     
   
-  def trippies( klass = nil)
+  def trippies( class_name = nil)
     ar = []
-    trip_items.sorted.each do |ti|
-      next if klass && ti.class_name != klass
-       ar << ti.trippy
-    end
+    ti = class_name.blank? ? trip_items : trip_items.all(:conditions => {:trippy_type => class_name})
+    ti.each { |ti| ar << ti.trippy }
     ar
   end
   

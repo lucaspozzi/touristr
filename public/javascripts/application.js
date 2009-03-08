@@ -88,18 +88,20 @@ function reinit_events(){
 
 $(function(){
   $('.destinationSearch').autocomplete('/destinations/search', {
+    minChars: 2,
+    max: 25,
     formatItem: function(item) {
-		obj_from_json = less_json_eval(item)
-		if (obj_from_json.destination.parent) {
-			parent = ", " + obj_from_json.destination.parent.destination.name
-		} else {
-			parent = ""
-		}
+  		obj_from_json = less_json_eval(item)
+  		if (obj_from_json.destination.parent) {
+  			parent = ", " + obj_from_json.destination.parent.destination.name
+  		} else {
+  			parent = ""
+  		}
    		return obj_from_json.destination.name + parent + ", " + obj_from_json.destination.country.country;
    	}
    }).result(function(event, item) { 
-	$(this).attr("value", less_json_eval(item).destination.name); 
-    location.href = "/destinations/" + less_json_eval(item).destination.id;
+	   $(this).attr("value", less_json_eval(item).destination.name); 
+     location.href = "/destinations/" + less_json_eval(item).destination.id;
    })    
 });
 
@@ -117,22 +119,22 @@ jq(function(){
 
 function toDoJS(){
 	// Toggles the new To-Do form
-	$('a#addNewTodo').toggle(
-		function(e){
+	$('a#addNewToDo').click(function(e){
 			e.preventDefault();
-			$(this).text("Cancel");
-			$('div#newToDo').slideDown();
-		},
-		function(e){
-			e.preventDefault();
-			$(this).text("Add");
-			$('div#newToDo').slideUp();
-		}
-	);
+			var text = $(this).text();
+			if (text == "Add") {
+				$('div#newToDo').slideDown();
+				$(this).text("Cancel");
+			}else{
+				$('div#newToDo').slideUp();
+				$(this).text("Add");
+			};
+		});
+
 	
 	// Hides the new To-Do form on submission
 	$('div#newToDo form').submit(function(){
-		$(this).text("Add");
+		$('a#addNewToDo').text("Add");
 		$(this).parent().slideUp();
 	});
 	

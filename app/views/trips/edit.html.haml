@@ -8,9 +8,9 @@
   = form.check_box :public, :onchange=>"if ($(this).checked()){$('#public_url_div').show();} else {$('#public_url_div').hide();}"
   #public_url_div{:style=>"#{'display: none;' unless @t.public?}"}
     Public Url:
-    = link_to h(trip_url(@t)), trip_url(@t)
+    = link_to h(trip_url(@t)), trip_url(@t), :target=>'_blank'
   %div
     Private Url:
-    = link_to @t.private_url, @t.private_url
+    = link_to @t.private_url, @t.private_url, :target=>'_blank'
   
   = submit_tag t("Save")

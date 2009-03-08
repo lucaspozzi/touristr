@@ -23,7 +23,7 @@ class TodosController < ApplicationController
     @todo = @p.todos.find params[:id]
     post_response @todo.update_attributes( params[:todo]) do |page|
       page.replace @todo.dom_id('in_list'), :partial=>'list_item'
-      page.replace @todo.trip_item.dom_id, :partial=>'list_item'
+      page.replace @todo.trip_item.dom_id('in_trip_bar'), :partial=>'list_item'
     end
   end
   
@@ -35,7 +35,7 @@ class TodosController < ApplicationController
       wants.js do
         render :update do |page|
           page.remove @todo.dom_id 'in_list'
-          page.remove @todo.trip_item.dom_id
+          page.remove @todo.trip_item.dom_id('in_trip_bar')
         end
       end
     end
