@@ -36,8 +36,8 @@ class Destination < ActiveRecord::Base
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
-  has_many :attractions
-
+  
+  
   acts_as_commentable
 
 
@@ -47,6 +47,8 @@ class Destination < ActiveRecord::Base
   MAX_DESTINATION_SEARCH = 25
   CITY_PREFIX = "PP"
 
+  ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY)
+  AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2]
 
   define_index do
     indexes name, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
@@ -57,29 +59,44 @@ class Destination < ActiveRecord::Base
   
   before_save :set_score
 
+
+
+  def attractions
+    children.find(:all, :conditions => ["feature_code in ?", ATTRACTIONS])
+  end
+
   
   def city?
     feature_code.start_with?(CITY_PREFIX)
   end
   
+  def attraction?
+    feature_code.in?(ATTRACTIONS)
+  end
+  
+  def area?
+    return feature_code.in?(AREAS)
+  end
+  
   def parent
     case feature_code
     when COUNTRY: return self
-    when ADMIN_LEVEL1: return Destination.find(:first, :conditions => "country_code='#{country_code}' and feature_code='#{COUNTRY}'")
-    when ADMIN_LEVEL2: return Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_code='#{ADMIN_LEVEL1}'")
+    when ADMIN_LEVEL1: return Destination.find(:first, :conditions => ["country_code=? and feature_code=?", country_code, COUNTRY])
+    when ADMIN_LEVEL2: return Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and feature_code=?", country_code, admin1_code, ADMIN_LEVEL1])
     else
       # a city may be directly under ADM1 (e.g. galway) 
-      p = Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_code='#{ADMIN_LEVEL2}'")
+      p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
       return p unless p.nil?
-      Destination.find(:first, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_code='#{ADMIN_LEVEL1}'")
+      Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
     end
   end
   
-  def children(max)
+  def children(max = MAX_DESTINATION_SEARCH)
     case feature_code
-    when COUNTRY: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and feature_class='P'", :order => "population DESC")
-    when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}' and admin1_code='#{admin1_code}' and feature_class='P'", :order => "population DESC")
-    when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => "country_code='#{country_code}'  and admin1_code='#{admin1_code}' and admin2_code='#{admin2_code}' and feature_class='P'", :order => "population DESC")
+    when COUNTRY: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and feature_class='P'", country_code], :order => "population DESC")
+    when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and admin1_code=? and feature_class='P'", country_code, admin1_code], :order => "population DESC")
+    when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_class='P'", country_code, admin1_code, admin2_code], :order => "score DESC")
+    when CITY: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in ?", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC")
     else logger.error("Something else... #{feature_code}")
     end
   end

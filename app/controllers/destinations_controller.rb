@@ -17,13 +17,18 @@ class DestinationsController < ApplicationController
     end
   end
   
-  def show
+  def show 
     @destination = Destination.find(params[:id])
-    if !@destination.city?
-      logger.debug("Not a city...")
-      link = ""
+    return if @destination.city?
+    if @destination.attraction?
+      @attraction = @destination
+      @destination = @attraction.parent
+      render :action => :show_attraction and return
+    elsif @destination.area?
       @destinations = @destination.children(10)
-      render :action => :show_children
+      render :action => :show_children and return  
+    else
+      logger.debug("Not a city...")
     end
   end
 end
