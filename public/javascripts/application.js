@@ -86,6 +86,17 @@ function reinit_events(){
 }
 
 
+$(function(){
+  $('.destinationSearch').autocomplete('/destinations/search', {
+    formatItem: function(item) {
+   		return less_json_eval(item).destination.name;
+   	}
+   }).result(function(event, item) { 
+//    puts(less_json_eval(item).destination.id);
+	$(this).attr("value", less_json_eval(item).destination.name); 
+    location.href = "/destinations/" + less_json_eval(item).destination.id;
+   })    
+});
 
 
 
