@@ -13,8 +13,10 @@
 
 class Todo < ActiveRecord::Base
   belongs_to :person
-  has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+  has_one :trip_item, :as=>:trippy, :dependent=>:destroy
   
   validates_presence_of :title
+  
+  
   
 end

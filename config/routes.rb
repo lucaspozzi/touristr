@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
     todo.resources :trip_items
   end
   map.resources :destinations, :collection=>{:search=>:get}
-  map.resources :trips
+  map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
   
   
