@@ -51,8 +51,9 @@ fieldset {  }
 legend {  }
 label { float: left; width: 150px; }
 input { border: #fff;  }
-input[type="text"] { -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-input[type="submit"], input.button { border: #1f76bd; background: #1f76bd; color: #fff; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+textarea {  }
+input[type="text"] { /*-moz-border-radius: 10px; -webkit-border-radius: 10px;*/ }
+input[type="submit"], input.button { border: #1f76bd; background: #1f76bd; color: #fff; /*-moz-border-radius: 10px; -webkit-border-radius: 10px;*/ }
 input.formDescription { color: #bbb; }
 
 /* Clear Div */
@@ -80,6 +81,8 @@ Planning Template
 -------------------------------------------------------------------------------------------*/
 
 div#wrapper { width: 94%; margin: 0 auto; min-width: 960px; }
+
+div#footer { clear: both; margin: 10px 0 40px; }
 
 /* Header */
 
@@ -166,8 +169,23 @@ Thickbox heading
 -------------------------------------------------------------------------------------------*/
 
 div#TB_window h3 { margin: 0; font-size: 40px; padding: 6px 0 16px; font-weight: 600; }
+div#TB_window h3 a { font-size: 12px; font-weight: 300; }
 div#TB_window div.row { margin: 0 30px 0 0; font-size: 14px; font-weight: 300; margin: 5px 0 5px; clear: both; }
 div#TB_window input { font-size: 14px; padding: 2px 8px; }
+
+/* ToDo List and Add New */
+div#TB_window { overflow: hidden; }
+div#TB_window div#newToDo { display: none; }
+div#TB_window ul#todos_list li { list-style: none; clear: both; margin: 15px 0 20px 8px; display: block; }
+
+div#TB_window ul#todos_list li p { margin: 0; }
+div#TB_window ul#todos_list div.todo_heading { color: #fff; font-size: 18px; font-weight: 300; letter-spacing: 1px; margin: 2px 0 3px; }
+div#TB_window ul#todos_list div.todo_heading a { font-size: 12px; /*opacity: 0;*/ }
+div#TB_window ul#todos_list div.todo_body span.description { color: #777; font-size: 12px; width: 300px; display: block; float: left; }
+div#TB_window ul#todos_list div.todo_heading.done { opacity: 0.08; }
+div#TB_window ul#todos_list div.todo_body.done span { opacity: 0.17; }
+
+
 
 /*
 Ajax Messages

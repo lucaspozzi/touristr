@@ -1,11 +1,16 @@
-
-= render :partial=>'form'
+%h3
+  To-Do List
+  = link_to "Add", new_todo_path, :id => "addNewTodo"
+#newToDo
+  = render :partial=>'form'
 
 %ul#todos_list
   - @todos.each do |todo|
     = render :partial=>'list_item', :object=>todo
         
 
-        
-        
-        
+/ JS for this page in application.j, do a find on "toDoJS"
+:javascript
+  toDoJS();
+    
+    
