@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_filter :setup, :except=>[:show, :private]
+  before_filter :setup, :except=>[:show, :private, :sort]
   before_filter :setup_show, :only=>[:show]
   skip_before_filter :login_required
 
@@ -33,17 +33,24 @@ class TripsController < ApplicationController
       end
     end
   end
+  
+  def sort
+    params[:trip_bar].each_with_index do |ti_id, index|
+      @t.trip_items.find(ti_id).update_attribute :ordered, index
+    end
+    render :nothing=>true
+  end
 
   protected
 
   def setup
-    @t = @trip = params[:id] ? Trip.find(params[:id]) : @p.trips.current
+    @trip = params[:id] ? Trip.find(params[:id]) : @p.current_trip
   end
 
   def setup_show
     #allow public trips and my trips
     trip = params[:id] ? Trip.find(params[:id]) : @p.trips.current
-    return @t = @trip = trip if trip.public? || trip.in?(@p.trips)
+    return @trip = trip if trip.public? || trip.in?(@p.trips)
     raise ActiveRecord::RecordNotFound
   end
 

@@ -31,6 +31,13 @@ Fixjour do
     })
   end
     
+  define_builder(Todo) do |klass, overrides|
+    klass.new({
+      :title=>"title #{counter}",
+      :description=>"blah\nblah\nblah"
+    })
+  end
+    
   
   
 end

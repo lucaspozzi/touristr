@@ -41,4 +41,5 @@
 
 class Hotel < ActiveRecord::Base
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+  
 end

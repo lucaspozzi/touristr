@@ -1,5 +1,7 @@
 
 %ul#trip_bar
-  - @t.trippies.each do |trippy|
-    %li{:id=>trippy.dom_id( 'in_trip_bar')}
-      = h(trippy.name)
+  - @t.trip_items.all(:include=>[:trippy]).each do |ti|
+    = render :partial=>"#{ti.trippy.class.class_name.underscore.pluralize}/list_item", :object=>ti.trippy, :locals=>{:dom_id=>ti.dom_id}
+    
+= content_for :javascript do 
+  = sortable_element( 'trip_bar', :url=>sort_trip_path(@t))

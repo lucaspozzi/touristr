@@ -93,9 +93,11 @@ class Destination < ActiveRecord::Base
     save
   end
   
+# remove duplicates:
+# delete t1 from destinations t1 inner join destinations t2 on t1.name = t2.name and t1.feature_code = t2.feature_code and t1.country_code = t2.country_code and t1.admin1_code = t2.admin1_code and t1.admin2_code = t2.admin2_code and t1.feature_class = t2.feature_class where t1.id < t2.id
   
-  
-#  update destinations set `score` = (((LENGTH(alternate_names) + 1) * 7) * (CASE feature_class WHEN 'P' THEN 2 ELSE 1 END) *  (CASE feature_class WHEN 'H' THEN 1 WHEN 'R' THEN 1 WHEN 'T' THEN 1 WHEN 'U' THEN 1 ELSE 5 END) * (CASE feature_code WHEN 'P' THEN 5 WHEN 'P' THEN 5 WHEN 'L' THEN 5 WHEN 'A' THEN 5  WHEN 'A' THEN 5 WHEN 'M' THEN 5 WHEN 'U' THEN 5 WHEN 'S' THEN 5  WHEN 'P' THEN 5 WHEN 'R' THEN 5 WHEN 'K' THEN 5  WHEN 'A' THEN 5 WHEN 'N' THEN 5 WHEN 'S' THEN 5  WHEN 'A' THEN 5 WHEN 'R' THEN 5 WHEN 'C' THEN 5 WHEN 'H' THEN 5  WHEN 'A' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'R' THEN 5  WHEN 'C' THEN 5 WHEN 'H' THEN 5  WHEN 'B' THEN 5 WHEN 'D' THEN 5 WHEN 'G' THEN 5  WHEN 'C' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'L' THEN 5  WHEN 'C' THEN 5 WHEN 'T' THEN 5 WHEN 'R' THEN 5 WHEN 'S' THEN 5  WHEN 'G' THEN 5 WHEN 'D' THEN 5 WHEN 'N' THEN 5  WHEN 'H' THEN 5 WHEN 'S' THEN 5 WHEN 'T' THEN 5 WHEN 'S' THEN 5  WHEN 'M' THEN 5 WHEN 'U' THEN 5 WHEN 'S' THEN 5  WHEN 'O' THEN 5 WHEN 'B' THEN 5 WHEN 'S' THEN 5  WHEN 'P' THEN 5 WHEN 'Y' THEN 5 WHEN 'R' THEN 5  WHEN 'P' THEN 5 WHEN 'R' THEN 5 WHEN 'Y' THEN 5 WHEN 'S' THEN 5  WHEN 'R' THEN 5 WHEN 'L' THEN 5 WHEN 'G' THEN 5  WHEN 'R' THEN 5 WHEN 'S' THEN 5 WHEN 'R' THEN 5 WHEN 'T' THEN 5  WHEN 'S' THEN 5 WHEN 'H' THEN 5 WHEN 'R' THEN 5 WHEN 'N' THEN 5  WHEN 'S' THEN 5 WHEN 'Q' THEN 5 WHEN 'R' THEN 5  WHEN 'T' THEN 5 WHEN 'O' THEN 5 WHEN 'W' THEN 5 WHEN 'R' THEN 5  WHEN 'Z' THEN 5 WHEN 'O' THEN 5 WHEN 'O' THEN 5 ELSE 1 END) * (click_counter + 1) + (population / 5))
+# set the scores:  
+#  update destinations set `score` = (((LENGTH(alternate_names) + 1) * 7) * (CASE feature_class WHEN 'P' THEN 2 ELSE 1 END) *  (CASE feature_class WHEN 'PPLA' THEN 5 WHEN 'AMUS' THEN 5 WHEN 'PRK' THEN 5 WHEN 'ANS' THEN 5 WHEN 'ARCH' THEN 5 WHEN 'ASTR' THEN 5 WHEN 'CH' THEN 5 WHEN 'BDG' THEN 5 WHEN 'CSTL' THEN 5 WHEN 'CTRS' THEN 5 WHEN 'GDN' THEN 5 WHEN 'HSTS' THEN 5 WHEN 'MUS' THEN 5 WHEN 'OBS' THEN 5 WHEN 'PYR' THEN 5 WHEN 'PRYS' THEN 5 WHEN 'RLG' THEN 5 WHEN 'RSRT' THEN 5 WHEN 'SHRN' THEN 5 WHEN 'SQR' THEN 5 WHEN 'TOWR' THEN 5 WHEN 'ZOO' THEN 5 ELSE 1 END) * (click_counter + 1) + (population / 5))
   
   def set_score
     self.score = (((alternate_names.size + 1) * 7) *

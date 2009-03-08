@@ -72,16 +72,6 @@ ActiveRecord::Schema.define(:version => 20090307193849) do
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_content_on_destination_id"
 
-  create_table "destination_regions", :force => true do |t|
-    t.string "admin1_code"
-    t.string "name"
-    t.string "country_code"
-    t.string "region_code"
-  end
-
-  add_index "destination_regions", ["country_code"], :name => "index_destination_regions_on_country_code"
-  add_index "destination_regions", ["region_code"], :name => "index_destination_regions_on_region_code"
-
   create_table "destinations", :force => true do |t|
     t.string   "name"
     t.string   "ascii_name"
