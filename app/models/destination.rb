@@ -88,6 +88,10 @@ class Destination < ActiveRecord::Base
     self.search query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH})
   end
   
+  def full_name
+    parent = self.city? ? ", #{self.parent.name}" : ""
+    "#{name}#{parent}, #{country_name}"  
+  end
   
   def country_name
     country.country

@@ -1,0 +1,7 @@
+<p>
+<ul>
+  <% @destinations.each do |dest| %>
+    <li><a href="<%=destination_path dest%>"><%=dest.full_name%><a></li>
+  <% end %>
+</ul>
+</p>
