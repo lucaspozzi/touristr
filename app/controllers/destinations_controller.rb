@@ -20,7 +20,7 @@ class DestinationsController < ApplicationController
   def show 
     @destination = Destination.find(params[:id])
     @destination.increment_click_counter if params[:xs4f] == 'qf3r'
-    @t.add @destination
+    @t.add @destination if @destination.city?
     @destinations = @destination.kids
     return if @destination.city?
     if @destination.attraction?

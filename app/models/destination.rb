@@ -79,6 +79,10 @@ class Destination < ActiveRecord::Base
     return feature_code.in?(AREAS)
   end
   
+  def parent_city
+    self
+  end
+  
   def parent
     case feature_code
     when COUNTRY: return self
