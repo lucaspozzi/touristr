@@ -19,3 +19,5 @@ EMAIL_REGEX = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
 ActionView::Helpers::InstanceTag::DEFAULT_FIELD_OPTIONS = {}
 ActionView::Helpers::InstanceTag::DEFAULT_TEXT_AREA_OPTIONS = {}
+
+SMTP_ERRORS = [Net::SMTPFatalError, Net::SMTPSyntaxError, TimeoutError, IOError, Net::SMTPUnknownError, Net::SMTPServerBusy, Net::SMTPAuthenticationError]

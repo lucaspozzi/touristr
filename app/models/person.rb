@@ -39,6 +39,7 @@ class Person < ActiveRecord::Base
     return '' if self.first_name.nil? && self.last_name.nil?
     ((self.first_name || '') + ' ' + (self.last_name || '')).strip
   end
+  alias_method :f, :full_name
   
   def set_current_trip t
     return true if t.nil? || !t.in?(trips)
@@ -52,13 +53,22 @@ class Person < ActiveRecord::Base
   end
   
   
-  def create_and_add_to_trip params, trip
+  def create_and_add_to_trip params, trip, message = ''
     raise 'Action not allowed' unless trip.in?(trips)
-    person = Person.create params
-    return person if person.new_record?
+    person = Person.new params
+    return person unless person.valid?
+    begin
+      AccountMailer.deliver_invite person, trip, self, message
+    rescue StandardError, *SMTP_ERRORS => e
+      logger.debug e.inspect.red
+      person.errors.add :email, "we couldn't send to that email address."
+      return person
+    end
+    person.save
     trip.people << person
-    trip.update_attribute :number_of_adults, trip.number_of_adults +=1
+    trip.update_attribute :number_of_adults, trip.number_of_adults += 1
     person
+    
   end
   
 end

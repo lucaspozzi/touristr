@@ -9,11 +9,11 @@ class PeopleController < ApplicationController
   end
   
   def create
-    @person = @p.create_and_add_to_trip params[:person], @t
+    @person = @p.create_and_add_to_trip params[:person], @t, params[:message]
     respond_to do |wants|
       wants.js do
         render :update do |page|
-          if @person.new_record
+          if @person.new_record?
             page.alert @person.errors.to_s
           else
             page.replace 'tripControl', :partial=>'shared/trip_control'
