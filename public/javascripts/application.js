@@ -99,6 +99,60 @@ jq(function(){
 
 // Conor's Mad house of unobtrusiveness!!!
 
+function toDoJS(){
+	// Toggles the new To-Do form
+	$('a#addNewTodo').toggle(
+		function(e){
+			e.preventDefault();
+			$(this).text("Cancel");
+			$('div#newToDo').slideDown();
+		},
+		function(e){
+			e.preventDefault();
+			$(this).text("Add");
+			$('div#newToDo').slideUp();
+		}
+	);
+	
+	// Hides the new To-Do form on submission
+	$('div#newToDo form').submit(function(){
+		$(this).text("Add");
+		$(this).parent().slideUp();
+	});
+	
+	// // Shows, and hides delete link for each list item
+	// 	var beingShown = false;
+	// 	var visible = false;
+	// 	
+	// 	$('ul#todos_list li').mouseover(
+	// 		function(){
+	// 			var popup = $(this).children('div').children('div.todo_heading').children('a');
+	// 			
+	// 			if(beingShown || visible) {
+	// 				return;
+	// 			}else{
+	// 				beingShown = true;
+	// 				
+	// 				popup.animate({
+	// 					opacity: 1
+	// 				}, '', function(){
+	// 					beingShown = false;
+	// 					visible = true;
+	// 				});
+	// 			}
+	// 			
+	// 	}).mouseout(
+	// 		function(){
+	// 			var popup = $(this).children('div').children('div.todo_heading').children('a');
+	// 			
+	// 			popup.animate({
+	// 				opacity: 0
+	// 			}, '', function(){
+	// 				visible = false;
+	// 			});
+	// 	});
+};
+
 $(document).ready(function() {
 	
 	var label = $('#destinationSearchForm label').text()
@@ -108,9 +162,9 @@ $(document).ready(function() {
 	$('input.destinationSearch').focus(function(){
 		$(this).removeClass("formDescription").attr('value', '');
 	});
+
 	
 });
-
 
 
 

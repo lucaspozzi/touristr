@@ -1,9 +1,6 @@
-
-
-
 - less_remote_form_for Todo.new, :url=>todos_path do |form|
   = form.text_field :title
-  = form.text_area :description
+  = form.text_area :description, :size => "40x3"
   = submit_tag t('Save')
 
 
