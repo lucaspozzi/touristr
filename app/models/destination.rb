@@ -47,8 +47,10 @@ class Destination < ActiveRecord::Base
   ADMIN_LEVEL2 = "ADM2"
   MAX_DESTINATION_SEARCH = 25
   CITY_PREFIX = "PP"
+  CITIES = %w(PPL PPLA PPLC PPLG PPLL PPLQ PPLR PPLS PPLW PPLX STLMT)
+  
 
-  ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY)
+  ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY ISLS ISL CLF LK)
   AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2]
 
   define_index do
@@ -63,7 +65,8 @@ class Destination < ActiveRecord::Base
 
 
   def attractions
-    children.find(:all, :conditions => ["feature_code in ?", ATTRACTIONS])
+    potential_attractions = children(MAX_DESTINATION_SEARCH)
+    potential_attractions.find(:all, :conditions => ["feature_code in (?)", ATTRACTIONS])
   end
 
   
@@ -80,15 +83,20 @@ class Destination < ActiveRecord::Base
   end
   
   def parent
+    puts(self.feature_code)
     case feature_code
     when COUNTRY: return self
     when ADMIN_LEVEL1: return Destination.find(:first, :conditions => ["country_code=? and feature_code=?", country_code, COUNTRY])
     when ADMIN_LEVEL2: return Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and feature_code=?", country_code, admin1_code, ADMIN_LEVEL1])
     else
-      # a city may be directly under ADM1 (e.g. galway) 
-      p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
-      return p unless p.nil?
-      Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
+      if feature_code.in?(CITIES)
+        # a city may be directly under ADM1 (e.g. galway) 
+        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
+        return p unless p.nil?
+        Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
+      elsif feature_code.in?(ATTRACTIONS)
+        Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
+      end  
     end
   end
   
@@ -97,8 +105,12 @@ class Destination < ActiveRecord::Base
     when COUNTRY: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and feature_class='P'", country_code], :order => "population DESC")
     when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and admin1_code=? and feature_class='P'", country_code, admin1_code], :order => "population DESC")
     when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_class='P'", country_code, admin1_code, admin2_code], :order => "score DESC")
-    when CITY: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in ?", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC")
-    else logger.error("Something else... #{feature_code}")
+    else
+      if feature_code.in?(CITIES)
+        return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in (?)", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC")
+      else 
+        logger.error("Something else... #{feature_code}")
+      end
     end
   end
   
@@ -209,6 +221,4 @@ class Destination < ActiveRecord::Base
   #      end
   #    end
 
-
 end
-
