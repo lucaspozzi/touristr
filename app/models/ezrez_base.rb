@@ -21,13 +21,6 @@ class EzrezBase
     response
   end
   
-  def prepare_args(body)
-      args = {:method => :post}
-      args["Content-Type"] = "application/xml"
-      args["Content-Length"] = body.size.to_s
-      args[:body] = body
-      return args
-    end
   def build_xml params
     {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Currency=>'USD', :Debug=>true}.merge(params)}.to_xml.gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '')
   end
