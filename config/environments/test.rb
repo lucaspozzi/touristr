@@ -20,3 +20,11 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+
+
+EZREZ_URL = 'http://amhols.americanholidays.com/api/api.cfm'
+EZREZ_USER = 'touristr'
+EZREZ_PASSWORD = 'welcome1'
+
+
