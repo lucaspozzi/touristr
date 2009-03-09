@@ -31,7 +31,7 @@
 
 
 class Destination < ActiveRecord::Base
-#  include REXML
+  extend ActiveSupport::Memoizable
   
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
@@ -65,8 +65,8 @@ class Destination < ActiveRecord::Base
 
 
   def attractions
-    potential_attractions = children(MAX_DESTINATION_SEARCH)
-    potential_attractions.find(:all, :conditions => ["feature_code in (?)", ATTRACTIONS])
+    potential_attractions = children
+    potential_attractions.select(:all, :conditions => ["feature_code in (?)", ATTRACTIONS])
   end
 
   
@@ -81,10 +81,8 @@ class Destination < ActiveRecord::Base
   def area?
     return feature_code.in?(AREAS)
   end
+  alias_method :country?, :area?
   
-  def parent_city
-    self
-  end
   
   def parent
     puts(self.feature_code)
@@ -98,11 +96,14 @@ class Destination < ActiveRecord::Base
         p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
         return p unless p.nil?
         Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
+        return p unless p.nil?
+        Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, COUNTRY])
       elsif feature_code.in?(ATTRACTIONS)
         Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
       end  
     end
   end
+  
   
   def children(max = MAX_DESTINATION_SEARCH)
     case feature_code
@@ -117,6 +118,7 @@ class Destination < ActiveRecord::Base
       end
     end
   end
+  
   
   def kids max = MAX_DESTINATION_SEARCH
     case feature_class 
@@ -137,8 +139,8 @@ class Destination < ActiveRecord::Base
   end
   
   def full_name
-    parent = self.city? ? ", #{self.parent.name}" : ""
-    "#{name}#{parent}, #{country_name}"  
+    parent_name = self.city? ? ", #{parent.name}" : ""
+    "#{name}#{parent_name}, #{country_name}"  
   end
   
   def country_name
@@ -164,6 +166,12 @@ class Destination < ActiveRecord::Base
     ((click_counter + 1) / 5)) +
     (population / 5)
   end
+  
+  
+  
+  
+  
+  #memoize :attractions, :city?, :attraction?, :area?, :parent, :children, :full_name
   
   # 
   #   def self.search(searchString)    
