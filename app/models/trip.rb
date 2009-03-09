@@ -53,15 +53,35 @@ class Trip < ActiveRecord::Base
   end
   
     
-    
+   
+=begin
+  TODO these methods that act on the trip_items association should be refactored to the class
+=end
   def add obj
-    if obj.is_a?(Destination) && !obj.attraction?
-      return if trip_items.find_by_trippy_type_and_trippy_id obj.class.class_name, obj.id
-    elsif obj.attraction?
-#      obj.
+    if obj.is_a?(Destination) 
+      return nil if obj.country?
+      if !obj.attraction?
+        return if trip_items.find_by_trippy_type_and_trippy_id obj.class.class_name, obj.id
+      elsif obj.attraction?
+        ti_parent = trippies_parent obj
+        return move_trippies_back_one_starting_with ti_parent.order + 1
+      end
     end
     order = trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0
     trip_items.create :ordered=>order, :trippy=>obj
   end
     
+    
+  parent
+  def trippies_parent t
+    trip_items.select {|ti| ti.trippy_id == t.parent.id && ti.trippy_type == 'Destination'}.first
+  end
+  
+  def move_trippies_back_one_starting_with num = 1
+    trip_items.each do |ti|
+      next unless ti.ordered >= num
+      ti.update_attribute :ordered, ti.ordered + 1
+    end
+  end
+  
 end

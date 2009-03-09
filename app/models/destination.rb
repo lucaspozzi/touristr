@@ -31,7 +31,7 @@
 
 
 class Destination < ActiveRecord::Base
-#  include REXML
+  extend ActiveSupport::Memoizable
   
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
@@ -65,7 +65,7 @@ class Destination < ActiveRecord::Base
 
 
   def attractions
-    potential_attractions = children(MAX_DESTINATION_SEARCH)
+    potential_attractions = children
     Destination.find(potential_attractions, :conditions => ["feature_code in (?)", ATTRACTIONS])
   end
 
@@ -81,10 +81,8 @@ class Destination < ActiveRecord::Base
   def area?
     return feature_code.in?(AREAS)
   end
+  alias_method :country?, :area?
   
-  def parent_city
-    self
-  end
   
   def parent
     puts(self.feature_code)
@@ -107,6 +105,7 @@ class Destination < ActiveRecord::Base
     end
   end
   
+  
   def children(max = MAX_DESTINATION_SEARCH)
     case feature_code
     when COUNTRY: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and feature_class='P'", country_code], :order => "population DESC")
@@ -120,6 +119,7 @@ class Destination < ActiveRecord::Base
       end
     end
   end
+  
   
   def kids max = MAX_DESTINATION_SEARCH
     case feature_class 
@@ -144,13 +144,13 @@ class Destination < ActiveRecord::Base
       res_set[dest.name] = dest.id
     end
     
-    res.delete_if{|dest| p("#{dest.name} | #{res_set[dest.name]} #{dest.id}"); res_set[dest.name] != dest.id}
+    res.delete_if{|dest| res_set[dest.name] != dest.id}
     res
   end
   
   def full_name
-    parent = self.city? ? ", #{self.parent.name}" : ""
-    "#{name}#{parent}, #{country_name}"  
+    parent_name = self.city? ? ", #{parent.name}" : ""
+    "#{name}#{parent_name}, #{country_name}"  
   end
   
   def country_name

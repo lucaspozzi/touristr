@@ -15,7 +15,7 @@
 
 #TB_window { position: fixed; background: #000; background: rgba(0, 0, 0, 0.9); 
 
--moz-border-radius: 10px; -webkit-border-radius: 10px; z-index: 102; color: #a9a9a9; display: none; text-align: left; bottom: 65px; left: 50%; }
+-moz-border-radius: 10px; -webkit-border-radius: 10px; z-index: 102; color: #a9a9a9; display: none; text-align: left; bottom: 65px; left: 50%; overflow: hidden; }
 
 * html #TB_window { 
 

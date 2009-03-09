@@ -30,4 +30,43 @@ class TripTest < ActiveSupport::TestCase
     
   end
   
+  
+  should "move items to make space for a new one" do
+    trip = create_trip
+    t1 = trip.add create_todo
+    t2 = trip.add create_todo
+    t3 = trip.add create_todo
+    t4 = trip.add create_todo
+    
+    assert_equal [0,1,2,3], [t1.ordered, t2.ordered, t3.ordered, t4.ordered]
+    trip.send :move_trippies_back_one_starting_with, 2
+    assert_equal [0,1,3,4], [t1.reload.ordered, t2.reload.ordered, t3.reload.ordered, t4.reload.ordered]
+  end
+  
+  should "not add a country to the trip" do
+    trip = create_trip
+    assert_no_difference "trip.trip_items.count" do
+      assert !trip.add( create_destination_country)
+    end
+  end
+  
+  should "add a destination city to the trip" do
+    trip = create_trip
+    paris = create_destination
+    assert paris.city?
+    assert !paris.country?
+    assert !paris.attraction?
+    assert_difference "trip.trip_items.count" do
+      assert trip.add( paris)
+    end
+  end
+  
+  should "find the trippies parent" do
+    p 'asdfasdf'
+    trip = create_trip
+    create_destination_country # so paris' parent.name will work
+    t1 = trip.add create_destination
+    assert_equal t1, trip.send( :trippies_parent, create_destination_attraction)
+  end
+  
 end
