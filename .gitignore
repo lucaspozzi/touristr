@@ -13,3 +13,5 @@ public/system
 public/javascripts/less_routes.js
 db/sphinx/*
 nbproject
+config/*sphinx.conf
+db/schema.rb
