@@ -97,7 +97,10 @@ class Destination < ActiveRecord::Base
         # a city may be directly under ADM1 (e.g. galway) 
         p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
         return p unless p.nil?
-        Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
+        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
+        return p unless p.nil?
+        # We return the country if unable to find a proper parent (e.g. 2964506 Dun Laoghaire -  )
+        p = Destination.find(:first, :conditions => ["country_code=? and feature_code in (?)", country_code, COUNTRY])        
       elsif feature_code.in?(ATTRACTIONS)
         Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
       end  
@@ -169,6 +172,17 @@ class Destination < ActiveRecord::Base
   def self.debug_search query
     s(query).each do |c| 
       puts("#{c.id} - #{c.feature_code} - #{c.name}") 
+    end
+    nil
+  end
+  
+  def self.debug_hierarchy arr
+    arr.each do |c|
+      begin 
+        puts("#{c.id} - #{c.feature_code} - #{c.name}")
+      rescue Exception => e
+        puts("#{e.message} occured with #{c.id}")
+      end
     end
     nil
   end
