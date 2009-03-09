@@ -102,7 +102,7 @@ div#destinationSearchForm input[type="input"] { -webkit-appearance: searchfield;
 
 /* Trip Control */
 
-ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; margin: 0; }
+ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; margin: 0; z-index: 900000000; }
 ul#tripControl li { display: inline; margin: 0 23px 0; letter-spacing: 1px; }
 ul#tripControl li a { position: relative; top: 7px; }
 ul#tripControl li a:link, ul#tripControl li a:visited { color: #a9a9a9; }
@@ -174,7 +174,6 @@ div#TB_window div.row { margin: 0 30px 0 0; font-size: 14px; font-weight: 300; m
 div#TB_window input { font-size: 14px; padding: 2px 8px; }
 
 /* ToDo List and Add New */
-div#TB_window { overflow: hidden; }
 div#TB_window div#newToDo { display: none; }
 div#TB_window ul#todos_list li { list-style: none; clear: both; margin: 15px 0 20px 8px; display: block; }
 
@@ -184,6 +183,31 @@ div#TB_window ul#todos_list div.todo_heading a { font-size: 12px; /*opacity: 0;*
 div#TB_window ul#todos_list div.todo_body span.description { color: #777; font-size: 12px; width: 300px; display: block; float: left; }
 div#TB_window ul#todos_list div.todo_heading.done { opacity: 0.08; }
 div#TB_window ul#todos_list div.todo_body.done span { opacity: 0.17; }
+
+/*
+Trip Listing
+------------------------------------------------------------------------------------------*/
+
+/* With Date */
+div#tripList { float: left; width: 33%; background: #fff; padding: 5px 15px 5px 0; }
+div#tripList dl dt { font-weight: 300; font-size: 24px; color: #333; margin: 40px 0 0 0; }
+div#tripList dl dd.date { position: relative; background: #ebebeb; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 7px 5px; margin: 7px 0 20px 40px; }
+div#tripList dd.date dl { margin: 0; }
+div#tripList dd.date dt { position: absolute; left: -48px; top: -42px; color: #999; font-size: 28px; background: transparent url(../images/tripList/arrow.png) no-repeat right 12px; padding: 0 27px 0 0; }
+div#tripList dd.date dt p { font-size: 16px; margin: 0; padding: 0; position: relative; top: -10px; font-weight: 300; color: #999; }
+div#tripList dd.date dd.item { background: #e1e1e1; -moz-border-radius: 10px; -webkit-border-radius: 10px; margin: 0; padding: 2px 5px; font-size: 14px; }
+div#tripList dd.date dd.item + dd.item { margin: 7px 0 0 0; }
+div#tripList dd.item span.time { width: 70px; display: inline-block; }
+div#tripList dd.item span.time span { font-size: 24px; font-weight: 300; }
+
+/* Without Date */
+div#tripList dd.noDate { background: #ebebeb; padding: 5px 10px; }
+div#tripList dd.noDate dt { font-size: 18px; }
+div#tripList dd.noDate dt a {  font-size: 12px; }
+div#tripList dd.noDate dl { margin: 0; }
+
+
+
 
 
 
