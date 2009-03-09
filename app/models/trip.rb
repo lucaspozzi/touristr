@@ -57,6 +57,8 @@ class Trip < ActiveRecord::Base
   def add obj
     if obj.is_a?(Destination) && !obj.attraction?
       return if trip_items.find_by_trippy_type_and_trippy_id obj.class.class_name, obj.id
+    elsif obj.attraction?
+#      obj.
     end
     order = trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0
     trip_items.create :ordered=>order, :trippy=>obj
