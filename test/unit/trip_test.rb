@@ -62,11 +62,11 @@ class TripTest < ActiveSupport::TestCase
   end
   
   should "find the trippies parent" do
-    p 'asdfasdf'
     trip = create_trip
     create_destination_country # so paris' parent.name will work
     t1 = trip.add create_destination
     assert_equal t1, trip.send( :trippies_parent, create_destination_attraction)
   end
+  
   
 end

@@ -63,11 +63,16 @@ class Trip < ActiveRecord::Base
       if obj.city?
         return if trip_items.find_by_trippy_type_and_trippy_id obj.class.class_name, obj.id
       elsif obj.attraction?
+=begin
+  TODO adding an attraction after the city needs a test
+=end
         ti_parent = trippies_parent obj
-        return move_trippies_back_one_starting_with ti_parent.order + 1
+        move_trippies_back_one_starting_with ti_parent.ordered + 1
+        order = ti_parent.ordered + 1
       end
+    else
+      order = trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0
     end
-    order = trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0
     trip_items.create :ordered=>order, :trippy=>obj
   end
     

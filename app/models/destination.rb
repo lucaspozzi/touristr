@@ -85,7 +85,6 @@ class Destination < ActiveRecord::Base
   
   
   def parent
-    puts(self.feature_code)
     case feature_code
     when COUNTRY: return self
     when ADMIN_LEVEL1: return Destination.find(:first, :conditions => ["country_code=? and feature_code=?", country_code, COUNTRY])
