@@ -1,8 +1,9 @@
 - todo ||= list_item || @todo
 - dom_id ||= todo.dom_id('in_list')
 
-%li{:id=>dom_id}
-  %div
+%li{:id=>dom_id, :class=>'item'}
+  .date
+  .trippy
     %div{:class=>"todo_heading#{ ' done' if todo.done?}"}
       = h(todo.title)
       = link_to_remote t('Delete'), :url=>todo_path(todo), :method=>:delete, :confirm=>DELETE_CONFIRM

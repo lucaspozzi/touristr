@@ -3,6 +3,5 @@
 - dom_id ||= trip_item.dom_id('in_trip_bar')
 
 %li{:id=>dom_id}
-  = link_to "=>", destination_path(trippy)
-  = h(trippy.name)
+  = link_to h(trippy.name), destination_path(trippy)
   = link_to_remote t('Delete'), :url=>trip_item_path(trip_item), :method=>:delete, :confirm=>DELETE_CONFIRM

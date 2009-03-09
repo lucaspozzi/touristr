@@ -60,7 +60,7 @@ class Trip < ActiveRecord::Base
   def add obj
     if obj.is_a?(Destination) 
       return nil if obj.country?
-      if !obj.attraction?
+      if obj.city?
         return if trip_items.find_by_trippy_type_and_trippy_id obj.class.class_name, obj.id
       elsif obj.attraction?
         ti_parent = trippies_parent obj
