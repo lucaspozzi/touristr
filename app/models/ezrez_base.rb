@@ -11,9 +11,6 @@ class EzrezBase
     raise EzrezMissingParameterException.new(missing_params.join(', ')) unless missing_params.blank?
   end
   
-  def method_missing name, *agrs
-    
-  end
   
   
   def execute params
