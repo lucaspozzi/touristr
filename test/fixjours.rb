@@ -45,13 +45,46 @@ Fixjour do
   end
     
     
-  
-  
-end
+
+    define_builder(Destination) do |klass, overrides|
+      klass.new({
+        :name              => 'Paris',
+        :ascii_name        => 'Paris',
+        :alternate_names   => 'Lungsod ng Paris,Lutece,Lutetia Parisorum,PAR,Paarys,Paname,Pantruche,Paraeis,Paras,Pari,Paries,Pariggi,Parigi,Pariis,Pariisi,Parijs,Paris,Paris - Paris,Parisi,Pariz,Parize,Parizh,Parizo,Parizs,Parys,Paryz,Paryzh,Paryzius,Paryż,Paryžius,Paräis,París',
+        :lng               => 2.3488000000,
+        :lat               => 48.8534100000,
+        :feature_class     => 'P',
+        :feature_code      => 'PPLC',
+        :region_name       => 'Île-de-France',
+        :country_code      => 'FR',
+        :cc2               => '',
+        :admin1_code       => 'A8',
+        :admin2_code       => '75',
+        :admin3_code       => '751',
+        :admin4_code       => '75056',
+        :population        => 2138551,
+        :elevation         => 0,
+        :gtopo30           => 30,
+        :time_zone         => 'Europe/Paris',
+        :modification_date => '2008-08-27',
+        :click_counter     => 0,
+        :score             => 431350
+      })
+    end
 
 
-include Fixjour
+
+  end
+  include Fixjour
 
 
 
+  class Test::Unit::TestCase
+    def create_destination_country overrides = {}
+      create_destination( {:name=>'France', :ascii_name=>'France', :feature_class=>'A', :feature_code=>'PCLI', :alternate_names=>''}.merge(overrides))
+    end
+    def create_destination_attraction overrides = {}
+      create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>''}.merge(overrides))
+    end
+  end
 
