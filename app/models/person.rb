@@ -23,8 +23,10 @@ class Person < ActiveRecord::Base
   
   
   
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>'does not look like an email address.', :unless => Proc.new{|p| p.user_id.blank? || !p.invited}
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message=>'does not look like an email address.', :if => Proc.new{|p| !p.user_id.blank? || p.invited}
   validates_uniqueness_of :email, :case_sensitive => false, :unless=>Proc.new{|p| p.email.blank?}
+  
+  attr_accessor :invited
   
   after_create :setup_trip
   after_destroy :cleanup
@@ -54,7 +56,7 @@ class Person < ActiveRecord::Base
   
   def create_and_add_to_trip params, trip, message = ''
     raise 'Action not allowed' unless trip.in?(trips)
-    person = Person.new params
+    person = Person.new params.merge(:invited => true)
     return person unless person.valid?
     begin
       AccountMailer.deliver_invite person, trip, self, message
