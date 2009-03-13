@@ -9,7 +9,7 @@ class PeopleController < ApplicationController
   end
   
   def create
-    @person = @p.create_and_add_to_trip params[:person], @t, params[:message]
+    @person = @p.create_and_add_to_trip params[:person].merge(:invited => true), @t, params[:message]
     respond_to do |wants|
       wants.js do
         render :update do |page|
