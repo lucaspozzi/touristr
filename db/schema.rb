@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090307193849) do
+ActiveRecord::Schema.define(:version => 20090316081204) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -70,17 +70,7 @@ ActiveRecord::Schema.define(:version => 20090307193849) do
     t.text     "video_embed_code"
   end
 
-  add_index "destination_contents", ["destination_id"], :name => "index_destination_content_on_destination_id"
-
-  create_table "destination_regions", :force => true do |t|
-    t.string "admin1_code"
-    t.string "name"
-    t.string "country_code"
-    t.string "region_code"
-  end
-
-  add_index "destination_regions", ["country_code"], :name => "index_destination_regions_on_country_code"
-  add_index "destination_regions", ["region_code"], :name => "index_destination_regions_on_region_code"
+  add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"
 
   create_table "destinations", :force => true do |t|
     t.string   "name"
@@ -165,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20090307193849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "current_trip_id"
+    t.boolean  "invited",         :default => false, :null => false
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id"
@@ -177,10 +168,6 @@ ActiveRecord::Schema.define(:version => 20090307193849) do
   end
 
   add_index "sessions", ["sessid"], :name => "sessions_sessid_index"
-
-  create_table "to_be_deleted", :id => false, :force => true do |t|
-    t.integer "ident"
-  end
 
   create_table "todos", :force => true do |t|
     t.integer  "person_id"
