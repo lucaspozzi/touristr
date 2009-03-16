@@ -24,9 +24,7 @@ class DestinationsController < ApplicationController
     @destinations = @destination.children
     return if @destination.city?
     if @destination.attraction?
-      @attraction = @destination
-      @destination = @attraction.parent
-      render :action => :show_attraction and return
+      redirect_to destination_attraction_path(@destination.parent, @destination) and return
     elsif @destination.area?
       @destinations = @destination.children(10)
       render :action => :show_children and return  
