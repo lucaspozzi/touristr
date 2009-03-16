@@ -1,0 +1,26 @@
+!!!
+%html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
+  %head
+    %title= title ||= "Touristr"
+    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', :cache=>:all
+  %body#home
+    #wrapper
+      = render :partial => "shared/header"
+      
+      = yield :top
+      
+      = display_standard_flashes
+
+      = yield
+      = render :partial => "shared/footer"
+      
+      #sky
+        #sun
+        #cloud1
+        #cloud2
+        #cloud3
+        #cloud4
+        #cloud5
+    = javascript_include_tag :defaults, :cache=>:all
+    = yield :javascripts
+    = yield :javascript
