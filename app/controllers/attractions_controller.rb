@@ -6,16 +6,16 @@ class AttractionsController < ApplicationController
   before_filter :load_destination
   
   def show
-    puts("destination = #{@destination.name}  -- attraction = #{@attraction.name}")
+    @attraction = Destination.find(params[:id])
   end
   
   def index
-    
+    redirect_to destination_path(@destination) unless @destination.city?
+    @attractions = @destination.children
   end
   
   protected
   def load_destination
-    @attraction = Destination.find(params[:id])
-    @destination = @attraction.parent
+    @destination = Destination.find(params[:destination_id])
   end
 end
