@@ -2,6 +2,6 @@
 - dom_id ||= destination.dom_id
 
 %li{:id=>dom_id}
-  = link_to "=>", destination_path(destination)
+  = link_to "=>", destination_attraction_path(parent_destination, destination)
   = h(destination.name)
   = link_to_remote t('Add'), :url=>destination_trip_items_path(destination)
