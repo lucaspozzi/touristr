@@ -211,16 +211,20 @@ div#trip_bar dd.noDate dl { margin: 0; }
 
 
 
+
 /*
 Ajax Messages
 -------------------------------------------------------------------------------------------*/
 
-#message {padding: 4px; z-index: 100000; position: fixed; top: 38%; left: 40%; display: none; background: black; color: white; font-size: 18px;}
+#message {z-index: 100000; position: fixed; top: 40%; left: 50%; text-align: center; display: none; }
 #waiter { z-index:100000; position: fixed; top: 50%; display: none; left: 50%; text-align: center;  }
 /* Ajax loading */
 
 div#waiter p { color: #fff; font-size: 18px; font-weight: 300; background: #000;  background: rgba(0, 0, 0, 0.9); margin: 0 auto; width: 200px; position: relative; left: -100px; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 0px 5px 10px; }
 div#waiter img { position: relative; top: 10px; left: 5px; }
+
+div#message p { background: #000; background: rgba(0, 0, 0, 0.9); color: #fff; font-weight: 300; font-size: 20px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; width: 300px; position: relative; left: -180px; padding: 10px 30px; }
+
 
 
 /*
