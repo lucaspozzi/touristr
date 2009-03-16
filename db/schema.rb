@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(:version => 20090316081204) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "current_trip_id"
-    t.boolean  "invited",         :default => false, :null => false
   end
 
   add_index "people", ["user_id"], :name => "index_people_on_user_id"

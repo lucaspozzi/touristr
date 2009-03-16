@@ -45,9 +45,9 @@ function async_message(m, d){message(m, d);}
 function messages(m, d){message(m, d);}
 function msg(m, d){message(m, d);}
 function message(message, duration){
-    if (duration == undefined){ duration = 3000;}
+    if (duration == undefined){ duration = 1000;}
     if (jq.browser.msie) { jq("#message").css({position: 'absolute'}); }
-    jq("#message").text(message).show().check_width().center();
+    jq("#message").show().children('p').text(message);
     setTimeout('jq("#message").hide().css("width", "");',duration);
     return false;
 }
