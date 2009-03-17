@@ -17,6 +17,7 @@ class DestinationContent < ActiveRecord::Base
 
 
   belongs_to :destination
+  translates :introduction, :overview, :attractions
   # 
   # def introduction_markup
   #   introduction.nil? ? val = "" : val = introduction
