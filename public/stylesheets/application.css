@@ -11,14 +11,24 @@ Reset
 ------------------------------------------------------------------------------------------*/
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+
 body { background: #fff; }
+
 table { border-collapse: collapse; border-spacing: 0; }
+
 caption, th, td { text-align: left; }
+
 blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+
 blockquote, q { quotes: "" ""; }
+
 a img { border: none; }
+
 input,textarea { margin: 0; }
-a { outline: none; } /* Removes Firefox imposed outline */
+
+a { outline: none; }
+
+/* Removes Firefox imposed outline */
 
 /*
 General Styles
@@ -33,10 +43,15 @@ Typography
 h1, h2, h3, h4, h5, h6 { font-weight: 300; color: #333; letter-spacing: 1px; margin: 30px 0 10px; }
 
 h1 { font-size: 36px; }
+
 h2 { font-size: 30px; }
-h3 { font-size: 24px;  }
+
+h3 { font-size: 24px; }
+
 h4 { font-size: 18px; }
+
 h5 { font-size: 14px; }
+
 h6 { font-size: 12px; }
 
 p, ul, ol, dl { font-size: 13px; color: #666; margin: 10px 0 20px; }
@@ -44,37 +59,60 @@ p, ul, ol, dl { font-size: 13px; color: #666; margin: 10px 0 20px; }
 /* Links */
 
 a:link, a:visited { color: #1f76bd; text-decoration: none; }
+
 a:hover, a:active { color: #cc00cc; }
 
 /* Forms */
+
 fieldset {  }
+
 legend {  }
+
 label { float: left; width: 150px; }
-input { border: #fff;  }
+
+input { border: #fff; }
+
 textarea {  }
-input[type="text"] { /*-moz-border-radius: 10px; -webkit-border-radius: 10px;*/ }
-input[type="submit"], input.button { border: #1f76bd; background: #1f76bd; color: #fff; /*-moz-border-radius: 10px; -webkit-border-radius: 10px;*/ }
+
+input[type="text"] { 
+
+}
+
+input[type="submit"], input.button { border: #1f76bd; background: #1f76bd; color: #fff; 
+
+/*-moz-border-radius: 10px; -webkit-border-radius: 10px;*/ }
+
 input.formDescription { color: #bbb; }
 
 /* Clear Div */
+
 .clearBoth { clear: both; }
+
 .clearRight { clear: right; }
+
 .clearLeft { clear: left; }
 
 /* 2 Column Layout */
+
 .mainContent { width: 49%; float: left; }
+
 .secondaryContent { width: 49%; float: right; }
 
 /* Main Sidebar Layout */
+
 .content { width: 74%; float: left; }
+
 .sidebar { width: 25%; float: right; }
 
 /* Search Results Autocomplete */
-div.ac_results { background: transparent url(../images/autocomplete/arrow.png) no-repeat 10px 1px; padding: 0 0 0; }
-div.ac_results ul { background: #000; background: rgba(0, 0, 0, 0.9); -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 5px 10px 20px; font-size: 12px; font-weight: 300; list-style: none; width: 105%; }
-div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-div.ac_results li.ac_over { background: #222; }
 
+div.ac_results { background: transparent url(../images/autocomplete/arrow.png) no-repeat 10px 1px; padding: 0 0 0; }
+
+div.ac_results ul { background: #000; background: rgba(0, 0, 0, 0.9); -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 5px 10px 20px; font-size: 12px; font-weight: 300; list-style: none; width: inherit; }
+
+div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; color: #1f76bd; }
+
+div.ac_results li.ac_over { background: #222; color: #cc00cc; }
 
 /*
 Planning Template
@@ -87,42 +125,69 @@ div#footer { clear: both; margin: 10px 0 40px; }
 /* Header */
 
 ul#userControls { background: RGBa(0, 0, 0, 0.90); position: absolute; top: 0; left: 0; width: 96%; min-width: 960px; text-align: right; padding: 4px 2% 8px; font-size: 14px; margin: 0; }
+
 ul#userControls li { display: inline; padding: 0 3% 0 0; }
 
 div#logo { margin: 50px 0 20px; float: left; }
-div#logo h1 {  background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 350px; margin: 0; }
+
+div#logo h1 { background: #fff url(../images/header/mainLogo.png) no-repeat; text-indent: -9000em; display: block; width: 350px; margin: 0; }
+
 div#logo h1 a { display: block; padding: 0 0 30px; }
+
 div#logo p#tagline { color: #333; visibility: hidden; }
 
 div#destinationSearchForm { float: right; margin: 80px 0 0; text-align: right; }
 
-div#destinationSearchForm input { padding: 0 5px; font-size: 16px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #ddd; /*width: 50%;*/ }
-div#destinationSearchForm input.button { font-size: 14px; /*width: 30%;*/ border-color: #1f76bd; background: #1f76bd; color: #fff; padding: 0 30px; margin: 0 0 0 10px; }
+div#destinationSearchForm input { padding: 0 5px; font-size: 16px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #ddd; 
+
+/*width: 50%;*/ }
+
+div#destinationSearchForm input.button { font-size: 14px; 
+
+/*width: 30%;*/ border-color: #1f76bd; background: #1f76bd; color: #fff; padding: 0 30px; margin: 0 0 0 10px; }
+
 div#destinationSearchForm input[type="input"] { -webkit-appearance: searchfield; }
 
 /* Trip Control */
 
 ul#tripControl { position: fixed; bottom: 0; left: 0; background: #111; background: rgba(0,0,0, 0.90); list-style: none; text-align: right; width: 100%; font-size: 13px; padding: 10px 1px 10px 0; font-weight: 300; margin: 0; z-index: 900000000; }
+
 ul#tripControl li { display: inline; margin: 0 23px 0; letter-spacing: 1px; }
+
 ul#tripControl li a { position: relative; top: 7px; }
+
 ul#tripControl li a:link, ul#tripControl li a:visited { color: #a9a9a9; }
+
 ul#tripControl li a:hover, ul#tripControl li a:active, ul#tripControl li a.current { color: #1f76bd; }
+
 ul#tripControl li#tripName { position: none; float: left; font-size: 20px; }
+
 ul#tripControl li#tripName a { top: 0; color: #1f76bd; }
+
 ul#tripControl li#tripName a:hover, ul#tripControl li#tripName a:active { color: #cc00cc; }
 
 /*Trip Control Icons Inactive*/
+
 ul#tripControl li#tripPeople a { background: transparent url(../images/tripControl/people.png) no-repeat left top; padding: 10px 0 10px 38px; }
+
 ul#tripControl li#tripItinerary a { background: transparent url(../images/tripControl/itinerary.png) no-repeat left top; padding: 10px 0 10px 48px; }
+
 ul#tripControl li#tripComments a { background: transparent url(../images/tripControl/comments.png) no-repeat left 1px; padding: 10px 0 10px 40px; }
+
 ul#tripControl li#tripBudget a { background: transparent url(../images/tripControl/budget.png) no-repeat left 2px; padding: 10px 0 10px 33px; }
+
 ul#tripControl li#tripTodos a { background: transparent url(../images/tripControl/todos.png) no-repeat left 3px; padding: 10px 0 10px 36px; }
 
 /* Trip Control Icons Active */
+
 ul#tripControl li#tripPeople a:hover, ul#tripControl li#tripPeople a.current { background: transparent url(../images/tripControl/people.png) no-repeat left -50px; }
+
 ul#tripControl li#tripItinerary a:hover, ul#tripControl li#tripItinerary a.current { background: transparent url(../images/tripControl/itinerary.png) no-repeat left -49px; }
+
 ul#tripControl li#tripComments a:hover, ul#tripControl li#tripComments a.current { background: transparent url(../images/tripControl/comments.png) no-repeat left -41px; }
+
 ul#tripControl li#tripBudget a:hover, ul#tripControl li#tripBudget a.current { background: transparent url(../images/tripControl/budget.png) no-repeat left -39px; }
+
 ul#tripControl li#tripTodos a:hover, ul#tripControl li#tripTodos a.current { background: transparent url(../images/tripControl/todos.png) no-repeat left -37px; }
 
 /*
@@ -130,30 +195,44 @@ Destination Navigation Menu
 -----------------------------------------------------------------------------------------------------*/
 
 ul#destinationNavigation { list-style: none; text-align: right; clear: both; margin: 0 0 3% 0; }
+
 ul#destinationNavigation li { display: inline; font-size: 14px; position: relative; top: 20px; }
+
 ul#destinationNavigation li a:link, ul#destinationNavigation li a:visited { padding: 50px 2% 0; }
+
 ul#destinationNavigation li a:hover, ul#destinationNavigation li a:active { color: #1f76bd; }
 
 ul#destinationNavigation li#destinationSwitcher { float: left; top: 0; }
+
 ul#destinationNavigation li#destinationSwitcher h2 { margin: 0; }
+
 ul#destinationNavigation li#destinationSwitcher a { padding: 0; }
 
-ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px;}
+ul li#overview a:link, ul li#overview a:visited { background: white url(../images/destinationNavigation/overview.png) no-repeat center -72px; }
+
 ul li#flights a:link, ul li#flights a:visited { background: white url(../images/destinationNavigation/flights.png) no-repeat center top; }
+
 ul li#hotels a:link, ul li#hotels a:visited { background: white url(../images/destinationNavigation/hotels.png) no-repeat center top; }
+
 ul li#attractions a:link, ul li#attractions a:visited { background: white url(../images/destinationNavigation/attractions.png) no-repeat center top; }
+
 ul li#activities a:link, ul li#activities a:visited { background: white url(../images/destinationNavigation/activities.png) no-repeat center top; }
+
 ul li#carRentals a:link, ul li#carRentals a:visited { background: white url(../images/destinationNavigation/carRental.png) no-repeat center top; }
 
 /* hover on links */
 
-ul li#overview a:hover, ul li#overview a:active, ul#destinationNavigation li#overview a.current { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px;}
-ul li#flights a:hover, ul li#flights a:active, ul#destinationNavigation li#flights a.current { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px;}
-ul li#hotels a:hover, ul li#hotels a:active, ul#destinationNavigation li#hotels a.current { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px;}
-ul li#attractions a:hover, ul li#attractions a:active, ul#destinationNavigation li#attractions a.current { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
-ul li#activities a:hover, ul li#activities a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
-ul li#carRentals a:hover, ul li#carRentals a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
+ul li#overview a:hover, ul li#overview a:active, ul#destinationNavigation li#overview a.current { background: white url(../images/destinationNavigation/overview.png) no-repeat center 2px; }
 
+ul li#flights a:hover, ul li#flights a:active, ul#destinationNavigation li#flights a.current { background: white url(../images/destinationNavigation/flights.png) no-repeat center -73px; }
+
+ul li#hotels a:hover, ul li#hotels a:active, ul#destinationNavigation li#hotels a.current { background: white url(../images/destinationNavigation/hotels.png) no-repeat center -73px; }
+
+ul li#attractions a:hover, ul li#attractions a:active, ul#destinationNavigation li#attractions a.current { background: white url(../images/destinationNavigation/attractions.png) no-repeat center -73px; }
+
+ul li#activities a:hover, ul li#activities a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/activities.png) no-repeat center -74px; }
+
+ul li#carRentals a:hover, ul li#carRentals a:active, ul#destinationNavigation li#activities a.current { background: white url(../images/destinationNavigation/carRental.png) no-repeat center -79px; }
 
 /*
 Overview
@@ -162,6 +241,7 @@ Overview
 p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 70px 0 40px 0; }
 
 ul.destinationPhotoGallery { list-style: none; }
+
 ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
 
 /*
@@ -169,19 +249,31 @@ Thickbox heading
 -------------------------------------------------------------------------------------------*/
 
 div#TB_window h3 { margin: 0; font-size: 40px; padding: 6px 0 16px; font-weight: 600; }
+
 div#TB_window h3 a { font-size: 12px; font-weight: 300; }
+
 div#TB_window div.row { margin: 0 30px 0 0; font-size: 14px; font-weight: 300; margin: 5px 0 5px; clear: both; }
+
 div#TB_window input { font-size: 14px; padding: 2px 8px; }
 
 /* ToDo List and Add New */
+
 div#TB_window div#newToDo { display: none; }
+
 div#TB_window ul#todos_list li { list-style: none; clear: both; margin: 15px 0 20px 8px; display: block; }
 
 div#TB_window ul#todos_list li p { margin: 0; }
+
 div#TB_window ul#todos_list div.todo_heading { color: #fff; font-size: 18px; font-weight: 300; letter-spacing: 1px; margin: 2px 0 3px; }
-div#TB_window ul#todos_list div.todo_heading a { font-size: 12px; /*opacity: 0;*/ }
+
+div#TB_window ul#todos_list div.todo_heading a { font-size: 12px; 
+
+/*opacity: 0;*/ }
+
 div#TB_window ul#todos_list div.todo_body span.description { color: #777; font-size: 12px; width: 300px; display: block; float: left; }
+
 div#TB_window ul#todos_list div.todo_heading.done { opacity: 0.08; }
+
 div#TB_window ul#todos_list div.todo_body.done span { opacity: 0.17; }
 
 /*
@@ -189,53 +281,88 @@ Trip Listing
 ------------------------------------------------------------------------------------------*/
 
 /* With Date */
+
 div#trip_bar { float: left; width: 33%; background: #fff; padding: 5px 15px 5px 0; }
+
 div#trip_bar dl dt { font-weight: 300; font-size: 24px; color: #333; margin: 40px 0 0 0; }
+
 div#trip_bar dl dd.date { position: relative; background: #ebebeb; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 7px 5px; margin: 7px 0 20px 40px; }
+
 div#trip_bar dd.date dl { margin: 0; }
+
 div#trip_bar dd.date dt { position: absolute; left: -48px; top: -42px; color: #999; font-size: 28px; background: transparent url(../images/trip_bar/arrow.png) no-repeat right 12px; padding: 0 27px 0 0; }
+
 div#trip_bar dd.date dt p { font-size: 16px; margin: 0; padding: 0; position: relative; top: -10px; font-weight: 300; color: #999; }
+
 div#trip_bar dd.date dd.item { background: #e1e1e1; -moz-border-radius: 10px; -webkit-border-radius: 10px; margin: 0; padding: 2px 5px; font-size: 14px; }
+
 div#trip_bar dd.date dd.item + dd.item { margin: 7px 0 0 0; }
+
 div#trip_bar dd.item span.time { width: 70px; display: inline-block; }
+
 div#trip_bar dd.item span.time span { font-size: 24px; font-weight: 300; }
 
 /* Without Date */
+
 div#trip_bar dd.noDate { background: #ebebeb; padding: 5px 10px; }
+
 div#trip_bar dd.noDate dt { font-size: 18px; }
-div#trip_bar dd.noDate dt a {  font-size: 12px; }
+
+div#trip_bar dd.noDate dt a { font-size: 12px; }
+
 div#trip_bar dd.noDate dl { margin: 0; }
 
+/*
+Homepage
+------------------------------------------------------------------------------------------*/
+
+body#home { background: #26a3e2 url(../images/homepage/bg.png) repeat-x; }
+
+body#home div#logo { margin: 70px 0 20px; }
+body#home div#logo h1 { background: transparent url(../images/homepage/logo.png) no-repeat; }
+
+/* Searchbox */
+
+body#home div#destinationSearchForm { float: none; text-align: center; margin-left: 10%; margin-top: 160px; }
+
+body#home div#destinationSearchForm input { border: 2px solid #fff; padding: 5px 5px; color: #6dcbfd; font-size: 24px; }
+
+body#home div#destinationSearchForm input.button { border: none; position: relative; left: -125px; padding: 3px 27px; color: #fff; }
+
+p#siteIntroduction { color: #fff; font-size: 18px; font-weight: 300; }
 
 
+div#sun { z-index: 1; background: transparent url(../images/homepage/sun.png) no-repeat; width: 150px; height: 140px; float: left; position: absolute; top: 40px; margin-left: 600px; }
 
+div#cloud1 { z-index: 3; background: transparent url(../images/homepage/cloud1.png) no-repeat 20%; width: 300px; height: 140px; position: absolute; top: 55px; right: 30%; }
 
+div#cloud3 { z-index: 5; background: transparent url(../images/homepage/cloud3.png) no-repeat 1245px; width: 1450px; height: 140px; position: absolute; top: 50px; left: -40%; }
 
+div#cloud2 { z-index: 4; background: transparent url(../images/homepage/cloud2.png) no-repeat 20%; width: 300px; height: 140px; position: absolute; top: 75px; right: 245px; }
+
+div#cloud4 { z-index: 2; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top:100px; left: -90%; }
+div#cloud5 { z-index: 6; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -80%; }
 
 /*
 Ajax Messages
 -------------------------------------------------------------------------------------------*/
 
-#message {z-index: 100000; position: fixed; top: 40%; left: 50%; text-align: center; display: none; }
-#waiter { z-index:100000; position: fixed; top: 50%; display: none; left: 50%; text-align: center;  }
+#message { z-index: 100000; position: fixed; top: 40%; left: 50%; text-align: center; display: none; }
+
+#waiter { z-index: 100000; position: fixed; top: 50%; display: none; left: 50%; text-align: center; }
+
 /* Ajax loading */
 
-div#waiter p { color: #fff; font-size: 18px; font-weight: 300; background: #000;  background: rgba(0, 0, 0, 0.9); margin: 0 auto; width: 200px; position: relative; left: -100px; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 0px 5px 10px; }
+div#waiter p { color: #fff; font-size: 18px; font-weight: 300; background: #000; background: rgba(0, 0, 0, 0.9); margin: 0 auto; width: 200px; position: relative; left: -100px; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 0px 5px 10px; }
+
 div#waiter img { position: relative; top: 10px; left: 5px; }
 
 div#message p { background: #000; background: rgba(0, 0, 0, 0.9); color: #fff; font-weight: 300; font-size: 20px; letter-spacing: 1px; -moz-border-radius: 10px; -webkit-border-radius: 10px; width: 300px; position: relative; left: -180px; padding: 10px 30px; }
-
-
 
 /*
 Translation Needed
 -------------------------------------------------------------------------------------------*/
 
 span.translation_missing { background: #ffa49d; }
+
 .static_content { background: #93ff91; }
-
-
-
-
-
-

@@ -1,7 +1,7 @@
-%p#destinationIntroduction.static_content
+%p#destinationIntroduction
   = @destination.destination_content.introduction unless @destination.destination_content.nil?
 
-.mainContent.static_content
+.mainContent
   %h3
     = t("Description")
   = @destination.destination_content.overview unless @destination.destination_content.nil?
