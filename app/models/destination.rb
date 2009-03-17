@@ -38,7 +38,7 @@ class Destination < ActiveRecord::Base
   has_one :destination_content
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
   acts_as_commentable
-
+  friendly_param :name
 
   COUNTRY = "PCLI"
   COUNTRY_CLASS = "A"
