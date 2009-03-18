@@ -33,4 +33,34 @@ class DestinationsController < ApplicationController
       render :action => :show_children
     end
   end
+  
+  def translate
+    I18n.locale = I18n.default_locale
+    @destination = Destination.find(params[:id])
+    @introduction = @destination.destination_content.introduction
+    @overview = @destination.destination_content.overview
+    @attractions = @destination.destination_content.attractions
+    @possible_translations = Array.new
+    
+    I18n.locale = "fr"
+    @destination = Destination.find(params[:id])
+    
+    SUPPORTED_LOCALES.each do |loc|
+      @possible_translations << loc
+    end
+    return unless request.post?
+    respond_to do |format|
+      I18n.locale = params[:destination_content][:translation_language]
+      params[:destination_content].delete(:translation_language)
+      if @destination.destination_content.update_attributes(params[:destination_content])
+        format.html do
+          redirect_to(destination_path(@destination))
+        end
+        format.xml
+      else
+        format.html { render :action => "translate" }
+        format.xml  { render :xml => @destination.errors, :status => :unprocessable_entity }
+      end  
+    end
+  end
 end

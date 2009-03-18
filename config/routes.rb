@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :todos do |todo|
     todo.resources :trip_items
   end
-  map.resources :destinations, :collection=>{:search=>:get} do |destination|
+  map.resources :destinations, :collection=>{:search=>:get}, :member=>{:translate => [:get,:post]} do |destination|
     destination.resources :attractions
     destination.resources :trip_items
   end
