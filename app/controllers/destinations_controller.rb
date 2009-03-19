@@ -35,22 +35,37 @@ class DestinationsController < ApplicationController
   end
   
   def translate
-    I18n.locale = I18n.default_locale
     @destination = Destination.find(params[:id])
+    redirect_to destination_path(@destination) and return unless @destination.city?
+    if @destination.destination_content.nil?
+      flash[:error] = "There is no content to be translated"
+      redirect_to destination_path(@destination) and return
+    end
+    
+    @possible_translations = Array.new
+    LOCALES_AVAILABLE.each { |sup_loc|
+      if (@destination.destination_content.locale.casecmp(sup_loc)!=0)
+        @possible_translations << [sup_loc, sup_loc]
+      end
+    }
+    logger.debug("Possible translation to: #{@possible_translations.inspect}")
+    
+    # remember user's locale
+    user_locale = I18n.locale
+    
+    # loads original (en) destination_content (will be displayed)
+    I18n.locale = @destination.destination_content.locale
     @introduction = @destination.destination_content.introduction
     @overview = @destination.destination_content.overview
     @attractions = @destination.destination_content.attractions
-    @possible_translations = Array.new
-    
-    I18n.locale = "fr"
+
+    # loads current traslation for the user's locale
+    I18n.locale = user_locale
     @destination = Destination.find(params[:id])
     
-    SUPPORTED_LOCALES.each do |loc|
-      @possible_translations << loc
-    end
     return unless request.post?
     respond_to do |format|
-      I18n.locale = params[:destination_content][:translation_language]
+      I18n.locale = params[:translation_language]
       params[:destination_content].delete(:translation_language)
       if @destination.destination_content.update_attributes(params[:destination_content])
         format.html do
