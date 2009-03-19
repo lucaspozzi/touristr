@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090316081204) do
+ActiveRecord::Schema.define(:version => 20090316091339) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -60,11 +60,18 @@ ActiveRecord::Schema.define(:version => 20090316081204) do
 
   add_index "countries", ["iso"], :name => "index_countries_on_iso"
 
-  create_table "destination_contents", :force => true do |t|
-    t.integer  "destination_id"
+  create_table "destination_content_translations", :force => true do |t|
+    t.integer  "destination_content_id"
+    t.string   "locale"
+    t.text     "attractions"
     t.text     "introduction"
     t.text     "overview"
-    t.text     "attractions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "destination_contents", :force => true do |t|
+    t.integer  "destination_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "video_embed_code"
