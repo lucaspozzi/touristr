@@ -10,6 +10,8 @@
     = t("Things to do")
   = @destination.destination_content.attractions unless @destination.destination_content.nil?
   
+  %ul
+    = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}
 
 .secondaryContent.static_content
   %h3
@@ -30,6 +32,3 @@
       %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
     %li
       %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-      
-%ul
-  = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}

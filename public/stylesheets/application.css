@@ -138,13 +138,7 @@ div#logo p#tagline { color: #333; visibility: hidden; }
 
 div#destinationSearchForm { float: right; margin: 80px 0 0; text-align: right; }
 
-div#destinationSearchForm input { padding: 0 5px; font-size: 16px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #ddd; 
-
-/*width: 50%;*/ }
-
-div#destinationSearchForm input.button { font-size: 14px; 
-
-/*width: 30%;*/ border-color: #1f76bd; background: #1f76bd; color: #fff; padding: 0 30px; margin: 0 0 0 10px; }
+div#destinationSearchForm input { padding: 3px 20px 3px 5px; font-size: 16px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #ddd; background: #fff url(../images/autocomplete/searchIcon.gif) no-repeat right bottom; /*width: 50%;*/ }
 
 div#destinationSearchForm input[type="input"] { -webkit-appearance: searchfield; }
 
@@ -323,11 +317,11 @@ body#home div#logo h1 { background: transparent url(../images/homepage/logo.png)
 
 /* Searchbox */
 
-body#home div#destinationSearchForm { float: none; text-align: center; margin-left: 10%; margin-top: 160px; }
+body#home div#destinationSearchForm { float: none; text-align: center; margin-top: 160px; }
+body#home div#destinationSearchForm input { border: 2px solid #fff; padding: 5px 40px 5px 5px; color: #6dcbfd; font-size: 24px; background: #fff url(../images/homepage/searchIcon.gif) no-repeat right bottom; }
+div#destinationSearchForm input[type="input"] { -webkit-appearance: none; }
 
-body#home div#destinationSearchForm input { border: 2px solid #fff; padding: 5px 5px; color: #6dcbfd; font-size: 24px; }
 
-body#home div#destinationSearchForm input.button { border: none; position: relative; left: -125px; padding: 3px 27px; color: #fff; }
 
 p#siteIntroduction { color: #fff; font-size: 18px; font-weight: 300; }
 
