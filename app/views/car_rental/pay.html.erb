@@ -25,7 +25,7 @@
 
 <div id="carPaymentForm">
   <h3>Book this car</h3>
-  <% form_tag confirm_destination_car_rental_url(@destination) do -%> 
+  <% form_tag confirm_destination_car_rental_url(@destination, :host => "secure.touristr.com",  :protocol => "https") do -%> 
   	<fieldset>
   	 <legend>Personal Details</legend>
   	  <p>
