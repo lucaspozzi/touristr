@@ -19,6 +19,8 @@ class DestinationsController < ApplicationController
   
   def show 
     @destination = Destination.find(params[:id])
+    BreadCrumbManager.mark_destination_as_visited(session, @destination)
+    RAILS_DEFAULT_LOGGER.error(BreadCrumbManager.get_current_destination_id(session))
     @destination.increment_click_counter if params[:xs4f] == 'qf3r'
     @t.add @destination if @destination.city?
     @destinations = @destination.children
@@ -61,7 +63,6 @@ class DestinationsController < ApplicationController
 
     # loads current traslation for the user's locale
     I18n.locale = user_locale
-    @destination = Destination.find(params[:id])
     
     return unless request.post?
     respond_to do |format|

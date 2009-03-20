@@ -12,6 +12,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :destinations, :collection=>{:search=>:get}, :member=>{:translate => [:get,:post]} do |destination|
     destination.resources :attractions
     destination.resources :trip_items
+    destination.resources :car_rental, :collection => {:search => :any,
+                                                       :advanced_search => :any,
+                                                       :choose => :any, 
+                                                       :pay => :any, 
+                                                       :confirm => :any}
   end
   map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'

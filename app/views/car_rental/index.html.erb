@@ -1,0 +1,38 @@
+<H1>Car rental</H1>
+<H2> Find pickup location</H2>
+<form action="/cars/find_pickup_locations">
+  <fieldset>
+    <LEGEND>By city</LEGEND>
+      <p>  
+        City: <input type="text" name="city_name" value="Dublin"/><br/>
+        2-letter country code: <input type="text" name="country_code" value="IE"/>
+      </p>
+        <input type="submit"/>
+
+  </fieldset>
+</form>
+  
+<form action="/cars/find_pickup_locations">
+  <fieldset>
+    <LEGEND>By airport code</LEGEND> 
+      <p>
+        Airport code: <input type="text" name="airport_code" value="FCO"/>
+      </p>
+        <input type="submit"/>
+
+  </fieldset>
+</form>
+  
+<form action="/cars/find_pickup_locations">
+  <fieldset>
+    <LEGEND>By geo-coordinates</LEGEND>
+      <p>
+        Latitude: <input type="text" name="lat" value="48.85"/><br/>
+        Longitude: <input type="text" name="long" value="2.35"/><br/>
+        Radius: <input type="text" name="radius" value="25" >
+      </p>
+        <input type="submit"/>
+
+  </fieldset>
+</form>
+  

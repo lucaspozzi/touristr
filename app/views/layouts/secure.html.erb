@@ -1,0 +1,84 @@
+<body>
+  <a href="/contact"><div id="betaSign">
+    We are in Beta, leave feedback
+  </div></a>
+  <div id="container">
+    <div id="header">
+
+      <div id="branding">
+        <h1 id="logo"><a href="/">touristr</a></h1>
+        
+        
+      </div>
+      <%= render :partial => "destinations/destination_search_form" %>
+    </div>
+    
+    <div class="clear"></div>
+    <%= render :partial => "layouts/navigation" %>
+    <div class="clear"></div>
+    
+    <!-- This is where all notices, and errors will be displayed -->
+		<%- unless flash[:notice].nil? -%>
+      <div id="notices">
+        <p><span>Important Notice </span><%= flash[:notice] %></p>
+      </div>
+    <%- end -%>
+    <%- unless flash[:error].nil? -%>
+      <div class="errors">
+        <p><span>Oops! </span><%= flash[:error] %></p>
+      </div>
+    <%- end -%>
+    <%- unless flash[:success].nil? -%>
+      <div id="success">
+        <p><span>Success! </span><%= flash[:success] %></p>
+      </div>
+    <%- end -%>
+                        
+    <!-- This where the yield goes -->
+    <%= yield %>
+    <!-- Yield ends here -->
+    
+    <%= render :partial => '/layouts/footer'  %>
+    
+  </div>
+  
+  <script src="/javascripts/jquery-1.2.6.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" src="/javascripts/date.js"></script>
+  <!--[if IE]><script type="text/javascript" src="/javascripts/jquery.bgiframe.js"></script><![endif]-->
+  <!-- jquery.datePicker.js -->
+  <script type="text/javascript" src="/javascripts/jquery.datePicker.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      var activeCal = false;
+
+      $('input.chooseDate').datePicker({clickInput:true}).click(function(){
+    		activeCal = true;
+    		$('a.cancel').fadeIn();
+    	});
+
+    	$('#startDate').bind(
+      	'dpClosed',
+      	function(e, selectedDates)
+      	{
+      		var d = selectedDates[0];
+      		if (d) {
+      			d = new Date(d);
+      			$('#endDate').dpSetStartDate(d.addDays(1).asString());
+      		}
+      	}
+      );
+      $('#endDate').bind(
+      	'dpClosed',
+      	function(e, selectedDates)
+      	{
+      		var d = selectedDates[0];
+      		if (d) {
+      			d = new Date(d);
+      			$('#startDate').dpSetEndDate(d.addDays(-1).asString());
+      		}
+      	}
+      );
+    });
+  </script>
+</body>
+</html>

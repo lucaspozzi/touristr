@@ -1,6 +1,17 @@
 module ApplicationHelper
   
+  @@CURRENCY_SYMBOLS = Hash["USD" => " &#36;", "EUR" => "&#128;", "GBP" => "&#163;"]
+  def get_price_as_currency(amount, currency_code)
+    if (!amount.nil?) then
+      return price_with_currency(amount, currency_code)
+    else
+      return "Oops"
+    end
+  end  
   
+  def price_with_currency(amount, currency_code)
+    return number_to_currency(amount, :precision => 0, :unit => @@CURRENCY_SYMBOLS[currency_code])
+  end
 
   def less_form_for name, *args, &block
     options = args.last.is_a?(Hash) ? args.pop : {}

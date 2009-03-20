@@ -1,0 +1,153 @@
+<h3> Payment details:</h3>
+
+  <h5><%= session[:car][:name] %></h5>
+	<img src="<%= session[:car][:picture_url] %>" id="carImage"/>
+	<ul id="carDetails">
+	 <li>
+	   Pickup at <%=session[:car][:pickup_location_name]%> on <%=display_ct_datetime(session[:car][:pickup_date])%>
+	 </li>
+	 <li>
+	   Return at <%=session[:car][:return_location_name]%> on <%=display_ct_datetime(session[:car][:return_date])%>
+	 </li>
+	 <li>
+	   Prepaid fee: <%= session[:car][:prepay_fee_amount] %> <%= session[:car][:prepay_fee_currency] %>
+	 </li>
+	 <li>
+	   Collection fee: <%= session[:car][:collection_fee_amount]%>
+	 </li>
+	 <li>
+	        Total: <%= session[:car][:total_charge] %> <%= session[:car][:total_charge_currency] %>
+     (prepaid fee: <%= session[:car][:prepay_fee_amount] %> <%= session[:car][:prepay_fee_currency] %>,  
+     collection fee: <%= session[:car][:collection_fee_amount]%> <%= session[:car][:collection_fee_currency] %>)
+	 </li>
+	</ul>
+
+
+<div id="carPaymentForm">
+  <h3>Book this car</h3>
+  <% form_tag confirm_destination_car_rental_url(@destination) do -%> 
+  	<fieldset>
+  	 <legend>Personal Details</legend>
+  	  <p>
+   	    <label for="title">Title</label>
+   	  </p>
+   	  <p>
+   	    <%= select :person, :name_prefix, [["Mr.", "Mr."], ["Miss", "Miss"]]  %>
+   	  </p>
+
+   	  <p>
+   	    <label for="person_firstname">First name</label>
+   	  </p>
+   	  <p>
+   	    <%= text_field :person, :firstname, :value => @restored_person[:firstname]  %><br/>
+   	  </p>
+   	  <p>
+   	    <label for="person_lastname">Surname</label><br/>
+   	    <%= text_field :person, :lastname, :value => @restored_person[:lastname]    %><br/>
+   	  </p>
+   	  <p>
+    	  <label for="person_email">Email</label>
+    	</p>
+    	<p>
+    	  <%= text_field :person, :email, :value => @restored_person[:email]    %>
+    	</p>
+  	</fieldset>
+        <% if @ask_for_airport_details %>
+          <fieldset>
+           <legend>Flight details</legend>
+            <p>For a better service, please provide us with your flight details:</p>
+            <p>
+              <label for="air_code">Company code (2 letters)</label>
+              <%= text_field :person, :air_company, :value => @restored_person[:air_company], :size => 2 %>
+              <label for="flight_number">Flight number</label>
+              <%= text_field :person, :flight_number, :value => @restored_person[:flight_number], :size => 5 %><br/>
+            </p>
+          </fieldset>
+        <% end %>
+
+
+  	<fieldset>
+  	 <legend>Telephone</legend>
+  	 <p>
+   	<label for="person_phone_area_code">Area Code</label>
+   	<%= text_field :person, :phone_area_code, :value => @restored_person[:phone_area_code], :size => 3    %>
+   	<label for="person_phone_number">Phone Number</label>
+   	<%= text_field :person, :phone_number, :value => @restored_person[:phone_number]    %><br/>
+   	</p>
+  	</fieldset>
+
+
+  	<fieldset>
+  	 <legend>Billing Address</legend>
+  	 <p>
+   	<label for="address_street">Street</label>
+   	</p>
+   	<p>
+   	<%= text_field :address, :street, :value => @restored_address[:street]  %></p><p>
+   	</p>
+
+   	<p>
+   	<label for="address_city">City</label></p><p>
+   	<%= text_field :address, :city, :value => @restored_address[:city]  %>
+   	</p>
+
+   	<p>
+   	<label for="address_postcode">Postcode</label></p><p>
+   	<%= text_field :address, :postcode, :value => @restored_address[:postcode]  %>
+   	</p>
+   	<p>
+   	<label for="address_state">State</label></p><p>
+   	<%= text_field :address, :state, :value => @restored_address[:state]  %>
+   	</p>
+
+   	<p>
+   	<label for="country">Country</label></p><p>
+   	<%= select :address, :country_code, @countries.map {|c| [c.country, c.iso]}, :selected => @restored_address[:country_code]  %>
+   	</p>
+  	</fieldset>
+
+      <% if !@hide_payment_fields %>
+        <fieldset>
+  	 <legend>Payment Details</legend>
+  	 <p>
+   	<label for="payment_cc_no">Credit Card number</label></p><p>
+   	<%= text_field :payment, :card_no, :value => @restored_payment[:card_no]  %>
+   	</p>
+   	
+   	<p>
+   	<label for="payment_card_type">Card type</label>
+   	</p>
+   	<p>
+       <%= select :payment, :card_type, [["Visa", "VI"], ["Mastercard", "MC"]], :selected => @restored_payment[:card_type]  %>
+   	</p>
+
+   	<p>
+   	  <label for="payment_series_code">Series Code (3-digit code on bac of card)</label>
+   	</p>
+   	<p>
+   	  <%= text_field :payment, :series_code, :value => @restored_payment[:series_code] %><br/>
+   	</p>
+
+   	<p>
+   	  <label for="payment_name">Card Holder Name</label>
+   	</p>
+   	<p>
+   	  <%= text_field :payment, :name, :value => @restored_payment[:name]  %><br/>
+   	</p>
+   	<p>Expiry date: 
+   		<label for="payment_expiry_month">month</label>
+       <%= select :payment, :expiry_month, (1..12).map{ |a| [a.to_s.rjust(2, '0'), a.to_s.rjust(2, '0')]}, :selected => @restored_payment[:expiry_month] %>
+   		<label for="payment_expiry_year">year</label>
+       <%= select :payment, :expiry_year, (9..15).map{ |a| [a.to_s.rjust(2, '0'), a.to_s.rjust(2, '0')]}, :selected => @restored_payment[:expiry_year] %>
+   	</p>
+  	</fieldset>
+      <%else%>
+        <strong>The full amount must be paid when picking up the vehicule.</strong>
+      <% end %>
+
+  	
+
+
+  	<p><%= submit_tag 'Submit' %></p>
+  <%- end %>
+</div>
