@@ -182,6 +182,17 @@ $(document).ready(function() {
 	$('input.destinationSearch').focus(function(){
 		$(this).removeClass("formDescription").attr('value', '');
 	});
+	
+	$('a.forgotPasswordShow').click(function(e){
+		e.preventDefault();
+		$('div#loginForm').fadeOut('normal', function(){
+			$('div#forgotPassword').fadeIn();
+		});
+		
+	});
+	
+	
+	
 
 	
 });

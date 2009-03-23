@@ -100,9 +100,9 @@ input.formDescription { color: #bbb; }
 
 /* Main Sidebar Layout */
 
-.content { width: 74%; float: left; }
+.content { width: 74%; float: right; }
 
-.sidebar { width: 25%; float: right; }
+.sidebar { width: 25%; float: left; }
 
 /* Search Results Autocomplete */
 
@@ -238,6 +238,9 @@ ul.destinationPhotoGallery { list-style: none; }
 
 ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
 
+div.videos { float: left; }
+div.photos { float: left; width: 30%; margin-left: 20px; }
+
 /*
 Thickbox heading
 -------------------------------------------------------------------------------------------*/
@@ -307,10 +310,23 @@ div#trip_bar dd.noDate dt a { font-size: 12px; }
 div#trip_bar dd.noDate dl { margin: 0; }
 
 /*
+Login Page
+-------------------------------------------------------------------------------------------*/
+
+body#home a:link, body#home a:visited { color: #fff; font-weight: 600; letter-spacing: 1px; }
+body#home a:hover, body#home a:active { color: #222; }
+body#home label { font-size: 16px; color: #fff; font-weight: 300; }
+body#home input { -moz-border-radius: 10px; -webkit-border-radius: 10px; font-size: 16px; padding: 1px 12px; }
+body#home input[type="checkbox"] { position: relative; top: 5px; }
+body#home input[type="submit"] { background-color: #222; padding: 1px 12px 2px 12px; font-weight: 300; }
+
+body#home p.checkbox { margin-bottom: 40px; }
+
+/*
 Homepage
 ------------------------------------------------------------------------------------------*/
 
-body#home { background: #26a3e2 url(../images/homepage/bg.png) repeat-x; }
+body#home { background: #26a3e2 url(../images/homepage/bg.png) repeat-x; color: #fff; }
 
 body#home div#logo { margin: 70px 0 20px; }
 body#home div#logo h1 { background: transparent url(../images/homepage/logo.png) no-repeat; }
@@ -336,6 +352,7 @@ div#cloud2 { z-index: 4; background: transparent url(../images/homepage/cloud2.p
 
 div#cloud4 { z-index: 2; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top:100px; left: -90%; }
 div#cloud5 { z-index: 6; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -80%; }
+
 
 /*
 Ajax Messages

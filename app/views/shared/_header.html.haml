@@ -16,6 +16,6 @@
     %li
       = link_to t("Sign Up"), signup_path
       
-= render :partial => 'shared/search' unless @controller.controller_name == 'home'
+= render :partial => 'shared/search' unless @controller.controller_name == 'home' || 'accounts'
 
 .clearBoth

@@ -1,60 +1,43 @@
-
-
-
-<center>
 <%= form_tag %>
 
-	<div id="login_form">
-		<%= link_to "Need an account?", signup_url %>
+  <div id="loginForm">
+    <p>
+      <label for="login">Login</label>
+    </p>
+    <p>
+      <%= text_field_tag 'login', ''%>
+    </p>
 
-    <label>Login:<%= text_field_tag 'login', '', :class=>"focus_first" %></label>
-    <label>Password:<%= password_field_tag 'password' %></label>
-    <% if session[:show_accept] %>
-    	<label>Accept Terms of Service <%= check_box_tag :accepts_terms, "1", params[:accepts_terms], :class=>""%> </label>
-    <% end %>
-    <label>Remember Me <%= check_box_tag 'remember_me',1,false, :class=>"" %></label> 
-    	<br/>
+    <p>
+      <label for="password">Password</label>
+    </p>
+    <p>
+      <%= password_field_tag 'password' %>
+    </p>
 
-    <div>
-    <%= submit_tag("Login", :id=>'submitter', :class=>"") %>
-    </div>
+    <p>
+      <% if session[:show_accept] %>
+      	<label for="accepts_terms">Accept Terms of Service</label><%= check_box_tag :accepts_terms, "1", params[:accepts_terms]%>
+      <% end %>
+    </p>
+    <p>
+      <label for="remember_me">Remember Me</label><%= check_box_tag 'remember_me',1,false%>
+    </p>
+
+    <p>
+      <%= submit_tag("Login", :id=>'submitter') %>
+    </p>
   </div>
-
-
-  <div class="center_fix">
-
-    <span>I <span id="forgot_text">forgot</span> my <a href="javascript:void(0)" id="forgot_password_clicker">password or username</a></span>
-
-
-
-    <div id="forgot_form" class="help_form" style="display:none;">
-      <%= link_to "Need an account?", signup_url %>
-      <p>Enter email address and your password will be sent to you. </p>
-      <div id="forgot_password"><label for="email">Enter Email Address</label><%= text_field_tag 'email'%></div>
-
-      <%= submit_tag("Submit", :id=>'forgetter', :class=>"") %>
-    </div>
+  
+  <p>
+    <%= link_to 'Forgot your password?', '#', :class => 'forgotPasswordShow' %>
+  </p>
+  
+  <div id="forgotPassword" style="display:none;">
+    <p>
+      <label for="email">Email</label>
+      <%= text_field_tag 'email' %>
+      <%= submit_tag("Submit", :id => 'forgetter') %>
+    </p>
+    <%= link_to 'Back to login', login_path %>
   </div>
-
-
-</form>
-
-</center>
-<%- content_for :javascripts do -%>
-<script type="text/javascript" charset="utf-8">
-//<![CDATA[
-jQuery(function(){
-tog("#forgot_password_clicker", "#login_form");
-tog("#forgot_password_clicker", "#forgot_form", forgot_text);
-
-});
-function forgot_text(){
-	if (jQuery("#forgot_text").html() == "forgot")
-		jQuery("#forgot_text").html("remember");
-	else
-		jQuery("#forgot_text").html("forgot");
-	
-}
-//]]>
-</script>
-<%- end -%>
