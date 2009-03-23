@@ -17,22 +17,14 @@ class DestinationContent < ActiveRecord::Base
 
 
   belongs_to :destination
+  
+  has_attached_file :picture, :url => "/images/attractions/:s3_id/:style/:basename.:extension",
+    :styles => { :reduced => "620x4000>", :thumb => "95x70>"},
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+    :path => "attractions/:s3_id/:style/:basename.:extension"
+    
   translates :introduction, :overview, :attractions
-  # 
-  # def introduction_markup
-  #   introduction.nil? ? val = "" : val = introduction
-  #   return RedCloth.new(val)
-  # end
-  # 
-  # def overview_markup
-  #   overview.nil? ? val = "" : val = overview
-  #   return RedCloth.new(val)
-  # end
-  # 
-  # def attractions_markup
-  #   attractions.nil? ? val = "" : val = attractions
-  #   return RedCloth.new(val)
-  # end
-
+  
 end
 
