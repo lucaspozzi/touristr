@@ -24,6 +24,8 @@ class DestinationsController < ApplicationController
     @destination.increment_click_counter if params[:xs4f] == 'qf3r'
     @t.add @destination if @destination.city?
     @destinations = @destination.children
+    @dest_pics = @destination.get_panoramio_pics(5)
+    logger.debug(@dest_pics.inspect)
     return if @destination.city?
     if @destination.attraction?
       redirect_to destination_attraction_path(@destination.parent, @destination) and return

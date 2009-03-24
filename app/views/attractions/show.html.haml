@@ -1,14 +1,21 @@
 %p
   %h3
     = @attraction.name
-%p#destinationIntroduction
-  %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture, :alt =>  @attraction.destination_content.picture}
-  
-.mainContent
+%p#destinationIntroduction.static_content
+  - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
+    %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
+    %p
+      = "#{@attraction.destination_content.picture_caption} #{t("by")}" 
+      %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
+        =@attraction.destination_content.picture_author
+.mainContent.static_content
   %h3
     = t("Description")
   %p  
-    = @attraction.destination_content.introduction  
+    - if @attraction.destination_content.nil? || @attraction.destination_content.introduction.nil?
+      = t("We don't have any content yet for #{@attraction.name}")
+    - else
+      = @attraction.destination_content.introduction
 
 .secondaryContent.static_content
   %h3
