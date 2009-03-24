@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090316091339) do
+ActiveRecord::Schema.define(:version => 20090320122405) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20090316091339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "video_embed_code"
+    t.string   "locale",           :default => "en", :null => false
   end
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"

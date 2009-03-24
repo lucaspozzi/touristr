@@ -1,0 +1,29 @@
+%h3 Register with Touristr
+
+- form_for :user do |f|
+  %p
+    %label{ :for => 'login'} Login
+  %p
+    = f.text_field :login
+  %p
+    %label{ :for => 'email'} Email
+  %p
+    = f.text_field :email
+  %p
+    %label{ :for => 'password'} Password
+  %p
+    = f.password_field :password
+  %p
+    %label{ :for => 'password_confirmation'} Confirm Password
+  %p
+    = f.password_field :password_confirmation
+  %p.checkbox
+    %label{ :for => 'accepts_terms'} I accept the terms and conditions 
+    = check_box_tag :accepts_terms, "1", params[:accepts_terms]
+  %p.checkbox
+    %label{ :for => 'remember_me'} Remember me
+    = check_box_tag :remember_me, "1", params[:remember_me]
+    
+  %p.submit
+    = submit_tag "Sign up"
+    = link_to "Already have an account?", login_url
