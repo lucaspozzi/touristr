@@ -9,4 +9,102 @@
     
 = content_for :javascript do 
   = sortable_element( 'trip_bar', :url=>sort_trip_path(@t))
-  
+ 
+#tripList
+  %dl
+    %dt San Francisco
+    %dd.date
+      %dl
+        %dt
+          05
+          %p Dec
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+    %dd.date
+      %dl
+        %dt
+          05
+          %p Dec
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+    %dd.noDate
+      %dl
+        %dt
+          No Date assigned
+          = link_to '(drag to assign)', "#"
+        %dd.item
+          = link_to 'This is an Event without a name', '#'
+    %dt San Francisco
+    %dd.date
+      %dl
+        %dt
+          05
+          %p Dec
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+    %dd.date
+      %dl
+        %dt
+          05
+          %p Dec
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+        %dd.item
+          %span.time 
+            %span 10
+            am
+          = link_to 'Dinner at Dosa', '#'
+    %dd.noDate
+      %dl
+        %dt
+          No Date assigned
+          = link_to '(drag to assign)', "#"
+        %dd.item
+          = link_to 'This is an Event without a name', '#' 
