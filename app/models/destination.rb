@@ -45,10 +45,11 @@ class Destination < ActiveRecord::Base
   CITY_CLASS = "P"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
-  MAX_DESTINATION_SEARCH = 25
   CITY_PREFIX = "PP"
   CITIES = %w(PPL PPLA PPLC PPLG PPLL PPLQ PPLR PPLS PPLW PPLX STLMT)
-  
+
+  MAX_DESTINATION_SEARCH = 25
+  DESTINATIONS_PER_PAGE = 10  
 
   ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY ISLS ISL CLF LK BAR)
   AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2]
@@ -105,14 +106,14 @@ class Destination < ActiveRecord::Base
   end
   
   
-  def children(max = MAX_DESTINATION_SEARCH)
+  def children(max = MAX_DESTINATION_SEARCH, page = 1)
     case feature_code
     when COUNTRY: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and feature_class='P'", country_code], :order => "population DESC")
     when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and admin1_code=? and feature_class='P'", country_code, admin1_code], :order => "population DESC")
     when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_class='P'", country_code, admin1_code, admin2_code], :order => "score DESC")
     else
       if feature_code.in?(CITIES)
-        return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in (?)", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC")
+        return Destination.paginate(:conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in (?)", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC", :page => page, :per_page => max)
       else 
         logger.error("Destination#children: got something not expected for #{self.id}: feature_code=#{feature_code}")
         nil
@@ -120,6 +121,9 @@ class Destination < ActiveRecord::Base
     end
   end
   
+  def children_page(page)
+    children(DESTINATIONS_PER_PAGE, page)
+  end
   
   def kids max = MAX_DESTINATION_SEARCH
     case feature_class 

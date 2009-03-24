@@ -11,7 +11,7 @@ class AttractionsController < ApplicationController
   
   def index
     redirect_to destination_path(@destination) unless @destination.city?
-    @attractions = @destination.children
+    @attractions = @destination.children_page(params[:page])
   end
   
   protected
