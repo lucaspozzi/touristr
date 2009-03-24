@@ -100,9 +100,9 @@ input.formDescription { color: #bbb; }
 
 /* Main Sidebar Layout */
 
-.content { width: 74%; float: right; }
+.content { width: 64%; float: right; }
 
-.sidebar { width: 25%; float: left; }
+.sidebar { width: 32%; float: left; }
 
 /* Search Results Autocomplete */
 
@@ -246,31 +246,22 @@ Thickbox heading
 -------------------------------------------------------------------------------------------*/
 
 div#TB_window h3 { margin: 0; font-size: 40px; padding: 6px 0 16px; font-weight: 600; }
-
 div#TB_window h3 a { font-size: 12px; font-weight: 300; }
-
 div#TB_window div.row { margin: 0 30px 0 0; font-size: 14px; font-weight: 300; margin: 5px 0 5px; clear: both; }
-
 div#TB_window input { font-size: 14px; padding: 2px 8px; }
 
 /* ToDo List and Add New */
 
 div#TB_window div#newToDo { display: none; }
-
 div#TB_window ul#todos_list li { list-style: none; clear: both; margin: 15px 0 20px 8px; display: block; }
-
 div#TB_window ul#todos_list li p { margin: 0; }
-
 div#TB_window ul#todos_list div.todo_heading { color: #fff; font-size: 18px; font-weight: 300; letter-spacing: 1px; margin: 2px 0 3px; }
-
 div#TB_window ul#todos_list div.todo_heading a { font-size: 12px; 
 
 /*opacity: 0;*/ }
 
 div#TB_window ul#todos_list div.todo_body span.description { color: #777; font-size: 12px; width: 300px; display: block; float: left; }
-
 div#TB_window ul#todos_list div.todo_heading.done { opacity: 0.08; }
-
 div#TB_window ul#todos_list div.todo_body.done span { opacity: 0.17; }
 
 /*
@@ -279,34 +270,22 @@ Trip Listing
 
 /* With Date */
 
-div#trip_bar { float: left; width: 33%; background: #fff; padding: 5px 15px 5px 0; }
-
+div#trip_bar { float: left; background: #fff; padding: 5px 15px 5px 0; }
 div#trip_bar dl dt { font-weight: 300; font-size: 24px; color: #333; margin: 40px 0 0 0; }
-
 div#trip_bar dl dd.date { position: relative; background: #ebebeb; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 7px 5px; margin: 7px 0 20px 40px; }
-
 div#trip_bar dd.date dl { margin: 0; }
-
 div#trip_bar dd.date dt { position: absolute; left: -48px; top: -42px; color: #999; font-size: 28px; background: transparent url(../images/trip_bar/arrow.png) no-repeat right 12px; padding: 0 27px 0 0; }
-
 div#trip_bar dd.date dt p { font-size: 16px; margin: 0; padding: 0; position: relative; top: -10px; font-weight: 300; color: #999; }
-
 div#trip_bar dd.date dd.item { background: #e1e1e1; -moz-border-radius: 10px; -webkit-border-radius: 10px; margin: 0; padding: 2px 5px; font-size: 14px; }
-
 div#trip_bar dd.date dd.item + dd.item { margin: 7px 0 0 0; }
-
 div#trip_bar dd.item span.time { width: 70px; display: inline-block; }
-
 div#trip_bar dd.item span.time span { font-size: 24px; font-weight: 300; }
 
 /* Without Date */
 
 div#trip_bar dd.noDate { background: #ebebeb; padding: 5px 10px; }
-
 div#trip_bar dd.noDate dt { font-size: 18px; }
-
 div#trip_bar dd.noDate dt a { font-size: 12px; }
-
 div#trip_bar dd.noDate dl { margin: 0; }
 
 /*
@@ -352,6 +331,28 @@ div#cloud2 { z-index: 4; background: transparent url(../images/homepage/cloud2.p
 
 div#cloud4 { z-index: 2; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top:100px; left: -90%; }
 div#cloud5 { z-index: 6; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -80%; }
+
+/*
+Trip Listing
+------------------------------------------------------------------------------------------*/
+
+/* With Date */
+div#tripList { float: left; width: 33%; background: #fff; padding: 5px 15px 5px 0; }
+div#tripList dl dt { font-weight: 300; font-size: 24px; color: #333; margin: 40px 0 0 0; }
+div#tripList dl dd.date { position: relative; background: #ebebeb; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 7px 5px; margin: 7px 0 20px 40px; }
+div#tripList dd.date dl { margin: 0; }
+div#tripList dd.date dt { position: absolute; left: -48px; top: -42px; color: #999; font-size: 28px; background: transparent url(../images/tripList/arrow.png) no-repeat right 12px; padding: 0 27px 0 0; }
+div#tripList dd.date dt p { font-size: 16px; margin: 0; padding: 0; position: relative; top: -10px; font-weight: 300; color: #999; }
+div#tripList dd.date dd.item { background: #e1e1e1; -moz-border-radius: 10px; -webkit-border-radius: 10px; margin: 0; padding: 0px 5px; font-size: 14px; }
+div#tripList dd.date dd.item + dd.item { margin: 7px 0 0 0; }
+div#tripList dd.item span.time { width: 70px; display: inline-block; }
+div#tripList dd.item span.time span { font-size: 24px; font-weight: 300; }
+
+/* Without Date */
+div#tripList dd.noDate { background: #ebebeb; padding: 5px 10px; }
+div#tripList dd.noDate dt { font-size: 18px; }
+div#tripList dd.noDate dt a {  font-size: 12px; }
+div#tripList dd.noDate dl { margin: 0; }
 
 
 /*
