@@ -24,19 +24,4 @@
       %h3
         = t("Photo Gallery")
       %ul.destinationPhotoGallery
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-        %li
-          %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+        = render :partial => "panoramio_pic", :collection => @dest_pics

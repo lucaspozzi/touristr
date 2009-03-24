@@ -32,7 +32,8 @@
 
 class Destination < ActiveRecord::Base
   extend ActiveSupport::Memoizable
-  
+  require 'open-uri'
+  require 'json'
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
@@ -50,7 +51,8 @@ class Destination < ActiveRecord::Base
 
   MAX_DESTINATION_SEARCH = 25
   DESTINATIONS_PER_PAGE = 10  
-
+  NB_PICS_TO_RETRIEVE = 8
+  
   ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY ISLS ISL CLF LK BAR)
   AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2]
 
@@ -201,6 +203,52 @@ class Destination < ActiveRecord::Base
     nil
   end
   
+  def get_panoramio_pics(rad, nb_pics=NB_PICS_TO_RETRIEVE)
+    start_time = Time.now
+    begin # wrapping up nonessential code in case of failure it won't stop the request
+      set = 'popular'
+      bounds = get_bounding_box(rad.to_f)
+  
+      req = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=#{set}&from=0&to=#{nb_pics}&minx=#{bounds[0][1]}&miny=#{bounds[0][0]}&maxx=#{bounds[1][1]}&maxy=#{bounds[1][0]}"
+      #RAILS_DEFAULT_LOGGER.debug("Destination::Gateway.get_panoramio_pics: request: #{req}")
+    
+      pics_json = open(req + "&size=full").read
+      #RAILS_DEFAULT_LOGGER.debug("Destination::Gateway.get_panoramio_pics: pics_json: #{pics_json}")
+    
+      dest_pics_url = Array.new   
+      
+      pics = JSON.parse(pics_json)
+      pics["photos"].each do |p|
+        dest_pics_url << {:photo_id => p["photo_id"],
+          :photo_title => p["photo_title"], :photo_url => p["photo_url"], :photo_file_url => p["photo_file_url"], 
+          :width => p["width"], :height => p["height"], :owner => p["owner_name"], :owner_url => p["owner_url"]}
+      end
+    rescue StandardError
+      logger.error("Destination#get_panoramio_pics: error: #{$!}")
+    end
+    #puts("\n\n-----------------------------\nget_panoramio_pics took: #{Time.now - start_time}\n-----------------------------\n\n")
+    return dest_pics_url
+  end
+  
+  private
+  
+  def get_bounding_box(radius) #radius in miles
+    
+    deg_per_lat = 69.1
+    deg_per_lng = (self.lat * Math::cos(self.lat * (Math::PI / 180.0))).abs
+  
+    lat_shift = radius / deg_per_lat
+    lng_shift = radius / deg_per_lng
+  
+    min_lat = [self.lat - lat_shift, -90].max
+    max_lat = [self.lat + lat_shift, 90].min
+    min_lng = self.lng - lng_shift
+    max_lng = self.lng + lng_shift
+    min_lng += 360 if min_lng < -180
+    max_lng -= 360 if max_lng > 180
+  
+    [[min_lat, min_lng], [max_lat, max_lng]]
+  end
   
   
 end
