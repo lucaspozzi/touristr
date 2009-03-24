@@ -5,3 +5,4 @@
 %p#destinationIntroduction.static_content
 %ul
   = render :partial=>'destinations/attraction_list_item', :collection=>@attractions, :locals => {:parent_destination => @destination}
+  = will_paginate(@attractions)
