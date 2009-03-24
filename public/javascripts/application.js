@@ -89,9 +89,9 @@ function reinit_events(){
 $(function(){
   $('.destinationSearch').autocomplete('/destinations/search', {
     minChars: 2,
-    max: 25,
+    max: 10,
 		scroll: false,
-		results: 20,
+		results: 10,
     formatItem: function(item) {
   		obj_from_json = less_json_eval(item)
   		if (obj_from_json.destination.parent) {
