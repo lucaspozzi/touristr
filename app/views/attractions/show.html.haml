@@ -3,13 +3,17 @@
     Attraction name:
     = @attraction.name
 %p#destinationIntroduction.static_content
-  %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture, :alt =>  @attraction.destination_content.picture}
-  
+  = if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
+    %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture, :alt =>  @attraction.destination_content.picture}
+    %p
+      = @attraction.destination_content.picture_caption
+      = @attraction.destination_content.picture_author
 .mainContent.static_content
   %h3
     = t("Description")
   %p  
-    = @attraction.destination_content.introduction  
+    = @attraction.destination_content.introduction unless @attraction.destination_content.nil?
+    = t("We don't have any content yet for #{@attraction.name}")
 
 .secondaryContent.static_content
   %h3
