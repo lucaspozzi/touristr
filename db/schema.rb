@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090320122405) do
+ActiveRecord::Schema.define(:version => 20090323080506) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -75,7 +75,16 @@ ActiveRecord::Schema.define(:version => 20090320122405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "video_embed_code"
-    t.string   "locale",           :default => "en", :null => false
+    t.string   "locale",               :default => "en", :null => false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.integer  "author_id"
+    t.string   "picture_caption"
+    t.string   "picture_author"
+    t.string   "picture_url"
+    t.integer  "compatibility_id"
   end
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"

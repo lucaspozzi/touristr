@@ -1,11 +1,10 @@
 %p
   %h3
-    Attraction name:
     = @attraction.name
-%p#destinationIntroduction.static_content
+%p#destinationIntroduction
   %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture, :alt =>  @attraction.destination_content.picture}
   
-.mainContent.static_content
+.mainContent
   %h3
     = t("Description")
   %p  
