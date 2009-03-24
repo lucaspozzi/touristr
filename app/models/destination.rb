@@ -33,7 +33,7 @@
 class Destination < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   require 'open-uri'
-  require 'json'
+#  require 'json' # This breaks Destination.to_json !
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
