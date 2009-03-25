@@ -188,10 +188,20 @@ $(document).ready(function() {
 		$('div#loginForm').fadeOut('normal', function(){
 			$('div#forgotPassword').fadeIn();
 		});
-		
 	});
 	
-	
+	$('.translatable').sundayMorning({
+	    source:'en',
+	    trigger:'dblclick', 
+	    destination:{     
+	        fr:'Français',
+	        it:'Italiano',
+	        es:'Español',
+	        de:'Deutsch',
+	        ja:'アラビア語',
+	        ar:'العربية'
+	    }
+	});
 	
 
 	

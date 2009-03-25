@@ -95,4 +95,4 @@ LOCALES_AVAILABLE = Dir["#{LOCALES_DIRECTORY}/*.{rb,yml}"].collect do |locale_fi
 end.uniq.sort
 
 Less::JsRoutes.generate!
-ENV['GOOGLE_MAP_KEY'] = 'ABQIAAAAfW1yc6Q2V4uGHL7M6YGnFRRVoZP7xtuaeWj7BtnPoZvxkSR_YxQu_5BLw4AhqhIrU4JWYEOg4_dk5A'
+ENV['GOOGLE_MAP_KEY'] = 'ABQIAAAAfW1yc6Q2V4uGHL7M6YGnFRRVoZP7xtuaeWj7BtnPoZvxkSR_YxQu_5BLw4AhqhIrU4JWYEOg4_dk5A' #localhost

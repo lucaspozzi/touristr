@@ -114,10 +114,6 @@ div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius
 
 div.ac_results li.ac_over { background: #222; color: #cc00cc; }
 
-/* Google Map */
-
-div#map { width: 100%; height: 200px; opacity: 0; }
-
 /*
 Planning Template
 -------------------------------------------------------------------------------------------*/
@@ -236,9 +232,7 @@ ul li#carRentals a:hover, ul li#carRentals a:active, ul#destinationNavigation li
 Overview
 -------------------------------------------------------------------------------------------*/
 
-h2#destinationName { margin: 38px 0 -4px 0; }
-
-p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 0px 0 40px 0; }
+p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 70px 0 40px 0; }
 
 ul.destinationPhotoGallery { list-style: none; }
 
@@ -385,14 +379,298 @@ span.translation_missing { background: #ffa49d; }
 
 .static_content { background: #93ff91; }
 
-/* Translation - Sunday Morning */
+#TB_overlay { position: fixed; z-index: 100; top: 0px; left: 0px; height: 100%; width: 100%; }
 
-div#sundayMorning-menu { background:  #000; background: rgba(0,0,0, 0.9); -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-div#sundayMorning-menu ul { list-style: none; margin: 10px 15px; }
-a.sundayMorning-close { float: right; padding: 0 6px 0 0; }
-span.translateNotice { font-size: 12px; color: #999; }
+/*.TB_overlayMacFFBGHack {background: url(macFFBgHack.png) repeat;}
+.TB_overlayBG {
+  background-color:#000;
+  filter:alpha(opacity=75);
+  -moz-opacity: 0.75;
+  opacity: 0.75;
+}*/
+
+* html #TB_overlay { 
+
+/* ie6 hack */
+     position: absolute; height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'); }
+
+#TB_window { position: fixed; background: #000; background: rgba(0, 0, 0, 0.9); 
+
+-moz-border-radius: 10px; -webkit-border-radius: 10px; z-index: 102; color: #a9a9a9; display: none; text-align: left; bottom: 65px; left: 50%; overflow: hidden; }
+
+* html #TB_window { 
+
+/* ie6 hack */
+position: absolute; margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px'); }
+
+#TB_window img#TB_Image { display: block; margin: 15px 0 0 15px; border-right: 1px solid #ccc; border-bottom: 1px solid #ccc; border-top: 1px solid #666; border-left: 1px solid #666; }
+
+#TB_caption { height: 25px; padding: 7px 30px 10px 25px; float: left; }
+
+#TB_closeWindow { height: 25px; padding: 11px 25px 10px 0; float: right; }
+
+#TB_closeAjaxWindow { padding: 7px 10px 5px 0; margin-bottom: 1px; text-align: right; float: right; }
+
+#TB_ajaxWindowTitle { float: left; padding: 7px 0 5px 10px; margin-bottom: 1px; }
+
+#TB_title { height: 27px; }
+
+#TB_ajaxContent { clear: both; padding: 2px 15px 15px 15px; overflow: auto; text-align: left; line-height: 1.4em; }
+
+#TB_ajaxContent.TB_modal { padding: 15px; }
+
+#TB_ajaxContent p { padding: 5px 0px 5px 0px; }
+
+#TB_load { position: fixed; display: none; height: 13px; width: 208px; z-index: 103; top: 50%; left: 50%; margin: -6px 0 0 -104px; /* -height/
+
+2 0 0 -width/2 */ }
+
+* html #TB_load { 
+
+/* ie6 hack */
+position: absolute; margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px'); }
+
+#TB_HideSelect { z-index: 99; position: fixed; top: 0; left: 0; background-color: #fff; border: none; filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; height: 100%; width: 100%; }
+
+* html #TB_HideSelect { 
+
+/* ie6 hack */
+     position: absolute; height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'); }
+
+#TB_iframeContent { clear: both; border: none; margin-bottom: -1px; margin-top: 1px; _margin-bottom: 1px; }
 
 
 
+table.jCalendar {
+	border: 1px solid #000;
+	background: #aaa;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+table.jCalendar th {
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px 5px;
+}
+table.jCalendar td {
+	background: #ccc;
+	color: #000;
+	padding: 3px 5px;
+	text-align: center;
+}
+table.jCalendar td.other-month {
+	background: #ddd;
+	color: #aaa;
+}
+table.jCalendar td.today {
+	background: #666;
+	color: #fff;
+}
+table.jCalendar td.selected {
+	background: #f66;
+	color: #fff;
+}
+table.jCalendar td.selected:hover {
+	background: #f33;
+	color: #fff;
+}
+table.jCalendar td:hover, table.jCalendar td.dp-hover {
+	background: #fff;
+	color: #000;
+}
+table.jCalendar td.disabled, table.jCalendar td.disabled:hover {
+	background: #bbb;
+	color: #888;
+}
 
+/* For the popup */
 
+/* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
+
+a.dp-choose-date { display: none; }
+
+div.dp-popup {
+	position: relative;
+	background: #ccc;
+	font-size: 10px;
+	font-family: arial, sans-serif;
+	padding: 2px;
+	width: 171px;
+	line-height: 1.2em;
+}
+div#dp-popup {
+	position: absolute;
+	z-index: 199;
+}
+div.dp-popup h2 {
+	font-size: 12px;
+	text-align: center;
+	margin: 2px 0;
+	padding: 0;
+}
+a#dp-close {
+	font-size: 11px;
+	padding: 4px 0;
+	text-align: center;
+	display: block;
+}
+a#dp-close:hover {
+	text-decoration: underline;
+}
+div.dp-popup a {
+	color: #000;
+	text-decoration: none;
+	padding: 3px 2px 0;
+}
+div.dp-popup div.dp-nav-prev {
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	width: 100px;
+}
+div.dp-popup div.dp-nav-prev a {
+	float: left;
+}
+/* Opera needs the rules to be this specific otherwise it doesn't change the cursor back to pointer after you have disabled and re-enabled a link */
+div.dp-popup div.dp-nav-prev a, div.dp-popup div.dp-nav-next a {
+	cursor: pointer;
+}
+div.dp-popup div.dp-nav-prev a.disabled, div.dp-popup div.dp-nav-next a.disabled {
+	cursor: default;
+}
+div.dp-popup div.dp-nav-next {
+	position: absolute;
+	top: 2px;
+	right: 4px;
+	width: 100px;
+}
+div.dp-popup div.dp-nav-next a {
+	float: right;
+}
+div.dp-popup a.disabled {
+	cursor: default;
+	color: #aaa;
+}
+div.dp-popup td {
+	cursor: pointer;
+}
+div.dp-popup td.disabled {
+	cursor: default;
+}
+
+table.jCalendar {
+	border: 1px solid #000;
+	background: #aaa;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+table.jCalendar th {
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+	padding: 3px 5px;
+}
+table.jCalendar td {
+	background: #ccc;
+	color: #000;
+	padding: 3px 5px;
+	text-align: center;
+}
+table.jCalendar td.other-month {
+	background: #ddd;
+	color: #aaa;
+}
+table.jCalendar td.today {
+	background: #666;
+	color: #fff;
+}
+table.jCalendar td.selected {
+	background: #f66;
+	color: #fff;
+}
+table.jCalendar td.selected:hover {
+	background: #f33;
+	color: #fff;
+}
+table.jCalendar td:hover, table.jCalendar td.dp-hover {
+	background: #fff;
+	color: #000;
+}
+table.jCalendar td.disabled, table.jCalendar td.disabled:hover {
+	background: #bbb;
+	color: #888;
+}
+
+/* For the popup */
+
+/* NOTE - you will probably want to style a.dp-choose-date - see how I did it in demo.css */
+
+div.dp-popup {
+	position: relative;
+	background: #ccc;
+	font-size: 10px;
+	font-family: arial, sans-serif;
+	padding: 2px;
+	width: 171px;
+	line-height: 1.2em;
+}
+div#dp-popup {
+	position: absolute;
+	z-index: 199;
+}
+div.dp-popup h2 {
+	font-size: 12px;
+	text-align: center;
+	margin: 2px 0;
+	padding: 0;
+}
+a#dp-close {
+	font-size: 11px;
+	padding: 4px 0;
+	text-align: center;
+	display: block;
+}
+a#dp-close:hover {
+	text-decoration: underline;
+}
+div.dp-popup a {
+	color: #000;
+	text-decoration: none;
+	padding: 3px 2px 0;
+}
+div.dp-popup div.dp-nav-prev {
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	width: 100px;
+}
+div.dp-popup div.dp-nav-prev a {
+	float: left;
+}
+/* Opera needs the rules to be this specific otherwise it doesn't change the cursor back to pointer after you have disabled and re-enabled a link */
+div.dp-popup div.dp-nav-prev a, div.dp-popup div.dp-nav-next a {
+	cursor: pointer;
+}
+div.dp-popup div.dp-nav-prev a.disabled, div.dp-popup div.dp-nav-next a.disabled {
+	cursor: default;
+}
+div.dp-popup div.dp-nav-next {
+	position: absolute;
+	top: 2px;
+	right: 4px;
+	width: 100px;
+}
+div.dp-popup div.dp-nav-next a {
+	float: right;
+}
+div.dp-popup a.disabled {
+	cursor: default;
+	color: #aaa;
+}
+div.dp-popup td {
+	cursor: pointer;
+}
+div.dp-popup td.disabled {
+	cursor: default;
+}
