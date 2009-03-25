@@ -1,7 +1,21 @@
-- destination ||= attraction_list_item
-- dom_id ||= destination.dom_id
+- attraction ||= attraction_list_item
+- dom_id ||= attraction.dom_id
 
-%li{:id=>dom_id}
-  = link_to "=>", destination_attraction_path(parent_destination, destination)
-  = h(destination.name)
-  = link_to_remote t('Add'), :url=>destination_trip_items_path(destination)
+%li{:id => dom_id}
+  .photoWrapper
+    - if attraction.destination_content.nil?
+      = link_to image_tag("noPhoto.gif", :alt=>"No Photo Available", :title=>"No Photo Available", :width=>"94", :height=>"75"), destination_attraction_path(parent_destination, attraction)
+    - else
+      - if !attraction.destination_content.picture?
+        = link_to image_tag("noPhoto.gif", :alt=>"No Photo Available", :title=>"No Photo Available", :width=>"94", :height=>"75"), destination_attraction_path(parent_destination, attraction)
+      - else
+        =link_to image_tag(attraction.destination_content.picture.url(:thumb), :alt=>attraction.name, :title=>attraction.name), destination_attraction_path(parent_destination, attraction)
+  .listingContent
+    %h4= link_to(truncate("#{attraction.name}", 40),destination_attraction_path(parent_destination, attraction))
+    %p
+      = strip_tags(truncate(attraction.destination_content.introduction, 160)) unless attraction.destination_content.nil?
+      = link_to "view details", destination_attraction_path(parent_destination, attraction)
+  %div
+    %p.price
+    %p.callToAction
+      = link_to_remote t('Add to Trip'), :url=>destination_trip_items_path(attraction)
