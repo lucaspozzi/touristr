@@ -1,25 +1,25 @@
-<h3>Reservation Information</h3>
+<h3><%= t "Reservation Information"%></h3>
 
 <ul id="confirmation">
   <li>
-    <strong>Cartrawler Confirmation ID:</strong> <%= @reservation[:cartrawler_conf_id] %>
+    <strong><%= t "Cartrawler Confirmation ID"%>:</strong> <%= @reservation[:cartrawler_conf_id] %>
   </li>
   <li>
-    <strong>Vendor Confirmation ID:</strong> <%= @reservation[:vendor_conf_id] %>
+    <strong><%= t "Vendor Confirmation ID"%>:</strong> <%= @reservation[:vendor_conf_id] %>
   </li>
   <li>
-    <strong>Vendor:</strong> <%= @reservation[:vendor_shortname] %>
+    <strong><%= t "Vendor"%>:</strong> <%= @reservation[:vendor_shortname] %>
   </li>
   <li>
-    <strong>Location:</strong> <%= @reservation[:location_details][:name] %>
+    <strong><%= t "Location"%>:</strong> <%= @reservation[:location_details][:name] %>
   </li>
   <li>
-    <strong>Address:</strong> <%= @reservation[:location_details][:address] %>
+    <strong><%= t "Address"%>:</strong> <%= @reservation[:location_details][:address] %>
   </li>
   <li>
-    <strong>Phone:</strong> <%= @reservation[:location_details][:phone] %>
+    <strong><%= t "Phone"%>:</strong> <%= @reservation[:location_details][:phone] %>
   </li>
   <li>
-    <strong>Payment Amount:</strong> <%= @reservation[:payment_amount] %> <%= @reservation[:payment_currency] %>
+    <strong><%= t "Payment Amount"%>:</strong> <%= @reservation[:payment_amount] %> <%= @reservation[:payment_currency] %>
   </li>
 </ul>

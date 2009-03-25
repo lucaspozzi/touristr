@@ -2,22 +2,22 @@
 <div id="carSearch">
   <input type="hidden" id="car_country_code" name="car[country_code]" value="<%=@country_code%>"/>
   <fieldset>
-    <legend>Pickup Details</legend>
+    <legend><%= t "Pickup Details"%></legend>
     <p>
-    <label for="pickup_location">Choose a pickup location</label></p><p>
+    <label for="pickup_location"><%= t "Choose a pickup location"%></label></p><p>
     <%= select :car, :pickup_location, @pickup_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:pickup_location]  %>
-    <%=link_to "Can't find a convenient place?", advanced_search_destination_car_rental_path(@destination)%> 
+    <%=link_to t("Can't find a convenient place?"), advanced_search_destination_car_rental_path(@destination)%> 
     </p>
     <p>
-    <label for="return_location">Choose a return location</label></p><p>
+    <label for="return_location"><%= t "Choose a return location"%></label></p><p>
     <%= select :car, :return_location, @return_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:return_location]  %>
     </p>
   </fieldset>
 
   <fieldset>
-    <legend>Pickup Date and Time</legend>
+    <legend><%= t "Pickup Date and Time"%></legend>
     <p>
-    <label for="pickup_time">Choose a pickup date and time</label></p><p>
+    <label for="pickup_time"><%= t "Choose a pickup date and time"%></label></p><p>
     <input type="text" id="pickup_date" class="chooseDate" name="pickup_date[date]" size="10" value="<%=(@pickup_date.nil?) ? 'dd/mm/yyyy': @pickup_date[:date]%>" />
     <select id="pickup_date_hour" name="pickup_date[hour]">
       <%- 0.upto(23) do |h| -%>
@@ -33,9 +33,9 @@
   </fieldset>
 
   <fieldset>
-    <legend>Return Date and Time</legend>
+    <legend><%= t "Return Date and Time"%></legend>
     <p>
-    <label for="return_time">Choose a return date and time</label></p><p>
+    <label for="return_time"><%= t "Choose a return date and time"%></label></p><p>
     <input type="text" id="return_date" class="chooseDate" name="return_date[date]" size="10" value="<%=(@return_date.nil?) ? 'dd/mm/yyyy': @return_date[:date]%>"/>
     <select id="return_date_hour" name="return_date[hour]">
       <%- 0.upto(23) do |h| -%>
@@ -51,25 +51,25 @@
   </fieldset>
 
   <fieldset>
-    <legend>Personal Details</legend>
+    <legend><%= t "Personal Details"%></legend>
     <p>
-    <label for="driver_age">Driver Age</label></p><p>
+    <label for="driver_age"><%= t "Driver Age"%></label></p><p>
     <%= select :car, :driver_age, (15..99).map{ |a| [a, a.to_s]}, :selected => @details[:driver_age] %>
     </p>
 
     <p>
-    <label for="country">What country are you a citizen of?</label></p><p>
+    <label for="country"><%= t "What country is the driver a citizen of?"%></label></p><p>
     <%= select :car, :citizen_country_code, @countries.map {|c| [c.country, c.iso]}, :selected => @details[:citizen_country_code]  %>
     </p>
 
     <p>
-    <label for="country">Currency</label></p><p>
+    <label for="country"><%= t "Currency"%></label></p><p>
     <%= select :car, :currency, [["Euro", "EUR"], ["GB Pound", "GBP"], ["US Dollar", "USD"]], :select => @details[:currency]   %>
     </p>
 
 
   </fieldset>
-  <p><%= submit_tag 'Submit' %></p>
+  <p><%= submit_tag t 'Submit' %></p>
 </div>
 <% end -%>
 

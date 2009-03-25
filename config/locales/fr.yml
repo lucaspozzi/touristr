@@ -2,7 +2,7 @@
 
 fr:
   hello: Bonjour
-  "Where do you want to go?": Ou voulez-vous allez?
+  "Where do you want to go?": Où voulez-vous allez?
   "Plan": Ajoutez
   "Overview": Information
   "Flights": Vols
@@ -10,12 +10,12 @@ fr:
   "Attractions": Curiosités
   "Activities": Activités
   "Car Rental": Voiture
-  "Itinerary": Itineraire
+  "Itinerary": Itinéraire
   "Comments": Commentaires
   "Budget": Budget
   "To-Dos": A faire
   "Description": Description
-  "Things to do": A decouvrir
+  "Things to do": A découvrir
   "Video Content": Videos
   "Photo Gallery": Photos
   "Login": Connexion
@@ -28,3 +28,65 @@ fr:
   "by": par
   "fr": Francais
   "en": English
+  "Pickup Details": Lieux
+  "Choose a pickup location": Point de départ
+  "Can't find a convenient place?": Vous ne trouvez rien de pratique ?
+  "Choose a return location": Point de retour
+  "Pickup Date and Time": Départ
+  "Choose a pickup date and time": Selectionnez vos date et heure de départ
+  "Return Date and Time": Retour
+  "Choose a return date and time": Selectionnez vos date et heure de retour
+  "Personal Details": A propos du conducteur
+  "Driver Age": Age du conducteur
+  "What country is the driver a citizen of?": Nationalité du conducteur
+  "Currency": Monnaie
+  "Submit": Envoyer
+  "Select your car": Choisissez votre voiture 
+  "Air Conditioning": Climatisation
+  "Transmission": Boite de vitesses
+  "Passengers": Nombre de passagers
+  "Book": Reserver
+  "Payment details": Détails du paiment
+  "Pickup at": Départ à
+  "Return at": Retour à
+  "Prepaid fee": Dépot
+  "Collection fee": Solde
+  "Total": Total
+  "Book this car": Réserver ce véhicule
+  "Personal Details": Informations personnelles
+  "Title": Civilité
+  "Mr": M
+  "Miss": Mme.
+  "First name": Prénom
+  "Surname": Nom
+  "Email": E-mail
+  "Flight details": Information sur le vol
+  "For a better service, please provide us with your flight details": Pour un meilleur service, merci de nous indiquer votre vol
+  "Company code (2 letters)": Code de la companie aérienne
+  "Flight number": Numéro de vol
+  "Telephone": Téléphone
+  "Area Code": Préfixe
+  "Phone Number": Numéro
+  "Billing Address": Adresse de facturation
+  "Street": Rue
+  "City": Ville
+  "Postcode": Code postal
+  "State": Province
+  "Country": Pays
+  "Payment Details": Informations sur le paiment
+  "Credit Card number": Numéro de carte
+  "Card type": Type de carte
+  "Series Code (3-digit code on back of card)": Numéro de sécurité (3 chiffres au dos)
+  "Card Holder Name": Titulaire de la carte
+  "Expiry date": Date de validité
+  "month": mois
+  "year": année
+  "The full amount must be paid when picking up the vehicule": La totalité sera à régler quand vous prendrez le véhicule
+  "Reservation Information": Votre réservation
+  "Cartrawler Confirmation ID": Réference CT
+  "Vendor Confirmation ID": Réference vendeur
+  "Vendor": Vendeur
+  "Location": Recupération
+  "Address": Adresse
+  "Phone": Téléphone
+  "Payment Amount": Payé
