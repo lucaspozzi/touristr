@@ -13,7 +13,7 @@ class ImportDestinationContents < ActiveRecord::Migration
       params << "-u #{username} "
     end
     if !password.nil?
-      params << "-p#{pasword} "
+      params << "-p#{password} "
     end
     system("mysql #{params} #{database} < #{RAILS_ROOT}/db/data/destination_contents.sql")
   end
