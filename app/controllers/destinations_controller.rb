@@ -42,14 +42,14 @@ class DestinationsController < ApplicationController
     @destination = Destination.find(params[:id])
     redirect_to destination_path(@destination) and return unless @destination.city?
     if @destination.destination_content.nil?
-      flash[:error] = "There is no content to be translated"
+      flash[:error] = t("There is no content to be translated")
       redirect_to destination_path(@destination) and return
     end
     
     @possible_translations = Array.new
     LOCALES_AVAILABLE.each { |sup_loc|
       if (@destination.destination_content.locale.casecmp(sup_loc)!=0)
-        @possible_translations << [sup_loc, sup_loc]
+        @possible_translations << [t(sup_loc), sup_loc]
       end
     }
     logger.debug("Possible translation to: #{@possible_translations.inspect}")

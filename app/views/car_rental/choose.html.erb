@@ -1,4 +1,4 @@
-<h4 id="listingHeading">Select your car!</h4>
+<h4 id="listingHeading"><%= t("Select your car")%>!</h4>
 
 <ul id="listing">
   <%- @cars.sort{|a,b| a[:total_charge].to_f <=> b[:total_charge].to_f}.each do |car| -%>
@@ -13,9 +13,9 @@
       <div class="listingContent">
         <h5><%= car[:name] %></h5>
         <p>
-          Air Conditioning: <%= car[:air_cond] %><br/>
-          Transmission: <%= car[:transmission].downcase %><br/>
-          Passengers: <%= car[:passengers_quantity] %><br/>
+          <%= t "Air Conditioning" %>: <%= car[:air_cond] %><br/>
+          <%= t "Transmission" %>: <%= car[:transmission].downcase %><br/>
+          <%= t "Passengers" %>: <%= car[:passengers_quantity] %><br/>
         </p>
       </div>
       <div>
@@ -23,7 +23,7 @@
           <%= get_price_as_currency(car[:total_charge], car[:total_charge_currency]) %>
         </p>
         <p class="bookNow">
-           <% form_tag pay_destination_car_rental_url(@destination, :host => "secure.touristr.com",  :protocol => "https") do %>
+           <% form_tag pay_destination_car_rental_url(@destination) do %>
                 <%= hidden_field_tag 'reference[id]', car[:reference][:id] %>
                 <%= hidden_field_tag 'reference[url]', car[:reference][:url] %>
                 <%= hidden_field_tag 'reference[context]', car[:reference][:context] %>
@@ -47,7 +47,7 @@
                 <%= hidden_field_tag 'reference[datetime]', car[:reference][:datetime] %>
                 <%= hidden_field_tag 'car[rate_qualifier]', car[:rate_qualifier] %>
 
-            	<%= submit_tag 'Book' %><br/>
+            	<%= submit_tag t 'Book' %><br/>
             <% end -%>
         </p>
       </div>

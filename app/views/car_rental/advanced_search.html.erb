@@ -1,11 +1,11 @@
-<h3> Where do you want to rent a car?</h3>
+<h3> <%= t "Where do you want to rent a car?"%></h3>
 
 <% form_tag search_destination_car_rental_path(@destination) do -%>
  
 <p>
-<label for="country">Choose a country</label><br/>
+<label for="country"><%= t "Choose a country" %> </label><br/>
 <%= select :car, :country_code, @countries.map {|c| [c.country, c.iso]}, :selected => @destination.country_code  %>
 </p>
 
-<p><%= submit_tag 'Submit' %></p>
+<p><%= submit_tag t 'Submit' %></p>
 <% end -%>

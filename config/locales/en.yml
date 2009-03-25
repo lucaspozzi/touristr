@@ -35,4 +35,68 @@ en:
   "Done": Done
   "Restart": Restart
   "by": by
+  "fr": Francais
+  "en": English
+  "Pickup Details": Pickup Details
+  "Choose a pickup location": Choose a pickup location
+  "Can't find a convenient place?": Can't find a convenient place?
+  "Choose a return location": Choose a return location
+  "Pickup Date and Time": Pickup Date and Time
+  "Choose a pickup date and time": Choose a pickup date and time
+  "Return Date and Time": Return Date and Time
+  "Choose a return date and time": Choose a return date and time
+  "Personal Details": Personal Details
+  "Driver Age": Driver Age
+  "What country is the driver a citizen of?": What country is the driver a citizen of?
+  "Currency": Currency
+  "Submit": Submit
+  "Select your car": Select your car
+  "Air Conditioning": Air Conditioning
+  "Transmission": Transmission
+  "Passengers": Passengers
+  "Book": Book
+  "Payment details": Payment details
+  "Pickup at": Pickup at
+  "Return at": Return at
+  "Prepaid fee": Prepaid fee
+  "Collection fee": Collection fee
+  "Total": Total
+  "Book this car": Book this car
+  "Personal Details": Personal Details
+  "Title": Title
+  "Mr": Mr
+  "Miss": Miss.
+  "First name": First name
+  "Surname": Surname
+  "Email": Email
+  "Flight details": Flight details
+  "For a better service, please provide us with your flight details": For a better service, please provide us with your flight details
+  "Company code (2 letters)": Company code (2 letters)
+  "Flight number": Flight number
+  "Telephone": Telephone
+  "Area Code": Area Code
+  "Phone Number": Phone Number
+  "Billing Address": Billing Address
+  "Street": Street
+  "City": City
+  "Postcode": Postcode
+  "State": State
+  "Country": Country
+  "Payment Details": Payment Details
+  "Credit Card number": Credit Card number
+  "Card type": Card type
+  "Series Code (3-digit code on back of card)": Series Code (3-digit code on back of card)
+  "Card Holder Name": Card Holder Name
+  "Expiry date": Expiry date
+  "month": month
+  "year": year
+  "The full amount must be paid when picking up the vehicule": The full amount must be paid when picking up the vehicule
+  "Reservation Information": Reservation Information
+  "Cartrawler Confirmation ID": Cartrawler Confirmation ID
+  "Vendor Confirmation ID": Vendor Confirmation ID
+  "Vendor": Vendor
+  "Location": Location
+  "Address": Address
+  "Phone": Phone
+  "Payment Amount": Payment Amount
   "Add to Trip": Add to Trip
