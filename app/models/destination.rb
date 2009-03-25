@@ -33,7 +33,6 @@
 class Destination < ActiveRecord::Base
   extend ActiveSupport::Memoizable
   require 'open-uri'
-#  require 'json' # This breaks Destination.to_json !
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
@@ -217,7 +216,7 @@ class Destination < ActiveRecord::Base
     
       dest_pics_url = Array.new   
       
-      pics = JSON.parse(pics_json)
+      pics = ActiveSupport::JSON.decode pics_json
       pics["photos"].each do |p|
         dest_pics_url << {:photo_id => p["photo_id"],
           :photo_title => p["photo_title"], :photo_url => p["photo_url"], :photo_file_url => p["photo_file_url"], 
