@@ -23,7 +23,7 @@
           <%= get_price_as_currency(car[:total_charge], car[:total_charge_currency]) %>
         </p>
         <p class="bookNow">
-           <% form_tag pay_destination_car_rental_url(@destination) do %>
+           <% form_tag pay_destination_car_rental_url(@destination, :host => "secure.touristr.com", :protocol => "https") do %>
                 <%= hidden_field_tag 'reference[id]', car[:reference][:id] %>
                 <%= hidden_field_tag 'reference[url]', car[:reference][:url] %>
                 <%= hidden_field_tag 'reference[context]', car[:reference][:context] %>
