@@ -29,5 +29,3 @@ EZREZ_USER = 'touristr'
 EZREZ_PASSWORD = 'welcome1'
 
 GOOGLE_MAPS_KEY = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTA3QuY-FliugvkufkSU41b58hUcRScmHTty77SX3e5NrWepABkob3eIg'
-
-
