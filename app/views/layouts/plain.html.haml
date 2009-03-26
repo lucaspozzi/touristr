@@ -21,6 +21,7 @@
         #cloud3
         #cloud4
         #cloud5
-    = javascript_include_tag :defaults, 'jquery.sundaymorning', "http://maps.google.com/maps?file=api&v=2&key=#{ENV['GOOGLE_MAP_KEY']}&sensor=false", 'maps' , :cache => true
+    
+    = javascript_include_tag :defaults, 'jquery.sundaymorning', :cache => true
     = yield :javascripts
     = yield :javascript

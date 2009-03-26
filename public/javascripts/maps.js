@@ -2,14 +2,6 @@ var map;
 var markers = [];
 var bounds = new GLatLngBounds();
 
-$('document').ready(function(){
-	
-	//Create Map on the page
-	
-	//Draw Map
-	initializeMap();
-
-});
 
 // Generic Map functions
 
