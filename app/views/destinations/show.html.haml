@@ -41,7 +41,6 @@
     %dd.lng= @destination.lng
         
 - content_for :javascripts do
-  = javascript_include_tag "http://maps.google.com/maps?file=api&v=2&key=#{ENV['GOOGLE_MAP_KEY']}&sensor=false", 'maps', :cache => true
   
   :javascript
     $(document).ready(function(){

@@ -22,6 +22,6 @@
       = yield
       = render :partial => "shared/footer"
     
-    = javascript_include_tag :defaults, 'jquery.sundaymorning' , :cache => true
+    = javascript_include_tag :defaults, 'jquery.sundaymorning', "http://maps.google.com/maps?file=api&v=2&key=#{ENV['GOOGLE_MAP_KEY']}&sensor=false", 'maps' , :cache => true
     = yield :javascripts
     = yield :javascript

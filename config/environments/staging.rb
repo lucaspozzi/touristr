@@ -27,3 +27,4 @@ config.action_controller.perform_caching             = true
 EZREZ_URL = 'http://amhols.americanholidays.com/api/api.cfm'
 EZREZ_USER = 'touristr'
 EZREZ_PASSWORD = 'welcome1'
+ENV['GOOGLE_MAP_KEY'] = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTA3QuY-FliugvkufkSU41b58hUcRScmHTty77SX3e5NrWepABkob3eIg' #localhost
