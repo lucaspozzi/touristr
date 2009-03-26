@@ -22,7 +22,7 @@
         #cloud4
         #cloud5
     
-    = javascript_include_tag "http://maps.google.com/maps?file=api&v=2&key=#{ENV['GOOGLE_MAP_KEY']}&sensor=false"
+    = javascript_include_tag "http://maps.google.com/maps?file=api&v=2&key=#{GOOGLE_MAP_KEY}&sensor=false"
     = javascript_include_tag :defaults, 'jquery.sundaymorning', 'maps' , :cache => true
     = yield :javascripts
     = yield :javascript
