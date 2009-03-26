@@ -1,14 +1,13 @@
-%p
-  %h3
+.content
+  %h2
     = @attraction.name
-%p#destinationIntroduction.static_content
-  - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
-    %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
-    %p
-      = "#{@attraction.destination_content.picture_caption} #{t("by")}" 
-      %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
-        =@attraction.destination_content.picture_author
-.mainContent.static_content
+  %p#destinationIntroduction.static_content
+    - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
+      %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
+      %p
+        = "#{@attraction.destination_content.picture_caption} #{t("by")}" 
+        %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
+          =@attraction.destination_content.picture_author
   %h3
     = t("Description")
   %p  
@@ -16,23 +15,15 @@
       = t("We don't have any content yet for #{@attraction.name}")
     - else
       = @attraction.destination_content.introduction
-
-.secondaryContent.static_content
-  %h3
-    = t("Video Content")
-  .video
-    <object width="468" height="264"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="468" height="264"></embed></object><br /><a href="http://vimeo.com/2558470">Job Interview</a> from <a href="http://vimeo.com/benschwartz">Ben Schwartz</a> on <a href="http://vimeo.com">Vimeo</a>.
-
-  %h3
-    = t("Photo Gallery")
-  %ul.destinationPhotoGallery
-    %li
-      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-    %li
-      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-    %li
-      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-    %li
-      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
-    %li
-      %img{:src => "http://mw2.google.com/mw-panoramio/photos/medium/290579.jpg", :alt => "This needs to be dynamic", :width => "85", :height => "63"}
+  .media
+    - unless @attraction.destination_content.nil?
+      .videos
+        %h3
+          = t("Video Content")
+        .video
+          <object width="468" height="264"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="468" height="264"></embed></object><br /><a href="http://vimeo.com/2558470">Job Interview</a> from <a href="http://vimeo.com/benschwartz">Ben Schwartz</a> on <a href="http://vimeo.com">Vimeo</a>.
+  
+      .photos
+        %h3= t("Photo Gallery")
+        %ul.destinationPhotoGallery
+          = render :partial => "/destinations/panoramio_pic", :collection => @attract_pics
