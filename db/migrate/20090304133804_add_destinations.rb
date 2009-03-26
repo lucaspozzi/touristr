@@ -1,9 +1,9 @@
 class AddDestinations < ActiveRecord::Migration
 
   def self.up
-   # load_data_from_file "FR.txt"
-   # load_data_from_file "IE.txt"
-   # load_data_from_file "VN.txt"
+    # load_data_from_file "FR.txt"
+    # load_data_from_file "IE.txt"
+    # load_data_from_file "VN.txt"
     load_data_from_file "allCountries.txt"
   end
 
