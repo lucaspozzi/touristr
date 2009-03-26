@@ -28,4 +28,4 @@ EZREZ_URL = 'http://amhols.americanholidays.com/api/api.cfm'
 EZREZ_USER = 'touristr'
 EZREZ_PASSWORD = 'welcome1'
 
-GOOGLE_MAPS_KEY = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTA3QuY-FliugvkufkSU41b58hUcRScmHTty77SX3e5NrWepABkob3eIg'
+GOOGLE_MAPS_KEY = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTc2IY7NuNnuxbGu7X_w1WCjdUU3hTdqQ5YrpygBT9VT_uqDxvkzwnJsA'
