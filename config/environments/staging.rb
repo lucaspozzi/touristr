@@ -38,3 +38,4 @@ config.action_mailer.smtp_settings = {
 
 $MAILER_TO_ADDRESS = 'jan@touristr.com'
 ActionMailer::Base.delivery_method = :sendmail
+GOOGLE_MAPS_KEY = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTA3QuY-FliugvkufkSU41b58hUcRScmHTty77SX3e5NrWepABkob3eIg'
