@@ -26,7 +26,7 @@ class AttractionsController < ApplicationController
     @possible_translations = Array.new
     LOCALES_AVAILABLE.each { |sup_loc|
       if (@attraction.destination_content.locale.casecmp(sup_loc)!=0)
-        @possible_translations << [sup_loc, sup_loc]
+        @possible_translations << [t(sup_loc), sup_loc]
       end
     }
     logger.debug("Possible translation to: #{@possible_translations.inspect}")

@@ -9,7 +9,7 @@ fr:
   "Hotels": Hôtels
   "Attractions": Curiosités
   "Activities": Activités
-  "Car Rental": Voiture
+  "Car Rentals": Voiture
   "Itinerary": Itinéraire
   "Comments": Commentaires
   "Budget": Budget
@@ -91,3 +91,5 @@ fr:
   "Phone": Téléphone
   "Payment Amount": Payé
   "Add to Trip": Needs to done
+  "Please select the language you will translate to": Vers quelle langue voulez-vous traduire ?
+  "Save translation": Sauvez votre traduction
