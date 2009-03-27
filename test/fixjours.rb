@@ -70,8 +70,15 @@ Fixjour do
       :score             => 431350
     })
   end
-    
-      
+  
+  define_builder(DestinationContent) do |klass, overrides|
+    klass.new({
+      :introduction      => "This is the introduction",
+      :overview          => "An overview",
+      :attractions       => "That's what you must to do there!", 
+      :destination_id    => overrides[:destination_id]
+    })
+  end 
 
 end
 include Fixjour
@@ -84,6 +91,12 @@ class Test::Unit::TestCase
   end
   def create_destination_attraction overrides = {}
     create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>''}.merge(overrides))
+  end
+
+  def create_destination_attraction_with_content overrides = {}
+    attrac = create_destination_attraction overrides = {}
+    attrac.destination_content = create_destination_content
+    attrac
   end
 end
 
