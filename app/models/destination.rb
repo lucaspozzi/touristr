@@ -117,7 +117,19 @@ class Destination < ActiveRecord::Base
     when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_class='P'", country_code, admin1_code, admin2_code], :order => "score DESC")
     else
       if feature_code.in?(CITIES)
-        return Destination.paginate(:conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in (?)", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC", :page => page, :per_page => max)
+        # we want to return first the children with content
+        all_children = Destination.find(:all, :include => :destination_content, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_code in (?)", country_code, admin1_code, admin2_code, ATTRACTIONS], :order => "score DESC")
+        no_content = Array.new
+        content = Array.new
+        all_children.each do |child|
+          if child.destination_content.nil?
+            no_content << child
+          else
+            content << child
+          end
+        end
+        all_children = content + no_content
+        return all_children.paginate(:page => page, :per_page => max)
       else 
         logger.error("Destination#children: got something not expected for #{self.id}: feature_code=#{feature_code}")
         nil
