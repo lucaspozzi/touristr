@@ -4,13 +4,13 @@
       =@destination.name
   // add a class current to the below menus to select current
   %li#overview
-    = link_to t("Overview"), "#"
+    = link_to t("Overview"), destination_path(@destination)
   %li#flights
     = link_to t("Flights"), "#"
   %li#hotels
     = link_to t("Hotels"), hotels_path
   %li#attractions
-    = link_to t("Attractions"), "#"
+    = link_to t("Attractions"), destination_attractions_path(@destination)
   %li#activities
     = link_to t("Activities"), "#"
   %li#carRentals
