@@ -12,7 +12,7 @@
         =link_to image_tag(attraction.destination_content.picture.url(:thumb), :alt=>attraction.name, :title=>attraction.name), destination_attraction_path(parent_destination, attraction)
   .listingContent
     %h4= link_to(truncate("#{attraction.name}", 40),destination_attraction_path(parent_destination, attraction))
-    %p
+    %p.translatable
       = strip_tags(truncate(attraction.destination_content.introduction, 160)) unless attraction.destination_content.nil?
       = link_to "view details", destination_attraction_path(parent_destination, attraction)
   %div

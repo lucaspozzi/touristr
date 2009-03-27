@@ -19,3 +19,5 @@ config.action_mailer.raise_delivery_errors = false
 EZREZ_URL = 'http://amhols.americanholidays.com/api/api.cfm'
 EZREZ_USER = 'touristr'
 EZREZ_PASSWORD = 'welcome1'
+
+GOOGLE_MAPS_KEY = 'ABQIAAAAfW1yc6Q2V4uGHL7M6YGnFRRVoZP7xtuaeWj7BtnPoZvxkSR_YxQu_5BLw4AhqhIrU4JWYEOg4_dk5A'

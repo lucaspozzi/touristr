@@ -7,6 +7,7 @@ class AttractionsController < ApplicationController
   
   def show
     @attraction = Destination.find(params[:id])
+    @attract_pics = @attraction.get_panoramio_pics(5)
   end
   
   def index

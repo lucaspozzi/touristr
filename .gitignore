@@ -17,3 +17,4 @@ config/*sphinx.conf
 db/schema.rb
 public/javascripts/all.js
 public/stylesheets/all.css
+db/data/allCountries.txt

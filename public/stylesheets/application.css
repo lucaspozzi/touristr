@@ -177,6 +177,7 @@ div#TB_window ul#todos_list div.todo_body.done span { opacity: 0.17; }
 Login Page
 -------------------------------------------------------------------------------------------*/
 
+body#home div#logo { z-index: 100; position: relative; }
 body#home a:link, body#home a:visited { color: #fff; font-weight: 600; letter-spacing: 1px; }
 body#home a:hover, body#home a:active { color: #222; }
 body#home label { font-size: 16px; color: #fff; font-weight: 300; }
