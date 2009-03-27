@@ -59,6 +59,9 @@ class Destination < ActiveRecord::Base
     indexes name, alternate_names, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
     has score, :sortable=>true, :type=>:integer
     set_property :delta=>true
+    # some natural features don't have a country code. Maybe they span over several countries??
+    where "country_code <> ''"
+    
   end
   
   
