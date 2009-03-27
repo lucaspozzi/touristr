@@ -28,4 +28,14 @@ EZREZ_URL = 'http://amhols.americanholidays.com/api/api.cfm'
 EZREZ_USER = 'touristr'
 EZREZ_PASSWORD = 'welcome1'
 
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+:domain => "touristr.com",
+:perform_deliveries => true,
+:address => 'smtp.ey03.engineyard.com',
+:port => 25
+}
+
+$MAILER_TO_ADDRESS = 'jan@touristr.com'
+ActionMailer::Base.delivery_method = :sendmail
 GOOGLE_MAPS_KEY = 'ABQIAAAAFa5AlHULhO7Exfa2qysmgBTA3QuY-FliugvkufkSU41b58hUcRScmHTty77SX3e5NrWepABkob3eIg'
