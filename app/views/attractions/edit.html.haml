@@ -12,10 +12,11 @@
     = t("Description")
   %p  
     - form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
-      %p
-        %label
-          =t("Upload the main picture")
-        = file_field_tag 'attraction[picture]'
+      - if @attraction.destination_content.picture.nil? || @attraction.destination_content.picture.blank?
+        %p 
+          %label
+            =t("Upload the main picture")
+          = file_field_tag 'attraction[picture]'
       %p
         %label
           =t("Caption")
