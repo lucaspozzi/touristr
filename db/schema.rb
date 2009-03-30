@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090323080506) do
+ActiveRecord::Schema.define(:version => 20090330085218) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -60,12 +60,37 @@ ActiveRecord::Schema.define(:version => 20090323080506) do
 
   add_index "countries", ["iso"], :name => "index_countries_on_iso"
 
+  create_table "destination_attractions", :force => true do |t|
+    t.integer  "destination_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+    t.decimal  "lat",                  :precision => 15, :scale => 10
+    t.decimal  "lng",                  :precision => 15, :scale => 10
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "picture_caption"
+    t.string   "picture_author"
+    t.string   "picture_url"
+    t.boolean  "cropped"
+    t.integer  "author_id"
+    t.string   "attraction_locale",                                    :default => "en-US"
+    t.integer  "view_count",                                           :default => 0
+    t.integer  "comment_count",                                        :default => 0
+    t.integer  "vote_delta_count",                                     :default => 0
+  end
+
+  add_index "destination_attractions", ["destination_id"], :name => "index_destination_attractions_on_destination_id"
+
   create_table "destination_content_translations", :force => true do |t|
     t.integer  "destination_content_id"
     t.string   "locale"
+    t.text     "attractions"
     t.text     "introduction"
     t.text     "overview"
-    t.text     "attractions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20090323080506) do
     t.string   "picture_author"
     t.string   "picture_url"
     t.integer  "compatibility_id"
+    t.boolean  "cropped"
   end
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"

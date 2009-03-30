@@ -1,0 +1,47 @@
+.content
+  %h2#destinationName= @destination.name
+  - form_tag (destination_path(@destination), :method => :put) do
+    = text_field_tag 'destination[introduction]', @destination.destination_content.introduction
+
+    %h3
+      = t("Description")
+      = text_field_tag 'destination[overview]', @destination.destination_content.overview 
+
+    %h3
+      = t("Things to do")
+      = text_field_tag 'destination[attractions]', @destination.destination_content.attractions
+      
+    = submit_tag "save"
+  
+  %ul
+    = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}
+    
+  .media
+    - unless @destination.destination_content.nil?
+      .videos
+        %h3
+          = t("Video Content")
+        .video
+          <object width="468" height="264"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="468" height="264"></embed></object><br /><a href="http://vimeo.com/2558470">Job Interview</a> from <a href="http://vimeo.com/benschwartz">Ben Schwartz</a> on <a href="http://vimeo.com">Vimeo</a>.
+
+      .photos
+        %h3= t("Photo Gallery")
+        %ul.destinationPhotoGallery
+          = render :partial => "panoramio_pic", :collection => @dest_pics
+.mapInformation
+  %dl#destinations
+    %dt.name= @destination.name
+    %dd.lat= @destination.lat
+    %dd.lng= @destination.lng
+        
+- content_for :javascripts do
+  
+  :javascript
+    $(document).ready(function(){
+    //Draw Map
+    initializeMap();
+    
+    showDestination();
+    });
+    
+  

@@ -81,4 +81,26 @@ class DestinationsController < ApplicationController
       end  
     end
   end
+  
+  def edit
+    @destination = Destination.find(params[:id])    
+    @destination.build_destination_content if @destination.destination_content.nil?
+  end
+  
+  def update
+    @destination = Destination.find(params[:id])
+    @destination.build_destination_content if @destination.destination_content.nil?
+    respond_to do |wants|
+      wants.html do
+        if @destination.destination_content.update_attributes(params[:destination])
+            flash.now[:notice] = "#{@destination.name} #{t("has been updated")}"
+            render :action => :show
+        else
+            flash.now[:error] = "#{@destination.name} #{t("could not be updated")}"
+            render :action => :edit
+        end
+      end
+    end
+  end
+  
 end
