@@ -2,7 +2,7 @@
 # although both controllers handle destinations object
 
 class AttractionsController < ApplicationController
-  skip_before_filter :login_required
+  skip_before_filter :login_required, :except => [:edit, :update]
   before_filter :load_destination
   
   def show
