@@ -1,5 +1,6 @@
 .content
   %h2#destinationName= @destination.name
+  = link_to t("edit"), edit_destination_path(@destination) if @u
   %p#destinationIntroduction.translatable
     = @destination.destination_content.introduction unless @destination.destination_content.nil?
   %h3 Map
