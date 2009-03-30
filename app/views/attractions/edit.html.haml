@@ -11,9 +11,25 @@
   %h3
     = t("Description")
   %p  
-    = form_tag (destination_attraction_path(params[:destination_id], @attraction), :method => :put) do
-      new text:
-      = text_area_tag :introduction, @attraction.destination_content.introduction
+    = form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
+      %p
+        %label
+          =t("Upload the main picture")
+        = file_field_tag 'attraction[picture]'
+      %p
+        %label
+          =t("Caption")
+        = text_field_tag 'attraction[picture_caption]', @attraction.destination_content.picture_caption, :size => "27"
+        %p
+          %label
+            =t("Author")
+          = text_field_tag 'attraction[picture_author]', @attraction.destination_content.picture_author, :size => "27"
+        %p
+          %label
+            =t("Link to original picture")
+          = text_field_tag 'attraction[picture_url]', @attraction.destination_content.picture_url, :size => "27"
+
+      = text_area_tag 'attraction[introduction]', @attraction.destination_content.introduction
       = submit_tag "save"
   .media
     .photos

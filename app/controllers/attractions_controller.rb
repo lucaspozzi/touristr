@@ -25,9 +25,14 @@ class AttractionsController < ApplicationController
     @attraction.build_destination_content if @attraction.destination_content.nil?
     respond_to do |wants|
       wants.html do
-        if @attraction.destination_content.update_attribute(:introduction, params[:introduction])
-          flash.now[:notice] = "#{@attraction.name} #{t("has been updated")}"
-          render :action => :show
+        if @attraction.destination_content.update_attributes(params[:attraction])
+          if params[:attraction][:picture].blank?
+            flash.now[:notice] = "#{@attraction.name} #{t("has been updated")}"
+            render :action => :show
+          else
+            flash.now[:notice] = "#{@attraction.name} #{t("has been updated, now select the part of the image to be displayed")}"
+            render :action => :show
+          end
         else
           flash.now[:error] = "#{@attraction.name} #{t("could not be updated")}"
           render :action => :edit
