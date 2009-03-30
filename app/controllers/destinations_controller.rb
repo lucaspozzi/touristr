@@ -1,5 +1,5 @@
 class DestinationsController < ApplicationController
-  skip_before_filter :login_required
+  skip_before_filter :login_required, :except => [:edit, :update]
   
   def search
     logger.debug("DestinationController#search: param=#{params[:q]}")
