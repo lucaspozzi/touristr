@@ -10,7 +10,8 @@ ActionController::Routing::Routes.draw do |map|
     todo.resources :trip_items
   end
   map.resources :destinations, :collection=>{:search=>:get}, :member=>{:translate => [:get,:post]} do |destination|
-    destination.resources :attractions, :member => {:translate => [:get,:post]}
+    destination.resources :attractions, :member => {:translate => [:get,:post],
+                                                    :crop_picture => [:get,:post]}
     destination.resources :trip_items
     destination.resources :car_rental, :collection => {:search => :any,
                                                        :advanced_search => :any,

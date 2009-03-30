@@ -1,4 +1,4 @@
-%h3 Login to your account
+<h3>Login to your account</h3>
 
 <%= form_tag %>
 
@@ -27,14 +27,10 @@
     </p>
 
     <p>
-      <%= submit_tag("Login", :id=>'submitter') %>
+      <%= submit_tag("Login", :id=>'submitter') %> <%= link_to 'Forgot your password?', '#', :class => 'forgotPasswordShow' %>
     </p>
   </div>
-  
-  <p>
-    <%= link_to 'Forgot your password?', '#', :class => 'forgotPasswordShow' %>
-  </p>
-  
+    
   <div id="forgotPassword" style="display:none;">
     <p>
       <label for="email">Email</label>
