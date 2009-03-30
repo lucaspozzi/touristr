@@ -1,25 +1,17 @@
 .content
   %h2#destinationName= @destination.name
-  = link_to t("edit"), edit_destination_path(@destination) if @u
-  = link_to t("translate"), translate_destination_path(@destination)
-  %p#destinationIntroduction.translatable
-    = @destination.destination_content.introduction unless @destination.destination_content.nil?
-  %h3 Map
-  #map.destination
-  - if @destination.destination_content.nil?
-    .onlyPhotos
-      %h3= t("Photo Gallery")
-      %ul.destinationPhotoGallery
-        = render :partial => "panoramio_pic", :collection => @dest_pics
-  %h3
-    = t("Description")
-  .translatable
-    = @destination.destination_content.overview unless @destination.destination_content.nil?
-  
-  %h3
-    = t("Things to do")
-  .translatable
-    = @destination.destination_content.attractions unless @destination.destination_content.nil?
+  - form_tag (destination_path(@destination), :method => :put) do
+    = text_field_tag 'destination[introduction]', @destination.destination_content.introduction
+
+    %h3
+      = t("Description")
+      = text_field_tag 'destination[overview]', @destination.destination_content.overview 
+
+    %h3
+      = t("Things to do")
+      = text_field_tag 'destination[attractions]', @destination.destination_content.attractions
+      
+    = submit_tag "save"
   
   %ul
     = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}
