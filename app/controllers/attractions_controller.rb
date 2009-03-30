@@ -15,6 +15,28 @@ class AttractionsController < ApplicationController
     @attractions = @destination.children_page(params[:page])
   end
   
+  def edit
+    @attraction = Destination.find(params[:id])
+    @attraction.build_destination_content if @attraction.destination_content.nil?
+  end
+  
+  def update
+    @attraction = Destination.find(params[:id])
+    @attraction.build_destination_content if @attraction.destination_content.nil?
+    respond_to do |wants|
+      wants.html do
+        if @attraction.destination_content.update_attribute(:introduction, params[:introduction])
+          flash.now[:notice] = "#{@attraction.name} #{t("has been updated")}"
+          render :action => :show
+        else
+          flash.now[:error] = "#{@attraction.name} #{t("could not be updated")}"
+          render :action => :edit
+        end
+      end
+    end
+  end
+
+  
   def translate
     @attraction = Destination.find(params[:id])
     @destination = Destination.find(params[:destination_id])
