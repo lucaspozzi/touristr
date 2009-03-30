@@ -41,5 +41,10 @@
 
 class Hotel < ActiveRecord::Base
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+  include Trippy
+  
+  def city
+    Destination.first.city
+  end
   
 end

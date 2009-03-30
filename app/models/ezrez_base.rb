@@ -22,6 +22,6 @@ class EzrezBase
   end
   
   def build_xml params
-    {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Currency=>'USD', :Debug=>true}.merge(params)}.to_xml.gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '')
+    {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Currency=>'USD', :Debug=>true}.merge(params)}.to_xml(:skip_instruct => true).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '')
   end
 end

@@ -73,6 +73,7 @@ class AccountsController < ApplicationController
     u.password              = params[:user][:password]
     u.password_confirmation = params[:user][:password_confirmation]
     u.email                 = params[:user][:email]
+    u.person                = @p
     @u = u
     if u.save
       self.user = u

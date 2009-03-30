@@ -68,5 +68,18 @@ class TripTest < ActiveSupport::TestCase
     assert_equal t1, trip.send( :trippies_parent, create_destination_attraction)
   end
   
+
+
+  should "get the normal view" do
+    trip = create_trip
+    t1 = trip.add create_todo
+    t2 = trip.add create_hotel
+    t3 = trip.add create_todo
+    t4 = trip.add create_todo
+    
+    nm = trip.trip_items_normal_view
+    
+    
+  end
   
 end

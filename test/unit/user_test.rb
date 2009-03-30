@@ -137,19 +137,13 @@ class UserTest < Test::Unit::TestCase
   
   
   
-  should "create a new user and grab an existing person" do
-    assert u = create_user( :email=>'13_invited@example.com')
-    assert !u.new_record?
-    assert_equal u, Person.find_by_email('13_invited@example.com').user
-    assert_equal Person.find_by_email('13_invited@example.com'), u.reload.person
-  end
-  
   
   
   
 protected
   def create_user(options = {})
     User.create({ :login => 'quire', :email => 'quire@example.com',
-                :password => 'quire', :password_confirmation => 'quire' }.merge(options))
+                :password => 'quire', :password_confirmation => 'quire',
+                :person=>create_person }.merge(options))
   end
 end

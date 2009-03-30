@@ -32,6 +32,7 @@
 
 class Destination < ActiveRecord::Base
   extend ActiveSupport::Memoizable
+  include Trippy
   require 'open-uri'
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
@@ -88,6 +89,12 @@ class Destination < ActiveRecord::Base
   end
   alias_method :country?, :area?
   
+  
+  def city
+    return self if city?
+    return parent if attraction?
+    nil
+  end
   
   def parent
     case feature_code
