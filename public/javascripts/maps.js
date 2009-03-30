@@ -49,3 +49,16 @@ function showDestination() {
 	refreshBounds();
 	map.setZoom(6);
 };
+
+function showDestinations(){
+	$('ul#destinations li').each(function(){
+		var lat = $(this).children('div.mapInformation').children('span.lat').text();
+		var lng = $(this).children('div.mapInformation').children('span.lng').text();
+		placeMarker(lat, lng);
+		refreshBounds();
+	});
+};
+
+
+
+

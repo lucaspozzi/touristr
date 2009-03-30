@@ -18,7 +18,9 @@
   %p
     = f.password_field :password_confirmation
   %p.checkbox
-    %label{ :for => 'accepts_terms'} I accept the terms and conditions 
+    %label{ :for => 'accepts_terms'}
+      I accept the 
+      = link_to "terms and conditions", "/terms "
     = check_box_tag :accepts_terms, "1", params[:accepts_terms]
   %p.checkbox
     %label{ :for => 'remember_me'} Remember me

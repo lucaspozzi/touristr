@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090323080506) do
+ActiveRecord::Schema.define(:version => 20090330085218) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20090323080506) do
     t.string   "picture_author"
     t.string   "picture_url"
     t.integer  "compatibility_id"
+    t.boolean  "cropped"
   end
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"

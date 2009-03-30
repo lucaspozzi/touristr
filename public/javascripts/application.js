@@ -136,7 +136,9 @@ function toDoJS(){
 	
 	// Hides the new To-Do form on submission
 	$('div#newToDo form').submit(function(){
+		debug("form submitted");
 		$('a#addNewToDo').text("Add");
+		debug($(this).parent());
 		$(this).parent().slideUp();
 	});
 	

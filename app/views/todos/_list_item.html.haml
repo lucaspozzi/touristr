@@ -5,7 +5,7 @@
   .date
   .trippy
     %div{:class=>"todo_heading#{ ' done' if todo.done?}"}
-      = h(todo.title)
+      = h(truncate(todo.title, 30))
       = link_to_remote t('Delete'), :url=>todo_path(todo), :method=>:delete, :confirm=>DELETE_CONFIRM
     %div{:class=>"todo_body#{ ' done' if todo.done?}"}
       %span.description
