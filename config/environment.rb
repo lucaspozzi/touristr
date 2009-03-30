@@ -95,3 +95,5 @@ LOCALES_AVAILABLE = Dir["#{LOCALES_DIRECTORY}/*.{rb,yml}"].collect do |locale_fi
 end.uniq.sort
 
 Less::JsRoutes.generate!
+
+ENV['CROP_TOKEN'] = 'hdjhd38y_2189dhAmArnw6Sdjksh62akdH8Y2DHQW'

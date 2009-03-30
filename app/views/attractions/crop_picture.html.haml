@@ -1,0 +1,29 @@
+= image_tag(@attraction.destination_content.picture.url(:reduced), {:id => "cropbox"})
+
+- form_tag crop_picture_destination_attraction_path(@destination, @attraction) do
+  = hidden_field_tag(:x1)
+  = hidden_field_tag(:y1)
+  = hidden_field_tag(:x2)
+  = hidden_field_tag(:y2)
+  = hidden_field_tag(:id, @attraction.id)
+
+  = submit_tag(t("Crop"))
+
+- content_for :javascripts do
+
+  :javascript
+    $(document).ready(function(){
+    $('#cropbox').Jcrop({
+    onChange: showCoords,
+    onSelect: showCoords,
+    setSelect:   [ 0, 0, 620, 250 ],
+    aspectRatio: 620 / 250
+    });
+    
+    function showCoords(c) {
+    $('#x1').val(c.x);
+    $('#y1').val(c.y);
+    $('#x2').val(c.w);
+    $('#y2').val(c.h);
+    }
+    });
