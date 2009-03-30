@@ -2,7 +2,7 @@
 %html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
   %head
     %title= title ||= "Touristr"
-    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', :cache => true
+    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', 'jquery.Jcrop', :cache => true
   %body
     #wrapper
       = render :partial => "shared/header"
