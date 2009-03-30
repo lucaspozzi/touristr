@@ -11,7 +11,7 @@
   %h3
     = t("Description")
   %p  
-    = form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
+    - form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
       %p
         %label
           =t("Upload the main picture")
