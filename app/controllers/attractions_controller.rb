@@ -88,7 +88,7 @@ class AttractionsController < ApplicationController
     #need to save this file manually back to s3
     s3 = RightAws::S3.new('0NBB1TQQCMBXPECP6DG2', 'zJoOj18M/gKZzGm/QaMnK0ISzJpZ6e3L21uZOWXJ')
     bucket = s3.bucket('touristr-eu-img')    
-    key = bucket.key("attractions/#{@attraction.id}/original/#{@attraction.destination_content.picture_file_name}")
+    key = bucket.key("attractions/#{@attraction.destination_content.id}/original/#{@attraction.destination_content.picture_file_name}")
     key.put(File.open(tmp_local_file), 'public-read')
     #delete the temporary file
     File.delete(tmp_local_file) if File.exist?(tmp_local_file)
