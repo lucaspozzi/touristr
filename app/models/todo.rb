@@ -20,6 +20,8 @@ class Todo < ActiveRecord::Base
   
   
   
-  
+  def name
+    title
+  end
   
 end

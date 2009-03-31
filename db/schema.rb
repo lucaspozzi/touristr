@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090330085218) do
+ActiveRecord::Schema.define(:version => 20090330181531) do
 
   create_table "attractions", :force => true do |t|
     t.integer  "destination_id"
@@ -231,6 +231,9 @@ ActiveRecord::Schema.define(:version => 20090330085218) do
     t.string   "trippy_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.boolean  "purchased",   :default => false, :null => false
   end
 
   create_table "trip_memberships", :force => true do |t|

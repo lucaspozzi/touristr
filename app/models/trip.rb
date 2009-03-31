@@ -16,6 +16,7 @@
 #
 
 class Trip < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
   has_many :trip_memberships
   has_many :people, :through=>:trip_memberships
   has_many :trip_items, :order=>:ordered
@@ -57,16 +58,30 @@ class Trip < ActiveRecord::Base
   
   def trip_items_normal_view
     out = []
-    # trip_items.each do |ti|
-    #   city = out.last
-    #   next if ti.city? && city == ti.id #this is a duplicate on the list
-    #   out << {ti.city.id=>{:array=>[]}}
-    #   next if ti.city?
-    #   out.last[:array] << ti
-    # end
+    trip_items.each do |ti|
+      trippy = ti.trippy
+      hash = out.last || {}
+      next if trippy.city? && hash[:city_id] == trippy.id #this is a duplicate on the list, shouldn't really ever happen
+      p out
+      hash = {:city_id=>trippy.id, :city_name=>trippy.name, :dates=>[]} and out <<(hash) and next if trippy.city?
+      if hash.empty?
+        hash = {:city_name=>trippy.city.if_method_nil(:name, ''), :dates=>[], :city_id=>nil}
+        out <<(hash)
+      end
+      hash[:dates] <<( {:date => ti.starts_at, :events=>[]}) if add_new_date_hash_to_this_date_hash?( hash[:dates].last, ti)
+      hash[:dates].last[:events] << {:trippy=>trippy, :trip_item=>ti}
+     end
     out
   end
+  memoize :trip_items_normal_view
   
+  
+  def add_new_date_hash_to_this_date_hash? date_hash, trip_item
+    return true if date_hash.nil?
+    return true if date_hash.empty?
+    return false if trip_item.starts_at.nil?
+    date_hash[:date] != trip_item.starts_at
+  end
     
    
 =begin
@@ -85,9 +100,8 @@ class Trip < ActiveRecord::Base
         move_trippies_back_one_starting_with ti_parent.ordered + 1
         order = ti_parent.ordered + 1
       end
-    else
-      order = trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0
     end
+    order ||= (trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0)
     trip_items.create :ordered=>order, :trippy=>obj
   end
     

@@ -17,12 +17,13 @@ class EzrezBase
     xml = build_xml params
     Rails.logger.debug xml.red
     RestClient.proxy = "http://touristR:sHamr0ck8@ec2-75-101-159-245.compute-1.amazonaws.com:3128"
-    response = RestClient.post( EZREZ_URL, xml, :content_type=>"application/xml")
+    response = RestClient.get( EZREZ_URL + xml, :content_type=>"application/xml")
     Rails.logger.debug response.inspect.yellow
     response
   end
   
   def build_xml params
-    {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'USD', :Debug=>true}.merge(params)}.to_xml(:skip_instruct => true).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '')
+    "?xml=" + CGI::escape({:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'EUR', :Debug=>true}.merge(params)}.to_xml(:skip_instruct => false).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', ''))
   end
 end
+

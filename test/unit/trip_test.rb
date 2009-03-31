@@ -17,6 +17,8 @@ class TripTest < ActiveSupport::TestCase
     trip = create_trip
     h1 = create_hotel
     h2 = create_hotel
+    d1 = create_destination
+    t1 = create_todo
     trip.add h1
     
     assert_equal 1, trip.trip_items.count
@@ -27,6 +29,16 @@ class TripTest < ActiveSupport::TestCase
     assert_equal 2, trip.trip_items.count
     assert_equal h2, trip.trippies.second
     assert_equal 1, trip.trip_items.second.ordered
+    
+    trip.add d1
+    assert_equal 3, trip.trip_items.count
+    assert_equal d1, trip.trippies.third
+    assert_equal 2, trip.trip_items.third.ordered
+    
+    trip.add t1
+    assert_equal 4, trip.trip_items.count
+    assert_equal t1, trip.trippies.fourth
+    assert_equal 3, trip.trip_items.fourth.ordered
     
   end
   
@@ -76,8 +88,10 @@ class TripTest < ActiveSupport::TestCase
     t2 = trip.add create_hotel
     t3 = trip.add create_todo
     t4 = trip.add create_todo
-    
-    nm = trip.trip_items_normal_view
+=begin
+  TODO need to write some tests for this method
+=end
+    #p trip.trip_items_normal_view
     
     
   end
