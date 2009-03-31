@@ -52,6 +52,21 @@ class Trip < ActiveRecord::Base
     ar
   end
   
+  
+  
+  
+  def trip_items_normal_view
+    out = []
+    # trip_items.each do |ti|
+    #   city = out.last
+    #   next if ti.city? && city == ti.id #this is a duplicate on the list
+    #   out << {ti.city.id=>{:array=>[]}}
+    #   next if ti.city?
+    #   out.last[:array] << ti
+    # end
+    out
+  end
+  
     
    
 =begin

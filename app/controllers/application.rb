@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
       cookies[:_touristr_person] = {:value => @p.id.to_s, :expires => 10.years.from_now}
     end
     @t = @p.current_trip
-    logger.debug @t.inspect.red
+#    logger.debug @t.inspect.red
     true
   end
 

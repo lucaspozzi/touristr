@@ -22,16 +22,16 @@ class PeopleControllerTest <  ActionController::TestCase
   
   
     should "update name" do
-      assert p = @user.person
-      assert p.first_name != 'x'
-      assert p.last_name != 'y'
-      assert p.email != 'a@b.com'
+      person = @user.person
+      assert person.first_name != 'x'
+      assert person.last_name != 'y'
+      assert person.email != 'a@b.com'
       put :update, {:id=>@user.person.id, :person=>{:first_name=>'x', :last_name=>'y', 'email'=>'a@b.com'}, :switch=>'name'}, {:user=>@user}
       assert_response 302
-      assert p.reload
-      assert p.first_name == 'x'
-      assert p.last_name == 'y'
-      assert p.email == 'a@b.com'
+      person = Person[person.id]
+      assert person.first_name == 'x'
+      assert person.last_name == 'y'
+      assert person.email == 'a@b.com'
     end
   
   

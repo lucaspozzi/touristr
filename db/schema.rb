@@ -36,6 +36,34 @@ ActiveRecord::Schema.define(:version => 20090330160008) do
 
   add_index "attractions", ["destination_id"], :name => "index_destination_attractions_on_destination_id"
 
+  create_table "bad_temp", :force => true do |t|
+    t.string   "name"
+    t.string   "ascii_name"
+    t.string   "alternate_names"
+    t.decimal  "lng",                             :precision => 15, :scale => 10
+    t.decimal  "lat",                             :precision => 15, :scale => 10
+    t.string   "feature_class",     :limit => 1
+    t.string   "feature_code",      :limit => 10
+    t.string   "region_name",       :limit => 40
+    t.string   "country_code",      :limit => 2
+    t.string   "cc2",               :limit => 60
+    t.string   "admin1_code",       :limit => 20
+    t.string   "admin2_code",       :limit => 80
+    t.string   "admin3_code",       :limit => 20
+    t.string   "admin4_code",       :limit => 20
+    t.integer  "population"
+    t.integer  "elevation"
+    t.integer  "gtopo30"
+    t.string   "time_zone"
+    t.date     "modification_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "country_name"
+    t.integer  "click_counter",                                                   :default => 0, :null => false
+    t.integer  "score",                                                           :default => 0, :null => false
+    t.boolean  "delta",                                                                          :null => false
+  end
+
   create_table "countries", :force => true do |t|
     t.string  "iso"
     t.string  "iso3"
@@ -60,36 +88,11 @@ ActiveRecord::Schema.define(:version => 20090330160008) do
 
   add_index "countries", ["iso"], :name => "index_countries_on_iso"
 
-  create_table "destination_attractions", :force => true do |t|
-    t.integer  "destination_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "description"
-    t.decimal  "lat",                  :precision => 15, :scale => 10
-    t.decimal  "lng",                  :precision => 15, :scale => 10
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
-    t.string   "picture_caption"
-    t.string   "picture_author"
-    t.string   "picture_url"
-    t.boolean  "cropped"
-    t.integer  "author_id"
-    t.string   "attraction_locale",                                    :default => "en-US"
-    t.integer  "view_count",                                           :default => 0
-    t.integer  "comment_count",                                        :default => 0
-    t.integer  "vote_delta_count",                                     :default => 0
-  end
-
-  add_index "destination_attractions", ["destination_id"], :name => "index_destination_attractions_on_destination_id"
-
   create_table "destination_content_translations", :force => true do |t|
     t.integer  "destination_content_id"
     t.string   "locale"
-    t.text     "attractions"
     t.text     "introduction"
+    t.text     "attractions"
     t.text     "overview"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -150,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20090330160008) do
     t.date     "modification_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country_name"
     t.integer  "click_counter",                                                   :default => 0, :null => false
     t.integer  "score",                                                           :default => 0, :null => false
     t.boolean  "delta",                                                                          :null => false

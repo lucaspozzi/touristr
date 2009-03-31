@@ -44,9 +44,13 @@ class User < ActiveRecord::Base
 
   
   def after_create
-    p = Person.find_or_create_by_email @email
-    raise 'User found when should be nil' unless p.user.blank?
-    p.update_attributes :user_id=>self.id
+    opp = Person.find_by_email self.email
+    if opp && person
+      person.move_stuff_to opp
+      opp.update_attribute :user_id, self.id
+    else
+      person.update_attribute :user_id, self.id
+    end
     AccountMailer.deliver_signup self
   end
   

@@ -12,10 +12,13 @@
 #
 
 class Todo < ActiveRecord::Base
+  include Trippy
   belongs_to :person
   has_one :trip_item, :as=>:trippy, :dependent=>:destroy
   
   validates_presence_of :title
+  
+  
   
   
   

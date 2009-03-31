@@ -11,10 +11,35 @@ class PersonTest < Test::Unit::TestCase
 
 
 
+
+  should "move stuff to" do
+    p1 = create_person
+    p2 = create_person
+    trip = p1.current_trip
+    todo = create_todo :person_id=>p1.id
+    
+    p1.move_stuff_to p2
+    assert TripMembership.find_by_trip_id_and_person_id trip.id, p2.id
+    assert_equal p2.id, Todo[todo.id].person_id
+    
+  end
+
+
   context "creating new with trip" do
     setup do
       @user = create_user
       @trip = @user.person.current_trip
+    end
+    
+    should "invite and add existing user" do
+      other = create_person
+      assert_difference "@trip.number_of_adults" do
+      assert_difference "@trip.trip_memberships.count" do
+      assert_no_difference "Person.count" do
+        person = @user.person.create_and_add_to_trip( {:email=>other.email}, @trip)
+      end
+      end
+      end
     end
     
     should "invite and add" do

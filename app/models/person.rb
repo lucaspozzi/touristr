@@ -53,11 +53,23 @@ class Person < ActiveRecord::Base
     end
   end
   
+  def move_stuff_to other
+    todos.each { |todo| todo.update_attribute :person_id, other.id }
+    trip_memberships.each { |trip_membership| trip_membership.update_attribute :person_id, other.id }
+    # reload
+    # destroy
+  end
+  
   
   def create_and_add_to_trip params, trip, message = ''
     raise 'Action not allowed' unless trip.in?(trips)
-    person = Person.new params.merge(:invited => true)
-    return person unless person.valid?
+    person = Person.find_by_email params[:email]
+    if person.nil?
+      person = Person.new params.merge(:invited => true)
+      return person unless person.valid?
+    else
+      person.update_attribute :invited, true
+    end
     begin
       AccountMailer.deliver_invite person, trip, self, message
     rescue StandardError, *SMTP_ERRORS => e
