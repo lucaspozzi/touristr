@@ -84,7 +84,14 @@ class DestinationsController < ApplicationController
   
   def edit
     @destination = Destination.find(params[:id])    
-    @destination.build_destination_content if @destination.destination_content.nil?
+    if @destination.destination_content.nil?
+      @destination.build_destination_content 
+      @possible_translations = Array.new
+      LOCALES_AVAILABLE.each { |sup_loc|
+        @possible_translations << [t(sup_loc), sup_loc]
+      }
+      logger.error("No content for #{@destination.name}: #{@possible_translations.inspect}")
+    end
   end
   
   def update
