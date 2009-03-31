@@ -118,6 +118,19 @@ ActiveRecord::Schema.define(:version => 20090330181531) do
 
   add_index "destination_contents", ["destination_id"], :name => "index_destination_contents_on_destination_id"
 
+  create_table "destination_pictures", :force => true do |t|
+    t.integer  "destination_id"
+    t.string   "picture_caption"
+    t.string   "picture_author"
+    t.string   "picture_url"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "destinations", :force => true do |t|
     t.string   "name"
     t.string   "ascii_name"

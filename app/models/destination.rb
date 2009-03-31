@@ -38,6 +38,7 @@ class Destination < ActiveRecord::Base
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+  has_many :destination_pictures
   acts_as_commentable
   friendly_param :name
 
@@ -222,6 +223,20 @@ class Destination < ActiveRecord::Base
       end
     end
     nil
+  end
+  
+  def get_pictures
+    dest_pics = Array.new
+    self.destination_pictures.each do |pic|
+      dest_pics << pic.get_as_panoramio
+    end
+    logger.debug("retrieved #{dest_pics.size} pitures")
+    if dest_pics.size < NB_PICS_TO_RETRIEVE
+      logger.debug("retrieving #{NB_PICS_TO_RETRIEVE - dest_pics.size} from Panoramio")
+      dest_pics += self.get_panoramio_pics(5, NB_PICS_TO_RETRIEVE - dest_pics.size)
+    end
+    logger.debug(dest_pics.inspect)
+    dest_pics
   end
   
   def get_panoramio_pics(rad, nb_pics=NB_PICS_TO_RETRIEVE)

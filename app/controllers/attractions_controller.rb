@@ -9,7 +9,7 @@ class AttractionsController < ApplicationController
   
   def show
     @attraction = Destination.find(params[:id])
-    @attract_pics = @attraction.get_panoramio_pics(5)
+    @attract_pics = @attraction.get_pictures
   end
   
   def index
@@ -138,6 +138,17 @@ class AttractionsController < ApplicationController
         format.xml  { render :xml => @attraction.errors, :status => :unprocessable_entity }
       end  
     end
+  end
+  
+  def add_photo
+    @attraction = Destination.find_by_id(params[:id])
+    @destination = Destination.find(params[:destination_id])
+    if @attraction.destination_pictures.create(params[:destination_pictures])
+      flash[:success] = t("Picture successfully added.")
+    else
+      flash[:error] = t("Something went wrong... Please try again.")
+    end
+    redirect_to(destination_attraction_path(@destination, @attraction))
   end
   
   protected

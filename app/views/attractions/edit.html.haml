@@ -5,17 +5,18 @@
     - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
       %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
       %p
-        = "#{@attraction.destination_content.picture_caption} #{t("by")}" 
+        = "#{@attraction.destination_content.picture_caption} #{t("by") unless @attraction.destination_content.picture_author.blank?}" 
         %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
           =@attraction.destination_content.picture_author
   %h3
     = t("Description")
   %p  
     - form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
-      %p
-        %label
-          =t("Upload the main picture")
-        = file_field_tag 'attraction[picture]'
+      - if @attraction.destination_content.picture.nil? || @attraction.destination_content.picture.blank?
+        %p 
+          %label
+            =t("Upload the main picture")
+          = file_field_tag 'attraction[picture]'
       %p
         %label
           =t("Caption")
@@ -29,7 +30,7 @@
             =t("Link to original picture")
           = text_field_tag 'attraction[picture_url]', @attraction.destination_content.picture_url, :size => "27"
 
-      = text_area_tag 'attraction[introduction]', @attraction.destination_content.introduction
+      = text_area_tag 'attraction[introduction]', @attraction.destination_content.introduction, :size => "80x10"
       = submit_tag "save"
   .media
     .photos

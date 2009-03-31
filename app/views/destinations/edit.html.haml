@@ -1,15 +1,15 @@
 .content
   %h2#destinationName= @destination.name
   - form_tag (destination_path(@destination), :method => :put) do
-    = text_field_tag 'destination[introduction]', @destination.destination_content.introduction
+    = text_area_tag 'destination[introduction]', @destination.destination_content.introduction, :size => "80x10"
 
     %h3
       = t("Description")
-      = text_field_tag 'destination[overview]', @destination.destination_content.overview 
+      = text_area_tag 'destination[overview]', @destination.destination_content.overview, :size => "80x10"
 
     %h3
       = t("Things to do")
-      = text_field_tag 'destination[attractions]', @destination.destination_content.attractions
+      = text_area_tag 'destination[attractions]', @destination.destination_content.attractions, :size => "80x10"
       
     = submit_tag "save"
   
