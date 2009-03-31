@@ -36,10 +36,10 @@ class TripsController < ApplicationController
   end
   
   def sort
-    params[:trip_bar].each_with_index do |ti_id, index|
-      @t.trip_items.find(ti_id).update_attribute :ordered, index
+    @t.sort params[:tripList]
+    render :update do |page|
+      page.replace 'tripList', :partial=>'shared/trip'
     end
-    render :nothing=>true
   end
 
   protected

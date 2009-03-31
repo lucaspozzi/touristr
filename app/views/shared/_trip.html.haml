@@ -3,45 +3,39 @@
 - return '' unless @t
 
  
-%ul#trip_bar
-  - @t.trip_items.all(:include=>[:trippy]).each do |ti|
-    = render :partial=>"#{ti.trippy.class.class_name.underscore.pluralize}/list_item", :object=>ti.trippy, :locals=>{:dom_id=>ti.dom_id('in_trip_bar'), :trip_item=>ti}
-    = ti.trippy.class.class_name
-   
-= content_for :javascript do 
-  = sortable_element( 'trip_bar', :url=>sort_trip_path(@t))
  
 #tripList
   %dl
     - @t.trip_items_normal_view.each do |location|
       %dt 
         = location[:city_name]
-        - location[:dates].each do |date|
-          %dd.date
-            %dl
-              %dt
-                - if date[:date]
-                  = date[:date].strftime('%d')
-                  %p 
-                    = date[:date].strftime('%b')
-                - else
-                  %p 
-                - date[:events].each do |event|
-                  %dd{:id=>event[:trip_item].dom_id('in_trip_bar'), :class=>'item'}
-                    %span.time 
-                      - if event[:trip_item].starts_at
-                        %span 
-                          = event[:trip_item].starts_at.strftime('%I')
-                        = event[:trip_item].starts_at.strftime('%p').downcase
-                      - else
-                        %span
-                    = render :partial=>"#{event[:trippy].class.class_name.underscore.pluralize}/list_item", :object=>event[:trippy], :locals=>{:dom_id=>event[:trip_item].dom_id('in_trip_bar'), :trip_item=>event[:trip_item]}
-                    /= link_to event[:trippy].name, '#'
+      - location[:dates].each do |date|
+        %dd.date
+          %dl
+            %dt
+              - if date[:date]
+                = date[:date].strftime('%d')
+                %p 
+                  = date[:date].strftime('%b')
+              - else
+                %p 
+            - date[:events].each do |event|
+              %dd{:id=>event[:trip_item].dom_id('in_trip_bar'), :class=>'item'}
+                %span.time 
+                  - if event[:trip_item].starts_at
+                    %span 
+                      = event[:trip_item].starts_at.strftime('%I')
+                    = event[:trip_item].starts_at.strftime('%p').downcase
+                  - else
+                    %span
+                = render :partial=>"#{event[:trippy].class.class_name.underscore.pluralize}/list_item", :object=>event[:trippy], :locals=>{:dom_id=>event[:trip_item].dom_id('in_trip_bar'), :trip_item=>event[:trip_item]}
+                %span.grabber m
+                /= link_to event[:trippy].name, '#'
                     
                     
 
 = content_for :javascript do 
-  = sortable_element( 'tripList', :url=>sort_trip_path(@t), :tag=>'dd')
+  = sortable_element( 'tripList', :url=>sort_trip_path(@t), :handle=>'grabber', :scroll=>true, :items=>' dd.item')
                     
 /                  
 /        %dd.date

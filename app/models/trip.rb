@@ -56,16 +56,24 @@ class Trip < ActiveRecord::Base
   
   
   
+  
+  def sort ids
+    ids.each_with_index do |ti_id, index|
+      trip_items.find(ti_id).update_attribute :ordered, index
+    end
+  end
+  
+  
+  
   def trip_items_normal_view
     out = []
     trip_items.each do |ti|
       trippy = ti.trippy
       hash = out.last || {}
       next if trippy.city? && hash[:city_id] == trippy.id #this is a duplicate on the list, shouldn't really ever happen
-      p out
       hash = {:city_id=>trippy.id, :city_name=>trippy.name, :dates=>[]} and out <<(hash) and next if trippy.city?
-      if hash.empty?
-        hash = {:city_name=>trippy.city.if_method_nil(:name, ''), :dates=>[], :city_id=>nil}
+      if add_new_city_hash?(hash, trippy)
+        hash = {:city_name=>trippy.city.if_method_nil(:name, ''), :dates=>[], :city_id=>trippy.city.if_method_nil(:id, nil)}
         out <<(hash)
       end
       hash[:dates] <<( {:date => ti.starts_at, :events=>[]}) if add_new_date_hash_to_this_date_hash?( hash[:dates].last, ti)
@@ -75,6 +83,12 @@ class Trip < ActiveRecord::Base
   end
   memoize :trip_items_normal_view
   
+  
+  def add_new_city_hash? current_hash, trippy
+    return true if current_hash.empty?
+    return false if trippy.city.nil?
+    current_hash[:city_id] != trippy.city.if_method_nil(:id, nil)
+  end
   
   def add_new_date_hash_to_this_date_hash? date_hash, trip_item
     return true if date_hash.nil?

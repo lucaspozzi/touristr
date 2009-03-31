@@ -81,7 +81,7 @@ class TripsControllerTest < ActionController::TestCase
       @user2.person.current_trip.update_attribute :public, true
       ti1 = @user1.person.current_trip.add create_todo
       ti2 = @user1.person.current_trip.add create_todo
-      @params = {:id=>@user1.person.current_trip_id, :trip_bar=>[ti1.id.to_s, ti2.id.to_s]}
+      @params = {:id=>@user1.person.current_trip_id, :tripList=>[ti1.id.to_s, ti2.id.to_s]}
     end
   
     should "sort if it's my trip" do
@@ -109,7 +109,7 @@ class TripsControllerTest < ActionController::TestCase
     
     should "sort" do
       assert_equal [@ti1.id, @ti2.id, @ti3.id, @ti4.id], @trip.trip_item_ids
-      post :sort, {:id=>@trip.id, :trip_bar=>[@ti4.id.to_s, @ti3.id.to_s, @ti2.id.to_s, @ti1.id.to_s]}, {:user=>@user}
+      post :sort, {:id=>@trip.id, :tripList=>[@ti4.id.to_s, @ti3.id.to_s, @ti2.id.to_s, @ti1.id.to_s]}, {:user=>@user}
       assert_equal [@ti4.id, @ti3.id, @ti2.id, @ti1.id], @trip.trip_item_ids
     end
   end
