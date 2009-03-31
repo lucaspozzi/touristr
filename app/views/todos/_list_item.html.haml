@@ -1,16 +1,15 @@
 - todo ||= list_item || @todo
 - dom_id ||= todo.dom_id('in_list')
 
-%li{:id=>dom_id, :class=>'item'}
-  .date
-  .trippy
-    %div{:class=>"todo_heading#{ ' done' if todo.done?}"}
-      = h(truncate(todo.title, 30))
-      = link_to_remote t('Delete'), :url=>todo_path(todo), :method=>:delete, :confirm=>DELETE_CONFIRM
-    %div{:class=>"todo_body#{ ' done' if todo.done?}"}
-      %span.description
-        = sanitize(truncate(todo.description, 50))
-      - if todo.done?
-        = link_to_remote t('Restart'), :class => "complete", :url=>todo_path(todo).add_param('todo[done]'=>false), :method=>:put
-        - else
-          = link_to_remote t('Done'), :class => "complete", :url=>todo_path(todo).add_param('todo[done]'=>true), :method=>:put
+.date
+.trippy
+  %div{:class=>"todo_heading#{ ' done' if todo.done?}"}
+    = h(truncate(todo.title, 30))
+    = link_to_remote t('Delete'), :url=>todo_path(todo), :method=>:delete, :confirm=>DELETE_CONFIRM
+  %div{:class=>"todo_body#{ ' done' if todo.done?}"}
+    %span.description
+      = sanitize(truncate(todo.description, 50))
+    - if todo.done?
+      = link_to_remote t('Restart'), :class => "complete", :url=>todo_path(todo).add_param('todo[done]'=>false), :method=>:put
+      - else
+        = link_to_remote t('Done'), :class => "complete", :url=>todo_path(todo).add_param('todo[done]'=>true), :method=>:put

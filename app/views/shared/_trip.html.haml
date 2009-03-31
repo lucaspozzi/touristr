@@ -27,7 +27,7 @@
                 - else
                   %p 
                 - date[:events].each do |event|
-                  %dd.item
+                  %dd{:id=>event[:trip_item].dom_id('in_trip_bar'), :class=>'item'}
                     %span.time 
                       - if event[:trip_item].starts_at
                         %span 
