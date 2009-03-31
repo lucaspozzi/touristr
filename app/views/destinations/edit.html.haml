@@ -1,6 +1,10 @@
 .content
   %h2#destinationName= @destination.name
   - form_tag (destination_path(@destination), :method => :put) do
+    - unless @possible_translations.nil?
+      = t("Which language are you going to use?")
+      = select_tag 'destination[locale]', options_for_select(@possible_translations)
+    
     = text_area_tag 'destination[introduction]', @destination.destination_content.introduction, :size => "80x10"
 
     %h3

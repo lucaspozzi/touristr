@@ -12,11 +12,15 @@
     = t("Description")
   %p  
     - form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
-      - if @attraction.destination_content.picture.nil? || @attraction.destination_content.picture.blank?
+      - if @attraction.destination_content.picture_file_name.nil? || @attraction.destination_content.picture_file_name.blank?
         %p 
           %label
             =t("Upload the main picture")
           = file_field_tag 'attraction[picture]'
+      %p
+        - unless @possible_translations.nil?
+          = t("Which language are you going to use?")
+          = select_tag 'attraction[locale]', options_for_select(@possible_translations)
       %p
         %label
           =t("Caption")
