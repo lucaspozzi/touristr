@@ -39,7 +39,9 @@
                     /= link_to event[:trippy].name, '#'
                     
                     
-                    
+
+= content_for :javascript do 
+  = sortable_element( 'tripList', :url=>sort_trip_path(@t), :tag=>'dd')
                     
 /                  
 /        %dd.date

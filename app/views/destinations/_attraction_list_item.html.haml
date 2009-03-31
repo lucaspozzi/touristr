@@ -18,4 +18,4 @@
   %div
     %p.price
     %p.callToAction
-      = link_to_remote t('Add to Trip'), :url=>destination_trip_items_path(attraction)
+      = link_to_remote t('Add to Trip'), :url=>destination_trip_items_path(attraction), :method=>:post
