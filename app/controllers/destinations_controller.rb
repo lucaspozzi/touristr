@@ -1,5 +1,6 @@
 class DestinationsController < ApplicationController
   skip_before_filter :login_required, :except => [:edit, :update]
+  NB_PICS_FOR_DEST = 8
   
   def search
     logger.debug("DestinationController#search: param=#{params[:q]}")
@@ -24,8 +25,7 @@ class DestinationsController < ApplicationController
     @destination.increment_click_counter if params[:xs4f] == 'qf3r'
     @t.add @destination if @destination.city?
     @destinations = @destination.children
-    @dest_pics = @destination.get_panoramio_pics(5)
-    logger.debug(@dest_pics.inspect)
+    @dest_pics = @destination.get_pictures
     return if @destination.city?
     if @destination.attraction?
       redirect_to destination_attraction_path(@destination.parent, @destination) and return
@@ -101,6 +101,16 @@ class DestinationsController < ApplicationController
         end
       end
     end
+  end
+  
+  def add_photo
+    @destination = Destination.find(params[:id])
+    if @destination.destination_pictures.create(params[:destination_pictures])
+      flash[:success] = t("Picture successfully added.")
+    else
+      flash[:error] = t("Something went wrong... Please try again.")
+    end
+    redirect_to(destination_path(@destination))
   end
   
 end

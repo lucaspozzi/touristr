@@ -9,9 +9,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :todos do |todo|
     todo.resources :trip_items
   end
-  map.resources :destinations, :collection=>{:search=>:get}, :member=>{:translate => [:get,:post]} do |destination|
+  map.resources :destinations,  :collection=>{:search=>:get}, 
+                                :member=>{:translate => [:get,:post],
+                                          :add_photo => [:post]} do |destination|
     destination.resources :attractions, :member => {:translate => [:get,:post],
-                                                    :crop_picture => [:get,:post]}
+                                                    :crop_picture => [:get,:post],
+                                                    :add_photo => [:post]}
     destination.resources :trip_items
     destination.resources :car_rental, :collection => {:search => :any,
                                                        :advanced_search => :any,

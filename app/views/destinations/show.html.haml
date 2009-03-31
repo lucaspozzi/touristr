@@ -36,6 +36,27 @@
         %h3= t("Photo Gallery")
         %ul.destinationPhotoGallery
           = render :partial => "panoramio_pic", :collection => @dest_pics
+        .addPictureForm
+          - form_tag(add_photo_destination_path(@destination), :multipart => true) do
+            %p
+              %label 
+                =t('Add an other picture')
+              = file_field_tag "destination_pictures[picture]"
+            %p
+              %label
+                =t('Caption')
+              = text_field_tag "destination_pictures[picture_caption]"
+            %p
+              %label
+                =t('Author')
+              = text_field_tag "destination_pictures[picture_author]"
+            %p
+              %label
+                =t('Link to original picture')
+              = text_field_tag "destination_pictures[picture_url]"
+            %p
+              = submit_tag 'add photo'
+
 .mapInformation
   %dl#destinations
     %dt.name= @destination.name
