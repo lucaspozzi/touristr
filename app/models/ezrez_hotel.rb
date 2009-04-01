@@ -45,7 +45,7 @@ class EzrezHotel < EzrezBase
           #          :url => h[],
           #          :map_url => h[],
                     :thumbnail => h["Thumbnail"],
-          #          :room_segment => h[],
+                    :room_segment => h["RoomSegment"],
           #          :room_amenities => h[],
           #          :room_amenities_description => h[],
           #          :direction => h[],

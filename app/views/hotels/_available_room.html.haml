@@ -1,0 +1,14 @@
+
+%li
+  .hotel
+    = available_room[:hotel_name]
+    %br
+    %img{:src => available_room[:thumbnail]}
+    - if available_room[:room_segment].is_a?(Array)
+      %br
+      -available_room[:room_segment].each do |seg|
+        = "#{seg["RoomDescription"]} - #{seg["RoomName"]} - Total: #{seg["RoomPrice"]["Total"]} #{seg["RoomPrice"]["Currency"]}"
+        %br
+    - else
+      %br
+      = "#{available_room[:room_segment]["RoomDescription"]} - #{available_room[:room_segment]["RoomName"]} - Total: #{available_room[:room_segment]["RoomPrice"]["Total"]} #{available_room[:room_segment]["RoomPrice"]["Currency"]}"

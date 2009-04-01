@@ -9,9 +9,4 @@
     =submit_tag 'Search'
   
   %ul
-    - @rooms.each do |room|
-      %li
-        .hotel
-          = room[:hotel_name]
-          %img{:src => room[:thumbnail]}
- 
+    =render :partial => "available_room", :collection => @rooms
