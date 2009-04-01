@@ -23,7 +23,19 @@ class EzrezBase
   end
   
   def build_xml params
-    "?xml=" + CGI::escape({:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'EUR', :Debug=>true}.merge(params)}.to_xml(:skip_instruct => false).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', ''))
+    xml = {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'EUR', :Debug=>false}.merge(params)}.to_xml(:skip_instruct => false).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '').gsub('<Leg type="array">', '')
+
+  # if AirSearch, we need to remove the last </Legs> item
+    idx_start_strip = xml.rindex("</Leg>")
+    if !idx_start_strip.nil?
+      xml1 = xml[0..idx_start_strip-1]
+      xml2 = xml[idx_start_strip+"</Leg>".size..xml.size]
+      xml = xml1+xml2
+    end
+    
+    Rails.logger.debug xml.green
+    "?xml=" + CGI::escape(xml)
   end
+  
 end
 
