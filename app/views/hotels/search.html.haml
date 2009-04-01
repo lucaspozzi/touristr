@@ -1,0 +1,17 @@
+.content
+  -form_tag(search_destination_hotels_path(@destination), :method => :post) do
+    %label 
+      = t("Arrival")
+    =text_field_tag 'arrival', @ci
+    %label 
+      = t("Departure")
+    =text_field_tag 'departure', @co
+    =submit_tag 'Search'
+  
+  %ul
+    - @rooms.each do |room|
+      %li
+        .hotel
+          = room[:hotel_name]
+          %img{:src => room[:thumbnail]}
+ 

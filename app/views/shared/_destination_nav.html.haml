@@ -8,7 +8,7 @@
   %li#flights
     = link_to t("Flights"), "#"
   %li#hotels
-    = link_to t("Hotels"), hotels_path
+    = link_to t("Hotels"), search_destination_hotels_path(@destination)
   %li#attractions
     = link_to t("Attractions"), destination_attractions_path(@destination)
   %li#activities
