@@ -8,7 +8,7 @@
   %dl
     - @t.trip_items_normal_view.each do |location|
       %dt 
-        = location[:city_name]
+        = link_to location[:city_name], destination_path(location[:city_id])
       - location[:dates].each do |date|
         %dd.date
           %dl
