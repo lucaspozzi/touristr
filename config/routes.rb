@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
-  
+  map.resources :flights, :collection => {:search => [:get, :post]}
   
   map.resources :people, :member=>{:delete_icon=>:delete} 
   map.login   "/login",   :controller=>'accounts', :action => 'login'

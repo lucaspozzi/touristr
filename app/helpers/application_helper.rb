@@ -12,6 +12,11 @@ module ApplicationHelper
   def price_with_currency(amount, currency_code)
     return number_to_currency(amount, :precision => 0, :unit => @@CURRENCY_SYMBOLS[currency_code])
   end
+  
+  def convert_date_T_time_to_string(date)
+    m = /(20\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9])/.match(date)
+    return "#{m[3]}/#{m[2]}/#{m[1]} #{t("at_time")} #{m[4]}:#{m[5]}"
+  end
 
   def less_form_for name, *args, &block
     options = args.last.is_a?(Hash) ? args.pop : {}

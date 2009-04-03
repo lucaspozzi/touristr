@@ -1,0 +1,18 @@
+.content
+  -form_tag("search", :method => :post) do
+    %label
+      = t("From")
+      =text_field_tag 'dep_airport', @dep_airport
+    %label 
+      = t("on")
+      =text_field_tag 'dep_date', @dep_date
+    %label
+      = t("To")
+      =text_field_tag 'arr_airport', @arr_airport
+    %label 
+      = t("on")
+      =text_field_tag 'ret_date', @ret_date
+    =submit_tag 'Search'
+  %br  
+  %ul
+    =render :partial => "alternative", :collection => @flights

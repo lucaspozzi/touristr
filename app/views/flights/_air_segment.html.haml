@@ -1,0 +1,9 @@
+%li
+  From 
+  = air_segment["FromCity"]
+  = convert_date_T_time_to_string(air_segment["DepartureTimestamp"])
+  to
+  = air_segment["ToCity"]
+  = convert_date_T_time_to_string(air_segment["ArrivalTimestamp"])
+  on
+  = "#{air_segment["Airline"]} #{air_segment["Flight"]}"
