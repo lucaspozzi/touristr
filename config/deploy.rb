@@ -18,7 +18,6 @@ set :deploy_to,           "/data/#{application}"
 set :monit_group,         "touristr"
 set :runner,              "touristr"
 
-
 set :repository,          "git@github.com:conor/touristr.git"
 set :scm_username,       ""
 set :scm_password,       ""
@@ -28,27 +27,14 @@ set :deploy_via,          :remote_cache
 # This will execute the Git revision parsing on the *remote* server rather than locally
 set :real_revision, 			lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
 
-
-
-
-
-
 set :staging_database, "touristr_staging"
 set :staging_dbhost,   "mysql50-staging-1"
-
-
-
-
-
-
-
 
 set :dbuser,        "touristr_db"
 set :dbpass,        "9pNnPeG9NTrQlpMlz"
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
 ssh_options[:paranoid] = false
-
 
 # =================================================================================================
 # ROLES
@@ -57,37 +43,17 @@ ssh_options[:paranoid] = false
 # include such things as :web, or :app, or :db, defining what the purpose of each machine is. You
 # can also specify options that can be used to single out a specific subset of boxes in a
 # particular role, like :primary => true.
-
-  
-  
-  
   
 task :staging do
   
   role :web, "74.201.254.36:8220" # touristr [mongrel] [mysql50-staging-1], new_touristr [mongrel] [mysql50-staging-1], blog_touristr [mongrel] [mysql50-staging-1]
-  role :app, "74.201.254.36:8220", :mongrel => true
+  role :app, "74.201.254.36:8220", :mongrel => true, :sphinx => true
   role :db , "74.201.254.36:8220", :primary => true
-  
   
   set :rails_env, "staging"
   set :environment_database, defer { staging_database }
   set :environment_dbhost, defer { staging_dbhost }
 end
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 
 # =================================================================================================
 # desc "Example custom task"
@@ -104,7 +70,7 @@ end
 after "deploy", "deploy:cleanup"
 after "deploy:migrations" , "deploy:cleanup"
 after "deploy:update_code", "deploy:symlink_configs"
+after "deploy:symlink_configs", "thinking_sphinx:symlink"
 
 # uncomment the following to have a database backup done before every migration
 # before "deploy:migrate", "db:dump"
-
