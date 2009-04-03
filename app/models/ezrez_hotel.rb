@@ -11,6 +11,9 @@ class EzrezHotel < EzrezBase
       })
       # retrieve embede condition
       where = params[:Where]
+      # '-' in destination name seems to confuse EzRez...
+      where.values.first.gsub!("-", " ")
+
       params.delete(:Where)
       params.merge!(where)
       res = execute(:RoomSearch=>params)
