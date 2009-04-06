@@ -36,6 +36,7 @@ Rails::Initializer.run do |config|
   config.gem 'nakajima-fixjour', :lib=>'fixjour'
   config.gem 'rest-client', :lib=>'rest_client'
 #  config.gem 'geonames', :version=>'0.2.2'
+  config.gem "geokit"
 
 
   # Only load the plugins named here, in the order given. By default, all plugins 
