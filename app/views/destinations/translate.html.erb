@@ -4,7 +4,7 @@
     <%= select_tag :translation_language, options_for_select(@possible_translations) %>
   </p>
   <p class="destinationIntroduction">
-    <%=@introduction unless @introduction.nil?%>
+    <%=h(@introduction) unless @introduction.nil?%>
     <%=form.text_area :introduction, :value => @destination.destination_content.introduction, :size => "75x6" %>
   </p>
 
@@ -12,14 +12,14 @@
     <h3>
       <%=t("Description")%>
     </h3>
-    <%=@overview unless @overview.nil?%>
+    <%=h(@overview) unless @overview.nil?%>
     <%=form.text_area :overview, :value => @destination.destination_content.overview, :size => "75x6" %>
     
     <h3>
       <%=t("Things to do")%>
     </h3>
     
-    <%=@attractions unless @attractions.nil?%>
+    <%=h(@attractions) unless @attractions.nil?%>
     <%=form.text_area :attractions, :value => @destination.destination_content.attractions, :size => "75x6" %>
   </div>
   <%=submit_tag t("Save translation")%>

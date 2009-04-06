@@ -3,7 +3,7 @@
   = link_to t("edit"), edit_destination_path(@destination) if @u
   = link_to t("translate"), translate_destination_path(@destination)
   %p#destinationIntroduction.translatable
-    = @destination.destination_content.introduction unless @destination.destination_content.nil?
+    = h(@destination.destination_content.introduction) unless @destination.destination_content.nil?
   %h3 Map
   #map.destination
   - if @destination.destination_content.nil?
@@ -14,12 +14,12 @@
   %h3
     = t("Description")
   .translatable
-    = @destination.destination_content.overview unless @destination.destination_content.nil?
+    = h(@destination.destination_content.overview) unless @destination.destination_content.nil?
   
   %h3
     = t("Things to do")
   .translatable
-    = @destination.destination_content.attractions unless @destination.destination_content.nil?
+    = h(@destination.destination_content.attractions) unless @destination.destination_content.nil?
   
   %ul
     = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}
