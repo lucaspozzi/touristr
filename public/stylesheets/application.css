@@ -72,6 +72,13 @@ div.ac_results li.ac_over { background: #222; color: #cc00cc; }
 
 /* Google Map */
 div#map { width: 100%; height: 200px; opacity: 0; }
+div#map.listingMap { height: 500px; }
+.hidden { display: none; }
+#itemInformation { position: relative; }
+#itemContent { display: none; position: absolute; top: 0px; background: #000; background: rgba(0,0,0,0.9); z-index: 100000; width: 100%; padding: 0 0 20px; color: #fff;  }
+#itemContent h3 { color: #333; font-weight: 600; font-size: 30px; padding: 0 20px; }
+#itemContent p { padding: 0 20px; }
+#itemContent a#close { float: right; padding: 10px 20px 0; font-size: 14px; }
 
 
 /*
@@ -286,6 +293,13 @@ Destination is Area listing page
 -------------------------------------------------------------------------------------------*/
 
 div#map.areaPage { height: 400px; }
+
+
+/*
+Destination Translation Page
+-------------------------------------------------------------------------------------------*/
+
+p#translated { margin-bottom: 0; }
 
 
 

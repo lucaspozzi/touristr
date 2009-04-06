@@ -16,10 +16,25 @@ function initializeMap() {
 	}
 };
 
-function placeMarker(lat, lng){
-	var point = new GLatLng(lat, lng);
-	map.addOverlay(new GMarker(point));
+function placeMarker(markerInfo, infoWindow){
+	var point = new GLatLng(markerInfo[1], markerInfo[2]);
+	var marker = new GMarker(point);
+	map.addOverlay(marker);
 	bounds.extend(point);
+	if (infoWindow) {
+		GEvent.addListener(marker, "click", function() {
+			$('div#itemContent').children('a#close').click(function(e) {
+				e.preventDefault();
+				$(this).parent().fadeOut();
+			});
+			$('div#itemContent').children('h3').empty().text(markerInfo[0]);
+			$('div#itemContent').children('p').empty().html(markerInfo[3]);
+			$('div#itemContent').fadeIn();
+		});
+		
+	} else{
+		
+	};
 };
 
 function refreshBounds() {
@@ -42,23 +57,27 @@ $(document.body).unload(function() {
 // Destination Specific Functions
 
 function showDestination() {
-	var name = $('dl#destinations dt.name').text();
-	var lat = $('dl#destinations dd.lat').text();
-	var	lng = $('dl#destinations dd.lng').text();
-	placeMarker(lat, lng);
+	var markerInfo = new Array();
+	markerInfo[0] = $('dl#destinations dt.name').text();
+	markerInfo[1] = $('dl#destinations dd.lat').text();
+	markerInfo[2] = $('dl#destinations dd.lng').text();
+	placeMarker(markerInfo);
 	refreshBounds();
 	map.setZoom(6);
 };
 
-function showDestinations(){
-	$('ul#destinations li').each(function(){
-		var lat = $(this).children('div.mapInformation').children('span.lat').text();
-		var lng = $(this).children('div.mapInformation').children('span.lng').text();
-		placeMarker(lat, lng);
+function showListingOnMap(list, infoWindow){
+	list.each(function(){
+		var markerInfo = new Array();
+		markerInfo[0] = $(this).children('div.listingContent').children('h4').text();
+		markerInfo[1] = $(this).children('div.mapInformation').children('span.lat').text();
+		markerInfo[2] = $(this).children('div.mapInformation').children('span.lng').text();
+		markerInfo[3] = $(this).children('div.listingContent').children('p').html();
+		
+		placeMarker(markerInfo, infoWindow);
 		refreshBounds();
 	});
 };
-
 
 
 

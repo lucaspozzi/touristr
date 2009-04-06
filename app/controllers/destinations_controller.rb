@@ -31,7 +31,8 @@ class DestinationsController < ApplicationController
       redirect_to destination_attraction_path(@destination.parent, @destination) and return
     elsif @destination.area?
       @destinations = @destination.children(10)
-      render :action => :show_children and return  
+      @showing_children = true
+      render :layout => 'plain', :action => :show_children and return  
     else
       link = ""
       render :action => :show_children

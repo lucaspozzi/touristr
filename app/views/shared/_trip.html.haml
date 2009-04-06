@@ -10,7 +10,7 @@
       %dt 
         = location[:city_name]
       - location[:dates].each do |date|
-        %dd.date
+        %dd.noDate
           %dl
             %dt
               - if date[:date]
@@ -18,7 +18,8 @@
                 %p 
                   = date[:date].strftime('%b')
               - else
-                %p 
+                No Date assigned
+                = link_to '(drag to assign)', "#"
             - date[:events].each do |event|
               %dd{:id=>event[:trip_item].dom_id('in_trip_bar'), :class=>'item'}
                 %span.time 
