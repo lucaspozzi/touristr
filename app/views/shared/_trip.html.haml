@@ -8,7 +8,10 @@
   %dl
     - @t.trip_items_normal_view.each do |location|
       %dt 
-        = link_to location[:city_name], destination_path(location[:city_id])
+        - if location[:city_id].nil?
+          = location[:city_name]
+        - else
+          = link_to location[:city_name], destination_path(location[:city_id])
       - location[:dates].each do |date|
         %dd.noDate
           %dl
