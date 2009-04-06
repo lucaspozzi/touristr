@@ -40,6 +40,7 @@ class Destination < ActiveRecord::Base
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
   has_many :destination_pictures
   acts_as_commentable
+  acts_as_mappable
   friendly_param :name
 
   COUNTRY = "PCLI"

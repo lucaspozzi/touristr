@@ -51,7 +51,7 @@ class EzrezFlight < EzrezBase
   # Due to Hash.from_xml, we might get either [{},{}] or {}
   # We turn {} into [{}] to deal only with arrays
   def normalize_air_search_results(hash)
-    hash["Alternative"] = [alternatives["Alternative"]] if hash["Alternative"].instance_of?(Hash)
+    hash["Alternative"] = [hash["Alternative"]] if hash["Alternative"].instance_of?(Hash)
     hash["Alternative"].each do |alternative|
       alternative["LegChoices"] = [alternative["LegChoices"]] if alternative["LegChoices"].instance_of?(Hash)
       alternative["LegChoices"].each do |leg_choice|
