@@ -1,0 +1,8 @@
+%li
+  .flight
+    = alternative["TotalPrice"]["Total"]
+    = alternative["TotalPrice"]["Currency"]
+    %br
+    %ul
+      = render :partial => "leg_choice", :collection => alternative["LegChoices"]
+    

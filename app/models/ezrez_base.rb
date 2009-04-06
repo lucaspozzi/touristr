@@ -4,6 +4,7 @@ require 'rest_client'
 class EzrezBase
   class EzrezMissingParameterException < Exception; end
   
+  EZREZ_DEBUG = true
   
   def check_params params = [], required_params = []
     missing_params = []
@@ -23,7 +24,7 @@ class EzrezBase
   end
   
   def build_xml params
-    xml = {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'EUR', :Debug=>false}.merge(params)}.to_xml(:skip_instruct => false).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '').gsub('<Leg type="array">', '')
+    xml = {:AvailabilityRQ=>{:UserId=>EZREZ_USER, :Password=>EZREZ_PASSWORD, :Cobrand=>"default", :Currency=>'EUR', :Debug=>EZREZ_DEBUG}.merge(params)}.to_xml(:skip_instruct => false).gsub("<hash>\n", '').gsub("</hash>\n", '').gsub(' type="integer"', '').gsub(' type="date"', '').gsub(' type="boolean"', '').gsub('<Leg type="array">', '')
 
   # if AirSearch, we need to remove the last </Legs> item
     idx_start_strip = xml.rindex("</Leg>")

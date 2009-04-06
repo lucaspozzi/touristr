@@ -5,9 +5,9 @@
     - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
       %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
       %p
-        = "#{@attraction.destination_content.picture_caption} #{t("by") unless @attraction.destination_content.picture_author.blank?}" 
+        = "#{h(@attraction.destination_content.picture_caption)} #{t("by") unless @attraction.destination_content.picture_author.blank?}" 
         %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
-          =@attraction.destination_content.picture_author
+          =h(@attraction.destination_content.picture_author)
   %h3
     = t("Description")
   %p  

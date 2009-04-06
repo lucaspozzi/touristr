@@ -1,7 +1,19 @@
-<div class="content">
-  <% form_for :destination_content, :url => translate_destination_path(@destination), :method => "post" do |form| %>
+<% form_for :destination_content, :url => translate_destination_path(@destination), :method => "post" do |form| %>
+  <p>
+    <%=t("Please select the language you will translate to")%> <br />
+    <%= select_tag :translation_language, options_for_select(@possible_translations) %>
+  </p>
+  <p class="destinationIntroduction">
+    <%=h(@introduction) unless @introduction.nil?%>
+    <%=form.text_area :introduction, :value => @destination.destination_content.introduction, :size => "75x6" %>
+  </p>
 
-    <h4><%= t("Please select the language you will translate to ") %><%= select_tag :translation_language, options_for_select(@possible_translations) %></h4>
+  <div id="mainContent">
+    <h3>
+      <%=t("Description")%>
+    </h3>
+    <%=h(@overview) unless @overview.nil?%>
+    <%=form.text_area :overview, :value => @destination.destination_content.overview, :size => "75x6" %>
     
     <h4>Translate this introduction</h4>
     <p id="translated">
@@ -28,6 +40,10 @@
       <%=submit_tag t("Save translation")%>
     </p>
     
+    <%=h(@attractions) unless @attractions.nil?%>
+    <%=form.text_area :attractions, :value => @destination.destination_content.attractions, :size => "75x6" %>
+  </div>
+  <%=submit_tag t("Save translation")%>
 
   <% end %>
 </div>
