@@ -1,0 +1,26 @@
+%h3
+  Choose the following destinations available in 
+  = @destination.name
+.sidebar
+  %p
+    %ul#destinations
+      - @destinations.each do |dest|
+        %li
+          = link_to dest.full_name, destination_path(dest)
+          .mapInformation
+            %span.lat= dest.lat
+            %span.lng= dest.lng
+.content        
+  #map.areaPage
+        
+- content_for :javascripts do
+
+  :javascript
+    $(document).ready(function(){
+    //Draw Map
+    initializeMap();
+
+    var list = $("ul#destinations li")
+    
+    showListingOnMap(list);
+    });
