@@ -19,8 +19,9 @@ class EzrezFlight < EzrezBase
     puts(res.inspect)
     
     hash_air_results = Hash.from_xml(res)
+    RAILS_DEFAULT_LOGGER.debug("hash_air_results = #{hash_air_results.inspect}")
     
-    if hash_air_results["AvailabilityRS"].has_key?("Success")
+    if hash_air_results["AvailabilityRS"] && hash_air_results["AvailabilityRS"].has_key?("Success")
     # if only one AirSegment or AirLeg, Hash.from_xml won't return an array.
     # embeding this hash in a single element array makes thing easier...
       hash_air_results = normalize_air_search_results(hash_air_results["AvailabilityRS"]["AirSearchResponse"])
@@ -65,4 +66,5 @@ class EzrezFlight < EzrezBase
       end
     end
   end
+  hash
 end
