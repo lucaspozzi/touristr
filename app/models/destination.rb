@@ -114,6 +114,8 @@ class Destination < ActiveRecord::Base
         p = Destination.find(:first, :conditions => ["country_code=? and feature_code in (?)", country_code, COUNTRY])        
       elsif feature_code.in?(ATTRACTIONS)
         Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
+      else
+        Destination.find(:first, :conditions => ["country_code=? and admin1_code=?", country_code, admin1_code], :order => "score desc")
       end  
     end
   end
@@ -168,12 +170,12 @@ class Destination < ActiveRecord::Base
   def self.s query, params = {}
     res_set = {}
     res = search(query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH + 25}))
-    res.each do |dest|
-      next if res_set.has_key? dest.name
-      res_set[dest.name] = dest.id
-    end
-    
-    res.delete_if{|dest| res_set[dest.name] != dest.id}
+    # res.each do |dest|
+    #   next if res_set.has_key? dest.name
+    #   res_set[dest.name] = dest.id
+    # end
+    # 
+    # res.delete_if{|dest| res_set[dest.name] != dest.id}
     res
   end
   
