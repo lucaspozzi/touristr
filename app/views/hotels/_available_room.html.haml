@@ -35,17 +35,21 @@
                 Checkout:
                 = get_time_from_date_T_time(seg["Checkout"])
               %p
-              - form_tag "book" do
+              - form_remote_tag :url => "/trip_items" do
                 = hidden_field_tag "hotel_id", available_room["HotelCode"]
                 = hidden_field_tag "booking_descriptor", seg["BookingDescriptor"]
+                = hidden_field_tag "checkin", available_room["Checkin"]
+                = hidden_field_tag "checkout", available_room["Checkout"]
                 = submit_tag t("Book")
       - else
         - RAILS_DEFAULT_LOGGER.debug("available_room[:room_segment]: #{available_room[:room_segment].inspect}")          
         %p
           = "#{available_room["RoomSegment"]["RoomDescription"]} - #{available_room["RoomSegment"]["RoomName"]} - Total: #{available_room["RoomSegment"]["RoomPrice"]["Total"]} #{available_room["RoomSegment"]["RoomPrice"]["Currency"]}"
-          - form_tag "book" do
+          - form_remote_tag :url => "/trip_items" do
             = hidden_field_tag "hotel_id", available_room["HotelCode"]
             = hidden_field_tag "booking_descriptor", available_room["RoomSegment"]["BookingDescriptor"]
+            = hidden_field_tag "checkin", available_room["Checkin"]
+            = hidden_field_tag "checkout", available_room["Checkout"]
             = submit_tag t("Book")
       %p#room_amenities
         - if available_room["RoomAmenity"].is_a?(Array)
