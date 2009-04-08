@@ -1,14 +1,59 @@
 
 %li
   .hotel
-    = available_room[:hotel_name]
-    %br
-    %img{:src => available_room[:thumbnail]}
-    - if available_room[:room_segment].is_a?(Array)
-      %br
-      -available_room[:room_segment].each do |seg|
-        = "#{seg["RoomDescription"]} - #{seg["RoomName"]} - Total: #{seg["RoomPrice"]["Total"]} #{seg["RoomPrice"]["Currency"]}"
-        %br
-    - else
-      %br
-      = "#{available_room[:room_segment]["RoomDescription"]} - #{available_room[:room_segment]["RoomName"]} - Total: #{available_room[:room_segment]["RoomPrice"]["Total"]} #{available_room[:room_segment]["RoomPrice"]["Currency"]}"
+    %p
+      %h3
+        = available_room["HotelName"]
+      = link_to t("show rooms"), "#", :class => "show_room"
+    %p
+      = available_room["PropertyDescription"]
+
+    %img{:src => available_room["Thumbnail"]}
+    
+    .details
+      - RAILS_DEFAULT_LOGGER.debug("amenities: #{available_room["Amenity"].inspect}")
+      %p#amenities
+        - if available_room["Amenity"].is_a?(Array)
+          %ul
+            - available_room["Amenity"].each do |amenity|
+              %li
+                = amenity
+      - if available_room["Image"].is_a?(Array)
+        %p#pictures
+          - available_room["Image"].each do |image|
+            %img{:src => image["Url"], :title => image["Caption"]}
+      - RAILS_DEFAULT_LOGGER.debug("\n\n * available_room[\"RoomSegment\"] : #{available_room["RoomSegment"].inspect}\n\n")
+      - if available_room["RoomSegment"].is_a?(Array)
+        %p#room_prices  
+          - available_room["RoomSegment"].each do |seg|
+            - RAILS_DEFAULT_LOGGER.debug("room_seg: #{seg.inspect}")          
+            = "#{seg["RoomDescription"]} - #{seg["RoomName"]} - Total: #{seg["RoomPrice"]["Total"]} #{seg["RoomPrice"]["Currency"]}"
+            .room_description{:class => "room#{available_room["EzRezId"]}"} 
+              %p
+                Checkin:
+                = get_time_from_date_T_time(seg["Checkin"])
+                Checkout:
+                = get_time_from_date_T_time(seg["Checkout"])
+              %p
+              - form_tag "book" do
+                = hidden_field_tag "hotel_id", available_room["HotelCode"]
+                = hidden_field_tag "booking_descriptor", seg["BookingDescriptor"]
+                = submit_tag t("Book")
+      - else
+        - RAILS_DEFAULT_LOGGER.debug("available_room[:room_segment]: #{available_room[:room_segment].inspect}")          
+        %p
+          = "#{available_room["RoomSegment"]["RoomDescription"]} - #{available_room["RoomSegment"]["RoomName"]} - Total: #{available_room["RoomSegment"]["RoomPrice"]["Total"]} #{available_room["RoomSegment"]["RoomPrice"]["Currency"]}"
+          - form_tag "book" do
+            = hidden_field_tag "hotel_id", available_room["HotelCode"]
+            = hidden_field_tag "booking_descriptor", available_room["RoomSegment"]["BookingDescriptor"]
+            = submit_tag t("Book")
+      %p#room_amenities
+        - if available_room["RoomAmenity"].is_a?(Array)
+          %ul
+            - available_room["RoomAmenity"].each do |amenity|
+              %li
+                = amenity
+            
+
+  
+  

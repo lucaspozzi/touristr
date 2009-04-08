@@ -21,7 +21,8 @@ ActionController::Routing::Routes.draw do |map|
                                                        :choose => :any, 
                                                        :pay => :any, 
                                                        :confirm => :any}
-    destination.resources :hotels, :collection => {:search => [:get, :post]}
+    destination.resources :hotels, :collection => {:search => [:get, :post],
+                                                   :book => [:post]}
     destination.resources :flights, :collection => {:search => [:get, :post]}
   end
   map.resources :trips, :member=>{:sort=>:post}

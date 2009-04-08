@@ -15,6 +15,12 @@ class HotelsController < ApplicationController
     @rooms = ez_hotel.room_search(:CheckinDate => @ci, :CheckoutDate => @co, :NumAdults => @t.number_of_adults, :NumChildren => @t.number_of_children,:Where => {:Location => "#{@destination.name}, #{@destination.country.country}"})
   end
   
+  def book
+    booking_descriptor = params[:booking_descriptor]
+    RAILS_DEFAULT_LOGGER.error("\nHotel Booking: #{booking_descriptor}\n")
+    redirect_to destination_path(@destination)
+  end
+  
   private
   def load_destination
     @destination = Destination.find(params[:destination_id])
