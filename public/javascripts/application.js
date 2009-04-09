@@ -192,7 +192,9 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('.fancybox').fancybox();
+	if ($('.fancybox')){
+		$('.fancybox').fancybox();
+	}
 	
 	$('.translatable').sundayMorning({
 	    source:'en',
