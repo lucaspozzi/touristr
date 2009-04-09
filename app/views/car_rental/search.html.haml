@@ -9,12 +9,12 @@
       %legend= t "Pickup Details"
       
       %p
-        %label{ :for => "pickup_location" } Pickup Location
+        %label{ :for => "pickup_location" }=t"Pickup Location"
         = select :car, :pickup_location, @pickup_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:pickup_location]
         =link_to t("Can't find a convenient place?"), advanced_search_destination_car_rental_path(@destination)
       
       %p
-        %label{ :for => "return_location" } Return Location
+        %label{ :for => "return_location" }=t"Return Location"
         = select :car, :return_location, @return_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:return_location]
     
     %fieldset

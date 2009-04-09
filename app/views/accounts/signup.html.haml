@@ -1,31 +1,31 @@
-%h3 Register with Touristr
+%h3=t("Register with Touristr")
 
 - form_for :user do |f|
   %p
-    %label{ :for => 'login'} Login
+    %label{ :for => 'login'}=t("Username")
   %p
     = f.text_field :login
   %p
-    %label{ :for => 'email'} Email
+    %label{ :for => 'email'}=t("Email")
   %p
     = f.text_field :email
   %p
-    %label{ :for => 'password'} Password
+    %label{ :for => 'password'}=t("Password")
   %p
     = f.password_field :password
   %p
-    %label{ :for => 'password_confirmation'} Confirm Password
+    %label{ :for => 'password_confirmation'}=t("Confirm Password")
   %p
     = f.password_field :password_confirmation
   %p.checkbox
     %label{ :for => 'accepts_terms'}
-      I accept the 
+      =t"I accept the"
       = link_to "terms and conditions", "/terms "
     = check_box_tag :accepts_terms, "1", params[:accepts_terms]
   %p.checkbox
-    %label{ :for => 'remember_me'} Remember me
+    %label{ :for => 'remember_me'}=t("Remember Me")
     = check_box_tag :remember_me, "1", params[:remember_me]
     
   %p.submit
-    = submit_tag "Sign up"
-    = link_to "Already have an account?", login_url
+    = submit_tag t("Sign Up")
+    = link_to t("Already have an account?"), login_url
