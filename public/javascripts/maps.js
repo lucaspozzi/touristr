@@ -66,6 +66,10 @@ function showDestination() {
 	map.setZoom(6);
 };
 
+function showAttraction() {
+	
+};
+
 function showListingOnMap(list, infoWindow){
 	list.each(function(){
 		var markerInfo = new Array();
