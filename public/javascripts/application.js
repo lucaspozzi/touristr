@@ -192,6 +192,8 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('.fancybox').fancybox();
+	
 	$('.translatable').sundayMorning({
 	    source:'en',
 	    trigger:'dblclick', 

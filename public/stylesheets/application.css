@@ -73,6 +73,7 @@ div.ac_results li.ac_over { background: #222; color: #cc00cc; }
 /* Google Map */
 div#map { width: 100%; height: 200px; opacity: 0; }
 div#map.listingMap { height: 500px; }
+div#map.attractionPage { width: 430px; height: 268px; }
 .hidden { display: none; }
 #itemInformation { position: relative; }
 #itemContent { display: none; position: absolute; top: 0px; background: #000; background: rgba(0,0,0,0.9); z-index: 100000; width: 100%; padding: 0 0 20px; color: #fff;  }
@@ -156,7 +157,7 @@ h2#destinationName { margin: 38px 0 -4px 0; }
 p#destinationIntroduction { font-size: 18px; font-weight: 300; margin: 0px 0 40px 0; }
 ul.destinationPhotoGallery { list-style: none; }
 ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
-div.videos { float: left; }
+div.videos, .mapAttraction { float: left; }
 div.photos { float: left; width: 30%; margin-left: 20px; }
 div.mapInformation { display: none; }
 
