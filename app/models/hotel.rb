@@ -40,11 +40,18 @@
 #
 
 class Hotel < ActiveRecord::Base
-  has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+  set_primary_key :ezrez_id
   include Trippy
+  has_many :trip_items, :as=>:trippy, :dependent=>:destroy
+
   
   def city
     Destination.first.city
   end
   
+  def parent
+    res = open("http://ws.geonames.org/findNearbyPlaceName?lat=#{self.latitude}&lng=#{self.longitude}").read
+    id = /.*<geonameId>([0-9]+)<\/geonameId>.*/.match(res)[1]
+    Destination.find(id.to_i)
+  end
 end

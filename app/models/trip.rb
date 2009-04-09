@@ -101,7 +101,7 @@ class Trip < ActiveRecord::Base
 =begin
   TODO these methods that act on the trip_items association should be refactored to the class
 =end
-  def add obj
+  def add obj, starts_at = nil, ends_at = nil
     if obj.is_a?(Destination) 
       return nil if obj.country?
       if obj.city?
@@ -116,7 +116,7 @@ class Trip < ActiveRecord::Base
       end
     end
     order ||= (trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0)
-    trip_items.create :ordered=>order, :trippy=>obj
+    trip_items.create :ordered=>order, :trippy=>obj, :starts_at => starts_at, :ends_at => ends_at
   end
     
     

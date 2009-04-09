@@ -21,44 +21,7 @@ class EzrezHotel < EzrezBase
       hotels = Array.new
       if hash_res["AvailabilityRS"] && hash_res["AvailabilityRS"].has_key?("Success")
         hash_res["AvailabilityRS"]["RoomSearchResponse"]["Hotel"].each do |h|
-#          puts("processing: #{h.inspect}\n#{h["EzRezId"]}\n\n")
-          hotels << { :ezrez_id => h["EzRezId"],
-                    :booking_descriptor => h["BookingDescriptor"],
-          #          :chain_name => [],
-                    :hotel_name => h["HotelName"],
-          #          :hotel_code  => h[],
-          #          :policies => h[],
-          #          :property_description => h[],
-          #          :room_description => h[],
-          #          :address  => h[],
-          #          :phone  => h[],
-          #          :local_phone => h[],
-          #          :fax  => h[],
-          #          :local_fax => h[],
-          #          :amenities  => h[],
-          #          :familly_description => h[],
-          #          :checkin => h[],
-          #          :checkout => h[],
-          #          :rating => h[],
-          #          :special_notice => h[],
-          #          :additional_info => h[],
-          #          :currency => h[],
-          #          :minimum_price => h[],
-          #          :html => h[],
-          #          :url => h[],
-          #          :map_url => h[],
-                    :thumbnail => h["Thumbnail"],
-                    :room_segment => h["RoomSegment"],
-          #          :room_amenities => h[],
-          #          :room_amenities_description => h[],
-          #          :direction => h[],
-          #          :restaurant_description => h[],
-          #          :images => h[],
-          #          :details_available => h[],
-          #          :entertainment => h[],
-                    :lat => h["GeoLocation"]["Latitude"],
-                    :lng => h["GeoLocation"]["Longitude"]
-                    }
+          hotels << h
           end
         else
           if hash_res["EzRezGenericRS"] and hash_res["EzRezGenericRS"]["Failure"]
@@ -124,5 +87,5 @@ class EzrezHotel < EzrezBase
     end
     nil
   end
-  
+    
 end

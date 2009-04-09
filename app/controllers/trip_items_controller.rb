@@ -4,7 +4,7 @@ class TripItemsController < ApplicationController
   def create
     trip_item = nil
     if params[:hotel_id]
-      trip_item = @t.add Hotel[params[:hotel_id]]
+      trip_item = @t.add Hotel[params[:hotel_id]], params[:checkin], params[:checkout]
     elsif params[:cars_id]
     elsif params[:destination_id]
       trip_item = @t.add Destination[params[:destination_id]]

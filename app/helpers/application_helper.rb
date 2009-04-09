@@ -17,6 +17,16 @@ module ApplicationHelper
     m = /(20\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9])/.match(date)
     return "#{m[3]}/#{m[2]}/#{m[1]} #{t("at_time")} #{m[4]}:#{m[5]}"
   end
+  
+  def get_date_from_date_T_time(date)
+    m = /(20\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9])/.match(date)
+    return "#{m[3]}/#{m[2]}/#{m[1]}"
+  end
+  
+  def get_time_from_date_T_time(date)
+    m = /(20\d\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9])/.match(date)
+    return "#{m[4]}:#{m[5]}"
+  end
 
   def less_form_for name, *args, &block
     options = args.last.is_a?(Hash) ? args.pop : {}
