@@ -16,7 +16,7 @@ fr:
   "To-Dos": A faire
   "Description": Description
   "Things to do": A découvrir
-  "Video Content": Videos
+  "Video Content": Vidéo
   "Photo Gallery": Photos
   "Login": Connexion
   "Logout": Deconnexion
@@ -30,7 +30,7 @@ fr:
   "en": English
   "Pickup Details": Lieux
   "Choose a pickup location": Point de départ
-  "Can't find a convenient place?": Vous ne trouvez rien de pratique ?
+  "Can't find a convenient place?": Vous recherchez une autre ville ?
   "Choose a return location": Point de retour
   "Pickup Date and Time": Départ
   "Choose a pickup date and time": Selectionnez vos date et heure de départ
@@ -90,7 +90,7 @@ fr:
   "Address": Adresse
   "Phone": Téléphone
   "Payment Amount": Payé
-  "Add to Trip": Needs to done
+  "Add to Trip": Ajouter a votre voyage
   "Please select the language you will translate to": Vers quelle langue voulez-vous traduire ?
   "Save translation": Sauvegardez votre traduction
   "edit": modifier
@@ -105,7 +105,23 @@ fr:
   "Something went wrong... Please try again.": Une erreur est survenue. Vous devriez réessayer.
   "Arrival": Arrivée
   "Departure": Départ
-  "Please select the language you will translate to ": Please select the language you will translate to 
-  "Attractions in": Attractions in
-  "Time and Date": Time and Date
-  "Search for Car Rental in": Search for Car Rental in
+  "Please select the language you will translate to ": Sélectionnez le language de traduction
+  "Attractions in": Curiosités á
+  "Time and Date": Heure et date
+  "Search for Car Rental in": Recherche de locations de voiture á
+  "Loading": Chargement
+  "Map": Carte
+  "Login to your account": Connexion a votre compte
+  "Password": Mot de passe
+  "Remember Me" : Mémoriser
+  "Forgot your password?" : Mot de passe oublié?
+  "Register with Touristr" : Créer un compte Touristr
+  "Username" : Nom d'utilisateur
+  "Confirm Password" : Confirmez
+  "I accept the" : J'accepte les
+  "Already have an account?" : Vous disposez déjà d'un compte? 
+  "Choose the following destinations available in" : Choississez l'une de ces destinations qui se situent en
+  "Pickup Location" : Ville de départ
+  "Return Location" : Ville de retour
+  "close" : fermer
+  "view details" : afficher les détails
