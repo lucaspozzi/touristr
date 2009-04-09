@@ -301,5 +301,18 @@ Destination Translation Page
 
 p#translated { margin-bottom: 0; }
 
+/*
+availabilityForm
+--------------------------------------------------------------------------------------------*/
+
+form#availabilityForm input, form#paymentForm input { border: 1px solid #999; }
+form#availabilityForm legend, form#paymentForm legend { font-size: 16px; font-weight: 300; }
+form#availabilityForm.cars legend { font-size: 16px; font-weight: 300; }
+div.bookNow { font-size: 14px; padding: 30px 0 0 0; }
+ul#listing.car h5 { margin: 0px 0 10px 0; }
+ul#listing.car div.photoWrapper { width: 18%; }
+
+
+
 
 

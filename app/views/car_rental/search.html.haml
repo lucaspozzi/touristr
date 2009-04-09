@@ -1,0 +1,66 @@
+.content
+  %h3= t("Search for Car Rental in") + " " + @destination.name
+  
+  - form_tag( choose_destination_car_rental_path(@destination), :id => "availabilityForm") do
+    
+    = hidden_field_tag('car[country_code]', :value => @country_code)
+    
+    %fieldset
+      %legend= t "Pickup Details"
+      
+      %p
+        %label{ :for => "pickup_location" } Pickup Location
+        = select :car, :pickup_location, @pickup_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:pickup_location]
+        =link_to t("Can't find a convenient place?"), advanced_search_destination_car_rental_path(@destination)
+      
+      %p
+        %label{ :for => "return_location" } Return Location
+        = select :car, :return_location, @return_locations.map {|l| [l[:name], l[:code]]}, :selected => @details[:return_location]
+    
+    %fieldset
+      %legend= t "Pickup Date and Time"
+      
+      %p
+        %label{ :for => "pickup_time"}= t "Time and Date"
+        %input{ :type => "text", :id => "pickup_date", :class => "chooseDate", :name => "pickup_date[date]", :size => "10", :value => (@pickup_date.nil?) ? 'dd/mm/yyyy': @pickup_date[:date] }
+        %select{ :id => "pickup_date_hour", :name => "pickup_date[hour]"}
+          - 0.upto(23) do |h|
+            %option{ :value => h.to_s.rjust(2, "0"), :selected => (false unless (@pickup_date.nil? || (h.to_s.rjust(2,"0")!=@pickup_date[:hour])))}
+              = h.to_s.rjust(2,"0")
+        = ":"
+        %select{ :id => "pickup_date_minutes", :name => "pickup_date[minute]"}
+          - 0.step(59, 5) do |m|
+            %option{ :value => m.to_s.rjust(2,"0"), :selected => (false unless (@pickup_date.nil? || (h.to_s.rjust(2,"0")!=@pickup_date[:hour]))) }
+              = m.to_s.rjust(2,"0")
+    
+    %fieldset
+      %legend= t "Return Date and Time"
+      %p
+        %label{ :for => "return_time" }= t "Time and Date"
+        %input{ :type => "text", :id => "return_date", :class => "chooseDate", :name => "return_date[date]", :size => "10", :value => ((@return_date.nil?) ? 'dd/mm/yyyy' : @return_date[:date]) }
+        %select{ :id => "return_date_hour", :name => "return_date[hour]"}
+          - 0.upto(23) do |h|
+            %option{ :value => h.to_s.rjust(2, "0"), :selected => (false unless (@return_date.nil? || (h.to_s.rjust(2,"0")!=@return_date[:hour])))}
+              = h.to_s.rjust(2,"0")
+        = ":"
+        %select{ :id => "return_date_minutes", :name => "return_date[minute]"}
+          - 0.step(59, 5) do |m|
+            %option{ :value => m.to_s.rjust(2,"0"), :selected => (false unless (@return_date.nil? || (h.to_s.rjust(2,"0")!=@return_date[:hour]))) }
+              = m.to_s.rjust(2,"0")
+              
+    %fieldset
+      %legend
+      %p
+        %label{:for => "driver_age"}= t "Driver Age"
+        = select :car, :driver_age, (15..99).map{ |a| [a, a.to_s]}, :selected => @details[:driver_age]
+      
+      %p
+        %label{:for => "country"}= t "What country is the driver a citizen of?"
+        = select :car, :citizen_country_code, @countries.map {|c| [c.country, c.iso]}, :selected => @details[:citizen_country_code]
+
+      %p
+        %label{:for => "currency"}= t "Currency"
+        = select :car, :currency, [["Euro", "EUR"], ["GB Pound", "GBP"], ["US Dollar", "USD"]], :select => @details[:currency]
+        
+    %p
+      = submit_tag t "Submit"

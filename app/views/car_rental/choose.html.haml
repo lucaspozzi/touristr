@@ -1,0 +1,50 @@
+.content
+  %h4#listingHeading= t("Select your car")
+  
+  %ul#listing.car
+    - @cars.sort{|a,b| a[:total_charge].to_f <=> b[:total_charge].to_f}.each do |car|
+      %li
+        .photoWrapper
+          - if car[:name].nil? || car[:name].blank?
+            = image_tag("noPhoto.gif", :alt => "No Photo Available", :title => "No Photo Available", :width => "94", :height => "75")
+          - else
+            = image_tag(car[:picture_url], :width => "124", :height => "75")
+        
+        .listingContent
+          %h5= car[:name]
+          %p
+            = t("Air Conditioning")+" :"+ car[:air_cond]
+            %br
+            = t("Transmission")+" :"+ car[:transmission]
+            %br
+            = t("Passengers")+" :"+ car[:passengers_quantity]
+            %br
+        
+        %div
+          %p.price= get_price_as_currency(car[:total_charge], car[:total_charge_currency])
+          %div.bookNow
+            - form_tag pay_destination_car_rental_url(@destination, :host => "secure.touristr.com", :protocol => "https") do
+              = hidden_field_tag 'reference[id]', car[:reference][:id]
+              = hidden_field_tag 'reference[url]', car[:reference][:url]
+              = hidden_field_tag 'reference[context]', car[:reference][:context]
+              = hidden_field_tag 'reference[type]', car[:reference][:type]
+              = hidden_field_tag 'reference[at_airport]', car[:reference][:at_airport]
+              = hidden_field_tag 'car[name]', car[:name]
+              = hidden_field_tag 'car[picture_url]', car[:picture_url]
+              = hidden_field_tag 'car[collection_fee_amount]', car[:collection_fee_amount]
+              = hidden_field_tag 'car[prepay_fee_amount]', car[:prepay_fee_amount]
+              = hidden_field_tag 'car[total_charge]', car[:total_charge]
+              = hidden_field_tag 'car[total_charge_currency]', car[:total_charge_currency]
+              = hidden_field_tag 'car[pickup_location]', @car_params[:pickup_location]
+              = hidden_field_tag 'car[return_location]', @car_params[:return_location]
+              = hidden_field_tag 'car[currency]', @car_params[:currency]
+              = hidden_field_tag 'car[citizen_country_code]', @car_params[:citizen_country_code]
+              = hidden_field_tag 'car[driver_age]', @car_params[:driver_age]
+              = hidden_field_tag 'car[pickup_date]', @pickup_date
+              = hidden_field_tag 'car[return_date]', @return_date
+              = hidden_field_tag 'car[pickup_location_name]', car[:pickup_location_name]
+              = hidden_field_tag 'car[return_location_name]', car[:return_location_name]
+              = hidden_field_tag 'reference[datetime]', car[:reference][:datetime]
+              = hidden_field_tag 'car[rate_qualifier]', car[:rate_qualifier]
+              
+              = submit_tag t 'Book'

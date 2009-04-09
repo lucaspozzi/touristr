@@ -1,0 +1,99 @@
+.content
+  %h3= t("Payment details")
+  
+  %h5= session[:car][:name]
+  = image_tag(session[:car][:picture_url], :id => "carImage")
+  %ul
+    %li= t("Pickup at")+" "+session[:car][:pickup_location_name]+" on "+ display_ct_datetime(session[:car][:pickup_date])
+    %li= t("Return at")+" "+session[:car][:return_location_name]+" on "+ display_ct_datetime(session[:car][:return_date])
+    %li= t("Prepaid fee")+": "+session[:car][:prepay_fee_amount]
+    %li= t("Collection fee")+": "+session[:car][:collection_fee_amount]
+    
+  #carPaymentForm
+    %h3= t "Book this car"
+    - form_tag( confirm_destination_car_rental_url(@destination, :host => "secure.touristr.com", :protocol => "https"), :id => "paymentForm") do
+      %fieldset
+        %legend
+        %p
+          %label{:for => 'name_prefix'}= t "Title"
+          = select :person, :name_prefix, [["#{t("Mr")}.", "Mr."], [t("Miss"), "Miss"]]
+        %p
+          %label{ :for => "person_firstname"}= t "First name"
+        %p
+          = text_field :person, :firstname, :value => @restored_person[:firstname]
+        %p
+          %label{:for => "person_lastname"}= t "Surname"
+        %p
+          = text_field :person, :lastname, :value => @restored_person[:lastname]
+        %p
+          %label{:for => "person_email"}= t "Email"
+        %p
+          = text_field :person, :email, :value => @restored_person[:email]
+      - if @ask_for_airport_details
+        %fieldset
+          %legend= t "Flight details"
+          %p= t "For a better service, please provide us with your flight details"
+          %p
+            %label{:for => "air_code"}= t "Flight no."
+            = text_field :person, :air_company, :value => @restored_person[:air_company], :size => 3
+            = text_field :person, :flight_number, :value => @restored_person[:flight_number], :size => 5
+      
+      %fieldset
+        %legend= t "Telephone"
+        %p
+          %label{:for => "person_phone_area_code"}= t "Phone no."
+          = text_field :person, :phone_area_code, :value => @restored_person[:phone_area_code], :size => 3
+          = text_field :person, :phone_number, :value => @restored_person[:phone_number]
+      
+      %fieldset
+        %legend= t "Billing Address"
+        %p
+          %label{:for => "address_street"}= t "Street"
+        %p
+          = text_field :address, :street, :value => @restored_address[:street]
+          
+        %p
+          %label{:for => "address_city"}= t "City"
+        %p
+          = text_field :address, :city, :value => @restored_address[:city]
+          
+        %p
+          %label{:for => "address_state"}= t "State"
+        %p
+          = text_field :address, :state, :value => @restored_address[:state]
+          
+        %p
+          %label{:for => "address_country_code"}= t "Country"
+        %p
+          = select :address, :country_code, @countries.map {|c| [c.country, c.iso]}, :selected => @restored_address[:country_code]
+          
+      - if !@hide_payment_details
+        %fieldset
+          %legend= t "Payment Details"
+          %p
+            %label{:for => "payment_cc_no"}= t "Credit Card number"
+            = text_field :payment, :card_no, :value => @restored_payment[:card_no]
+          
+          %p
+            %label{:for => "payment_card_type"}= t "Card type"
+            = select :payment, :card_type, [["Visa", "VI"], ["Mastercard", "MC"]], :selected => @restored_payment[:card_type]
+          
+          %p
+            %label{:for => "payment_series_code"}= "CVV "+t( "(3-digit code)")
+            = text_field :payment, :series_code, :value => @restored_payment[:series_code]
+            
+          %p
+            %label{:for => "payment_name"}= t "Card Holder Name"
+            = text_field :payment, :name, :value => @restored_payment[:name]
+            
+          %p
+            %label{:for => "payment_expiry_month"}= t "Month"
+            = select :payment, :expiry_month, (1..12).map{|a| [a.to_s.rjust(2, "0")]}, :selected => @restored_payment[:expiry_month]
+          %p
+            %label{:for => "payment_expiry_year"}= t "Year"
+            = select :payment, :expiry_year, (9..15).map{|a| [a.to_s.rjust(2, "0")]}, :selected => @restored_payment[:expiry_year]
+      - else
+        %strong= t("The full amount be paid when picking up the vehicle")+"."
+          
+      %p
+        = submit_tag t "Submit"
