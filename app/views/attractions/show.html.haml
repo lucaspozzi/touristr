@@ -19,11 +19,10 @@
       = h(@attraction.destination_content.introduction)
   .media
     - unless @attraction.destination_content.nil?
-      .videos
+      .mapAttraction
         %h3
-          = t("Video Content")
-        .video
-          <object width="468" height="264"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=2558470&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=1f76bd&amp;fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="468" height="264"></embed></object><br /><a href="http://vimeo.com/2558470">Job Interview</a> from <a href="http://vimeo.com/benschwartz">Ben Schwartz</a> on <a href="http://vimeo.com">Vimeo</a>.
+          = t("Map")
+        #map.attractionPage
   
       .photos
         %h3= t("Photo Gallery")
@@ -49,3 +48,14 @@
               = text_field_tag "destination_pictures[picture_url]"
             %p
               = submit_tag 'add photo'
+  .mapInformation
+    %span.lat= @attraction.lat
+    %span.lng= @attraction.lng
+
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+    //Draw Map
+    initializeMap();
+    showAttraction();
+    });

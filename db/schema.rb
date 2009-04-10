@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090406102148) do
+ActiveRecord::Schema.define(:version => 20090408090749) do
 
   create_table "airports", :force => true do |t|
     t.string  "iata_code"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(:version => 20090406102148) do
     t.integer  "destination_content_id"
     t.string   "locale"
     t.text     "attractions"
-    t.text     "overview"
     t.text     "introduction"
+    t.text     "overview"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -149,43 +149,16 @@ ActiveRecord::Schema.define(:version => 20090406102148) do
   add_index "destinations", ["name"], :name => "index_destinations_on_name"
 
   create_table "hotels", :force => true do |t|
-    t.integer  "wct_id"
-    t.string   "brand"
-    t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "zip"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.string   "phone"
-    t.string   "online_bookings",   :limit => 1
-    t.string   "hotrates",          :limit => 1
-    t.string   "video",             :limit => 1
-    t.string   "brochure",          :limit => 1
-    t.string   "overview",          :limit => 1
-    t.string   "reviews",           :limit => 1
-    t.string   "map",               :limit => 1
-    t.string   "price_band",        :limit => 1
-    t.string   "star_rating",       :limit => 1
-    t.string   "star_source",       :limit => 1
-    t.string   "amenities"
-    t.string   "popularity_grade",  :limit => 1
-    t.string   "collections_grade", :limit => 1
-    t.string   "desc"
-    t.datetime "change_date"
-    t.string   "lo_rate"
-    t.string   "hi_rate"
-    t.string   "currency"
-    t.string   "sabre_id"
-    t.text     "long_desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "ezrez_id"
+    t.string  "name"
+    t.string  "cat_code"
+    t.string  "dest_code"
+    t.string  "zone_code"
+    t.string  "chain"
+    t.string  "licence"
+    t.string  "latitude"
+    t.string  "longitude"
   end
-
-  add_index "hotels", ["latitude", "longitude"], :name => "index_hotels_on_latitude_and_longitude"
 
   create_table "people", :force => true do |t|
     t.integer  "user_id"

@@ -2,7 +2,7 @@
 %html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
   %head
     %title= title ||= "Touristr"
-    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', 'jquery.Jcrop', :cache => true
+    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', 'jquery.Jcrop', 'jquery.fancybox', :cache => true
   %body
     #wrapper
       = render :partial => "shared/header"
@@ -23,6 +23,6 @@
       = render :partial => "shared/footer"
     
     = javascript_include_tag "http://maps.google.com/maps?file=api&v=2&key=#{GOOGLE_MAPS_KEY}&sensor=false"
-    = javascript_include_tag :defaults, 'jquery.sundaymorning', 'jquery.Jcrop.pack', 'maps' , :cache => true
+    = javascript_include_tag :defaults, 'jquery.sundaymorning', 'jquery.Jcrop.pack', 'maps', "jquery.fancybox" , :cache => true
     = yield :javascripts
     = yield :javascript

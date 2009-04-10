@@ -66,6 +66,15 @@ function showDestination() {
 	map.setZoom(6);
 };
 
+function showAttraction() {
+	var markerInfo = new Array();
+	markerInfo[1] = $('span.lat').text();
+	markerInfo[2] = $('span.lng').text();
+	placeMarker(markerInfo)
+	refreshBounds();
+	map.setZoom(11);
+};
+
 function showListingOnMap(list, infoWindow){
 	list.each(function(){
 		var markerInfo = new Array();
