@@ -114,7 +114,11 @@ class Trip < ActiveRecord::Base
         move_trippies_back_one_starting_with ti_parent.ordered + 1
         order = ti_parent.ordered + 1
       end
-    end
+    elsif obj.is_a?(Hotel)
+      ti_parent = trippies_parent obj
+      move_trippies_back_one_starting_with ti_parent.ordered + 1
+      order = ti_parent.ordered + 1
+    end 
     order ||= (trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0)
     trip_items.create :ordered=>order, :trippy=>obj, :starts_at => starts_at, :ends_at => ends_at
   end
@@ -122,7 +126,7 @@ class Trip < ActiveRecord::Base
     
   parent
   def trippies_parent t
-    trip_items.select {|ti| ti.trippy_id == t.parent.id && ti.trippy_type == 'Destination'}.first
+    trip_items.select {|ti| ti.trippy_type == 'Destination' && ti.trippy_id == t.parent.id}.first
   end
   
   def move_trippies_back_one_starting_with num = 1

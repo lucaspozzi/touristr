@@ -50,8 +50,13 @@ class Hotel < ActiveRecord::Base
   end
   
   def parent
-    res = open("http://ws.geonames.org/findNearbyPlaceName?lat=#{self.latitude}&lng=#{self.longitude}").read
-    id = /.*<geonameId>([0-9]+)<\/geonameId>.*/.match(res)[1]
-    Destination.find(id.to_i)
+    begin
+      res = open("http://ws.geonames.org/findNearby?lat=#{self.latitude}&lng=#{self.longitude}&featureCode=PPLA&featureCode=PPLC&featureCode=PPL").read
+      RAILS_DEFAULT_LOGGER.debug("Hotel#parent - result: #{res}")
+      id = /.*<geonameId>([0-9]+)<\/geonameId>.*/.match(res)[1]
+      Destination.find(id.to_i)
+    rescue Exception => e
+      RAILS_DEFAULT_LOGGER.error("Hotel#parent: for hotel #{self.ezrez_id}: #{e.message}")
+    end
   end
 end

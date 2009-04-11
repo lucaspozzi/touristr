@@ -28,7 +28,9 @@ Fixjour do
   
   define_builder(Hotel) do |klass, overrides|
     klass.new({
-      :name=>"Hotel#{counter}"
+      :name=>"Hotel#{counter}",
+      :latitude=>43.294199891388416,
+      :longitude=>5.374319739639759
     })
   end
     
@@ -48,6 +50,7 @@ Fixjour do
   
   define_builder(Destination) do |klass, overrides|
     klass.new({
+      :id                => 1234,
       :name              => 'Paris',
       :ascii_name        => 'Paris',
       :alternate_names   => 'Lungsod ng Paris,Lutece,Lutetia Parisorum,PAR,Paarys,Paname,Pantruche,Paraeis,Paras,Pari,Paries,Pariggi,Parigi,Pariis,Pariisi,Parijs,Paris,Paris - Paris,Parisi,Pariz,Parize,Parizh,Parizo,Parizs,Parys,Paryz,Paryzh,Paryzius,Paryż,Paryžius,Paräis,París',
