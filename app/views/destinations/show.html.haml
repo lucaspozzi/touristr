@@ -1,3 +1,4 @@
+- @this_is_the_overview = true
 .content
   %h2#destinationName= @destination.name
   = link_to t("edit"), edit_destination_path(@destination) if @u
@@ -21,7 +22,7 @@
   .translatable
     = @destination.destination_content.attractions unless @destination.destination_content.nil?
   
-  %ul
+  %ul.destinationAttraction
     = render :partial=>'destinations/attraction_list_item', :collection=>@destinations, :locals => {:parent_destination => @destination}
     
   .media

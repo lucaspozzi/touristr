@@ -209,7 +209,22 @@ $(document).ready(function() {
 	    }
 	});
 	
-
+	$('ul.switchView li:first').click(function(e){
+		e.preventDefault();
+		//Hide Listing
+		$('ul#listing').addClass("hidden");
+		//Show map
+		$('div#map').removeClass("hidden");
+	});
+	
+	$('ul.switchView li:last').click(function(e){
+		e.preventDefault();
+		//Hide Map
+		$('div#map').addClass("hidden");
+		//Show Listing
+		$('ul#listing').removeClass("hidden");
+	});
+	
 	
 });
 

@@ -1,5 +1,11 @@
+- @this_is_the_overview = false
 .content
   %h2= t("Attractions in") + " " + @destination.name
+  %ul.switchView
+    %li= link_to "map |", "#"
+    %li= link_to " listing", "#"
+      
+      
   %ul#listing.hidden
     = render :partial=>'destinations/attraction_list_item', :collection=>@attractions, :locals => {:parent_destination => @destination}
   = will_paginate(@attractions)

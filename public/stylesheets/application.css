@@ -160,6 +160,7 @@ ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
 div.videos, .mapAttraction { float: left; }
 div.photos { float: left; width: 30%; margin-left: 20px; }
 div.mapInformation { display: none; }
+ul.destinationAttraction li h4 { margin: 2px 0 5px 0; }
 
 /*
 Thickbox heading
@@ -288,6 +289,9 @@ ul#listing li div + div p.callToAction a, p.bookNow a { font-size: 14px; margin:
 ul#listing li img { margin: 7px 12px 0 0; }
 div.itemDateTime { display: none; position: absolute; background: transparent url(../images/infrastructure/bg-black-bg.png) repeat; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 10px; z-index: 99; }
 p.newTrip { display: none; }	
+ul.switchView { float: right;}
+ul.switchView li { display: inline; position: relative; top: -12px; }
+
 
 /*
 Destination is Area listing page
