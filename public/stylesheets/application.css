@@ -216,6 +216,8 @@ div#cloud2 { z-index: 4; background: transparent url(../images/homepage/cloud2.p
 div#cloud4 { z-index: 2; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -90%; }
 div#cloud5 { z-index: 6; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -80%; }
 
+div#footer.hills { background: transparent url(../images/homepage/hills.png) no-repeat; position: fixed; bottom: 0px; left: 0; width: 100%; padding: 70px 0 10px 0; margin: 0; text-align: right; }
+div#footer.hills p { margin: 0 30px; padding: 0; color: #fff; }
 
 /*
 Trip Listing
