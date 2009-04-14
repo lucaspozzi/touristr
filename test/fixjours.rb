@@ -25,12 +25,16 @@ Fixjour do
       :name               => 'Paris'
     })
   end
-  
-  define_builder(Hotel) do |klass, overrides|
+=begin
+t.string :hotel_name
+t.string :room_description
+t.string :price
+t.integer :parent_id
+=end
+  define_builder(HotelBooking) do |klass, overrides|
     klass.new({
-      :name=>"Hotel#{counter}",
-      :latitude=>43.294199891388416,
-      :longitude=>5.374319739639759
+      :hotel_name=>"HotelBooking#{counter}",
+      :room_description=>"room desc",
     })
   end
     

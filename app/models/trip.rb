@@ -114,10 +114,15 @@ class Trip < ActiveRecord::Base
         move_trippies_back_one_starting_with ti_parent.ordered + 1
         order = ti_parent.ordered + 1
       end
-    elsif obj.is_a?(Hotel)
+    elsif obj.is_a?(HotelBooking)
       ti_parent = trippies_parent obj
       move_trippies_back_one_starting_with ti_parent.ordered + 1
       order = ti_parent.ordered + 1
+      
+    # elsif obj.is_a?(CarBooking)
+    #   ti_parent = obj.destination_id
+    #   move_trippies_back_one_starting_with ti_parent.ordered + 1
+    #   order = ti_parent.ordered + 1
     end 
     order ||= (trip_items.first(:order=>'ordered desc').ordered + 1 rescue 0)
     trip_items.create :ordered=>order, :trippy=>obj, :starts_at => starts_at, :ends_at => ends_at
@@ -134,6 +139,24 @@ class Trip < ActiveRecord::Base
       next unless ti.ordered >= num
       ti.update_attribute :ordered, ti.ordered + 1
     end
+  end
+  
+  def order_trippies_with_same_parent_based_on_start_date
+    dest_indexes = get_destination_indexes
+    dest_indexes.each do |di|
+      di_next = dest_indexes[dest_indexes.index(di)+1]
+      trippies[di,di_next].sort! do |a,b|
+        a.starts_at <=> b.starts_at
+      end
+    end
+  end
+  
+  def get_destination_indexes
+    dest_indexes=[]
+    trippies.each do |tp|
+      dest_indexes << trippies.index(tp) if tp.city?
+    end
+    dest_indexes
   end
   
 end
