@@ -1,7 +1,5 @@
 %ul#destinationNavigation
-  %li#destinationSwitcher
-    %h2.static_content
-      = @destination.name unless @destination.nil?
+
   // add a class current to the below menus to select current
   %li#overview
     = link_to t("Overview"), destination_path(@destination) unless @destination.nil?

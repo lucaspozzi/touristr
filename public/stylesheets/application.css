@@ -160,6 +160,7 @@ ul.destinationPhotoGallery li { display: inline; margin: 0 7px 0 0; }
 div.videos, .mapAttraction { float: left; }
 div.photos { float: left; width: 30%; margin-left: 20px; }
 div.mapInformation { display: none; }
+ul.destinationAttraction li h4 { margin: 2px 0 5px 0; }
 
 /*
 Thickbox heading
@@ -215,6 +216,8 @@ div#cloud2 { z-index: 4; background: transparent url(../images/homepage/cloud2.p
 div#cloud4 { z-index: 2; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -90%; }
 div#cloud5 { z-index: 6; background: transparent url(../images/homepage/cloud4.png) no-repeat 1475px; width: 1750px; height: 140px; position: absolute; top: 100px; left: -80%; }
 
+div#footer.hills { background: transparent url(../images/homepage/hills.png) no-repeat; position: fixed; bottom: 0px; left: 0; width: 100%; padding: 70px 0 10px 0; margin: 0; text-align: right; }
+div#footer.hills p { margin: 0 30px; padding: 0; color: #fff; }
 
 /*
 Trip Listing
@@ -288,6 +291,9 @@ ul#listing li div + div p.callToAction a, p.bookNow a { font-size: 14px; margin:
 ul#listing li img { margin: 7px 12px 0 0; }
 div.itemDateTime { display: none; position: absolute; background: transparent url(../images/infrastructure/bg-black-bg.png) repeat; -moz-border-radius: 10px; -webkit-border-radius: 10px; padding: 10px; z-index: 99; }
 p.newTrip { display: none; }	
+ul.switchView { float: right;}
+ul.switchView li { display: inline; position: relative; top: -12px; }
+
 
 /*
 Destination is Area listing page
