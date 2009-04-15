@@ -1,0 +1,14 @@
+.content
+  -form_tag("search", :method => :post) do
+    %label
+      = t("From")
+      =text_field_tag 'start_date', @start_date
+    %label
+      = t("To")
+      =text_field_tag 'end_date', @end_date
+    =submit_tag 'Search'
+  %br  
+  %ul
+    - @activities.each do |activity|
+      %li
+        = activity["Name"]

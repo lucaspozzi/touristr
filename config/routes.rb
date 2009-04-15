@@ -24,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
     destination.resources :hotels, :collection => {:search => [:get, :post],
                                                    :book => [:post]}
     destination.resources :flights, :collection => {:search => [:get, :post]}
+    destination.resources :activities, :collection => {:search => [:get, :post]}
   end
   map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
