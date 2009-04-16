@@ -1,6 +1,20 @@
-
-%ul
-  - @hotels.each do |hotel|
-    %li
-      = hotel.name
-      = "<a href=\"javascript:formatted_hotel_trip_items_ajaxx(#{hotel.id}, 'js', 'POST', {authenticity_token: '#{form_authenticity_token}'})\">Add to trip</a>"
+.content
+  -form_tag(search_destination_hotels_path(@destination), :method => :post) do
+    %label 
+      = t("Arrival")
+    =text_field_tag 'arrival', @ci
+    %label 
+      = t("Departure")
+    =text_field_tag 'departure', @co
+    =submit_tag 'Search'
+  %h3
+    Some hotels in
+    =@destination.name
+  %ul
+    - @hotels.each do |hotel|
+      - unless hotel.main_picture.nil?
+        %li 
+          %h4
+            = hotel.name
+            %br
+            %img{:src => hotel.main_picture, :width => 75, :height => 100}

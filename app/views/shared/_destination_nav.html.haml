@@ -6,7 +6,7 @@
   %li#flights
     = link_to t("Flights"), "#"
   %li#hotels
-    = link_to t("Hotels"), search_destination_hotels_path(@destination) unless @destination.nil?
+    = link_to t("Hotels"), destination_hotels_path(@destination) unless @destination.nil?
   %li#attractions
     = link_to t("Attractions"), destination_attractions_path(@destination) unless @destination.nil?
   %li#activities
