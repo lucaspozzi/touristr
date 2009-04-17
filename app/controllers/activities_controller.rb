@@ -17,7 +17,9 @@ class ActivitiesController < ApplicationController
     RAILS_DEFAULT_LOGGER.debug(@activities.inspect)
   end
   
-  
+  def index
+  end
+
   
   private
   def load_destination
