@@ -11,7 +11,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :destinations,  :collection=>{:search=>:get}, 
                                 :member=>{:translate => [:get,:post],
-                                          :add_photo => [:post]} do |destination|
+                                          :add_photo => [:post],
+                                          :comment => [:post]} do |destination|
     destination.resources :attractions, :member => {:translate => [:get,:post],
                                                     :crop_picture => [:get,:post],
                                                     :add_photo => [:post]}
