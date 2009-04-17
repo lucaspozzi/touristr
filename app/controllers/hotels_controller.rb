@@ -3,8 +3,8 @@ class HotelsController < ApplicationController
   before_filter :load_destination
   
   def index
-    @hotels = Hotel.find_within(10, :origin => @destination, :order => :distance, :limit => 10)
-    RAILS_DEFAULT_LOGGER.debug(@hotels.inspect)
+    # @hotels = Hotel.find_within(10, :origin => @destination, :order => :distance, :limit => 10)
+    # RAILS_DEFAULT_LOGGER.debug(@hotels.inspect)
   end
   
   def search
