@@ -4,7 +4,7 @@
   %li#overview
     = link_to t("Overview"), destination_path(@destination) unless @destination.nil?
   %li#flights
-    = link_to t("Flights"), "#"
+    = link_to t("Flights"), "#{destination_path(@destination)}/flights" unless @destination.nil?
   %li#hotels
     = link_to t("Hotels"), destination_hotels_path(@destination) unless @destination.nil?
   %li#attractions

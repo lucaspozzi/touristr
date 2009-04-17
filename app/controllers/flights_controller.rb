@@ -27,7 +27,8 @@ class FlightsController < ApplicationController
     end
   end
   
-  
+  def index
+  end
   
   private
   def load_destination
