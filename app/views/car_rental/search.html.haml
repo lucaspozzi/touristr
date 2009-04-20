@@ -3,7 +3,7 @@
   
   - form_tag( choose_destination_car_rental_path(@destination), :id => "availabilityForm") do
     
-    = hidden_field_tag('car[country_code]', :value => @country_code)
+    = hidden_field_tag('car[country_code]', @country_code)
     
     %fieldset
       %legend= t "Pickup Details"
@@ -25,12 +25,12 @@
         %input{ :type => "text", :id => "pickup_date", :class => "chooseDate", :name => "pickup_date[date]", :size => "10", :value => (@pickup_date.nil?) ? 'dd/mm/yyyy': @pickup_date[:date] }
         %select{ :id => "pickup_date_hour", :name => "pickup_date[hour]"}
           - 0.upto(23) do |h|
-            %option{ :value => h.to_s.rjust(2, "0"), :selected => (false unless (@pickup_date.nil? || (h.to_s.rjust(2,"0")!=@pickup_date[:hour])))}
+            %option{ :value => h.to_s.rjust(2, "0"), :selected => ((@pickup_date.nil? && h==14) || (@pickup_date[:hour].to_i==h))}
               = h.to_s.rjust(2,"0")
         = ":"
         %select{ :id => "pickup_date_minutes", :name => "pickup_date[minute]"}
           - 0.step(59, 5) do |m|
-            %option{ :value => m.to_s.rjust(2,"0"), :selected => (false unless (@pickup_date.nil? || (h.to_s.rjust(2,"0")!=@pickup_date[:hour]))) }
+            %option{ :value => m.to_s.rjust(2, "0"), :selected => ((@pickup_date.nil? && m==0) || (@pickup_date[:minute].to_i==m))}
               = m.to_s.rjust(2,"0")
     
     %fieldset
@@ -40,12 +40,12 @@
         %input{ :type => "text", :id => "return_date", :class => "chooseDate", :name => "return_date[date]", :size => "10", :value => ((@return_date.nil?) ? 'dd/mm/yyyy' : @return_date[:date]) }
         %select{ :id => "return_date_hour", :name => "return_date[hour]"}
           - 0.upto(23) do |h|
-            %option{ :value => h.to_s.rjust(2, "0"), :selected => (false unless (@return_date.nil? || (h.to_s.rjust(2,"0")!=@return_date[:hour])))}
+            %option{ :value => h.to_s.rjust(2, "0"), :selected => ((@return_date.nil? && h==14) || (@return_date[:hour].to_i==h))}
               = h.to_s.rjust(2,"0")
         = ":"
         %select{ :id => "return_date_minutes", :name => "return_date[minute]"}
           - 0.step(59, 5) do |m|
-            %option{ :value => m.to_s.rjust(2,"0"), :selected => (false unless (@return_date.nil? || (h.to_s.rjust(2,"0")!=@return_date[:hour]))) }
+            %option{ :value => m.to_s.rjust(2, "0"), :selected => ((@return_date.nil? && m==0) || (@return_date[:minute].to_i==m))}
               = m.to_s.rjust(2,"0")
               
     %fieldset
