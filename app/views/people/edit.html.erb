@@ -33,7 +33,15 @@
 <% end %>
 </div>
 
-
+<h1 style="margin-top: 40px;">Change My Picture:</h1>
+<div id="upload_picture">
+  <%= image_tag @person.user.picture(:small) %>
+  <% form_tag(person_path(@person), :multipart => true, :method => :put) do %>
+    <%= file_field 'picture', 'picture' %>
+    <input type="hidden" name="switch" value="picture" />
+    <%= submit_tag 'Upload', :class=>"button"%>
+  <% end %>
+</div>
 
 <h1 style="margin-top: 40px;">Delete My Account:</h1>
 <div id="delete_account">

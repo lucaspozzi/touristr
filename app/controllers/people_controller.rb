@@ -62,6 +62,9 @@ class PeopleController < ApplicationController
         flash.now[:error] = @user.errors
         render :action=> :edit
       end
+    when 'picture'
+      @user.update_attributes params[:picture]
+      render :action=> :edit
     else
       RAILS_ENV == 'test' ? render( :text=>'') : raise( 'Unsupported swtich in action')
     end
