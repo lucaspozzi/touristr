@@ -205,7 +205,7 @@ class Destination < ActiveRecord::Base
     (feature_class == 'P' ? 2 : 1) *
     (feature_class.in?(%w(H R T U)) ? 1 : 5) *
     (feature_code.in?(ATTRACTIONS) ? 5 : 1) *
-    ((click_counter + 1) / 5)) +
+    ((click_counter + 5) / 5)) +
     (population / 5)
   end
   

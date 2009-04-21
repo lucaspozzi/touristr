@@ -29,6 +29,36 @@ class AttractionsController < ApplicationController
     end
   end
   
+  def new
+    @attraction = Attraction.new
+  end
+  
+  def create
+    # create destination: we use P as feature_class (this gives a *2 in score computation) and AMUS
+    # This combinaison will also help finding user crated attaraction, as P and AMUS don't match from geonames point of view... 
+    destination_params = {:name => params[:attraction_name],
+                          :alternate_names => params[:attraction_name],
+                          :lat => params[:attraction_lat],
+                          :lng => params[:attraction_lng],
+                          :feature_class => "P",
+                          :feature_code => "AMUS",
+                          :country_code => @destination.country_code,
+                          :admin1_code => @destination.admin1_code,
+                          :admin2_code => @destination.admin2_code,
+                          :population => 0
+                        }
+    @attraction = Destination.new(destination_params)
+    if (@attraction.save)
+      # need to create attraction specific content
+      # intro, picture, ...
+      flash[:notice] = t("Attraction created")
+      redirect_to (destination_attraction_path(@destination,@attraction))
+    else
+      flash[:error] = t("Attraction could not be created")
+      redirect_to (destination_path(@destination))
+    end
+  end
+  
   def update
     @attraction = Destination.find(params[:id])
     @attraction.build_destination_content if @attraction.destination_content.nil?
