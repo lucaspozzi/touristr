@@ -30,16 +30,17 @@ class AttractionsController < ApplicationController
   end
   
   def new
-    @attraction = Attraction.new
+    @attraction = Destination.new
+    @content = @attraction.build_destination_content
   end
   
   def create
     # create destination: we use P as feature_class (this gives a *2 in score computation) and AMUS
     # This combinaison will also help finding user crated attaraction, as P and AMUS don't match from geonames point of view... 
-    destination_params = {:name => params[:attraction_name],
-                          :alternate_names => params[:attraction_name],
-                          :lat => params[:attraction_lat],
-                          :lng => params[:attraction_lng],
+    destination_params = {:name => params[:destination_attraction_name],
+                          :alternate_names => params[:destination_attraction_name],
+                          :lat => params[:destination_attraction_lat],
+                          :lng => params[:destination_attraction_lng],
                           :feature_class => "P",
                           :feature_code => "AMUS",
                           :country_code => @destination.country_code,
@@ -51,12 +52,22 @@ class AttractionsController < ApplicationController
     if (@attraction.save)
       # need to create attraction specific content
       # intro, picture, ...
-      flash[:notice] = t("Attraction created")
-      redirect_to (destination_attraction_path(@destination,@attraction))
-    else
-      flash[:error] = t("Attraction could not be created")
-      redirect_to (destination_path(@destination))
+      attraction_params = { :picture => params[:attraction_picture],
+                            :picture_caption => params[:attraction_picture_caption],
+                            :picture_author  => params[:attraction_picture_author],
+                            :locale => "en",
+                            :picture_url     => params[:attraction_picture_url],
+                            :introduction  => params[:attraction_introduction],
+                            :cropped => false
+                          }
+      if @attraction.create_destination_content(attraction_params)
+        flash[:notice] = t("Attraction created")
+        session[:crop_token] = ENV['CROP_TOKEN']
+        redirect_to (crop_picture_destination_attraction_path(@destination, @attraction)) and return
+      end
     end
+    flash[:error] = t("Attraction could not be created")
+    redirect_to (destination_path(@destination))
   end
   
   def update

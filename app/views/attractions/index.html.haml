@@ -1,6 +1,7 @@
 - @this_is_the_overview = false
 .content
   %h2= t("Attractions in") + " " + @destination.name
+  = link_to 'add', new_destination_attraction_path(@destination)
   %ul.switchView
     %li= link_to "map |", "#"
     %li= link_to " listing", "#"

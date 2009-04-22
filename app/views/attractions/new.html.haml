@@ -1,54 +1,56 @@
 .content
   //  -form_tag "/destinations/#{@destination.id}/attractions", :method => :post do
-  -form_tag destination_attractions_path(@destination), :method => :post do
-    %h2
-      Attraction name:
-    = text_field_tag "attraction_name"
-    %h2
-      Latitude
-    = text_field_tag "attraction_lat"
-    %h2
-      Longitude
-    = text_field_tag "attraction_lng"
+  -form_tag destination_attractions_path(@destination), :multipart => true, :method => :post do
+    %p
+      %h3
+        =t("Attraction name")
+      = text_field_tag 'destination_attraction_name'
+
+    %h3
+      = t("Description")
+    = text_area_tag 'attraction_introduction', @attraction.destination_content.introduction, :size => "80x10" 
+
+    %h3
+      =t("Upload the main picture")
+    = file_field_tag 'attraction_picture'
+    
+    %p
+      - unless @possible_translations.nil?
+        = t("Which language are you going to use?")
+        = select_tag 'attraction_locale', options_for_select(@possible_translations)
+    %p
+      %label
+        =t("Caption")
+      = text_field_tag 'attraction_picture_caption', @attraction.destination_content.picture_caption, :size => "27"
+      %p
+        %label
+          =t("Author")
+        = text_field_tag 'attraction_picture_author', @attraction.destination_content.picture_author, :size => "27"
+      %p
+        %label
+          =t("Link to original picture")
+        = text_field_tag 'attraction_picture_url', @attraction.destination_content.picture_url, :size => "27"
+
+      %h3
+        =t("Where is the attraction?")
+      %p
+        #map{ :style => "width: 620px; height: 250px; margin:1.5em;"}
+        =t("Latitude") 
+        = text_field_tag 'destination_attraction_lat', @destination.lat, :readonly => true
+
+        =t("Longitude")
+        = text_field_tag 'destination_attraction_lng', @destination.lng, :readonly => true
 
     = submit_tag t("Create")
-//  %p#destinationIntroduction.static_content
-//    - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
-//      %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
-//      %p
-//        = "#{h(@attraction.destination_content.picture_caption)} #{t("by") unless @attraction.destination_content.picture_author.blank?}" 
-//        %a{:href => @attraction.destination_content.picture_url, :target => "_blank"}
-//          =h(@attraction.destination_content.picture_author)
-//  %h3
-//    = t("Description")
-//  %p  
-//    - form_tag (destination_attraction_path(params[:destination_id], @attraction), :multipart => true, :method => :put) do
-//      - if @attraction.destination_content.picture_file_name.nil? || @attraction.destination_content.picture_file_name.blank?
-//        %p 
-//          %label
-//            =t("Upload the main picture")
-//          = file_field_tag 'attraction[picture]'
-//      %p
-//        - unless @possible_translations.nil?
-//          = t("Which language are you going to use?")
-//          = select_tag 'attraction[locale]', options_for_select(@possible_translations)
-//      %p
-//        %label
-//          =t("Caption")
-//        = text_field_tag 'attraction[picture_caption]', @attraction.destination_content.picture_caption, :size => "27"
-//        %p
-//          %label
-//            =t("Author")
-//          = text_field_tag 'attraction[picture_author]', @attraction.destination_content.picture_author, :size => "27"
-//        %p
-//          %label
-//            =t("Link to original picture")
-//          = text_field_tag 'attraction[picture_url]', @attraction.destination_content.picture_url, :size => "27"
-//
-//      = text_area_tag 'attraction[introduction]', @attraction.destination_content.introduction, :size => "80x10"
-//      = submit_tag "save"
-//  .media
-//    .photos
-//      %h3= t("Photo Gallery")
-//      %ul.destinationPhotoGallery
-//        = render :partial => "/destinations/panoramio_pic", :collection => @attract_pics
+
+.mapInformation
+  %span.lat= @destination.lat
+  %span.lng= @destination.lng
+    
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+    initializeMap();
+    moveAttraction();
+    
+    });
