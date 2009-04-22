@@ -32,6 +32,10 @@ class AttractionsController < ApplicationController
   def new
     @attraction = Destination.new
     @content = @attraction.build_destination_content
+    @possible_translations = Array.new
+    LOCALES_AVAILABLE.each { |sup_loc|
+      @possible_translations << [t(sup_loc), sup_loc]
+    }
   end
   
   def create
@@ -55,7 +59,7 @@ class AttractionsController < ApplicationController
       attraction_params = { :picture => params[:attraction_picture],
                             :picture_caption => params[:attraction_picture_caption],
                             :picture_author  => params[:attraction_picture_author],
-                            :locale => "en",
+                            :locale => params[:attraction_locale],
                             :picture_url     => params[:attraction_picture_url],
                             :introduction  => params[:attraction_introduction],
                             :cropped => false
@@ -67,6 +71,7 @@ class AttractionsController < ApplicationController
       end
     end
     flash[:error] = t("Attraction could not be created")
+    RAILS_DEFAULT_LOGGER.error("ERROR: #{@attraction.errors}")
     redirect_to (destination_path(@destination))
   end
   

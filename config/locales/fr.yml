@@ -106,9 +106,9 @@ fr:
   "Arrival": Arrivée
   "Departure": Départ
   "Please select the language you will translate to ": Sélectionnez le language de traduction
-  "Attractions in": Curiosités á
+  "Attractions in": Curiosités à
   "Time and Date": Heure et date
-  "Search for Car Rental in": Recherche de locations de voiture á
+  "Search for Car Rental in": Recherche de locations de voiture à
   "Loading": Chargement
   "Map": Carte
   "Login to your account": Connexion a votre compte
@@ -131,9 +131,14 @@ fr:
   "Post": Poster
   "CommentTitle": Titre
   "Comment": Commentaire
-  "Attraction name": Nom de l'attraction
+  "Attraction name": Nom de la curiosité
   "Upload the main picture": Télécharger la photo principale
-  "Where is the attraction?": Où est située cette attraction ?
+  "Where is the attraction?": Où est située cette curiosité ?
   "Latitude": Latitude
   "Longitude": Longitude
   "Create": Créer
+  "add": ajouter
+  "map": carte
+  "listing": liste
+  "Which language are you going to use?": En quelle langue allez-vous décrire cette attraction ?
+  

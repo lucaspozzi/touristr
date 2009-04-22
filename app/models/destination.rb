@@ -35,6 +35,8 @@ class Destination < ActiveRecord::Base
   include Trippy
   require 'open-uri'
   
+  validates_presence_of :name, :alternate_names, :lat, :lng, :feature_class, :feature_code, :country_code, :admin1_code, :admin2_code, :population  
+  
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
