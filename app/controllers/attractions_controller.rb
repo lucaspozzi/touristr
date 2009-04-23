@@ -2,7 +2,7 @@
 # although both controllers handle destinations object
 
 class AttractionsController < ApplicationController
-  skip_before_filter :login_required, :except => [:edit, :update, :comment]
+  skip_before_filter :login_required, :except => [:edit, :update]
   before_filter :load_destination
   
   require 'RMagick'
@@ -206,9 +206,23 @@ class AttractionsController < ApplicationController
   end
   
   def comment
-    @attraction = Destination.find(params[:id])
-    @attraction.add_comment Comment.new(:title => params[:title], :comment => params[:comment], :user_id => @u.id) unless (params[:title].empty? || params[:comment].empty?)
-    redirect_to :action => :show
+    if @u
+      if request.get? && session[:comment]
+        params.merge!(session[:comment])
+        session[:comment] = nil
+      elsif request.get? && session[:comment].nil?
+        RAILS_DEFAULT_LOGGER.error("AttractionController#comment: get without session[:comment]")
+        redirect_to :action => :show and return 
+      end
+      @attraction = Destination.find(params[:id])
+      @attraction.add_comment Comment.new(:title => params[:title], :comment => params[:comment], :user_id => @u.id) unless (params[:title].empty? || params[:comment].empty?)
+      flash[:notice] = t("Your comment has been added")
+      redirect_to :action => :show
+    else
+      session[:comment] = { :title => params[:title], :comment => params[:comment] }
+      flash[:warning] = t("You need to be authenticated to perform this action")
+      access_denied
+    end
   end
   
   protected

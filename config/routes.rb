@@ -12,11 +12,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :destinations,  :collection=>{:search=>:get}, 
                                 :member=>{:translate => [:get,:post],
                                           :add_photo => [:post],
-                                          :comment => [:post]} do |destination|
+                                          :comment => [:post, :get]} do |destination|
     destination.resources :attractions, :member => {:translate => [:get,:post],
                                                     :crop_picture => [:get,:post],
                                                     :add_photo => [:post],
-                                                    :comment => [:post]}
+                                                    :comment => [:post, :get]}
     destination.resources :trip_items
     destination.resources :car_rental, :collection => {:search => :any,
                                                        :advanced_search => :any,
