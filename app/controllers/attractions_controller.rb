@@ -2,7 +2,7 @@
 # although both controllers handle destinations object
 
 class AttractionsController < ApplicationController
-  skip_before_filter :login_required, :except => [:edit, :update]
+  skip_before_filter :login_required, :except => [:edit, :update, :comment]
   before_filter :load_destination
   
   require 'RMagick'
@@ -10,6 +10,7 @@ class AttractionsController < ApplicationController
   def show
     @attraction = Destination.find(params[:id])
     @attract_pics = @attraction.get_pictures
+    @comments = @attraction.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
   end
   
   def index
@@ -202,6 +203,12 @@ class AttractionsController < ApplicationController
       flash[:error] = t("Something went wrong... Please try again.")
     end
     redirect_to(destination_attraction_path(@destination, @attraction))
+  end
+  
+  def comment
+    @attraction = Destination.find(params[:id])
+    @attraction.add_comment Comment.new(:title => params[:title], :comment => params[:comment], :user_id => @u.id) unless (params[:title].empty? || params[:comment].empty?)
+    redirect_to :action => :show
   end
   
   protected

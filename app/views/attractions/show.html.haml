@@ -48,6 +48,19 @@
               = text_field_tag "destination_pictures[picture_url]"
             %p
               = submit_tag 'add photo'
+  .comments
+    = render :partial => "destinations/user_comment", :collection => @comments        
+    .addComment
+      = t("Add a comment")
+      - form_tag comment_destination_attraction_path(@destination, @attraction) do
+        %label 
+          =t('CommentTitle')
+        = text_field_tag "title"
+        %lable
+          =t('Comment')
+        = text_field_tag "comment"
+        = submit_tag t("Post")
+
   .mapInformation
     %span.lat= @attraction.lat
     %span.lng= @attraction.lng

@@ -15,7 +15,8 @@ ActionController::Routing::Routes.draw do |map|
                                           :comment => [:post]} do |destination|
     destination.resources :attractions, :member => {:translate => [:get,:post],
                                                     :crop_picture => [:get,:post],
-                                                    :add_photo => [:post]}
+                                                    :add_photo => [:post],
+                                                    :comment => [:post]}
     destination.resources :trip_items
     destination.resources :car_rental, :collection => {:search => :any,
                                                        :advanced_search => :any,
