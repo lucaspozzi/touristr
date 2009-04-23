@@ -95,10 +95,10 @@ include Fixjour
 
 class Test::Unit::TestCase
   def create_destination_country overrides = {}
-    create_destination( {:name=>'France', :ascii_name=>'France', :feature_class=>'A', :feature_code=>'PCLI', :alternate_names=>''}.merge(overrides))
+    create_destination( {:name=>'France', :ascii_name=>'France', :feature_class=>'A', :feature_code=>'PCLI', :alternate_names=>'France'}.merge(overrides))
   end
   def create_destination_attraction overrides = {}
-    create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>''}.merge(overrides))
+    create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>'Euro Disney'}.merge(overrides))
   end
 
   def create_destination_attraction_with_content overrides = {}
