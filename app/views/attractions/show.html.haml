@@ -1,6 +1,9 @@
 .content
   %h2
     = @attraction.name
+  =t("Viewed")
+  =@attraction.click_counter
+  =t("times")
   = link_to t("edit"), edit_destination_attraction_path(@destination, @attraction) if @u
   = link_to t("translate"), translate_destination_attraction_path(@destination, @attraction)
   %p#destinationIntroduction

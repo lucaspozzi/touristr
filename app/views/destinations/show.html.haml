@@ -1,6 +1,9 @@
 - @this_is_the_overview = true
 .content
   %h2#destinationName= @destination.name
+  =t("Viewed")
+  =@destination.click_counter
+  =t("times")
   = link_to t("edit"), edit_destination_path(@destination) if @u
   = link_to t("translate"), translate_destination_path(@destination)
   %p#destinationIntroduction.translatable
