@@ -5,7 +5,7 @@
   =@destination.click_counter
   =t("times")
   = link_to t("edit"), edit_destination_path(@destination) if @u
-  = link_to t("translate"), translate_destination_path(@destination)
+  = link_to t("translate"), translate_destination_path(@destination) if @u
   %p#destinationIntroduction.translatable
     = h(@destination.destination_content.introduction) unless @destination.destination_content.nil?
   %h3= t "Map"

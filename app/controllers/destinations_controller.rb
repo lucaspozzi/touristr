@@ -1,5 +1,5 @@
 class DestinationsController < ApplicationController
-  skip_before_filter :login_required, :except => [:edit, :update]
+  skip_before_filter :login_required, :except => [:edit, :update, :translate]
   NB_PICS_FOR_DEST = 8
   
   def search
@@ -23,7 +23,7 @@ class DestinationsController < ApplicationController
     @comments = @destination.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
     BreadCrumbManager.mark_destination_as_visited(session, @destination)
     RAILS_DEFAULT_LOGGER.error(BreadCrumbManager.get_current_destination_id(session))
-    @destination.increment_click_counter if params[:xs4f] == 'qf3r'
+    @destination.increment_click_counter
     @t.add @destination if @destination.city?
     @destinations = @destination.children
     @dest_pics = @destination.get_pictures

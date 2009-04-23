@@ -5,7 +5,7 @@
   =@attraction.click_counter
   =t("times")
   = link_to t("edit"), edit_destination_attraction_path(@destination, @attraction) if @u
-  = link_to t("translate"), translate_destination_attraction_path(@destination, @attraction)
+  = link_to t("translate"), translate_destination_attraction_path(@destination, @attraction) if @u
   %p#destinationIntroduction
     - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
       %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
