@@ -75,7 +75,8 @@ class AccountsController < ApplicationController
     u.email                 = params[:user][:email]
     u.person                = @p
     @u = u
-    if u.save
+    if verify_recaptcha(u) && u.save
+#    if u.save
       self.user = u
       expire_person_cookie
       

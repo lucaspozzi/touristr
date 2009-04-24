@@ -25,6 +25,8 @@
   %p.checkbox
     %label{ :for => 'remember_me'}=t("Remember Me")
     = check_box_tag :remember_me, "1", params[:remember_me]
+  %p.captcha
+    =recaptcha_tags
     
   %p.submit
     = submit_tag t("Sign Up")
