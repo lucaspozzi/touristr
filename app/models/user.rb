@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
       opp.update_attribute :user_id, self.id
     else
       person.update_attribute :user_id, self.id
+      person.update_attribute :email, self.email
     end
     AccountMailer.deliver_signup self
   end
