@@ -23,7 +23,7 @@ class DestinationsController < ApplicationController
     @comments = @destination.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
     BreadCrumbManager.mark_destination_as_visited(session, @destination)
     RAILS_DEFAULT_LOGGER.error(BreadCrumbManager.get_current_destination_id(session))
-    @destination.increment_click_counter
+#    @destination.increment_click_counter
     @t.add @destination if @destination.city?
     @destinations = @destination.children
     @dest_pics = @destination.get_pictures
