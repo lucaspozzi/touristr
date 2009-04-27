@@ -39,6 +39,7 @@ class Destination < ActiveRecord::Base
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
+  has_one :counter, :class_name => "DestinationCounter"
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
   has_many :destination_pictures
   acts_as_commentable
@@ -190,9 +191,15 @@ class Destination < ActiveRecord::Base
     country.country
   end
   
+  def click_counter
+    return 0 unless self.counter
+    self.counter.click_counter
+  end
+  
   def increment_click_counter
-    self.click_counter +=1
-    save
+    self.build_counter unless self.counter
+    self.counter.click_counter +=1
+    self.counter.save
   end
   
 # remove duplicates:

@@ -9,7 +9,7 @@ class AttractionsController < ApplicationController
   
   def show
     @attraction = Destination.find(params[:id])
-#    @attraction.increment_click_counter
+    @attraction.increment_click_counter
     @attract_pics = @attraction.get_pictures
     @comments = @attraction.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
   end
