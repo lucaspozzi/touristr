@@ -17,7 +17,8 @@
     = t("Description")
   %p  
     - if @attraction.destination_content.nil? || @attraction.destination_content.introduction.nil?
-      = t("We don't have any content yet for #{@attraction.name}")
+      = t("We don't have any content yet for") 
+      = @attraction.name
     - else
       = h(@attraction.destination_content.introduction)
   .media
