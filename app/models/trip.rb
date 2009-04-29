@@ -40,6 +40,8 @@ class Trip < ActiveRecord::Base
   def private_url
     if Rails.env.production?
       "http://touristr.com/trips/private/#{private_identifier}"
+    elsif Rails.env.staging?
+      "http://staging.touristr.com/trips/private/#{private_identifier}"
     else
       "http://localhost:3000/trips/private/#{private_identifier}"
     end
