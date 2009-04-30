@@ -1,17 +1,15 @@
 %ul#destinationNavigation
-  %li#destinationSwitcher
-    %h2.static_content
-      = @destination.name unless @destination.nil?
+
   // add a class current to the below menus to select current
   %li#overview
     = link_to t("Overview"), destination_path(@destination) unless @destination.nil?
   %li#flights
-    = link_to t("Flights"), "#"
+    = link_to t("Flights"), destination_flights_path(@destination) unless @destination.nil?
   %li#hotels
-    = link_to t("Hotels"), search_destination_hotels_path(@destination) unless @destination.nil?
+    = link_to t("Hotels"), destination_hotels_path(@destination) unless @destination.nil?
   %li#attractions
     = link_to t("Attractions"), destination_attractions_path(@destination) unless @destination.nil?
   %li#activities
-    = link_to t("Activities"), "#"
+    = link_to t("Activities"), destination_activities_path(@destination) unless @destination.nil?
   %li#carRentals
     = link_to t("Car Rentals"), search_destination_car_rental_path(@destination) unless @destination.nil?

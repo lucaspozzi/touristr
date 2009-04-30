@@ -1,0 +1,56 @@
+.content
+  //  -form_tag "/destinations/#{@destination.id}/attractions", :method => :post do
+  -form_tag destination_attractions_path(@destination), :multipart => true, :method => :post do
+    %p
+      - unless @possible_translations.nil?
+        = t("Which language are you going to use?")
+        = select_tag 'attraction_locale', options_for_select(@possible_translations)
+
+    %p
+      %h3
+        =t("Attraction name")
+      = text_field_tag 'destination_attraction_name'
+
+    %h3
+      = t("Description")
+    = text_area_tag 'attraction_introduction', @attraction.destination_content.introduction, :size => "80x10" 
+
+    %h3
+      =t("Upload the main picture")
+    = file_field_tag 'attraction_picture'
+    %p
+      %label
+        =t("Caption")
+      = text_field_tag 'attraction_picture_caption', @attraction.destination_content.picture_caption, :size => "27"
+      %p
+        %label
+          =t("Author")
+        = text_field_tag 'attraction_picture_author', @attraction.destination_content.picture_author, :size => "27"
+      %p
+        %label
+          =t("Link to original picture")
+        = text_field_tag 'attraction_picture_url', @attraction.destination_content.picture_url, :size => "27"
+
+      %h3
+        =t("Where is the attraction?")
+      %p
+        #map{ :style => "width: 620px; height: 250px; margin:1.5em;"}
+        =t("Latitude") 
+        = text_field_tag 'destination_attraction_lat', @destination.lat, :readonly => true
+
+        =t("Longitude")
+        = text_field_tag 'destination_attraction_lng', @destination.lng, :readonly => true
+
+    = submit_tag t("Create")
+
+.mapInformation
+  %span.lat= @destination.lat
+  %span.lng= @destination.lng
+    
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+    initializeMap();
+    moveAttraction();
+    
+    });

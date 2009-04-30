@@ -43,15 +43,28 @@ class Hotel < ActiveRecord::Base
   set_primary_key :ezrez_id
   include Trippy
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
-
+  has_many :hotel_pictures, :foreign_key => "hotel_code"
+  acts_as_mappable :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
   
   def city
     Destination.first.city
   end
   
   def parent
-    res = open("http://ws.geonames.org/findNearbyPlaceName?lat=#{self.latitude}&lng=#{self.longitude}").read
-    id = /.*<geonameId>([0-9]+)<\/geonameId>.*/.match(res)[1]
-    Destination.find(id.to_i)
+    begin
+      res = open("http://ws.geonames.org/findNearby?lat=#{self.latitude}&lng=#{self.longitude}&featureCode=PPLA&featureCode=PPLC&featureCode=PPL").read
+      RAILS_DEFAULT_LOGGER.debug("Hotel#parent - result: #{res}")
+      id = /.*<geonameId>([0-9]+)<\/geonameId>.*/.match(res)[1]
+      Destination.find(id.to_i)
+    rescue Exception => e
+      RAILS_DEFAULT_LOGGER.error("Hotel#parent: for hotel #{self.ezrez_id}: #{e.message}")
+    end
+  end
+  
+  def main_picture
+    main = self.hotel_pictures.find_by_image_code("GEN", :limit => 1)
+    return "http://cdn.ezrez.com/www.hotelbeds.com/giata/#{main.image_path}" unless main.nil?
+    nil
   end
 end

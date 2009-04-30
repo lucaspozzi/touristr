@@ -1,0 +1,11 @@
+%br
+= time_ago(user_comment.created_at)
+%br
+-unless user_comment.user.picture.nil?
+  %img{:src => user_comment.user.picture.url(:thumb)}
+= user_comment.user.login
+%br
+= user_comment.title
+%br
+= user_comment.comment
+

@@ -134,3 +134,39 @@ en:
   "Return Location" : Return Location
   "close" : close
   "view details" : view details
+  "To-Do List" : To-Do List
+  "Add" : Add
+  "Add a comment": Add a comment
+  "Post": Post
+  "CommentTitle": Title
+  "Comment": Comment
+  "Attraction name": Attraction name
+  "Upload the main picture": Upload the main picture
+  "Where is the attraction?": Where is the attraction?
+  "Latitude": Latitude
+  "Longitude": Longitude
+  "Create": Create
+  "add": add
+  "map": map
+  "listing": listing 
+  "Which language are you going to use?": Which language are you going to use?
+  "Your comment has been added": Your comment has been added
+  "You need to be authenticated to perform this action": You need to be authenticated to perform this action
+  "Viewed": Viewed
+  "times": Times
+  "A new password has been mailed to you": A new password has been mailed to you
+  "Hi": Hi
+  "Your password has been changed": Your password has been changed
+  "Your user name is": Your user name is
+  "Your new password is": Your new password is
+  "You can log in at": You can log in at
+  "Thanks": Thanks
+  "Thanks for signing up with": Thanks for signing up with
+  "Your password is the same as what you used to create your user account": Your password is the same as what you used to create your user account
+  "invite_text_message": has invited you to join the trip on touristr.com. All you have to do is signup here using this email address
+  "view_trip_detail_message": If you're not sure if you want to sign up or not, you can view the trip using this private address
+  "Signup with": Signup with
+  "invitee_message": Here's a message from
+  "Invite someone to join your trip": Invite someone to join your trip
+  "trip_invite_message": Trip members can edit your trip, If you want to share your trip without letting them edit it, email them the public url
+  "We don't have any content yet for": We don't have any content yet for

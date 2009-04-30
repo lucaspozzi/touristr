@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
 
       @pass = u.forgot_password #must be @ variable for function tests
       AccountMailer.deliver_forgot_password(u, @pass)
-      flash[:notice] = "A new password has been mailed to you."
+      flash[:notice] = "#{t("A new password has been mailed to you")}."
     else
       params[:login] ||= params[:user][:login] if params[:user]
       params[:password] ||= params[:user][:password] if params[:user]
@@ -75,7 +75,8 @@ class AccountsController < ApplicationController
     u.email                 = params[:user][:email]
     u.person                = @p
     @u = u
-    if u.save
+    if verify_recaptcha(u) && u.save
+#    if u.save
       self.user = u
       expire_person_cookie
       

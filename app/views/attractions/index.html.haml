@@ -1,8 +1,16 @@
+- @this_is_the_overview = false
 .content
-  %h2= t("Attractions in") + " " + @destination.name
+  %p
+    %h2= t("Attractions in") + " " + @destination.name
+    = link_to t('add'), new_destination_attraction_path(@destination)
+  %ul.switchView
+    %li= link_to "#{t('map')} |", "#"
+    %li= link_to " #{t('listing')}", "#"
+      
+      
   %ul#listing.hidden
     = render :partial=>'destinations/attraction_list_item', :collection=>@attractions, :locals => {:parent_destination => @destination}
-    = will_paginate(@attractions)
+  = will_paginate(@attractions)
   #itemInformation
     #itemContent
       = link_to t("close"), "#", :id => 'close'

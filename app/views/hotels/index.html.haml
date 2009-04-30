@@ -1,6 +1,3 @@
-
-%ul
-  - @hotels.each do |hotel|
-    %li
-      = hotel.name
-      = "<a href=\"javascript:formatted_hotel_trip_items_ajaxx(#{hotel.id}, 'js', 'POST', {authenticity_token: '#{form_authenticity_token}'})\">Add to trip</a>"
+.content
+  %iframe{:src => "http://www.res99.com/nexres/search/power_search.cgi?src=10022696&city=#{@destination.name}&country=#{@destination.country.iso}", :width=>"800", :height=>"800 px", :scrolling=>"auto"}
+  

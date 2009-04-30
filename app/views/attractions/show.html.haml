@@ -1,9 +1,12 @@
 .content
   %h2
     = @attraction.name
+  =t("Viewed")
+  =@attraction.click_counter
+  =t("times")
   = link_to t("edit"), edit_destination_attraction_path(@destination, @attraction) if @u
-  = link_to t("translate"), translate_destination_attraction_path(@destination, @attraction)
-  %p#destinationIntroduction.static_content
+  = link_to t("translate"), translate_destination_attraction_path(@destination, @attraction) if @u
+  %p#destinationIntroduction
     - if !@attraction.destination_content.nil? && !@attraction.destination_content.picture.nil?
       %img{:src => @attraction.destination_content.picture, :alt => @attraction.destination_content.picture_caption, :title =>  @attraction.destination_content.picture_caption}
       %p
@@ -14,7 +17,8 @@
     = t("Description")
   %p  
     - if @attraction.destination_content.nil? || @attraction.destination_content.introduction.nil?
-      = t("We don't have any content yet for #{@attraction.name}")
+      = t("We don't have any content yet for") 
+      = @attraction.name
     - else
       = h(@attraction.destination_content.introduction)
   .media
@@ -48,6 +52,19 @@
               = text_field_tag "destination_pictures[picture_url]"
             %p
               = submit_tag 'add photo'
+  .comments
+    = render :partial => "destinations/user_comment", :collection => @comments        
+    .addComment
+      = t("Add a comment")
+      - form_tag comment_destination_attraction_path(@destination, @attraction) do
+        %label 
+          =t('CommentTitle')
+        = text_field_tag "title"
+        %lable
+          =t('Comment')
+        = text_field_tag "comment"
+        = submit_tag t("Post")
+
   .mapInformation
     %span.lat= @attraction.lat
     %span.lng= @attraction.lng

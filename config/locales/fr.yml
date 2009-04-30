@@ -106,9 +106,9 @@ fr:
   "Arrival": Arrivée
   "Departure": Départ
   "Please select the language you will translate to ": Sélectionnez le language de traduction
-  "Attractions in": Curiosités á
+  "Attractions in": Curiosités à
   "Time and Date": Heure et date
-  "Search for Car Rental in": Recherche de locations de voiture á
+  "Search for Car Rental in": Recherche de locations de voiture à
   "Loading": Chargement
   "Map": Carte
   "Login to your account": Connexion a votre compte
@@ -125,3 +125,39 @@ fr:
   "Return Location" : Ville de retour
   "close" : fermer
   "view details" : afficher les détails
+  "To-Do List" : Liste de taches
+  "Add" : Ajouter
+  "Add a comment": Ajouter un commentaire
+  "Post": Poster
+  "CommentTitle": Titre
+  "Comment": Commentaire
+  "Attraction name": Nom de la curiosité
+  "Upload the main picture": Télécharger la photo principale
+  "Where is the attraction?": Où est située cette curiosité ?
+  "Latitude": Latitude
+  "Longitude": Longitude
+  "Create": Créer
+  "add": ajouter
+  "map": carte
+  "listing": liste
+  "Which language are you going to use?": En quelle langue allez-vous décrire cette attraction ?
+  "Your comment has been added": Votre commentaire a été ajouté
+  "You need to be authenticated to perform this action": Vous devez être authentifié pour effectuer cette action
+  "Viewed": Vue
+  "times": fois
+  "A new password has been mailed to you": Un nouveau mot de passe vient de vous être envoyé par e-mail
+  "Hi": Bonjour
+  "Your password has been changed": Votre mot de passe vient d'être changé
+  "Your user name is": Votre nom d'utilisateur est
+  "Your new password is": Votre nouveau mot de passe est
+  "You can log in at": Vous pouvez vous connecter sur
+  "Thanks": Merci
+  "Thanks for signing up with": Merci de vous être enregistré sur 
+  "Your password is the same as what you used to create your user account": Votre mot de passe est celui que vous avez choisi lors de la création de votre compte
+  "invite_text_message": vous invite à rejoindre le voyage sur touristr.com. Tout ce que vous avez à faire est vous enregistrer avec cette adresse e-mail
+  "view_trip_detail_message": Si vous n'êtes pas sûr de vouloir vous enregistrer, vous pouvez jeter un oeil sur ce voyage en utilisant ce lien
+  "Signup with": Enregistrez-vous avec
+  "invitee_message": Voila un message de 
+  "Invite someone to join your trip": Iniviter quelqu'un à votre voyage
+  "trip_invite_message": Les participants à votre voyage peuvent le modifier. Si vous voulez partager votre voyage sans qu'il puisse être modifié, envoyez l'url publique
+  "We don't have any content yet for": Nous n'avons pas encore de contenu pour

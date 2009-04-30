@@ -35,8 +35,11 @@ class Destination < ActiveRecord::Base
   include Trippy
   require 'open-uri'
   
+  validates_presence_of :name, :alternate_names, :lat, :lng, :feature_class, :feature_code, :country_code, :admin1_code, :admin2_code, :population  
+  
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
+  has_one :counter, :class_name => "DestinationCounter"
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
   has_many :destination_pictures
   acts_as_commentable
@@ -188,9 +191,15 @@ class Destination < ActiveRecord::Base
     country.country
   end
   
+  def click_counter
+    return 0 unless self.counter
+    self.counter.click_counter
+  end
+  
   def increment_click_counter
-    self.click_counter +=1
-    save
+    self.build_counter unless self.counter
+    self.counter.click_counter +=1
+    self.counter.save
   end
   
 # remove duplicates:
@@ -205,7 +214,7 @@ class Destination < ActiveRecord::Base
     (feature_class == 'P' ? 2 : 1) *
     (feature_class.in?(%w(H R T U)) ? 1 : 5) *
     (feature_code.in?(ATTRACTIONS) ? 5 : 1) *
-    ((click_counter + 1) / 5)) +
+    ((click_counter + 5) / 5)) +
     (population / 5)
   end
   

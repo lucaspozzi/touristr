@@ -2,7 +2,7 @@
 %html{"xmlns"=>"http://www.w3.org/1999/xhtml", "xml:lang"=>"en"}
   %head
     %title= title ||= "Touristr"
-    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', :cache=> true
+    = stylesheet_link_tag 'application', 'thickbox', 'datePicker', 'jquery.Jcrop', 'jquery.fancybox', :cache=> true
   %body#home
     #wrapper
       = render :partial => "shared/header"
@@ -12,7 +12,6 @@
       = display_standard_flashes
 
       = yield
-      = render :partial => "shared/footer"
       
       #sky
         #sun
@@ -22,7 +21,10 @@
         #cloud4
         #cloud5
     
+    #footer.hills
+      %p &copy;2008 touristrepublic
+    
     = javascript_include_tag "http://maps.google.com/maps?file=api&v=2&key=#{GOOGLE_MAPS_KEY}&sensor=false"
-    = javascript_include_tag :defaults, 'jquery.sundaymorning', 'maps' , :cache => true
+    = javascript_include_tag :defaults, 'jquery.sundaymorning', 'maps' , "jquery.fancybox", :cache => true
     = yield :javascripts
     = yield :javascript

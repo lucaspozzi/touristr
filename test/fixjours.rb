@@ -25,10 +25,16 @@ Fixjour do
       :name               => 'Paris'
     })
   end
-  
-  define_builder(Hotel) do |klass, overrides|
+=begin
+t.string :hotel_name
+t.string :room_description
+t.string :price
+t.integer :parent_id
+=end
+  define_builder(HotelBooking) do |klass, overrides|
     klass.new({
-      :name=>"Hotel#{counter}"
+      :hotel_name=>"HotelBooking#{counter}",
+      :room_description=>"room desc",
     })
   end
     
@@ -48,6 +54,7 @@ Fixjour do
   
   define_builder(Destination) do |klass, overrides|
     klass.new({
+      :id                => 1234,
       :name              => 'Paris',
       :ascii_name        => 'Paris',
       :alternate_names   => 'Lungsod ng Paris,Lutece,Lutetia Parisorum,PAR,Paarys,Paname,Pantruche,Paraeis,Paras,Pari,Paries,Pariggi,Parigi,Pariis,Pariisi,Parijs,Paris,Paris - Paris,Parisi,Pariz,Parize,Parizh,Parizo,Parizs,Parys,Paryz,Paryzh,Paryzius,Paryż,Paryžius,Paräis,París',
@@ -88,10 +95,10 @@ include Fixjour
 
 class Test::Unit::TestCase
   def create_destination_country overrides = {}
-    create_destination( {:name=>'France', :ascii_name=>'France', :feature_class=>'A', :feature_code=>'PCLI', :alternate_names=>''}.merge(overrides))
+    create_destination( {:name=>'France', :ascii_name=>'France', :feature_class=>'A', :feature_code=>'PCLI', :alternate_names=>'France'}.merge(overrides))
   end
   def create_destination_attraction overrides = {}
-    create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>''}.merge(overrides))
+    create_destination( {:name=>'Euro Disney', :ascii_name=>'Euro Disney', :feature_class=>'L', :feature_code=>'AMUS', :alternate_names=>'Euro Disney'}.merge(overrides))
   end
 
   def create_destination_attraction_with_content overrides = {}

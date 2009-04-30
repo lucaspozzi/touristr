@@ -16,6 +16,9 @@
     %li
       = link_to t("Sign Up"), signup_path
       
+  =link_to 'English', "?locale=en"
+  =link_to ' | Francais', "?locale=fr"      
+      
 = render :partial => 'shared/search' unless  @controller.controller_name == 'home' || @controller.controller_name == 'accounts' || @showing_children == true
 
 .clearBoth

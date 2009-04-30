@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   skip_after_filter :store_current_trip, :only=>[:destroy]
   before_filter :setup, :except=>[:index, :new, :create]
 
-  layout 'plain'
+  layout 'plain', :except => :new
 
   def new
     render
@@ -62,6 +62,9 @@ class PeopleController < ApplicationController
         flash.now[:error] = @user.errors
         render :action=> :edit
       end
+    when 'picture'
+      @user.update_attributes params[:picture]
+      render :action=> :edit
     else
       RAILS_ENV == 'test' ? render( :text=>'') : raise( 'Unsupported swtich in action')
     end

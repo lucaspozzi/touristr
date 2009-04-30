@@ -1,5 +1,5 @@
 class DestinationsController < ApplicationController
-  skip_before_filter :login_required, :except => [:edit, :update]
+  skip_before_filter :login_required, :except => [:edit, :update, :translate]
   NB_PICS_FOR_DEST = 8
   
   def search
@@ -20,9 +20,10 @@ class DestinationsController < ApplicationController
   
   def show 
     @destination = Destination.find(params[:id])
+    @comments = @destination.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
     BreadCrumbManager.mark_destination_as_visited(session, @destination)
     RAILS_DEFAULT_LOGGER.error(BreadCrumbManager.get_current_destination_id(session))
-    @destination.increment_click_counter if params[:xs4f] == 'qf3r'
+    @destination.increment_click_counter
     @t.add @destination if @destination.city?
     @destinations = @destination.children
     @dest_pics = @destination.get_pictures
@@ -120,5 +121,25 @@ class DestinationsController < ApplicationController
     end
     redirect_to(destination_path(@destination))
   end
+  
+  def comment
+    if @u
+      if request.get? && session[:comment]
+        params.merge!(session[:comment])
+        session[:comment] = nil
+      elsif request.get? && session[:comment].nil?
+        RAILS_DEFAULT_LOGGER.error("DestinationsController#comment: get without session[:comment]")
+        redirect_to :action => :show and return 
+      end
+      @destination = Destination.find(params[:id])
+      @destination.add_comment Comment.new(:title => params[:title], :comment => params[:comment], :user_id => @u.id) unless (params[:title].empty? || params[:comment].empty?)
+      flash[:notice] = t("Your comment has been added")
+      redirect_to :action => :show
+    else
+      session[:comment] = { :title => params[:title], :comment => params[:comment] }
+      flash[:warning] = t("You need to be authenticated to perform this action")
+      access_denied
+    end
+  end    
   
 end

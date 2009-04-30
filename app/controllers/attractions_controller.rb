@@ -2,14 +2,16 @@
 # although both controllers handle destinations object
 
 class AttractionsController < ApplicationController
-  skip_before_filter :login_required, :except => [:edit, :update]
+  skip_before_filter :login_required, :except => [:edit, :update, :translate]
   before_filter :load_destination
   
   require 'RMagick'
   
   def show
     @attraction = Destination.find(params[:id])
+    @attraction.increment_click_counter
     @attract_pics = @attraction.get_pictures
+    @comments = @attraction.comments.find(:all, :order => "created_at DESC", :limit => 5, :include => :user)
   end
   
   def index
@@ -27,6 +29,52 @@ class AttractionsController < ApplicationController
       }
       logger.error("No content for #{@attraction.name}: #{@possible_translations.inspect}")
     end
+  end
+  
+  def new
+    @attraction = Destination.new
+    @content = @attraction.build_destination_content
+    @possible_translations = Array.new
+    LOCALES_AVAILABLE.each { |sup_loc|
+      @possible_translations << [t(sup_loc), sup_loc]
+    }
+  end
+  
+  def create
+    # create destination: we use P as feature_class (this gives a *2 in score computation) and AMUS
+    # This combinaison will also help finding user crated attaraction, as P and AMUS don't match from geonames point of view... 
+    destination_params = {:name => params[:destination_attraction_name],
+                          :alternate_names => params[:destination_attraction_name],
+                          :lat => params[:destination_attraction_lat],
+                          :lng => params[:destination_attraction_lng],
+                          :feature_class => "P",
+                          :feature_code => "AMUS",
+                          :country_code => @destination.country_code,
+                          :admin1_code => @destination.admin1_code,
+                          :admin2_code => @destination.admin2_code,
+                          :population => 0
+                        }
+    @attraction = Destination.new(destination_params)
+    if (@attraction.save)
+      # need to create attraction specific content
+      # intro, picture, ...
+      attraction_params = { :picture => params[:attraction_picture],
+                            :picture_caption => params[:attraction_picture_caption],
+                            :picture_author  => params[:attraction_picture_author],
+                            :locale => params[:attraction_locale],
+                            :picture_url     => params[:attraction_picture_url],
+                            :introduction  => params[:attraction_introduction],
+                            :cropped => false
+                          }
+      if @attraction.create_destination_content(attraction_params)
+        flash[:notice] = t("Attraction created")
+        session[:crop_token] = ENV['CROP_TOKEN']
+        redirect_to (crop_picture_destination_attraction_path(@destination, @attraction)) and return
+      end
+    end
+    flash[:error] = t("Attraction could not be created")
+    RAILS_DEFAULT_LOGGER.error("ERROR: #{@attraction.errors}")
+    redirect_to (destination_path(@destination))
   end
   
   def update
@@ -156,6 +204,26 @@ class AttractionsController < ApplicationController
       flash[:error] = t("Something went wrong... Please try again.")
     end
     redirect_to(destination_attraction_path(@destination, @attraction))
+  end
+  
+  def comment
+    if @u
+      if request.get? && session[:comment]
+        params.merge!(session[:comment])
+        session[:comment] = nil
+      elsif request.get? && session[:comment].nil?
+        RAILS_DEFAULT_LOGGER.error("AttractionController#comment: get without session[:comment]")
+        redirect_to :action => :show and return 
+      end
+      @attraction = Destination.find(params[:id])
+      @attraction.add_comment Comment.new(:title => params[:title], :comment => params[:comment], :user_id => @u.id) unless (params[:title].empty? || params[:comment].empty?)
+      flash[:notice] = t("Your comment has been added")
+      redirect_to :action => :show
+    else
+      session[:comment] = { :title => params[:title], :comment => params[:comment] }
+      flash[:warning] = t("You need to be authenticated to perform this action")
+      access_denied
+    end
   end
   
   protected

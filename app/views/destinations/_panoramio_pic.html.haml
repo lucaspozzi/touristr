@@ -1,4 +1,4 @@
 %li
-  %a{ :href => panoramio_pic[:photo_file_url], :class => 'fancybox', :rel => 'gallery' }
+  %a{ :href => panoramio_pic[:photo_file_url], :class => 'fancybox', :rel => 'gallery', :title => "#{panoramio_pic[:photo_title]} #{t("by")} <a href='#{panoramio_pic[:photo_url]}' target ='_blank', '>#{panoramio_pic[:owner]}</a>"  }
     %img{:src => panoramio_pic[:photo_file_url], :alt => panoramio_pic[:photo_title], :title => "#{panoramio_pic[:photo_title]} #{t("by")} #{panoramio_pic[:owner]}", :width => "85", :height => "63"}
   

@@ -4,44 +4,27 @@
       <%=t("Please select the language you will translate to")%> <br />
       <%= select_tag :translation_language, options_for_select(@possible_translations) %>
     </p>
-    <p class="destinationIntroduction">
-      <%=h(@introduction) unless @introduction.nil?%>
-      <%=form.text_area :introduction, :value => @destination.destination_content.introduction, :size => "75x6" %>
-    </p>
-
-      <h3>
-        <%=t("Description")%>
-      </h3>
-      <%=h(@overview) unless @overview.nil?%>
-      <%=form.text_area :overview, :value => @destination.destination_content.overview, :size => "75x6" %>
-
       <h4>Translate this introduction</h4>
       <p id="translated">
         <%= @introduction unless @introduction.nil? %>
       </p>
-      <h4>into</h4>
+      <h4>Introduction</h4>
       <%=form.text_area :introduction, :value => @destination.destination_content.introduction, :size => "100x6" %>
 
       <h4>Translate this overview</h4>
       <p id="translated">
         <%= @overview unless @overview.nil? %>
       </p>
-      <h4>into</h4>
+      <h4>Overview</h4>
       <%=form.text_area :overview, :value => @destination.destination_content.overview, :size => "100x6" %>
 
       <h4>Translate this Things to do</h4>
       <p id="translated">
         <%= @attractions unless @attractions.nil? %>
       </p>
-      <h4>into</h4>
+      <h4>Things to do</h4>
       <%=form.text_area :attractions, :value => @destination.destination_content.attractions, :size => "100x6" %>
 
-      <p>
-        <%=submit_tag t("Save translation")%>
-      </p>
-
-      <%=h(@attractions) unless @attractions.nil?%>
-      <%=form.text_area :attractions, :value => @destination.destination_content.attractions, :size => "75x6" %>
       <p>
         <%=submit_tag t("Save translation")%>
       </p>

@@ -3,7 +3,8 @@ class HotelsController < ApplicationController
   before_filter :load_destination
   
   def index
-    @hotels = Hotel.all
+    # @hotels = Hotel.find_within(10, :origin => @destination, :order => :distance, :limit => 10)
+    # RAILS_DEFAULT_LOGGER.debug(@hotels.inspect)
   end
   
   def search
@@ -23,6 +24,8 @@ class HotelsController < ApplicationController
   
   def book
     booking_descriptor = params[:booking_descriptor]
+    hotel = Hotel[params[:hotel_id]]
+    @t.add HotelBooking.create(:parent_id => @destination.id, :price => "999.69", :room_description => "Nice Room", :hotel_name => "#{hotel.name} in #{@destination.name}"), params[:checkin], params[:checkout]
     RAILS_DEFAULT_LOGGER.error("\nHotel Booking: #{booking_descriptor}\n")
     redirect_to destination_path(@destination)
   end
@@ -33,3 +36,9 @@ class HotelsController < ApplicationController
   end
   
 end
+=begin
+t.string :hotel_name
+t.string :room_description
+t.string :price
+t.integer :parent_id
+=end

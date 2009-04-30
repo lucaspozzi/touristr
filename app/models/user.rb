@@ -33,7 +33,12 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
   
-
+  has_attached_file :picture, :url => "/images/users/:id/:style/:basename.:extension",
+    :styles => { :reduced => "600x600>", :small => "128x128>", :thumb => "65x65>" },
+    :default_url => "/images/users/NoPhoto-User-:style.png",
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+    :path => "users/:id/:style/:basename.:extension"
 
 
   def before_create
@@ -50,6 +55,7 @@ class User < ActiveRecord::Base
       opp.update_attribute :user_id, self.id
     else
       person.update_attribute :user_id, self.id
+      person.update_attribute :email, self.email
     end
     AccountMailer.deliver_signup self
   end

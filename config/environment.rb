@@ -73,7 +73,7 @@ Rails::Initializer.run do |config|
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
-  # config.action_controller.session_store = :active_record_store
+config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -98,3 +98,5 @@ end.uniq.sort
 Less::JsRoutes.generate!
 
 ENV['CROP_TOKEN'] = 'hdjhd38y_2189dhAmArnw6Sdjksh62akdH8Y2DHQW'
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LcXIwQAAAAAAI89Fq9Z66BWxToP4hE4R3n63z5u '
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcXIwQAAAAAAIrNnccXREXE5Xd35MBY7BoJQyo6'

@@ -75,6 +75,29 @@ function showAttraction() {
 	map.setZoom(11);
 };
 
+var prevMarker
+function moveAttraction(){
+	var markerInfo = new Array();
+	markerInfo[1] = $('span.lat').text();
+	markerInfo[2] = $('span.lng').text();
+	placeMarker(markerInfo)
+	refreshBounds();
+	map.setZoom(13);
+	
+  GEvent.addListener(map, "click", function(mark, point) {
+
+	  if (prevMarker != null) {
+	  	map.removeOverlay(prevMarker);
+	  }
+	  var marker = new GMarker(new GLatLng(point.lat(), point.lng()), {title: 'your attraction'});
+	  map.addOverlay(marker);
+	  prevMarker = marker;
+
+	  $('input#destination_attraction_lat').val(point.lat());
+	  $('input#destination_attraction_lng').val(point.lng());
+	});
+};      
+
 function showListingOnMap(list, infoWindow){
 	list.each(function(){
 		var markerInfo = new Array();

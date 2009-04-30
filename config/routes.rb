@@ -11,10 +11,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :destinations,  :collection=>{:search=>:get}, 
                                 :member=>{:translate => [:get,:post],
-                                          :add_photo => [:post]} do |destination|
+                                          :add_photo => [:post],
+                                          :comment => [:post, :get]} do |destination|
     destination.resources :attractions, :member => {:translate => [:get,:post],
                                                     :crop_picture => [:get,:post],
-                                                    :add_photo => [:post]}
+                                                    :add_photo => [:post],
+                                                    :comment => [:post, :get]}
     destination.resources :trip_items
     destination.resources :car_rental, :collection => {:search => :any,
                                                        :advanced_search => :any,
@@ -24,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
     destination.resources :hotels, :collection => {:search => [:get, :post],
                                                    :book => [:post]}
     destination.resources :flights, :collection => {:search => [:get, :post]}
+    destination.resources :activities, :collection => {:search => [:get, :post]}
   end
   map.resources :trips, :member=>{:sort=>:post}
   map.private_trip "/trips/private/:id", :controller=>'trips', :action=>'private'
