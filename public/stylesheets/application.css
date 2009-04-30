@@ -71,7 +71,7 @@ div.ac_results ul li { padding: 1px 7px; letter-spacing: 1px; -moz-border-radius
 div.ac_results li.ac_over { background: #222; color: #cc00cc; }
 
 /* Google Map */
-div#map { width: 100%; height: 200px; opacity: 0; }
+div#map { width: 100%; height: 200px; opacity: 0; clear: both; }
 div#map.listingMap { height: 500px; }
 div#map.attractionPage { width: 430px; height: 268px; }
 .hidden { display: none; }
