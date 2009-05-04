@@ -39,9 +39,10 @@ class Destination < ActiveRecord::Base
   
   has_one :country, :foreign_key => :iso, :primary_key => :country_code
   has_one :destination_content
-  has_one :counter, :class_name => "DestinationCounter"
+  has_one :counter, :class_name => "DestinationCounter" # not in model to prevent re-indexing on every access
   has_many :trip_items, :as=>:trippy, :dependent=>:destroy
   has_many :destination_pictures
+  has_one :h_parent, :class_name => "DestinationParent"  # not in model to prevent re-indexing on creation
   acts_as_commentable
   acts_as_mappable
   friendly_param :name
@@ -102,25 +103,27 @@ class Destination < ActiveRecord::Base
   end
   
   def parent
+    return Destination.find(self.h_parent.parent_id) unless self.h_parent.nil?
     case feature_code
-    when COUNTRY: return self
-    when ADMIN_LEVEL1: return Destination.find(:first, :conditions => ["country_code=? and feature_code=?", country_code, COUNTRY])
-    when ADMIN_LEVEL2: return Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and feature_code=?", country_code, admin1_code, ADMIN_LEVEL1])
+    when COUNTRY: p = self
+    when ADMIN_LEVEL1: p = Destination.find(:first, :conditions => ["country_code=? and feature_code=?", country_code, COUNTRY])
+    when ADMIN_LEVEL2: p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and feature_code=?", country_code, admin1_code, ADMIN_LEVEL1])
     else
       if feature_code.in?(CITIES)
         # a city may be directly under ADM1 (e.g. galway) 
         p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL2])
-        return p unless p.nil?
-        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1])
-        return p unless p.nil?
+        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_code=?", country_code, admin1_code, admin2_code, ADMIN_LEVEL1]) if p.nil?
         # We return the country if unable to find a proper parent (e.g. 2964506 Dun Laoghaire -  )
-        p = Destination.find(:first, :conditions => ["country_code=? and feature_code in (?)", country_code, COUNTRY])        
+        p = Destination.find(:first, :conditions => ["country_code=? and feature_code in (?)", country_code, COUNTRY]) if p.nil?
       elsif feature_code.in?(ATTRACTIONS)
-        Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
+        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=? and admin2_code=? and feature_class=?", country_code, admin1_code, admin2_code, CITY_CLASS], :order => "score desc")
       else
-        Destination.find(:first, :conditions => ["country_code=? and admin1_code=?", country_code, admin1_code], :order => "score desc")
-      end  
+        p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=?", country_code, admin1_code], :order => "score desc")
+      end
     end
+    RAILS_DEFAULT_LOGGER.debug("Destination#parent: adding <#{p.name}>, id:(#{p.id}) as parent for #{self.name}")
+    self.create_h_parent(:parent_id => p.id)
+    return p
   end
   
   
