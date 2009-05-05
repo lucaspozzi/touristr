@@ -86,27 +86,27 @@ function reinit_events(){
 }
 
 
-$(function(){
-  $('.destinationSearch').autocomplete('/destinations/search', {
-    minChars: 2,
-    max: 10,
-		scroll: false,
-		results: 10,
-    formatItem: function(item) {
-  		obj_from_json = less_json_eval(item)
-  		if (obj_from_json.destination.parent) {
-  			parent = ", " + obj_from_json.destination.parent.destination.name
-  		} else {
-  			parent = ""
-  		}
-   		return obj_from_json.destination.name + parent + ", " + obj_from_json.destination.country.country;
-   	}
-   }).result(function(event, item) { 
-	   $(this).attr("value", less_json_eval(item).destination.name); 
-     location.href = "/destinations/" + less_json_eval(item).destination.id + "?xs4f=qf3r";
-   })    
-});
-
+//$(function(){
+//  $('.destinationSearch').autocomplete('/destinations/search', {
+//    minChars: 2,
+//    max: 10,
+//		scroll: false,
+//		results: 10,
+//    formatItem: function(item) {
+//  		obj_from_json = less_json_eval(item)
+//  		if (obj_from_json.destination.parent) {
+//  			parent = ", " + obj_from_json.destination.parent.destination.name
+//  		} else {
+//  			parent = ""
+//  		}
+//   		return obj_from_json.destination.name + parent + ", " + obj_from_json.destination.country.country;
+//   	}
+//   }).result(function(event, item) { 
+//	   $(this).attr("value", less_json_eval(item).destination.name); 
+//     location.href = "/destinations/" + less_json_eval(item).destination.id + "?xs4f=qf3r";
+//   })    
+//});
+//
 
 
 
