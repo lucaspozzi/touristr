@@ -18,7 +18,11 @@ class DestinationsController < ApplicationController
       wants.html do
         ar = []
         @destinations.each { |d|  parent = d.city? ? ", #{d.parent}" : ""
-                                  ar << "<a href='#{destination_path(d)}'>#{d.name}, #{d.parent.name}, #{d.country.country}</a>"
+                                  if d.parent.nil?
+                                    ar << "<a href='#{destination_path(d)}'>#{d.name}, #{d.country.country}</a>"
+                                  else
+                                    ar << "<a href='#{destination_path(d)}'>#{d.name}, #{d.parent.name}, #{d.country.country}</a>"
+                                  end
         }
         render :text=> ar.join("<br>")
       end      

@@ -104,6 +104,7 @@ class Destination < ActiveRecord::Base
   end
   
   def parent
+    RAILS_DEFAULT_LOGGER.debug("Destination#parent: looking up parent for: #{self.name}, #{self.id}")
     return Destination.find(self.h_parent.parent_id) unless self.h_parent.nil?
     case feature_code
     when COUNTRY: p = self
@@ -122,8 +123,10 @@ class Destination < ActiveRecord::Base
         p = Destination.find(:first, :conditions => ["country_code=? and admin1_code=?", country_code, admin1_code], :order => "score desc")
       end
     end
-    RAILS_DEFAULT_LOGGER.debug("Destination#parent: adding <#{p.name}>, id:(#{p.id}) as parent for #{self.name}")
-    self.create_h_parent(:parent_id => p.id)
+    begin
+      RAILS_DEFAULT_LOGGER.debug("Destination#parent: adding <#{p.name}>, id:(#{p.id}) as parent for #{self.name}")
+      self.create_h_parent(:parent_id => p.id)
+    end unless p.nil?
     return p
   end
   
