@@ -52,6 +52,7 @@ class Destination < ActiveRecord::Base
   CITY_CLASS = "P"
   ADMIN_LEVEL1 = "ADM1"
   ADMIN_LEVEL2 = "ADM2"
+  REGION = "RGN"
   CITY_PREFIX = "PP"
   CITIES = %w(PPL PPLA PPLC PPLG PPLL PPLQ PPLR PPLS PPLW PPLX STLMT)
 
@@ -60,7 +61,7 @@ class Destination < ActiveRecord::Base
   NB_PICS_TO_RETRIEVE = 8
   
   ATTRACTIONS = %w(AMUS PRK ANS ARCH ASTR CH BDG CSTL CTRS GDN HSTS MUS OBS PYR PRYS RLG RSRT SHRN SQR TOWR ZOO MNMT CMTY ISLS ISL CLF LK BAR)
-  AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2]
+  AREAS = [COUNTRY, ADMIN_LEVEL1, ADMIN_LEVEL2, REGION]
 
   define_index do
     indexes name, alternate_names, feature_class, feature_code, region_name, country_code, admin1_code, admin2_code
@@ -131,6 +132,7 @@ class Destination < ActiveRecord::Base
     case feature_code
     when COUNTRY: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and feature_class='P'", country_code], :order => "population DESC")
     when ADMIN_LEVEL1: return Destination.find(:all, :limit => max, :conditions => ["country_code=? and admin1_code=? and feature_class='P'", country_code, admin1_code], :order => "population DESC")
+    when "RGN": return Destination.find(:all, :limit => max, :conditions => ["country_code=? and admin1_code=? and feature_class='P'", country_code, admin1_code], :order => "population DESC")
     when ADMIN_LEVEL2: return Destination.find(:all, :limit => max, :conditions => ["country_code=?  and admin1_code=? and admin2_code=? and feature_class='P'", country_code, admin1_code, admin2_code], :order => "score DESC")
     else
       if feature_code.in?(CITIES)
