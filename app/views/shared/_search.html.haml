@@ -1,5 +1,7 @@
 #destinationSearchForm
   %p
-    %label{:for=>"destinationSearch"}= t "Where do you want to go?"
-    %input.destinationSearch{:type=>'input', :size => 30}
+    - form_remote_tag :url => "/destinations/search", :method => :get, :update => "res" do
+      %label{:for=>"destinationSearch"}= t "Where do you want to go?"
+      %input.destinationSearch{:name => "q", :type=>'input', :size => 30}
+      .res{:id=>"res"}
       

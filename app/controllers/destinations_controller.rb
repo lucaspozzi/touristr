@@ -4,17 +4,24 @@ class DestinationsController < ApplicationController
   
   def search
     logger.debug("DestinationController#search: param=#{params[:q]}")
-    @destinations = Destination.s(params[:q])
+    @destinations = Destination.s(params[:q], {:limit => 10})
     logger.debug("DestinationController#search: @destinations=#{@destinations}")
     respond_to do |wants|
-      wants.json do
+      # wants.json do
+      ar = []
+      #   @destinations.each { |d|  parent = d.city? ? ", #{d.parent}" : ""
+      #                             ar << d.to_json(:only => [ :id, :name],
+      #                                             :methods => :parent,
+      #                                             :include => {:country => {:only => :country}})}
+      #   render :json=>ar.join("\n")
+      # end
+      wants.html do
         ar = []
         @destinations.each { |d|  parent = d.city? ? ", #{d.parent}" : ""
-                                  ar << d.to_json(:only => [ :id, :name],
-                                                  :methods => :parent,
-                                                  :include => {:country => {:only => :country}})}
-        render :json=>ar.join("\n")
-      end
+                                  ar << "<a href='#{destination_path(d)}'>#{d.name}, #{d.parent.name}, #{d.country.country}</a>"
+        }
+        render :text=> ar.join("<br>")
+      end      
     end
   end
   

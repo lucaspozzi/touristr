@@ -175,7 +175,7 @@ class Destination < ActiveRecord::Base
   
   def self.s query, params = {}
     res_set = {}
-    res = search(query, params.merge({:star => true, :order=>'score desc', :limit=>MAX_DESTINATION_SEARCH + 25}))
+    res = search(query, params.merge({:star => true, :order=>'score desc'})) #, :limit=>MAX_DESTINATION_SEARCH + 25}))
     # res.each do |dest|
     #   next if res_set.has_key? dest.name
     #   res_set[dest.name] = dest.id
