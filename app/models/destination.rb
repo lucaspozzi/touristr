@@ -85,7 +85,7 @@ class Destination < ActiveRecord::Base
 
   
   def city?
-    feature_code.start_with?(CITY_PREFIX)
+    CITIES.include?(feature_code)
   end
   
   def attraction?
