@@ -6,6 +6,12 @@
   =t("times")
   = link_to t("edit"), edit_destination_path(@destination) if @u
   = link_to t("translate"), translate_destination_path(@destination) if @u
+
+  - if @destination.destination_content.nil?
+    %p
+      = t("We don't have any content yet for") 
+      = @destination.name
+  
   %p#destinationIntroduction.translatable
     = h(@destination.destination_content.introduction) unless @destination.destination_content.nil?
   %h3= t "Map"
